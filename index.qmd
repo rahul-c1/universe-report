@@ -9,5 +9,6 @@ To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
 ```{r}
 #library(usethis)
 #use_git()
+#use_github()
 2+3
 ```
