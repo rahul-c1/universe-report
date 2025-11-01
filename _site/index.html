@@ -130,6 +130,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./new_analysis.html"> 
+<span class="menu-text">====================================================================</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
@@ -171,9 +175,627 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library(usethis)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#use_git()</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#use_github</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env Rscript</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Stock Analysis Script in R</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Comprehensive analysis of stock universe data</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Load required libraries</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:data.table':
+
+    between, first, last</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># LOAD AND PREPARE DATA</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Loading data...</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 5</code></pre>
+<pre><code>Loading data...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">"data/Universe.csv"</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"================================================================================</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>================================================================================</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"COMPREHENSIVE STOCK ANALYSIS</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>COMPREHENSIVE STOCK ANALYSIS</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"================================================================================</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>================================================================================</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert relevant columns to numeric</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>numeric_columns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'RS Rating'</span>, <span class="st">'Comp Rating'</span>, <span class="st">'EPS Rating'</span>, <span class="st">'RS 3-Month Rating'</span>, </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'Market Cap (mil)'</span>, <span class="st">'ROE'</span>, <span class="st">'EPS % Chg Last Qtr'</span>, <span class="st">'Sales % Chg Lst Qtr'</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'Current Price'</span>, <span class="st">'% Chg 3 Months'</span>, <span class="st">'% Chg 6 Months'</span>, <span class="st">'% Chg 12 Months'</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'Price vs 50-Day'</span>, <span class="st">'Price vs 200-Day'</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (col <span class="cf">in</span> numeric_columns) {</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (col <span class="sc">%in%</span> <span class="fu">names</span>(df)) {</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    df[[col]] <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">as.numeric</span>(df[[col]]))</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to convert letter ratings to numeric scores</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>convert_rating <span class="ot">&lt;-</span> <span class="cf">function</span>(rating) {</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  rating_map <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'A+'</span> <span class="ot">=</span> <span class="dv">100</span>, <span class="st">'A'</span> <span class="ot">=</span> <span class="dv">95</span>, <span class="st">'A-'</span> <span class="ot">=</span> <span class="dv">90</span>,</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'B+'</span> <span class="ot">=</span> <span class="dv">85</span>, <span class="st">'B'</span> <span class="ot">=</span> <span class="dv">80</span>, <span class="st">'B-'</span> <span class="ot">=</span> <span class="dv">75</span>,</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'C+'</span> <span class="ot">=</span> <span class="dv">70</span>, <span class="st">'C'</span> <span class="ot">=</span> <span class="dv">65</span>, <span class="st">'C-'</span> <span class="ot">=</span> <span class="dv">60</span>,</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'D+'</span> <span class="ot">=</span> <span class="dv">55</span>, <span class="st">'D'</span> <span class="ot">=</span> <span class="dv">50</span>, <span class="st">'D-'</span> <span class="ot">=</span> <span class="dv">45</span>,</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'E'</span> <span class="ot">=</span> <span class="dv">40</span>)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sapply</span>(rating, <span class="cf">function</span>(r) {</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.na</span>(r) <span class="sc">||</span> r <span class="sc">==</span> <span class="st">'-'</span> <span class="sc">||</span> r <span class="sc">==</span> <span class="st">''</span>) <span class="fu">return</span>(<span class="cn">NA</span>)</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (r <span class="sc">%in%</span> <span class="fu">names</span>(rating_map)) <span class="fu">return</span>(rating_map[r])</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NA</span>)</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert SMR Rating and A/D Rating to numeric scores</span></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span><span class="st">`</span><span class="at">SMR Score</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">convert_rating</span>(df<span class="sc">$</span><span class="st">`</span><span class="at">SMR Rating</span><span class="st">`</span>)</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span><span class="st">`</span><span class="at">AD Score</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">convert_rating</span>(df<span class="sc">$</span><span class="st">`</span><span class="at">A/D Rating</span><span class="st">`</span>)</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">1. FILTERING FOR HIGH-QUALITY STOCKS</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+1. FILTERING FOR HIGH-QUALITY STOCKS</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------------------------------------------</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter out ETFs and funds</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df_stocks <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ETF <span class="sc">!=</span> <span class="st">'Yes'</span> <span class="sc">|</span> <span class="fu">is.na</span>(ETF)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">ETF/Closed-End Fund</span><span class="st">`</span> <span class="sc">!=</span> <span class="st">'Yes'</span> <span class="sc">|</span> <span class="fu">is.na</span>(<span class="st">`</span><span class="at">ETF/Closed-End Fund</span><span class="st">`</span>))</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"After excluding ETFs/Funds: %d stocks</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">nrow</span>(df_stocks)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>After excluding ETFs/Funds: 5842 stocks</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for established companies (Market Cap &gt; $300M)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="ot">&lt;-</span> df_stocks <span class="sc">%&gt;%</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span> <span class="sc">&gt;</span> <span class="dv">300</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"After filtering for Market Cap &gt; $300M: %d stocks</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">nrow</span>(df_filtered)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>After filtering for Market Cap &gt; $300M: 3698 stocks</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># CALCULATE QUALITY SCORE</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a composite score based on key metrics</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="ot">&lt;-</span> df_filtered <span class="sc">%&gt;%</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span> <span class="ot">=</span> </span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>      (<span class="st">`</span><span class="at">RS Rating</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">0.25</span>) <span class="sc">+</span>                                           <span class="co"># 25% weight</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>      (<span class="st">`</span><span class="at">Comp Rating</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">0.25</span>) <span class="sc">+</span>                                         <span class="co"># 25% weight</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>      (<span class="st">`</span><span class="at">EPS Rating</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">0.20</span>) <span class="sc">+</span>                                          <span class="co"># 20% weight</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>      ((<span class="fu">coalesce</span>(<span class="st">`</span><span class="at">SMR Score</span><span class="st">`</span>, <span class="dv">50</span>) <span class="sc">-</span> <span class="dv">40</span>) <span class="sc">*</span> <span class="fl">0.15</span> <span class="sc">/</span> <span class="dv">60</span> <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">+</span>          <span class="co"># 15% weight</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>      ((<span class="fu">coalesce</span>(<span class="st">`</span><span class="at">AD Score</span><span class="st">`</span>, <span class="dv">50</span>) <span class="sc">-</span> <span class="dv">40</span>) <span class="sc">*</span> <span class="fl">0.15</span> <span class="sc">/</span> <span class="dv">60</span> <span class="sc">*</span> <span class="dv">100</span>)             <span class="co"># 15% weight</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">coalesce</span>(<span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span>, <span class="dv">0</span>))</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="co"># TOP STOCKS BY QUALITY SCORE</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">2. TOP STOCKS BY COMPOSITE QUALITY SCORE</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+2. TOP STOCKS BY COMPOSITE QUALITY SCORE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------------------------------------------</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Quality Score = 25% RS Rating + 25% Comp Rating + 20% EPS Rating + 15% SMR + 15% A/D</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Quality Score = 25% RS Rating + 25% Comp Rating + 20% EPS Rating + 15% SMR + 15% A/D</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>top_quality <span class="ot">&lt;-</span> df_filtered <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">30</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Symbol, Name, <span class="st">`</span><span class="at">Current Price</span><span class="st">`</span>, <span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span>, </span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">RS Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">Comp Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">EPS Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">SMR Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">A/D Rating</span><span class="st">`</span>,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span>, <span class="st">`</span><span class="at">% Chg 3 Months</span><span class="st">`</span>, <span class="st">`</span><span class="at">% Chg 6 Months</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span>, <span class="dv">1</span>),</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span>, <span class="dv">0</span>),</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Current Price</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="st">`</span><span class="at">Current Price</span><span class="st">`</span>, <span class="dv">2</span>)</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(top_quality, <span class="at">n =</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Symbol                      Name Current Price Market Cap (mil) RS Rating
+    &lt;char&gt;                    &lt;char&gt;         &lt;num&gt;            &lt;num&gt;     &lt;num&gt;
+ 1:    CLS                 Celestica        296.62            34121        98
+ 2:    EME               EMCOR Group        748.24            33494        91
+ 3:   CAMT                    Camtek        119.15             5434        89
+ 4:    NXT                Nextracker         98.28            14542        97
+ 5:    APH             Amphenol Cl A        133.82           163384        93
+ 6:    FSM            Fortuna Mining          8.16             2502        90
+ 7:    GLW                   Corning         87.41            74877        94
+ 8:   IBEX                      IBEX         38.19              508        93
+ 9:   PAHC      Phibro Animal Health         42.33             1716        95
+10:   AVGO                  Broadcom        354.13          1672331        93
+11:     MU         Micron Technology        219.02           245842        97
+12:    VRT           Vertiv Holdings        186.06            71138        93
+13:    WDC           Western Digital        129.43            44902        97
+14:   MEDP          Medpace Holdings        605.20            17002        94
+15:   ATAT Atour Lifestyle Hldgs ADR         39.80             5555        88
+16:   RMBS                    Rambus        105.42            11342        95
+17:    AII        Amer Integrity Ins         24.16              473        89
+18:   PRIM         Primoris Services        142.37             7690        95
+19:   GILT  Gilat Satellite Networks         14.86              847        97
+20:   IESC              IES Holdings        436.98             8676        94
+21:   IRMD                  iRadimed         78.47              998        90
+22:   SHOP                   Shopify        172.95           224776        94
+23:     UI                  Ubiquiti        735.63            44504        96
+24:   PEGA               Pegasystems         66.27            11248        86
+25:   ATGE  Adtalem Global Education        152.97             5558        92
+26:    FIX       Comfort Systems USA        981.66            34634        96
+27:   NVMI                      Nova        345.06            10145        92
+28:   ANIP       ANI Pharmaceuticals         94.24             2045        91
+29:    KGC              Kinross Gold         23.94            29178        95
+30:   MPWR  Monolithic Power Systems       1074.91            51480        92
+    Symbol                      Name Current Price Market Cap (mil) RS Rating
+    Comp Rating EPS Rating SMR Rating A/D Rating Quality Score % Chg 3 Months
+          &lt;num&gt;      &lt;num&gt;     &lt;char&gt;     &lt;char&gt;         &lt;num&gt;          &lt;num&gt;
+ 1:          99         99          A         A-          95.3           80.9
+ 2:          99         98          A          A          94.6           29.3
+ 3:          97         96          A         A+          94.4           26.4
+ 4:          98         96          A         A-          94.2           55.0
+ 5:          99         99          A         A-          94.0           28.1
+ 6:          99         94          A          A          93.6           18.4
+ 7:          98         89          A          A          93.3           56.9
+ 8:          97         97          A         A-          93.2           25.2
+ 9:          98         93          A         A-          93.1           43.8
+10:          99         99          A         B+          92.8           22.7
+11:          99         81          A          A          92.7           96.0
+12:          99         98          A         B+          92.6           42.2
+13:          99         80          A          A          92.5           87.5
+14:          98         97          A         B+          92.4           32.8
+15:          97         98          A         A-          92.1           11.5
+16:          99         99          A          B          92.0           64.2
+17:          98         81          A         A+          91.7           38.0
+18:          99         97          B          A          91.7           58.3
+19:          98         89          B         A+          91.6           91.0
+20:          98         98          A          B          91.3           33.1
+21:          95         94          A         A-          91.3           38.6
+22:          96         94          A         B+          91.3           41.7
+23:          98         89          A         B+          91.3           64.4
+24:          97         96          A         A-          91.2           14.1
+25:          95         97          A         B+          91.2           33.8
+26:          99         99          A         B-          91.0           74.4
+27:          98         99          A          B          91.0           31.9
+28:          98         93          A         B+          90.8           41.1
+29:          99         93          A          B          90.8           51.1
+30:          98         98          A          B          90.8           50.8
+    Comp Rating EPS Rating SMR Rating A/D Rating Quality Score % Chg 3 Months
+    % Chg 6 Months
+             &lt;num&gt;
+ 1:          221.9
+ 2:           86.8
+ 3:           78.0
+ 4:          132.1
+ 5:           76.0
+ 6:           33.1
+ 7:           99.2
+ 8:           55.5
+ 9:          134.9
+10:           88.2
+11:          182.9
+12:          121.8
+13:          222.2
+14:           99.8
+15:           67.4
+16:          113.6
+17:             NA
+18:          139.5
+19:          135.9
+20:          123.3
+21:           47.7
+22:           81.8
+23:          135.1
+24:           45.1
+25:           46.5
+26:          160.9
+27:           75.4
+28:           35.3
+29:           63.2
+30:           85.1
+    % Chg 6 Months</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># BEST MOMENTUM STOCKS</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">3. BEST MOMENTUM STOCKS (High RS Rating)</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+3. BEST MOMENTUM STOCKS (High RS Rating)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------------------------------------------</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Stocks with RS Rating &gt;= 95 and strong fundamentals</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Stocks with RS Rating &gt;= 95 and strong fundamentals</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>momentum_stocks <span class="ot">&lt;-</span> df_filtered <span class="sc">%&gt;%</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">RS Rating</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="dv">95</span>, <span class="st">`</span><span class="at">Comp Rating</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="dv">80</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">RS Rating</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">20</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Symbol, Name, <span class="st">`</span><span class="at">Current Price</span><span class="st">`</span>, <span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span>,</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">RS Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">Comp Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">EPS Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">% Chg 3 Months</span><span class="st">`</span>, <span class="st">`</span><span class="at">% Chg 6 Months</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span>, <span class="dv">0</span>),</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Current Price</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="st">`</span><span class="at">Current Price</span><span class="st">`</span>, <span class="dv">2</span>)</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(momentum_stocks, <span class="at">n =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Symbol                      Name Current Price Market Cap (mil) RS Rating
+    &lt;char&gt;                    &lt;char&gt;         &lt;num&gt;            &lt;num&gt;     &lt;num&gt;
+ 1:   ABAT     American Battery Tech          5.98              706        99
+ 2:   AMPX      Amprius Technologies         12.89             1612        99
+ 3:   APLD           Applied Digital         33.43             9350        99
+ 4:   ATAI        ATAI Life Sciences          5.77             1382        99
+ 5:     BE              Bloom Energy        110.38            25829        99
+ 6:     BW     Babcock &amp; Wilcox Ents          3.46              350        99
+ 7:   CDTX       Cidara Therapeutics         93.12             2361        99
+ 8:   CIFR             Cipher Mining         20.66             8125        99
+ 9:   CTEV                  Claritev         69.69             1148        99
+10:   DVLT              Datavault AI          3.42              606        99
+11:   GRAL                     GRAIL         89.39             3222        99
+12:   IMAB                 I-Mab ADR          4.22              485        99
+13:   INBX       Inhibrx Biosciences         57.29              830        99
+14:   IREN                      IREN         62.90            12463        99
+15:   IVVD                   Invivyd          2.23              467        99
+16:    KOD           Kodiak Sciences         18.69              986        99
+17:    LEU            Centrus Energy        383.00             6973        99
+18:   MENS             Jyong Biotech         60.80             4647        99
+19:    MFH Mercurity Fintech Holding         11.47              698        99
+20:   MVST        Microvast Holdings          5.69             1851        99
+    Symbol                      Name Current Price Market Cap (mil) RS Rating
+    Comp Rating EPS Rating % Chg 3 Months % Chg 6 Months
+          &lt;num&gt;      &lt;num&gt;          &lt;num&gt;          &lt;num&gt;
+ 1:          87         44           77.4          398.3
+ 2:          92         46           55.5          417.7
+ 3:          84         17          198.5          636.3
+ 4:          88         42           54.3          277.1
+ 5:          99         80          233.9          508.5
+ 6:          85         46          229.5          726.6
+ 7:          83         20           48.2          333.5
+ 8:          92         38          210.7          588.7
+ 9:          82         60           67.0          208.8
+10:          97         65          398.9          331.9
+11:          91         56          125.1          137.2
+12:          80         39           99.1          395.1
+13:          88         18          148.3          378.2
+14:          94         38          246.7          898.4
+15:          96         53          175.3          233.6
+16:          80         11          126.5          346.1
+17:          87         57           58.0          457.1
+18:          83         48          416.1             NA
+19:          82         60          273.6           70.7
+20:          95         80           70.4          164.7
+    Comp Rating EPS Rating % Chg 3 Months % Chg 6 Months</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># BEST FUNDAMENTAL STOCKS</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">4. BEST FUNDAMENTAL STOCKS (High Comp + EPS Ratings)</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+4. BEST FUNDAMENTAL STOCKS (High Comp + EPS Ratings)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------------------------------------------</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Stocks with Comp Rating &gt;= 95 and EPS Rating &gt;= 90</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Stocks with Comp Rating &gt;= 95 and EPS Rating &gt;= 90</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>fundamental_stocks <span class="ot">&lt;-</span> df_filtered <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Comp Rating</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="dv">95</span>, <span class="st">`</span><span class="at">EPS Rating</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="dv">90</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">Comp Rating</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">20</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Symbol, Name, <span class="st">`</span><span class="at">Current Price</span><span class="st">`</span>, <span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span>,</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">RS Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">Comp Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">EPS Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">SMR Rating</span><span class="st">`</span>, ROE) <span class="sc">%&gt;%</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span>, <span class="dv">0</span>),</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Current Price</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="st">`</span><span class="at">Current Price</span><span class="st">`</span>, <span class="dv">2</span>)</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fundamental_stocks, <span class="at">n =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Symbol                    Name Current Price Market Cap (mil) RS Rating
+    &lt;char&gt;                  &lt;char&gt;         &lt;num&gt;            &lt;num&gt;     &lt;num&gt;
+ 1:    AEM      Agnico-Eagle Mines        163.35            82291        92
+ 2:   ANET         Arista Networks        153.82           193331        91
+ 3:    APH           Amphenol Cl A        133.82           163384        93
+ 4:   AVGO                Broadcom        354.13          1672331        93
+ 5:    CCJ                  Cameco         88.13            38364        91
+ 6:    CLS               Celestica        296.62            34121        98
+ 7:    EME             EMCOR Group        748.24            33494        91
+ 8:    FIX     Comfort Systems USA        981.66            34634        96
+ 9:    FSM          Fortuna Mining          8.16             2502        90
+10:     GE            GE Aerospace        303.87           320526        89
+11:    GFI         Gold Fields ADR         40.30            36086        96
+12:   HALO   Halozyme Therapeutics         66.15             7737        77
+13:    HMY Harmony Gold Mining ADR         17.49            11065        88
+14:   IBKR     Interactive Brokers         68.75            30611        88
+15:    KGC            Kinross Gold         23.94            29178        95
+16:    NEM                 Newmont         83.37            91578        93
+17:   NVDA                  NVIDIA        186.26          4526118        85
+18:    NVT          nVent Electric        102.20            16449        91
+19:     OR            OR Royalties         33.35             6236        90
+20:   ORLA             Orla Mining         10.78             3505        89
+    Symbol                    Name Current Price Market Cap (mil) RS Rating
+    Comp Rating EPS Rating SMR Rating   ROE
+          &lt;num&gt;      &lt;num&gt;     &lt;char&gt; &lt;num&gt;
+ 1:          99         98          A  10.5
+ 2:          99         99          A  33.8
+ 3:          99         99          A  26.3
+ 4:          99         99          A  51.8
+ 5:          99         99          B   4.7
+ 6:          99         99          A  25.1
+ 7:          99         98          A  37.3
+ 8:          99         99          A  35.0
+ 9:          99         94          A   6.5
+10:          99         97          A  21.4
+11:          99         97          A  25.3
+12:          99         98          A 244.5
+13:          99         96          A  32.0
+14:          99         98          A  19.5
+15:          99         93          A  13.0
+16:          99         91          A  13.5
+17:          99         99          A 121.4
+18:          99         91          A  13.1
+19:          99         93          A   8.0
+20:          99         99          A  17.9
+    Comp Rating EPS Rating SMR Rating   ROE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co"># BEST LARGE-CAP STOCKS</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">5. BEST LARGE-CAP STOCKS (Market Cap &gt; $10B)</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+5. BEST LARGE-CAP STOCKS (Market Cap &gt; $10B)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------------------------</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------------------------------------------</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>large_cap <span class="ot">&lt;-</span> df_filtered <span class="sc">%&gt;%</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span> <span class="sc">&gt;</span> <span class="dv">10000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">15</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Symbol, Name, <span class="st">`</span><span class="at">Current Price</span><span class="st">`</span>, <span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span>,</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">RS Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">Comp Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">EPS Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span>, <span class="dv">0</span>),</span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Current Price</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="st">`</span><span class="at">Current Price</span><span class="st">`</span>, <span class="dv">2</span>),</span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span>, <span class="dv">1</span>)</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(large_cap, <span class="at">n =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Symbol                Name Current Price Market Cap (mil) RS Rating
+    &lt;char&gt;              &lt;char&gt;         &lt;num&gt;            &lt;num&gt;     &lt;num&gt;
+ 1:    CLS           Celestica        296.62            34121        98
+ 2:    EME         EMCOR Group        748.24            33494        91
+ 3:    NXT          Nextracker         98.28            14542        97
+ 4:    APH       Amphenol Cl A        133.82           163384        93
+ 5:    GLW             Corning         87.41            74877        94
+ 6:   AVGO            Broadcom        354.13          1672331        93
+ 7:     MU   Micron Technology        219.02           245842        97
+ 8:    VRT     Vertiv Holdings        186.06            71138        93
+ 9:    WDC     Western Digital        129.43            44902        97
+10:   MEDP    Medpace Holdings        605.20            17002        94
+11:   RMBS              Rambus        105.42            11342        95
+12:   SHOP             Shopify        172.95           224776        94
+13:     UI            Ubiquiti        735.63            44504        96
+14:   PEGA         Pegasystems         66.27            11248        86
+15:    FIX Comfort Systems USA        981.66            34634        96
+    Comp Rating EPS Rating Quality Score
+          &lt;num&gt;      &lt;num&gt;         &lt;num&gt;
+ 1:          99         99          95.3
+ 2:          99         98          94.6
+ 3:          98         96          94.2
+ 4:          99         99          94.0
+ 5:          98         89          93.3
+ 6:          99         99          92.8
+ 7:          99         81          92.7
+ 8:          99         98          92.6
+ 9:          99         80          92.5
+10:          98         97          92.4
+11:          99         99          92.0
+12:          96         94          91.3
+13:          98         89          91.3
+14:          97         96          91.2
+15:          99         99          91.0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co"># SUMMARY STATISTICS</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">6. SUMMARY STATISTICS</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+6. SUMMARY STATISTICS</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------------------------</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------------------------------------------</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Total stocks analyzed: %d</span><span class="sc">\n\n</span><span class="st">"</span>, <span class="fu">nrow</span>(df_filtered)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total stocks analyzed: 3698</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Average RS Rating: %.1f</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">mean</span>(df_filtered<span class="sc">$</span><span class="st">`</span><span class="at">RS Rating</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Average RS Rating: 53.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Average Comp Rating: %.1f</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">mean</span>(df_filtered<span class="sc">$</span><span class="st">`</span><span class="at">Comp Rating</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Average Comp Rating: 58.9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Average EPS Rating: %.1f</span><span class="sc">\n\n</span><span class="st">"</span>, <span class="fu">mean</span>(df_filtered<span class="sc">$</span><span class="st">`</span><span class="at">EPS Rating</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Average EPS Rating: 56.9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Stocks with RS Rating &gt;= 90: %d</span><span class="sc">\n</span><span class="st">"</span>, </span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sum</span>(df_filtered<span class="sc">$</span><span class="st">`</span><span class="at">RS Rating</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="dv">90</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Stocks with RS Rating &gt;= 90: 613</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Stocks with Comp Rating &gt;= 90: %d</span><span class="sc">\n</span><span class="st">"</span>, </span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sum</span>(df_filtered<span class="sc">$</span><span class="st">`</span><span class="at">Comp Rating</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="dv">90</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Stocks with Comp Rating &gt;= 90: 501</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Stocks with EPS Rating &gt;= 90: %d</span><span class="sc">\n</span><span class="st">"</span>, </span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sum</span>(df_filtered<span class="sc">$</span><span class="st">`</span><span class="at">EPS Rating</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="dv">90</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Stocks with EPS Rating &gt;= 90: 493</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="co"># KEY INSIGHTS</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">7. KEY INSIGHTS &amp; RECOMMENDATIONS</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+7. KEY INSIGHTS &amp; RECOMMENDATIONS</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------------------------------------------</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="st">Based on the comprehensive analysis of %d stocks, here are the key findings:</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="st">RATING DEFINITIONS:</span></span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="st">- RS Rating (Relative Strength): Measures price performance vs. all other stocks (0-100)</span></span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a><span class="st">- Comp Rating (Composite): Overall stock quality combining multiple factors (0-100)</span></span>
+<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a><span class="st">- EPS Rating: Earnings Per Share growth and stability (0-100)</span></span>
+<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a><span class="st">- SMR Rating: Sales + Margins + Return on Equity (A+ to E)</span></span>
+<span id="cb74-9"><a href="#cb74-9" aria-hidden="true" tabindex="-1"></a><span class="st">- A/D Rating: Accumulation/Distribution - institutional buying/selling (A+ to E)</span></span>
+<span id="cb74-10"><a href="#cb74-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-11"><a href="#cb74-11" aria-hidden="true" tabindex="-1"></a><span class="st">TOP CATEGORIES:</span></span>
+<span id="cb74-12"><a href="#cb74-12" aria-hidden="true" tabindex="-1"></a><span class="st">1. Highest Quality Score: Stocks that excel across all metrics</span></span>
+<span id="cb74-13"><a href="#cb74-13" aria-hidden="true" tabindex="-1"></a><span class="st">2. Best Momentum: Stocks with exceptional price strength and fundamentals</span></span>
+<span id="cb74-14"><a href="#cb74-14" aria-hidden="true" tabindex="-1"></a><span class="st">3. Best Fundamentals: Companies with superior earnings and composite ratings</span></span>
+<span id="cb74-15"><a href="#cb74-15" aria-hidden="true" tabindex="-1"></a><span class="st">4. Best Large-Caps: Quality stocks with market caps exceeding $10 billion</span></span>
+<span id="cb74-16"><a href="#cb74-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-17"><a href="#cb74-17" aria-hidden="true" tabindex="-1"></a><span class="st">INVESTMENT APPROACH:</span></span>
+<span id="cb74-18"><a href="#cb74-18" aria-hidden="true" tabindex="-1"></a><span class="st">- Look for stocks with RS Rating &gt;= 80 (strong momentum)</span></span>
+<span id="cb74-19"><a href="#cb74-19" aria-hidden="true" tabindex="-1"></a><span class="st">- Seek Comp Rating &gt;= 85 (high quality)</span></span>
+<span id="cb74-20"><a href="#cb74-20" aria-hidden="true" tabindex="-1"></a><span class="st">- Prefer EPS Rating &gt;= 80 (strong earnings)</span></span>
+<span id="cb74-21"><a href="#cb74-21" aria-hidden="true" tabindex="-1"></a><span class="st">- Consider SMR Rating A or B (excellent fundamentals)</span></span>
+<span id="cb74-22"><a href="#cb74-22" aria-hidden="true" tabindex="-1"></a><span class="st">- Check A/D Rating for institutional support</span></span>
+<span id="cb74-23"><a href="#cb74-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-24"><a href="#cb74-24" aria-hidden="true" tabindex="-1"></a><span class="st">The 'Quality Score' provides a balanced view combining all these factors.</span></span>
+<span id="cb74-25"><a href="#cb74-25" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>, <span class="fu">nrow</span>(df_filtered)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Based on the comprehensive analysis of 3698 stocks, here are the key findings:
+
+RATING DEFINITIONS:
+- RS Rating (Relative Strength): Measures price performance vs. all other stocks (0-100)
+- Comp Rating (Composite): Overall stock quality combining multiple factors (0-100)
+- EPS Rating: Earnings Per Share growth and stability (0-100)
+- SMR Rating: Sales + Margins + Return on Equity (A+ to E)
+- A/D Rating: Accumulation/Distribution - institutional buying/selling (A+ to E)
+
+TOP CATEGORIES:
+1. Highest Quality Score: Stocks that excel across all metrics
+2. Best Momentum: Stocks with exceptional price strength and fundamentals
+3. Best Fundamentals: Companies with superior earnings and composite ratings
+4. Best Large-Caps: Quality stocks with market caps exceeding $10 billion
+
+INVESTMENT APPROACH:
+- Look for stocks with RS Rating &gt;= 80 (strong momentum)
+- Seek Comp Rating &gt;= 85 (high quality)
+- Prefer EPS Rating &gt;= 80 (strong earnings)
+- Consider SMR Rating A or B (excellent fundamentals)
+- Check A/D Rating for institutional support
+
+The 'Quality Score' provides a balanced view combining all these factors.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"================================================================================</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>================================================================================</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"ANALYSIS COMPLETE</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ANALYSIS COMPLETE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"================================================================================</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>================================================================================</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="co"># SAVE RESULTS</span></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Save top quality stocks to CSV</span></span>
+<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(top_quality, <span class="st">"top_quality_stocks.csv"</span>)</span>
+<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"✓ Detailed results saved to: top_quality_stocks.csv</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>✓ Detailed results saved to: top_quality_stocks.csv</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save all filtered stocks with quality scores for further analysis</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>df_filtered_export <span class="ot">&lt;-</span> df_filtered <span class="sc">%&gt;%</span></span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Symbol, Name, <span class="st">`</span><span class="at">Current Price</span><span class="st">`</span>, <span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span>,</span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">RS Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">Comp Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">EPS Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">SMR Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">A/D Rating</span><span class="st">`</span>,</span>
+<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span>, <span class="st">`</span><span class="at">% Chg 3 Months</span><span class="st">`</span>, <span class="st">`</span><span class="at">% Chg 6 Months</span><span class="st">`</span>, <span class="st">`</span><span class="at">% Chg 12 Months</span><span class="st">`</span>,</span>
+<span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a>         Sector, ROE) <span class="sc">%&gt;%</span></span>
+<span id="cb85-7"><a href="#cb85-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span>))</span>
+<span id="cb85-8"><a href="#cb85-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-9"><a href="#cb85-9" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(df_filtered_export, <span class="st">"all_stocks_with_scores.csv"</span>)</span>
+<span id="cb85-10"><a href="#cb85-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"✓ All stocks with scores saved to: all_stocks_with_scores.csv</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>✓ All stocks with scores saved to: all_stocks_with_scores.csv</code></pre>
 </div>
 </div>
 

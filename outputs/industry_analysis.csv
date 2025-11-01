@@ -1,0 +1,16 @@
+"Industry_Name","Sector","Num_Stocks","Avg_RS_Rating","Avg_YTD_Return"
+"Mining-Gold/Silver/Gems","MINING",78,88.6,130.4
+"Telecom-Fiber Optics","TELECOM",8,85.9,67.4
+"Computer-Data Storage","COMPUTER",10,84.9,73.9
+"Retail/Whlsle-Jewelry","RETAIL",7,79.3,14.8
+"Banks-Money Center","BANKS",26,77.6,40.1
+"Mining-Metal Ores","MINING",52,77.6,115
+"Elec-Semiconductor Equip","CHIPS",30,77.2,35.3
+"Bldg-Heavy Construction","BUILDING",25,74.6,57.6
+"Elec-Scientific/Msrng","ELECTRNCS",8,74.6,27.1
+"Retail-Department Stores","RETAIL",5,71,-3.7
+"Telecom-Cable/Satl Eqp","TELECOM",14,70.8,51.3
+"Elec-Contract Mfg","ELECTRNCS",16,68.6,46.8
+"Aerospace/Defense","AEROSPACE",81,68.3,42.2
+"Utility-Electric Power","UTILITY",33,66.6,26.4
+"Machinery-Constr/Mining","MACHINE",8,65.6,24.8
