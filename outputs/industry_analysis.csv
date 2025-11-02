@@ -1,16 +1,16 @@
 "Industry_Name","Sector","Num_Stocks","Avg_RS_Rating","Avg_YTD_Return"
-"Mining-Gold/Silver/Gems","MINING",78,88.6,130.4
-"Telecom-Fiber Optics","TELECOM",8,85.9,67.4
-"Computer-Data Storage","COMPUTER",10,84.9,73.9
-"Retail/Whlsle-Jewelry","RETAIL",7,79.3,14.8
-"Banks-Money Center","BANKS",26,77.6,40.1
-"Mining-Metal Ores","MINING",52,77.6,115
-"Elec-Semiconductor Equip","CHIPS",30,77.2,35.3
-"Bldg-Heavy Construction","BUILDING",25,74.6,57.6
-"Elec-Scientific/Msrng","ELECTRNCS",8,74.6,27.1
-"Retail-Department Stores","RETAIL",5,71,-3.7
-"Telecom-Cable/Satl Eqp","TELECOM",14,70.8,51.3
-"Elec-Contract Mfg","ELECTRNCS",16,68.6,46.8
-"Aerospace/Defense","AEROSPACE",81,68.3,42.2
-"Utility-Electric Power","UTILITY",33,66.6,26.4
-"Machinery-Constr/Mining","MACHINE",8,65.6,24.8
+"Mining-Gold/Silver/Gems","MINING","78","88.3","121.2"
+"Telecom-Fiber Optics","TELECOM","8","87.2","78.5"
+"Computer-Data Storage","COMPUTER","10","86.0","82.7"
+"Retail/Whlsle-Jewelry","RETAIL","7","82.0","9.3"
+"Elec-Semiconductor Equip","CHIPS","30","80.8","41.8"
+"Mining-Metal Ores","MINING","52","79.9","101.0"
+"Banks-Money Center","BANKS","26","78.8","42.8"
+"Bldg-Heavy Construction","BUILDING","25","77.7","56.0"
+"Elec-Contract Mfg","ELECTRNCS","16","76.5","54.6"
+"Telecom-Cable/Satl Eqp","TELECOM","14","75.1","47.9"
+"Banks-Foreign","BANKS","38","70.6","36.8"
+"Utility-Electric Power","UTILITY","33","69.9","28.5"
+"Energy-Coal","ENERGY","13","69.6","51.4"
+"Oil&amp;Gas-Drilling","ENERGY","9","68.6","-8.4"
+"Retail-Department Stores","RETAIL","6","67.8","8.4"

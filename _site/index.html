@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -128,11 +94,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">Viz</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./new_analysis.html"> 
-<span class="menu-text">====================================================================</span></a>
+<span class="menu-text">TopPerf</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -173,571 +139,2855 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This is a Quarto website.</p>
 <p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library(usethis)</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#use_git()</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#use_github</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env Rscript</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Stock Analysis Script in R</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Comprehensive analysis of stock universe data</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Load required libraries</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'dplyr'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:data.table':
-
-    between, first, last</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:stats':
-
-    filter, lag</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    intersect, setdiff, setequal, union</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># LOAD AND PREPARE DATA</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Loading data...</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Loading data...</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">"data/Universe.csv"</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"================================================================================</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>================================================================================</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"COMPREHENSIVE STOCK ANALYSIS</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>COMPREHENSIVE STOCK ANALYSIS</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"================================================================================</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>================================================================================</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert relevant columns to numeric</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>numeric_columns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'RS Rating'</span>, <span class="st">'Comp Rating'</span>, <span class="st">'EPS Rating'</span>, <span class="st">'RS 3-Month Rating'</span>, </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'Market Cap (mil)'</span>, <span class="st">'ROE'</span>, <span class="st">'EPS % Chg Last Qtr'</span>, <span class="st">'Sales % Chg Lst Qtr'</span>,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'Current Price'</span>, <span class="st">'% Chg 3 Months'</span>, <span class="st">'% Chg 6 Months'</span>, <span class="st">'% Chg 12 Months'</span>,</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'Price vs 50-Day'</span>, <span class="st">'Price vs 200-Day'</span>)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (col <span class="cf">in</span> numeric_columns) {</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (col <span class="sc">%in%</span> <span class="fu">names</span>(df)) {</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    df[[col]] <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">as.numeric</span>(df[[col]]))</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to convert letter ratings to numeric scores</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>convert_rating <span class="ot">&lt;-</span> <span class="cf">function</span>(rating) {</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  rating_map <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'A+'</span> <span class="ot">=</span> <span class="dv">100</span>, <span class="st">'A'</span> <span class="ot">=</span> <span class="dv">95</span>, <span class="st">'A-'</span> <span class="ot">=</span> <span class="dv">90</span>,</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'B+'</span> <span class="ot">=</span> <span class="dv">85</span>, <span class="st">'B'</span> <span class="ot">=</span> <span class="dv">80</span>, <span class="st">'B-'</span> <span class="ot">=</span> <span class="dv">75</span>,</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'C+'</span> <span class="ot">=</span> <span class="dv">70</span>, <span class="st">'C'</span> <span class="ot">=</span> <span class="dv">65</span>, <span class="st">'C-'</span> <span class="ot">=</span> <span class="dv">60</span>,</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'D+'</span> <span class="ot">=</span> <span class="dv">55</span>, <span class="st">'D'</span> <span class="ot">=</span> <span class="dv">50</span>, <span class="st">'D-'</span> <span class="ot">=</span> <span class="dv">45</span>,</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'E'</span> <span class="ot">=</span> <span class="dv">40</span>)</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sapply</span>(rating, <span class="cf">function</span>(r) {</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.na</span>(r) <span class="sc">||</span> r <span class="sc">==</span> <span class="st">'-'</span> <span class="sc">||</span> r <span class="sc">==</span> <span class="st">''</span>) <span class="fu">return</span>(<span class="cn">NA</span>)</span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (r <span class="sc">%in%</span> <span class="fu">names</span>(rating_map)) <span class="fu">return</span>(rating_map[r])</span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NA</span>)</span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert SMR Rating and A/D Rating to numeric scores</span></span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span><span class="st">`</span><span class="at">SMR Score</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">convert_rating</span>(df<span class="sc">$</span><span class="st">`</span><span class="at">SMR Rating</span><span class="st">`</span>)</span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span><span class="st">`</span><span class="at">AD Score</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">convert_rating</span>(df<span class="sc">$</span><span class="st">`</span><span class="at">A/D Rating</span><span class="st">`</span>)</span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">1. FILTERING FOR HIGH-QUALITY STOCKS</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 1. FILTERING FOR HIGH-QUALITY STOCKS</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>--------------------------------------------------------------------------------</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter out ETFs and funds</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df_stocks <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ETF <span class="sc">!=</span> <span class="st">'Yes'</span> <span class="sc">|</span> <span class="fu">is.na</span>(ETF)) <span class="sc">%&gt;%</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">ETF/Closed-End Fund</span><span class="st">`</span> <span class="sc">!=</span> <span class="st">'Yes'</span> <span class="sc">|</span> <span class="fu">is.na</span>(<span class="st">`</span><span class="at">ETF/Closed-End Fund</span><span class="st">`</span>))</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"After excluding ETFs/Funds: %d stocks</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">nrow</span>(df_stocks)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>After excluding ETFs/Funds: 5842 stocks</code></pre>
+<pre><code>After excluding ETFs/Funds: 6277 stocks</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for established companies (Market Cap &gt; $300M)</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="ot">&lt;-</span> df_stocks <span class="sc">%&gt;%</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span> <span class="sc">&gt;</span> <span class="dv">300</span>)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"After filtering for Market Cap &gt; $300M: %d stocks</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">nrow</span>(df_filtered)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>After filtering for Market Cap &gt; $300M: 3698 stocks</code></pre>
+<pre><code>After filtering for Market Cap &gt; $300M: 3915 stocks</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># CALCULATE QUALITY SCORE</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a composite score based on key metrics</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="ot">&lt;-</span> df_filtered <span class="sc">%&gt;%</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span> <span class="ot">=</span> </span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>      (<span class="st">`</span><span class="at">RS Rating</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">0.25</span>) <span class="sc">+</span>                                           <span class="co"># 25% weight</span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>      (<span class="st">`</span><span class="at">Comp Rating</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">0.25</span>) <span class="sc">+</span>                                         <span class="co"># 25% weight</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>      (<span class="st">`</span><span class="at">EPS Rating</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">0.20</span>) <span class="sc">+</span>                                          <span class="co"># 20% weight</span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>      ((<span class="fu">coalesce</span>(<span class="st">`</span><span class="at">SMR Score</span><span class="st">`</span>, <span class="dv">50</span>) <span class="sc">-</span> <span class="dv">40</span>) <span class="sc">*</span> <span class="fl">0.15</span> <span class="sc">/</span> <span class="dv">60</span> <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">+</span>          <span class="co"># 15% weight</span></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>      ((<span class="fu">coalesce</span>(<span class="st">`</span><span class="at">AD Score</span><span class="st">`</span>, <span class="dv">50</span>) <span class="sc">-</span> <span class="dv">40</span>) <span class="sc">*</span> <span class="fl">0.15</span> <span class="sc">/</span> <span class="dv">60</span> <span class="sc">*</span> <span class="dv">100</span>)             <span class="co"># 15% weight</span></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">coalesce</span>(<span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span>, <span class="dv">0</span>))</span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="co"># TOP STOCKS BY QUALITY SCORE</span></span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">2. TOP STOCKS BY COMPOSITE QUALITY SCORE</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 2. TOP STOCKS BY COMPOSITE QUALITY SCORE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>--------------------------------------------------------------------------------</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Quality Score = 25% RS Rating + 25% Comp Rating + 20% EPS Rating + 15% SMR + 15% A/D</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Quality Score = 25% RS Rating + 25% Comp Rating + 20% EPS Rating + 15% SMR + 15% A/D</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>top_quality <span class="ot">&lt;-</span> df_filtered <span class="sc">%&gt;%</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">30</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Symbol, Name, <span class="st">`</span><span class="at">Current Price</span><span class="st">`</span>, <span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span>, </span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">RS Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">Comp Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">EPS Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">SMR Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">A/D Rating</span><span class="st">`</span>,</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span>, <span class="st">`</span><span class="at">% Chg 3 Months</span><span class="st">`</span>, <span class="st">`</span><span class="at">% Chg 6 Months</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span>, <span class="dv">1</span>),</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span>, <span class="dv">0</span>),</span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Current Price</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="st">`</span><span class="at">Current Price</span><span class="st">`</span>, <span class="dv">2</span>)</span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(top_quality, <span class="at">n =</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>    Symbol                      Name Current Price Market Cap (mil) RS Rating
-    &lt;char&gt;                    &lt;char&gt;         &lt;num&gt;            &lt;num&gt;     &lt;num&gt;
- 1:    CLS                 Celestica        296.62            34121        98
- 2:    EME               EMCOR Group        748.24            33494        91
- 3:   CAMT                    Camtek        119.15             5434        89
- 4:    NXT                Nextracker         98.28            14542        97
- 5:    APH             Amphenol Cl A        133.82           163384        93
- 6:    FSM            Fortuna Mining          8.16             2502        90
- 7:    GLW                   Corning         87.41            74877        94
- 8:   IBEX                      IBEX         38.19              508        93
- 9:   PAHC      Phibro Animal Health         42.33             1716        95
-10:   AVGO                  Broadcom        354.13          1672331        93
-11:     MU         Micron Technology        219.02           245842        97
-12:    VRT           Vertiv Holdings        186.06            71138        93
-13:    WDC           Western Digital        129.43            44902        97
-14:   MEDP          Medpace Holdings        605.20            17002        94
-15:   ATAT Atour Lifestyle Hldgs ADR         39.80             5555        88
-16:   RMBS                    Rambus        105.42            11342        95
-17:    AII        Amer Integrity Ins         24.16              473        89
-18:   PRIM         Primoris Services        142.37             7690        95
-19:   GILT  Gilat Satellite Networks         14.86              847        97
-20:   IESC              IES Holdings        436.98             8676        94
-21:   IRMD                  iRadimed         78.47              998        90
-22:   SHOP                   Shopify        172.95           224776        94
-23:     UI                  Ubiquiti        735.63            44504        96
-24:   PEGA               Pegasystems         66.27            11248        86
-25:   ATGE  Adtalem Global Education        152.97             5558        92
-26:    FIX       Comfort Systems USA        981.66            34634        96
-27:   NVMI                      Nova        345.06            10145        92
-28:   ANIP       ANI Pharmaceuticals         94.24             2045        91
-29:    KGC              Kinross Gold         23.94            29178        95
-30:   MPWR  Monolithic Power Systems       1074.91            51480        92
-    Symbol                      Name Current Price Market Cap (mil) RS Rating
-    Comp Rating EPS Rating SMR Rating A/D Rating Quality Score % Chg 3 Months
-          &lt;num&gt;      &lt;num&gt;     &lt;char&gt;     &lt;char&gt;         &lt;num&gt;          &lt;num&gt;
- 1:          99         99          A         A-          95.3           80.9
- 2:          99         98          A          A          94.6           29.3
- 3:          97         96          A         A+          94.4           26.4
- 4:          98         96          A         A-          94.2           55.0
- 5:          99         99          A         A-          94.0           28.1
- 6:          99         94          A          A          93.6           18.4
- 7:          98         89          A          A          93.3           56.9
- 8:          97         97          A         A-          93.2           25.2
- 9:          98         93          A         A-          93.1           43.8
-10:          99         99          A         B+          92.8           22.7
-11:          99         81          A          A          92.7           96.0
-12:          99         98          A         B+          92.6           42.2
-13:          99         80          A          A          92.5           87.5
-14:          98         97          A         B+          92.4           32.8
-15:          97         98          A         A-          92.1           11.5
-16:          99         99          A          B          92.0           64.2
-17:          98         81          A         A+          91.7           38.0
-18:          99         97          B          A          91.7           58.3
-19:          98         89          B         A+          91.6           91.0
-20:          98         98          A          B          91.3           33.1
-21:          95         94          A         A-          91.3           38.6
-22:          96         94          A         B+          91.3           41.7
-23:          98         89          A         B+          91.3           64.4
-24:          97         96          A         A-          91.2           14.1
-25:          95         97          A         B+          91.2           33.8
-26:          99         99          A         B-          91.0           74.4
-27:          98         99          A          B          91.0           31.9
-28:          98         93          A         B+          90.8           41.1
-29:          99         93          A          B          90.8           51.1
-30:          98         98          A          B          90.8           50.8
-    Comp Rating EPS Rating SMR Rating A/D Rating Quality Score % Chg 3 Months
-    % Chg 6 Months
-             &lt;num&gt;
- 1:          221.9
- 2:           86.8
- 3:           78.0
- 4:          132.1
- 5:           76.0
- 6:           33.1
- 7:           99.2
- 8:           55.5
- 9:          134.9
-10:           88.2
-11:          182.9
-12:          121.8
-13:          222.2
-14:           99.8
-15:           67.4
-16:          113.6
-17:             NA
-18:          139.5
-19:          135.9
-20:          123.3
-21:           47.7
-22:           81.8
-23:          135.1
-24:           45.1
-25:           46.5
-26:          160.9
-27:           75.4
-28:           35.3
-29:           63.2
-30:           85.1
-    % Chg 6 Months</code></pre>
+<div class="cell-output-display">
+<div id="lrbdgkbvmc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#lrbdgkbvmc .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#lrbdgkbvmc .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lrbdgkbvmc .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#lrbdgkbvmc .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#lrbdgkbvmc .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#lrbdgkbvmc .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lrbdgkbvmc .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lrbdgkbvmc .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#lrbdgkbvmc .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#lrbdgkbvmc .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#lrbdgkbvmc .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#lrbdgkbvmc .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#lrbdgkbvmc .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#lrbdgkbvmc .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#lrbdgkbvmc .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#lrbdgkbvmc .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#lrbdgkbvmc .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#lrbdgkbvmc .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lrbdgkbvmc .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#lrbdgkbvmc .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#lrbdgkbvmc .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lrbdgkbvmc .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#lrbdgkbvmc .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#lrbdgkbvmc .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lrbdgkbvmc .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lrbdgkbvmc .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#lrbdgkbvmc .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#lrbdgkbvmc .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lrbdgkbvmc .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lrbdgkbvmc .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lrbdgkbvmc .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lrbdgkbvmc .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lrbdgkbvmc .gt_left {
+  text-align: left;
+}
+
+#lrbdgkbvmc .gt_center {
+  text-align: center;
+}
+
+#lrbdgkbvmc .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#lrbdgkbvmc .gt_font_normal {
+  font-weight: normal;
+}
+
+#lrbdgkbvmc .gt_font_bold {
+  font-weight: bold;
+}
+
+#lrbdgkbvmc .gt_font_italic {
+  font-style: italic;
+}
+
+#lrbdgkbvmc .gt_super {
+  font-size: 65%;
+}
+
+#lrbdgkbvmc .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#lrbdgkbvmc .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#lrbdgkbvmc .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#lrbdgkbvmc .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#lrbdgkbvmc .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#lrbdgkbvmc .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#lrbdgkbvmc .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead class="gt_col_headings">
+<tr class="header">
+<th id="Symbol" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Symbol</th>
+<th id="Name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Name</th>
+<th id="Current Price" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Current Price</th>
+<th id="Market Cap (mil)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Market Cap (mil)</th>
+<th id="RS Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">RS Rating</th>
+<th id="Comp Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Comp Rating</th>
+<th id="EPS Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">EPS Rating</th>
+<th id="SMR Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">SMR Rating</th>
+<th id="A/D Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">A/D Rating</th>
+<th id="Quality Score" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Quality Score</th>
+<th id="% Chg 3 Months" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% Chg 3 Months</th>
+<th id="% Chg 6 Months" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% Chg 6 Months</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">CLS</td>
+<td class="gt_row gt_left" headers="Name">Celestica</td>
+<td class="gt_row gt_right" headers="Current Price">344.48</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">39626</td>
+<td class="gt_row gt_right" headers="RS Rating">98</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">74.0</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">72.4</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">303.6</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">PLTR</td>
+<td class="gt_row gt_left" headers="Name">Palantir Technologies</td>
+<td class="gt_row gt_right" headers="Current Price">200.47</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">475583</td>
+<td class="gt_row gt_right" headers="RS Rating">97</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">98</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">73.6</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">26.6</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">69.3</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">FIX</td>
+<td class="gt_row gt_left" headers="Name">Comfort Systems USA</td>
+<td class="gt_row gt_right" headers="Current Price">965.58</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">34057</td>
+<td class="gt_row gt_right" headers="RS Rating">96</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">73.6</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">37.3</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">142.9</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">STRL</td>
+<td class="gt_row gt_left" headers="Name">Sterling Infrastructure</td>
+<td class="gt_row gt_right" headers="Current Price">377.90</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">11495</td>
+<td class="gt_row gt_right" headers="RS Rating">96</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">73.6</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">41.2</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">152.9</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">CCJ</td>
+<td class="gt_row gt_left" headers="Name">Cameco</td>
+<td class="gt_row gt_right" headers="Current Price">102.21</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">44493</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">73.3</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">36.4</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">126.4</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">RMBS</td>
+<td class="gt_row gt_left" headers="Name">Rambus</td>
+<td class="gt_row gt_right" headers="Current Price">102.84</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">11065</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">73.3</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">39.1</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">110.8</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">FUTU</td>
+<td class="gt_row gt_left" headers="Name">Futu Holdings ADR</td>
+<td class="gt_row gt_right" headers="Current Price">199.04</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">27455</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">73.0</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">29.5</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">115.6</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">APH</td>
+<td class="gt_row gt_left" headers="Name">Amphenol Cl A</td>
+<td class="gt_row gt_right" headers="Current Price">139.34</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">170123</td>
+<td class="gt_row gt_right" headers="RS Rating">94</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">73.0</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">30.8</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">81.1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">SEI</td>
+<td class="gt_row gt_left" headers="Name">Solaris Energy Infr</td>
+<td class="gt_row gt_right" headers="Current Price">53.23</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">3597</td>
+<td class="gt_row gt_right" headers="RS Rating">97</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">96</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">73.0</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">62.9</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">151.8</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">NXT</td>
+<td class="gt_row gt_left" headers="Name">Nextracker</td>
+<td class="gt_row gt_right" headers="Current Price">101.22</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">14977</td>
+<td class="gt_row gt_right" headers="RS Rating">96</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">97</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.9</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">73.7</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">149.2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">GFI</td>
+<td class="gt_row gt_left" headers="Name">Gold Fields ADR</td>
+<td class="gt_row gt_right" headers="Current Price">38.41</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">34394</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">97</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.9</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">57.7</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">70.4</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">PRIM</td>
+<td class="gt_row gt_left" headers="Name">Primoris Services</td>
+<td class="gt_row gt_right" headers="Current Price">141.52</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">7644</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">97</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.9</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">50.3</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">136.0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">TTMI</td>
+<td class="gt_row gt_left" headers="Name">TTM Technologies</td>
+<td class="gt_row gt_right" headers="Current Price">67.20</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">6943</td>
+<td class="gt_row gt_right" headers="RS Rating">97</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">94</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.8</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">42.2</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">235.7</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">IDCC</td>
+<td class="gt_row gt_left" headers="Name">InterDigital</td>
+<td class="gt_row gt_right" headers="Current Price">361.96</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">9339</td>
+<td class="gt_row gt_right" headers="RS Rating">94</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.8</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">40.2</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">80.1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">AVGO</td>
+<td class="gt_row gt_left" headers="Name">Broadcom</td>
+<td class="gt_row gt_right" headers="Current Price">369.63</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">1745528</td>
+<td class="gt_row gt_right" headers="RS Rating">93</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.8</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">25.9</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">92.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">VRT</td>
+<td class="gt_row gt_left" headers="Name">Vertiv Holdings</td>
+<td class="gt_row gt_right" headers="Current Price">192.86</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">73738</td>
+<td class="gt_row gt_right" headers="RS Rating">93</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">98</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.6</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">32.5</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">125.9</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">AGX</td>
+<td class="gt_row gt_left" headers="Name">Argan</td>
+<td class="gt_row gt_right" headers="Current Price">306.21</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">4229</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">96</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.6</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">25.0</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">100.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">MDB</td>
+<td class="gt_row gt_left" headers="Name">MongoDB</td>
+<td class="gt_row gt_right" headers="Current Price">359.82</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">29274</td>
+<td class="gt_row gt_right" headers="RS Rating">93</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.6</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">51.3</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">109.0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">WLDN</td>
+<td class="gt_row gt_left" headers="Name">Willdan Group</td>
+<td class="gt_row gt_right" headers="Current Price">94.51</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">1386</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">95</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.5</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">10.8</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">141.1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">DRD</td>
+<td class="gt_row gt_left" headers="Name">DRDGOLD ADR</td>
+<td class="gt_row gt_right" headers="Current Price">25.23</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">2181</td>
+<td class="gt_row gt_right" headers="RS Rating">96</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">94</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.3</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">89.1</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">69.3</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">TTI</td>
+<td class="gt_row gt_left" headers="Name">Tetra Technologies</td>
+<td class="gt_row gt_right" headers="Current Price">7.06</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">944</td>
+<td class="gt_row gt_right" headers="RS Rating">96</td>
+<td class="gt_row gt_right" headers="Comp Rating">95</td>
+<td class="gt_row gt_right" headers="EPS Rating">97</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.2</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">72.2</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">147.7</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">MEDP</td>
+<td class="gt_row gt_left" headers="Name">Medpace Holdings</td>
+<td class="gt_row gt_right" headers="Current Price">584.91</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">16476</td>
+<td class="gt_row gt_right" headers="RS Rating">93</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">97</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.2</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">36.9</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">89.7</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">AEM</td>
+<td class="gt_row gt_left" headers="Name">Agnico-Eagle Mines</td>
+<td class="gt_row gt_right" headers="Current Price">160.81</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">81012</td>
+<td class="gt_row gt_right" headers="RS Rating">91</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">98</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.1</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">29.3</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">36.8</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">NVMI</td>
+<td class="gt_row gt_left" headers="Name">Nova</td>
+<td class="gt_row gt_right" headers="Current Price">344.64</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">10132</td>
+<td class="gt_row gt_right" headers="RS Rating">91</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.0</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">31.2</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">75.6</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">ANET</td>
+<td class="gt_row gt_left" headers="Name">Arista Networks</td>
+<td class="gt_row gt_right" headers="Current Price">157.69</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">198195</td>
+<td class="gt_row gt_right" headers="RS Rating">90</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.0</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">28.0</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">91.7</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">NVDA</td>
+<td class="gt_row gt_left" headers="Name">NVIDIA</td>
+<td class="gt_row gt_right" headers="Current Price">202.49</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">4920507</td>
+<td class="gt_row gt_right" headers="RS Rating">90</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.0</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">13.8</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">85.9</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">OPRX</td>
+<td class="gt_row gt_left" headers="Name">OptimizeRx</td>
+<td class="gt_row gt_right" headers="Current Price">20.49</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">380</td>
+<td class="gt_row gt_right" headers="RS Rating">98</td>
+<td class="gt_row gt_right" headers="Comp Rating">97</td>
+<td class="gt_row gt_right" headers="EPS Rating">91</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.0</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">62.4</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">124.7</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">NVT</td>
+<td class="gt_row gt_left" headers="Name">nVent Electric</td>
+<td class="gt_row gt_right" headers="Current Price">114.35</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">18404</td>
+<td class="gt_row gt_right" headers="RS Rating">92</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">96</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.0</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">45.8</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">108.2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">KGC</td>
+<td class="gt_row gt_left" headers="Name">Kinross Gold</td>
+<td class="gt_row gt_right" headers="Current Price">23.24</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">28324</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">92</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">71.9</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">45.2</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">57.5</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">NET</td>
+<td class="gt_row gt_left" headers="Name">Cloudflare</td>
+<td class="gt_row gt_right" headers="Current Price">253.30</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">87407</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">93</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">71.8</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">22.0</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">109.7</td>
+</tr>
+</tbody>
+</table>
+
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># BEST MOMENTUM STOCKS</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">3. BEST MOMENTUM STOCKS (High RS Rating)</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 
 3. BEST MOMENTUM STOCKS (High RS Rating)</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>--------------------------------------------------------------------------------</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Stocks with RS Rating &gt;= 95 and strong fundamentals</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Stocks with RS Rating &gt;= 95 and strong fundamentals</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>momentum_stocks <span class="ot">&lt;-</span> df_filtered <span class="sc">%&gt;%</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">RS Rating</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="dv">95</span>, <span class="st">`</span><span class="at">Comp Rating</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="dv">80</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">RS Rating</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">20</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Symbol, Name, <span class="st">`</span><span class="at">Current Price</span><span class="st">`</span>, <span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span>,</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">RS Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">Comp Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">EPS Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">% Chg 3 Months</span><span class="st">`</span>, <span class="st">`</span><span class="at">% Chg 6 Months</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span>, <span class="dv">0</span>),</span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Current Price</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="st">`</span><span class="at">Current Price</span><span class="st">`</span>, <span class="dv">2</span>)</span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(momentum_stocks, <span class="at">n =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>    Symbol                      Name Current Price Market Cap (mil) RS Rating
-    &lt;char&gt;                    &lt;char&gt;         &lt;num&gt;            &lt;num&gt;     &lt;num&gt;
- 1:   ABAT     American Battery Tech          5.98              706        99
- 2:   AMPX      Amprius Technologies         12.89             1612        99
- 3:   APLD           Applied Digital         33.43             9350        99
- 4:   ATAI        ATAI Life Sciences          5.77             1382        99
- 5:     BE              Bloom Energy        110.38            25829        99
- 6:     BW     Babcock &amp; Wilcox Ents          3.46              350        99
- 7:   CDTX       Cidara Therapeutics         93.12             2361        99
- 8:   CIFR             Cipher Mining         20.66             8125        99
- 9:   CTEV                  Claritev         69.69             1148        99
-10:   DVLT              Datavault AI          3.42              606        99
-11:   GRAL                     GRAIL         89.39             3222        99
-12:   IMAB                 I-Mab ADR          4.22              485        99
-13:   INBX       Inhibrx Biosciences         57.29              830        99
-14:   IREN                      IREN         62.90            12463        99
-15:   IVVD                   Invivyd          2.23              467        99
-16:    KOD           Kodiak Sciences         18.69              986        99
-17:    LEU            Centrus Energy        383.00             6973        99
-18:   MENS             Jyong Biotech         60.80             4647        99
-19:    MFH Mercurity Fintech Holding         11.47              698        99
-20:   MVST        Microvast Holdings          5.69             1851        99
-    Symbol                      Name Current Price Market Cap (mil) RS Rating
-    Comp Rating EPS Rating % Chg 3 Months % Chg 6 Months
-          &lt;num&gt;      &lt;num&gt;          &lt;num&gt;          &lt;num&gt;
- 1:          87         44           77.4          398.3
- 2:          92         46           55.5          417.7
- 3:          84         17          198.5          636.3
- 4:          88         42           54.3          277.1
- 5:          99         80          233.9          508.5
- 6:          85         46          229.5          726.6
- 7:          83         20           48.2          333.5
- 8:          92         38          210.7          588.7
- 9:          82         60           67.0          208.8
-10:          97         65          398.9          331.9
-11:          91         56          125.1          137.2
-12:          80         39           99.1          395.1
-13:          88         18          148.3          378.2
-14:          94         38          246.7          898.4
-15:          96         53          175.3          233.6
-16:          80         11          126.5          346.1
-17:          87         57           58.0          457.1
-18:          83         48          416.1             NA
-19:          82         60          273.6           70.7
-20:          95         80           70.4          164.7
-    Comp Rating EPS Rating % Chg 3 Months % Chg 6 Months</code></pre>
+<div class="cell-output-display">
+<div id="hcxuuwvwtj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#hcxuuwvwtj .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hcxuuwvwtj .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hcxuuwvwtj .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#hcxuuwvwtj .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hcxuuwvwtj .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hcxuuwvwtj .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hcxuuwvwtj .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hcxuuwvwtj .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hcxuuwvwtj .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hcxuuwvwtj .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hcxuuwvwtj .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hcxuuwvwtj .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hcxuuwvwtj .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#hcxuuwvwtj .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hcxuuwvwtj .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hcxuuwvwtj .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hcxuuwvwtj .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hcxuuwvwtj .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hcxuuwvwtj .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hcxuuwvwtj .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hcxuuwvwtj .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hcxuuwvwtj .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hcxuuwvwtj .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hcxuuwvwtj .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hcxuuwvwtj .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hcxuuwvwtj .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hcxuuwvwtj .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hcxuuwvwtj .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hcxuuwvwtj .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hcxuuwvwtj .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hcxuuwvwtj .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hcxuuwvwtj .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hcxuuwvwtj .gt_left {
+  text-align: left;
+}
+
+#hcxuuwvwtj .gt_center {
+  text-align: center;
+}
+
+#hcxuuwvwtj .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hcxuuwvwtj .gt_font_normal {
+  font-weight: normal;
+}
+
+#hcxuuwvwtj .gt_font_bold {
+  font-weight: bold;
+}
+
+#hcxuuwvwtj .gt_font_italic {
+  font-style: italic;
+}
+
+#hcxuuwvwtj .gt_super {
+  font-size: 65%;
+}
+
+#hcxuuwvwtj .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#hcxuuwvwtj .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hcxuuwvwtj .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hcxuuwvwtj .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hcxuuwvwtj .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hcxuuwvwtj .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hcxuuwvwtj .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead class="gt_col_headings">
+<tr class="header">
+<th id="Symbol" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Symbol</th>
+<th id="Name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Name</th>
+<th id="Current Price" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Current Price</th>
+<th id="Market Cap (mil)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Market Cap (mil)</th>
+<th id="RS Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">RS Rating</th>
+<th id="Comp Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Comp Rating</th>
+<th id="EPS Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">EPS Rating</th>
+<th id="% Chg 3 Months" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% Chg 3 Months</th>
+<th id="% Chg 6 Months" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% Chg 6 Months</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">ABAT</td>
+<td class="gt_row gt_left" headers="Name">American Battery Tech</td>
+<td class="gt_row gt_right" headers="Current Price">5.13</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">606</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">87</td>
+<td class="gt_row gt_right" headers="EPS Rating">43</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">136.4</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">200.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">ABVX</td>
+<td class="gt_row gt_left" headers="Name">Abivax ADR</td>
+<td class="gt_row gt_right" headers="Current Price">102.42</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">7692</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">82</td>
+<td class="gt_row gt_right" headers="EPS Rating">11</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">42.7</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">1338.5</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">AMPX</td>
+<td class="gt_row gt_left" headers="Name">Amprius Technologies</td>
+<td class="gt_row gt_right" headers="Current Price">14.09</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">1762</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">94</td>
+<td class="gt_row gt_right" headers="EPS Rating">45</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">103.3</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">552.3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">ANRO</td>
+<td class="gt_row gt_left" headers="Name">Alto Neuroscience</td>
+<td class="gt_row gt_right" headers="Current Price">14.19</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">384</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">86</td>
+<td class="gt_row gt_right" headers="EPS Rating">16</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">362.2</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">469.9</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">APLD</td>
+<td class="gt_row gt_left" headers="Name">Applied Digital</td>
+<td class="gt_row gt_right" headers="Current Price">34.66</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">9694</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">86</td>
+<td class="gt_row gt_right" headers="EPS Rating">17</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">163.8</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">663.4</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">AXTI</td>
+<td class="gt_row gt_left" headers="Name">AXT</td>
+<td class="gt_row gt_right" headers="Current Price">7.95</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">367</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">88</td>
+<td class="gt_row gt_right" headers="EPS Rating">18</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">282.2</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">467.9</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">BE</td>
+<td class="gt_row gt_left" headers="Name">Bloom Energy</td>
+<td class="gt_row gt_right" headers="Current Price">132.16</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">30925</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">80</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">253.5</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">621.4</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">BW</td>
+<td class="gt_row gt_left" headers="Name">Babcock &amp; Wilcox Ents</td>
+<td class="gt_row gt_right" headers="Current Price">3.61</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">365</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">87</td>
+<td class="gt_row gt_right" headers="EPS Rating">45</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">271.9</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">700.4</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">CDTX</td>
+<td class="gt_row gt_left" headers="Name">Cidara Therapeutics</td>
+<td class="gt_row gt_right" headers="Current Price">109.24</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">2770</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">88</td>
+<td class="gt_row gt_right" headers="EPS Rating">20</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">72.5</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">423.1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">CIFR</td>
+<td class="gt_row gt_left" headers="Name">Cipher Mining</td>
+<td class="gt_row gt_right" headers="Current Price">18.65</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">7335</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">92</td>
+<td class="gt_row gt_right" headers="EPS Rating">39</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">241.6</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">554.4</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">CTEV</td>
+<td class="gt_row gt_left" headers="Name">Claritev</td>
+<td class="gt_row gt_right" headers="Current Price">65.10</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">1072</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">83</td>
+<td class="gt_row gt_right" headers="EPS Rating">60</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">63.3</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">190.2</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">DGNX</td>
+<td class="gt_row gt_left" headers="Name">Diginex</td>
+<td class="gt_row gt_right" headers="Current Price">20.89</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">3843</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">83</td>
+<td class="gt_row gt_right" headers="EPS Rating">47</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">215.3</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">88.2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">EOSE</td>
+<td class="gt_row gt_left" headers="Name">Eos Energy Enterprises</td>
+<td class="gt_row gt_right" headers="Current Price">16.03</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">4165</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">87</td>
+<td class="gt_row gt_right" headers="EPS Rating">19</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">181.2</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">207.1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">GRAL</td>
+<td class="gt_row gt_left" headers="Name">GRAIL</td>
+<td class="gt_row gt_right" headers="Current Price">91.93</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">3314</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">93</td>
+<td class="gt_row gt_right" headers="EPS Rating">56</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">168.7</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">166.5</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">INBX</td>
+<td class="gt_row gt_left" headers="Name">Inhibrx Biosciences</td>
+<td class="gt_row gt_right" headers="Current Price">81.66</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">1183</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">93</td>
+<td class="gt_row gt_right" headers="EPS Rating">18</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">272.5</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">562.3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">IREN</td>
+<td class="gt_row gt_left" headers="Name">IREN</td>
+<td class="gt_row gt_right" headers="Current Price">60.75</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">12037</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">94</td>
+<td class="gt_row gt_right" headers="EPS Rating">38</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">277.1</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">894.3</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">LAES</td>
+<td class="gt_row gt_left" headers="Name">SEALSQ</td>
+<td class="gt_row gt_right" headers="Current Price">7.42</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">1252</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">80</td>
+<td class="gt_row gt_right" headers="EPS Rating">47</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">140.1</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">205.3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">LEU</td>
+<td class="gt_row gt_left" headers="Name">Centrus Energy</td>
+<td class="gt_row gt_right" headers="Current Price">367.46</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">6690</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">88</td>
+<td class="gt_row gt_right" headers="EPS Rating">57</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">70.6</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">430.3</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">MCTA</td>
+<td class="gt_row gt_left" headers="Name">Charming Medical</td>
+<td class="gt_row gt_right" headers="Current Price">23.50</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">404</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">85</td>
+<td class="gt_row gt_right" headers="EPS Rating">80</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">NA</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">NA</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">MVST</td>
+<td class="gt_row gt_left" headers="Name">Microvast Holdings</td>
+<td class="gt_row gt_right" headers="Current Price">5.45</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">1773</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">95</td>
+<td class="gt_row gt_right" headers="EPS Rating">80</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">71.9</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">182.4</td>
+</tr>
+</tbody>
+</table>
+
 </div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># BEST FUNDAMENTAL STOCKS</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">4. BEST FUNDAMENTAL STOCKS (High Comp + EPS Ratings)</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 
 4. BEST FUNDAMENTAL STOCKS (High Comp + EPS Ratings)</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>--------------------------------------------------------------------------------</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Stocks with Comp Rating &gt;= 95 and EPS Rating &gt;= 90</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Stocks with Comp Rating &gt;= 95 and EPS Rating &gt;= 90</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>fundamental_stocks <span class="ot">&lt;-</span> df_filtered <span class="sc">%&gt;%</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Comp Rating</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="dv">95</span>, <span class="st">`</span><span class="at">EPS Rating</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="dv">90</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">Comp Rating</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">20</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Symbol, Name, <span class="st">`</span><span class="at">Current Price</span><span class="st">`</span>, <span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span>,</span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">RS Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">Comp Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">EPS Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">SMR Rating</span><span class="st">`</span>, ROE) <span class="sc">%&gt;%</span></span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span>, <span class="dv">0</span>),</span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Current Price</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="st">`</span><span class="at">Current Price</span><span class="st">`</span>, <span class="dv">2</span>)</span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fundamental_stocks, <span class="at">n =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>    Symbol                    Name Current Price Market Cap (mil) RS Rating
-    &lt;char&gt;                  &lt;char&gt;         &lt;num&gt;            &lt;num&gt;     &lt;num&gt;
- 1:    AEM      Agnico-Eagle Mines        163.35            82291        92
- 2:   ANET         Arista Networks        153.82           193331        91
- 3:    APH           Amphenol Cl A        133.82           163384        93
- 4:   AVGO                Broadcom        354.13          1672331        93
- 5:    CCJ                  Cameco         88.13            38364        91
- 6:    CLS               Celestica        296.62            34121        98
- 7:    EME             EMCOR Group        748.24            33494        91
- 8:    FIX     Comfort Systems USA        981.66            34634        96
- 9:    FSM          Fortuna Mining          8.16             2502        90
-10:     GE            GE Aerospace        303.87           320526        89
-11:    GFI         Gold Fields ADR         40.30            36086        96
-12:   HALO   Halozyme Therapeutics         66.15             7737        77
-13:    HMY Harmony Gold Mining ADR         17.49            11065        88
-14:   IBKR     Interactive Brokers         68.75            30611        88
-15:    KGC            Kinross Gold         23.94            29178        95
-16:    NEM                 Newmont         83.37            91578        93
-17:   NVDA                  NVIDIA        186.26          4526118        85
-18:    NVT          nVent Electric        102.20            16449        91
-19:     OR            OR Royalties         33.35             6236        90
-20:   ORLA             Orla Mining         10.78             3505        89
-    Symbol                    Name Current Price Market Cap (mil) RS Rating
-    Comp Rating EPS Rating SMR Rating   ROE
-          &lt;num&gt;      &lt;num&gt;     &lt;char&gt; &lt;num&gt;
- 1:          99         98          A  10.5
- 2:          99         99          A  33.8
- 3:          99         99          A  26.3
- 4:          99         99          A  51.8
- 5:          99         99          B   4.7
- 6:          99         99          A  25.1
- 7:          99         98          A  37.3
- 8:          99         99          A  35.0
- 9:          99         94          A   6.5
-10:          99         97          A  21.4
-11:          99         97          A  25.3
-12:          99         98          A 244.5
-13:          99         96          A  32.0
-14:          99         98          A  19.5
-15:          99         93          A  13.0
-16:          99         91          A  13.5
-17:          99         99          A 121.4
-18:          99         91          A  13.1
-19:          99         93          A   8.0
-20:          99         99          A  17.9
-    Comp Rating EPS Rating SMR Rating   ROE</code></pre>
+<div class="cell-output-display">
+<div id="nepggnffee" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#nepggnffee .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#nepggnffee .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#nepggnffee .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#nepggnffee .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#nepggnffee .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#nepggnffee .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#nepggnffee .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#nepggnffee .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#nepggnffee .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#nepggnffee .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#nepggnffee .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#nepggnffee .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#nepggnffee .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#nepggnffee .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#nepggnffee .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#nepggnffee .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#nepggnffee .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#nepggnffee .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nepggnffee .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#nepggnffee .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#nepggnffee .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nepggnffee .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#nepggnffee .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#nepggnffee .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#nepggnffee .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nepggnffee .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#nepggnffee .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#nepggnffee .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#nepggnffee .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#nepggnffee .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nepggnffee .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#nepggnffee .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nepggnffee .gt_left {
+  text-align: left;
+}
+
+#nepggnffee .gt_center {
+  text-align: center;
+}
+
+#nepggnffee .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#nepggnffee .gt_font_normal {
+  font-weight: normal;
+}
+
+#nepggnffee .gt_font_bold {
+  font-weight: bold;
+}
+
+#nepggnffee .gt_font_italic {
+  font-style: italic;
+}
+
+#nepggnffee .gt_super {
+  font-size: 65%;
+}
+
+#nepggnffee .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#nepggnffee .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#nepggnffee .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#nepggnffee .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#nepggnffee .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#nepggnffee .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#nepggnffee .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead class="gt_col_headings">
+<tr class="header">
+<th id="Symbol" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Symbol</th>
+<th id="Name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Name</th>
+<th id="Current Price" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Current Price</th>
+<th id="Market Cap (mil)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Market Cap (mil)</th>
+<th id="RS Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">RS Rating</th>
+<th id="Comp Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Comp Rating</th>
+<th id="EPS Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">EPS Rating</th>
+<th id="SMR Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">SMR Rating</th>
+<th id="ROE" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">ROE</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">CLS</td>
+<td class="gt_row gt_left" headers="Name">Celestica</td>
+<td class="gt_row gt_right" headers="Current Price">344.48</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">39626</td>
+<td class="gt_row gt_right" headers="RS Rating">98</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">25.1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">PLTR</td>
+<td class="gt_row gt_left" headers="Name">Palantir Technologies</td>
+<td class="gt_row gt_right" headers="Current Price">200.47</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">475583</td>
+<td class="gt_row gt_right" headers="RS Rating">97</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">98</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">23.6</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">TTMI</td>
+<td class="gt_row gt_left" headers="Name">TTM Technologies</td>
+<td class="gt_row gt_right" headers="Current Price">67.20</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">6943</td>
+<td class="gt_row gt_right" headers="RS Rating">97</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">94</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">12.3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">FIX</td>
+<td class="gt_row gt_left" headers="Name">Comfort Systems USA</td>
+<td class="gt_row gt_right" headers="Current Price">965.58</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">34057</td>
+<td class="gt_row gt_right" headers="RS Rating">96</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">35.0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">STRL</td>
+<td class="gt_row gt_left" headers="Name">Sterling Infrastructure</td>
+<td class="gt_row gt_right" headers="Current Price">377.90</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">11495</td>
+<td class="gt_row gt_right" headers="RS Rating">96</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">28.8</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">CCJ</td>
+<td class="gt_row gt_left" headers="Name">Cameco</td>
+<td class="gt_row gt_right" headers="Current Price">102.21</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">44493</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">4.7</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">GFI</td>
+<td class="gt_row gt_left" headers="Name">Gold Fields ADR</td>
+<td class="gt_row gt_right" headers="Current Price">38.41</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">34394</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">97</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">25.3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">KGC</td>
+<td class="gt_row gt_left" headers="Name">Kinross Gold</td>
+<td class="gt_row gt_right" headers="Current Price">23.24</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">28324</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">92</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">13.0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">PRIM</td>
+<td class="gt_row gt_left" headers="Name">Primoris Services</td>
+<td class="gt_row gt_right" headers="Current Price">141.52</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">7644</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">97</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">16.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">RMBS</td>
+<td class="gt_row gt_left" headers="Name">Rambus</td>
+<td class="gt_row gt_right" headers="Current Price">102.84</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">11065</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">18.2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">WLDN</td>
+<td class="gt_row gt_left" headers="Name">Willdan Group</td>
+<td class="gt_row gt_right" headers="Current Price">94.51</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">1386</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">95</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">16.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">APH</td>
+<td class="gt_row gt_left" headers="Name">Amphenol Cl A</td>
+<td class="gt_row gt_right" headers="Current Price">139.34</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">170123</td>
+<td class="gt_row gt_right" headers="RS Rating">94</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">26.3</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">AVGO</td>
+<td class="gt_row gt_left" headers="Name">Broadcom</td>
+<td class="gt_row gt_right" headers="Current Price">369.63</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">1745528</td>
+<td class="gt_row gt_right" headers="RS Rating">93</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">51.8</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">VRT</td>
+<td class="gt_row gt_left" headers="Name">Vertiv Holdings</td>
+<td class="gt_row gt_right" headers="Current Price">192.86</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">73738</td>
+<td class="gt_row gt_right" headers="RS Rating">93</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">98</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">49.6</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">GOOGL</td>
+<td class="gt_row gt_left" headers="Name">Alphabet Cl A</td>
+<td class="gt_row gt_right" headers="Current Price">281.19</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">3400712</td>
+<td class="gt_row gt_right" headers="RS Rating">92</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">92</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">31.9</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">NVT</td>
+<td class="gt_row gt_left" headers="Name">nVent Electric</td>
+<td class="gt_row gt_right" headers="Current Price">114.35</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">18404</td>
+<td class="gt_row gt_right" headers="RS Rating">92</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">96</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">13.1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">AEM</td>
+<td class="gt_row gt_left" headers="Name">Agnico-Eagle Mines</td>
+<td class="gt_row gt_right" headers="Current Price">160.81</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">81012</td>
+<td class="gt_row gt_right" headers="RS Rating">91</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">98</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">10.5</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">GOOG</td>
+<td class="gt_row gt_left" headers="Name">Alphabet Cl C</td>
+<td class="gt_row gt_right" headers="Current Price">281.82</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">3408331</td>
+<td class="gt_row gt_right" headers="RS Rating">91</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">92</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">31.9</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">TME</td>
+<td class="gt_row gt_left" headers="Name">Tencent Music Ent ADR</td>
+<td class="gt_row gt_right" headers="Current Price">22.32</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">34510</td>
+<td class="gt_row gt_right" headers="RS Rating">91</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">94</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">12.4</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">ANET</td>
+<td class="gt_row gt_left" headers="Name">Arista Networks</td>
+<td class="gt_row gt_right" headers="Current Price">157.69</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">198195</td>
+<td class="gt_row gt_right" headers="RS Rating">90</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">33.8</td>
+</tr>
+</tbody>
+</table>
+
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co"># BEST LARGE-CAP STOCKS</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">5. BEST LARGE-CAP STOCKS (Market Cap &gt; $10B)</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 
 5. BEST LARGE-CAP STOCKS (Market Cap &gt; $10B)</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------------------------</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>--------------------------------------------------------------------------------</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>large_cap <span class="ot">&lt;-</span> df_filtered <span class="sc">%&gt;%</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span> <span class="sc">&gt;</span> <span class="dv">10000</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">15</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Symbol, Name, <span class="st">`</span><span class="at">Current Price</span><span class="st">`</span>, <span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span>,</span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">RS Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">Comp Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">EPS Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span>, <span class="dv">0</span>),</span>
-<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Current Price</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="st">`</span><span class="at">Current Price</span><span class="st">`</span>, <span class="dv">2</span>),</span>
-<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span>, <span class="dv">1</span>)</span>
-<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(large_cap, <span class="at">n =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>    Symbol                Name Current Price Market Cap (mil) RS Rating
-    &lt;char&gt;              &lt;char&gt;         &lt;num&gt;            &lt;num&gt;     &lt;num&gt;
- 1:    CLS           Celestica        296.62            34121        98
- 2:    EME         EMCOR Group        748.24            33494        91
- 3:    NXT          Nextracker         98.28            14542        97
- 4:    APH       Amphenol Cl A        133.82           163384        93
- 5:    GLW             Corning         87.41            74877        94
- 6:   AVGO            Broadcom        354.13          1672331        93
- 7:     MU   Micron Technology        219.02           245842        97
- 8:    VRT     Vertiv Holdings        186.06            71138        93
- 9:    WDC     Western Digital        129.43            44902        97
-10:   MEDP    Medpace Holdings        605.20            17002        94
-11:   RMBS              Rambus        105.42            11342        95
-12:   SHOP             Shopify        172.95           224776        94
-13:     UI            Ubiquiti        735.63            44504        96
-14:   PEGA         Pegasystems         66.27            11248        86
-15:    FIX Comfort Systems USA        981.66            34634        96
-    Comp Rating EPS Rating Quality Score
-          &lt;num&gt;      &lt;num&gt;         &lt;num&gt;
- 1:          99         99          95.3
- 2:          99         98          94.6
- 3:          98         96          94.2
- 4:          99         99          94.0
- 5:          98         89          93.3
- 6:          99         99          92.8
- 7:          99         81          92.7
- 8:          99         98          92.6
- 9:          99         80          92.5
-10:          98         97          92.4
-11:          99         99          92.0
-12:          96         94          91.3
-13:          98         89          91.3
-14:          97         96          91.2
-15:          99         99          91.0</code></pre>
+<div class="cell-output-display">
+<div id="izlhjafcyg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#izlhjafcyg .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#izlhjafcyg .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#izlhjafcyg .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#izlhjafcyg .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#izlhjafcyg .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#izlhjafcyg .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#izlhjafcyg .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#izlhjafcyg .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#izlhjafcyg .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#izlhjafcyg .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#izlhjafcyg .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#izlhjafcyg .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#izlhjafcyg .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#izlhjafcyg .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#izlhjafcyg .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#izlhjafcyg .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#izlhjafcyg .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#izlhjafcyg .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#izlhjafcyg .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#izlhjafcyg .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#izlhjafcyg .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#izlhjafcyg .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#izlhjafcyg .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#izlhjafcyg .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#izlhjafcyg .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#izlhjafcyg .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#izlhjafcyg .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#izlhjafcyg .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#izlhjafcyg .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#izlhjafcyg .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#izlhjafcyg .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#izlhjafcyg .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#izlhjafcyg .gt_left {
+  text-align: left;
+}
+
+#izlhjafcyg .gt_center {
+  text-align: center;
+}
+
+#izlhjafcyg .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#izlhjafcyg .gt_font_normal {
+  font-weight: normal;
+}
+
+#izlhjafcyg .gt_font_bold {
+  font-weight: bold;
+}
+
+#izlhjafcyg .gt_font_italic {
+  font-style: italic;
+}
+
+#izlhjafcyg .gt_super {
+  font-size: 65%;
+}
+
+#izlhjafcyg .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#izlhjafcyg .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#izlhjafcyg .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#izlhjafcyg .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#izlhjafcyg .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#izlhjafcyg .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#izlhjafcyg .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead class="gt_col_headings">
+<tr class="header">
+<th id="Symbol" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Symbol</th>
+<th id="Name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Name</th>
+<th id="Current Price" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Current Price</th>
+<th id="Market Cap (mil)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Market Cap (mil)</th>
+<th id="RS Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">RS Rating</th>
+<th id="Comp Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Comp Rating</th>
+<th id="EPS Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">EPS Rating</th>
+<th id="Quality Score" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Quality Score</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">CLS</td>
+<td class="gt_row gt_left" headers="Name">Celestica</td>
+<td class="gt_row gt_right" headers="Current Price">344.48</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">39626</td>
+<td class="gt_row gt_right" headers="RS Rating">98</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="Quality Score">74.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">PLTR</td>
+<td class="gt_row gt_left" headers="Name">Palantir Technologies</td>
+<td class="gt_row gt_right" headers="Current Price">200.47</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">475583</td>
+<td class="gt_row gt_right" headers="RS Rating">97</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">98</td>
+<td class="gt_row gt_right" headers="Quality Score">73.6</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">FIX</td>
+<td class="gt_row gt_left" headers="Name">Comfort Systems USA</td>
+<td class="gt_row gt_right" headers="Current Price">965.58</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">34057</td>
+<td class="gt_row gt_right" headers="RS Rating">96</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="Quality Score">73.6</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">STRL</td>
+<td class="gt_row gt_left" headers="Name">Sterling Infrastructure</td>
+<td class="gt_row gt_right" headers="Current Price">377.90</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">11495</td>
+<td class="gt_row gt_right" headers="RS Rating">96</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="Quality Score">73.6</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">CCJ</td>
+<td class="gt_row gt_left" headers="Name">Cameco</td>
+<td class="gt_row gt_right" headers="Current Price">102.21</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">44493</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="Quality Score">73.3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">RMBS</td>
+<td class="gt_row gt_left" headers="Name">Rambus</td>
+<td class="gt_row gt_right" headers="Current Price">102.84</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">11065</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="Quality Score">73.3</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">FUTU</td>
+<td class="gt_row gt_left" headers="Name">Futu Holdings ADR</td>
+<td class="gt_row gt_right" headers="Current Price">199.04</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">27455</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="Quality Score">73.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">APH</td>
+<td class="gt_row gt_left" headers="Name">Amphenol Cl A</td>
+<td class="gt_row gt_right" headers="Current Price">139.34</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">170123</td>
+<td class="gt_row gt_right" headers="RS Rating">94</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="Quality Score">73.0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">NXT</td>
+<td class="gt_row gt_left" headers="Name">Nextracker</td>
+<td class="gt_row gt_right" headers="Current Price">101.22</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">14977</td>
+<td class="gt_row gt_right" headers="RS Rating">96</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">97</td>
+<td class="gt_row gt_right" headers="Quality Score">72.9</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">GFI</td>
+<td class="gt_row gt_left" headers="Name">Gold Fields ADR</td>
+<td class="gt_row gt_right" headers="Current Price">38.41</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">34394</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">97</td>
+<td class="gt_row gt_right" headers="Quality Score">72.9</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">AVGO</td>
+<td class="gt_row gt_left" headers="Name">Broadcom</td>
+<td class="gt_row gt_right" headers="Current Price">369.63</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">1745528</td>
+<td class="gt_row gt_right" headers="RS Rating">93</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="Quality Score">72.8</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">VRT</td>
+<td class="gt_row gt_left" headers="Name">Vertiv Holdings</td>
+<td class="gt_row gt_right" headers="Current Price">192.86</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">73738</td>
+<td class="gt_row gt_right" headers="RS Rating">93</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">98</td>
+<td class="gt_row gt_right" headers="Quality Score">72.6</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">MDB</td>
+<td class="gt_row gt_left" headers="Name">MongoDB</td>
+<td class="gt_row gt_right" headers="Current Price">359.82</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">29274</td>
+<td class="gt_row gt_right" headers="RS Rating">93</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="Quality Score">72.6</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">MEDP</td>
+<td class="gt_row gt_left" headers="Name">Medpace Holdings</td>
+<td class="gt_row gt_right" headers="Current Price">584.91</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">16476</td>
+<td class="gt_row gt_right" headers="RS Rating">93</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">97</td>
+<td class="gt_row gt_right" headers="Quality Score">72.2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">AEM</td>
+<td class="gt_row gt_left" headers="Name">Agnico-Eagle Mines</td>
+<td class="gt_row gt_right" headers="Current Price">160.81</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">81012</td>
+<td class="gt_row gt_right" headers="RS Rating">91</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">98</td>
+<td class="gt_row gt_right" headers="Quality Score">72.1</td>
+</tr>
+</tbody>
+</table>
+
 </div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co"># SUMMARY STATISTICS</span></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">6. SUMMARY STATISTICS</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 
 6. SUMMARY STATISTICS</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------------------------</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>--------------------------------------------------------------------------------</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Total stocks analyzed: %d</span><span class="sc">\n\n</span><span class="st">"</span>, <span class="fu">nrow</span>(df_filtered)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Total stocks analyzed: 3698</code></pre>
+<pre><code>Total stocks analyzed: 3915</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Average RS Rating: %.1f</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">mean</span>(df_filtered<span class="sc">$</span><span class="st">`</span><span class="at">RS Rating</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Average RS Rating: 53.3</code></pre>
+<pre><code>Average RS Rating: 52.3</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Average Comp Rating: %.1f</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">mean</span>(df_filtered<span class="sc">$</span><span class="st">`</span><span class="at">Comp Rating</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Average Comp Rating: 58.9</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Average EPS Rating: %.1f</span><span class="sc">\n\n</span><span class="st">"</span>, <span class="fu">mean</span>(df_filtered<span class="sc">$</span><span class="st">`</span><span class="at">EPS Rating</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Average EPS Rating: 56.9</code></pre>
+<pre><code>Average EPS Rating: 53.7</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Stocks with RS Rating &gt;= 90: %d</span><span class="sc">\n</span><span class="st">"</span>, </span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sum</span>(df_filtered<span class="sc">$</span><span class="st">`</span><span class="at">RS Rating</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="dv">90</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Stocks with RS Rating &gt;= 90: 613</code></pre>
+<pre><code>Stocks with RS Rating &gt;= 90: 614</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Stocks with Comp Rating &gt;= 90: %d</span><span class="sc">\n</span><span class="st">"</span>, </span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sum</span>(df_filtered<span class="sc">$</span><span class="st">`</span><span class="at">Comp Rating</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="dv">90</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Stocks with Comp Rating &gt;= 90: 501</code></pre>
+<pre><code>Stocks with Comp Rating &gt;= 90: 507</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Stocks with EPS Rating &gt;= 90: %d</span><span class="sc">\n</span><span class="st">"</span>, </span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sum</span>(df_filtered<span class="sc">$</span><span class="st">`</span><span class="at">EPS Rating</span><span class="st">`</span> <span class="sc">&gt;=</span> <span class="dv">90</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Stocks with EPS Rating &gt;= 90: 493</code></pre>
+<pre><code>Stocks with EPS Rating &gt;= 90: 492</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="co"># KEY INSIGHTS</span></span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
-<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">7. KEY INSIGHTS &amp; RECOMMENDATIONS</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 
 7. KEY INSIGHTS &amp; RECOMMENDATIONS</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"--------------------------------------------------------------------------------</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>--------------------------------------------------------------------------------</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"</span></span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="st">Based on the comprehensive analysis of %d stocks, here are the key findings:</span></span>
-<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="st">RATING DEFINITIONS:</span></span>
-<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="st">- RS Rating (Relative Strength): Measures price performance vs. all other stocks (0-100)</span></span>
-<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a><span class="st">- Comp Rating (Composite): Overall stock quality combining multiple factors (0-100)</span></span>
-<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a><span class="st">- EPS Rating: Earnings Per Share growth and stability (0-100)</span></span>
-<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a><span class="st">- SMR Rating: Sales + Margins + Return on Equity (A+ to E)</span></span>
-<span id="cb74-9"><a href="#cb74-9" aria-hidden="true" tabindex="-1"></a><span class="st">- A/D Rating: Accumulation/Distribution - institutional buying/selling (A+ to E)</span></span>
-<span id="cb74-10"><a href="#cb74-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb74-11"><a href="#cb74-11" aria-hidden="true" tabindex="-1"></a><span class="st">TOP CATEGORIES:</span></span>
-<span id="cb74-12"><a href="#cb74-12" aria-hidden="true" tabindex="-1"></a><span class="st">1. Highest Quality Score: Stocks that excel across all metrics</span></span>
-<span id="cb74-13"><a href="#cb74-13" aria-hidden="true" tabindex="-1"></a><span class="st">2. Best Momentum: Stocks with exceptional price strength and fundamentals</span></span>
-<span id="cb74-14"><a href="#cb74-14" aria-hidden="true" tabindex="-1"></a><span class="st">3. Best Fundamentals: Companies with superior earnings and composite ratings</span></span>
-<span id="cb74-15"><a href="#cb74-15" aria-hidden="true" tabindex="-1"></a><span class="st">4. Best Large-Caps: Quality stocks with market caps exceeding $10 billion</span></span>
-<span id="cb74-16"><a href="#cb74-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb74-17"><a href="#cb74-17" aria-hidden="true" tabindex="-1"></a><span class="st">INVESTMENT APPROACH:</span></span>
-<span id="cb74-18"><a href="#cb74-18" aria-hidden="true" tabindex="-1"></a><span class="st">- Look for stocks with RS Rating &gt;= 80 (strong momentum)</span></span>
-<span id="cb74-19"><a href="#cb74-19" aria-hidden="true" tabindex="-1"></a><span class="st">- Seek Comp Rating &gt;= 85 (high quality)</span></span>
-<span id="cb74-20"><a href="#cb74-20" aria-hidden="true" tabindex="-1"></a><span class="st">- Prefer EPS Rating &gt;= 80 (strong earnings)</span></span>
-<span id="cb74-21"><a href="#cb74-21" aria-hidden="true" tabindex="-1"></a><span class="st">- Consider SMR Rating A or B (excellent fundamentals)</span></span>
-<span id="cb74-22"><a href="#cb74-22" aria-hidden="true" tabindex="-1"></a><span class="st">- Check A/D Rating for institutional support</span></span>
-<span id="cb74-23"><a href="#cb74-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb74-24"><a href="#cb74-24" aria-hidden="true" tabindex="-1"></a><span class="st">The 'Quality Score' provides a balanced view combining all these factors.</span></span>
-<span id="cb74-25"><a href="#cb74-25" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>, <span class="fu">nrow</span>(df_filtered)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-Based on the comprehensive analysis of 3698 stocks, here are the key findings:
+Based on the comprehensive analysis of 3915 stocks, here are the key findings:
 
 RATING DEFINITIONS:
 - RS Rating (Relative Strength): Measures price performance vs. all other stocks (0-100)
@@ -761,39 +3011,18 @@ INVESTMENT APPROACH:
 
 The 'Quality Score' provides a balanced view combining all these factors.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"================================================================================</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>================================================================================</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"ANALYSIS COMPLETE</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>ANALYSIS COMPLETE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"================================================================================</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>================================================================================</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="co"># SAVE RESULTS</span></span>
-<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ===============================================================================</span></span>
-<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Save top quality stocks to CSV</span></span>
-<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(top_quality, <span class="st">"top_quality_stocks.csv"</span>)</span>
-<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"✓ Detailed results saved to: top_quality_stocks.csv</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>✓ Detailed results saved to: top_quality_stocks.csv</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save all filtered stocks with quality scores for further analysis</span></span>
-<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>df_filtered_export <span class="ot">&lt;-</span> df_filtered <span class="sc">%&gt;%</span></span>
-<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Symbol, Name, <span class="st">`</span><span class="at">Current Price</span><span class="st">`</span>, <span class="st">`</span><span class="at">Market Cap (mil)</span><span class="st">`</span>,</span>
-<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">RS Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">Comp Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">EPS Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">SMR Rating</span><span class="st">`</span>, <span class="st">`</span><span class="at">A/D Rating</span><span class="st">`</span>,</span>
-<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span>, <span class="st">`</span><span class="at">% Chg 3 Months</span><span class="st">`</span>, <span class="st">`</span><span class="at">% Chg 6 Months</span><span class="st">`</span>, <span class="st">`</span><span class="at">% Chg 12 Months</span><span class="st">`</span>,</span>
-<span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a>         Sector, ROE) <span class="sc">%&gt;%</span></span>
-<span id="cb85-7"><a href="#cb85-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">Quality Score</span><span class="st">`</span>))</span>
-<span id="cb85-8"><a href="#cb85-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb85-9"><a href="#cb85-9" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(df_filtered_export, <span class="st">"all_stocks_with_scores.csv"</span>)</span>
-<span id="cb85-10"><a href="#cb85-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"✓ All stocks with scores saved to: all_stocks_with_scores.csv</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>✓ All stocks with scores saved to: all_stocks_with_scores.csv</code></pre>
 </div>

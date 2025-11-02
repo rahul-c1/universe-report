@@ -7,6 +7,10 @@ This is a Quarto website.
 To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
 
 ```{r}
+#| warning: false
+#| echo: false
+#| message: false
+
 #library(usethis)
 #use_git()
 #use_github
@@ -19,7 +23,7 @@ To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
 library(data.table)
 library(dplyr)
 library(readr)
-
+library(gt)
 # ===============================================================================
 # LOAD AND PREPARE DATA
 # ===============================================================================
@@ -33,12 +37,21 @@ cat("COMPREHENSIVE STOCK ANALYSIS\n")
 cat("================================================================================\n")
 
 # Convert relevant columns to numeric
-numeric_columns <- c('RS Rating', 'Comp Rating', 'EPS Rating', 'RS 3-Month Rating', 
-                     'Market Cap (mil)', 'ROE', 'EPS % Chg Last Qtr', 'Sales % Chg Lst Qtr',
-                     'Current Price', '% Chg 3 Months', '% Chg 6 Months', '% Chg 12 Months',
-                     'Price vs 50-Day', 'Price vs 200-Day')
+# numeric_columns <- c('RS Rating', 'Comp Rating', 'EPS Rating', 'RS 3-Month Rating', 
+#                      'Market Cap (mil)', 'ROE', 'EPS % Chg Last Qtr', 'Sales % Chg Lst Qtr',
+#                      'Current Price', '% Chg 3 Months', '% Chg 6 Months', '% Chg 12 Months',
+#                      'Price vs 50-Day', 'Price vs 200-Day')
 
-for (col in numeric_columns) {
+numeric_cols <- setdiff(colnames(df),c("Symbol","Name","Ind_Group_RS","ETF/Closed_End_Fund","Timeliness_Rating",
+                                           "SMR_Rating","A/D_Rating","Incorp_Date","EPS_Kast_Rptd","ADR","ETF","EPS_Accel_3_Qtrs",
+                                           "AT_Margin_Accel","Sales_Accel_3_Qtrs","Exchange","IPO_Date","Sponsor_Rating",
+                                           "RS_Line_New_High","P/E_less_5_Yr_Avg","EPS_Trl_4Q_Geq_EPS_Lst_Fiscal_Yr","EPS_%_Chg_Lst_Q_Gtr_3-Yr_Growth",
+                                           "EPS_Trl_4Q_Geq_EPS_Lst_Fiscal_Yr","EPS_%_Chg_Lst_Q_Gtr_3-Yr_Growth",
+                                           "Sector","City","New_CEO_12_Months","EPS_Due_Date","Industry_Name",
+                                           "3-Yr_EPS_Growth_Geq_5-Yr","EPS_Trl_4Q_Gtr_EPS_4_Yrs_Ago"))
+
+
+for (col in numeric_cols) {
   if (col %in% names(df)) {
     df[[col]] <- suppressWarnings(as.numeric(df[[col]]))
   }
@@ -115,7 +128,7 @@ top_quality <- df_filtered %>%
     `Current Price` = round(`Current Price`, 2)
   )
 
-head(top_quality, n = 30)
+head(top_quality, n = 30) %>% gt()
 
 # ===============================================================================
 # BEST MOMENTUM STOCKS
@@ -136,7 +149,7 @@ momentum_stocks <- df_filtered %>%
     `Current Price` = round(`Current Price`, 2)
   )
 
-head(momentum_stocks, n = 20)
+head(momentum_stocks, n = 20) %>% gt()
 
 # ===============================================================================
 # BEST FUNDAMENTAL STOCKS
@@ -157,7 +170,7 @@ fundamental_stocks <- df_filtered %>%
     `Current Price` = round(`Current Price`, 2)
   )
 
-head(fundamental_stocks, n = 20)
+head(fundamental_stocks, n = 20) %>% gt()
 
 # ===============================================================================
 # BEST LARGE-CAP STOCKS
@@ -178,7 +191,7 @@ large_cap <- df_filtered %>%
     `Quality Score` = round(`Quality Score`, 1)
   )
 
-head(large_cap, n = 15)
+head(large_cap, n = 15) %>% gt()
 
 # ===============================================================================
 # SUMMARY STATISTICS
@@ -242,7 +255,7 @@ cat("===========================================================================
 # ===============================================================================
 
 # Save top quality stocks to CSV
-write_csv(top_quality, "top_quality_stocks.csv")
+write_csv(top_quality, "outputs/top_quality_stocks.csv")
 cat("✓ Detailed results saved to: top_quality_stocks.csv\n")
 
 # Save all filtered stocks with quality scores for further analysis
@@ -253,6 +266,6 @@ df_filtered_export <- df_filtered %>%
          Sector, ROE) %>%
   arrange(desc(`Quality Score`))
 
-write_csv(df_filtered_export, "all_stocks_with_scores.csv")
+write_csv(df_filtered_export, "outputs/all_stocks_with_scores.csv")
 cat("✓ All stocks with scores saved to: all_stocks_with_scores.csv\n")
 ```

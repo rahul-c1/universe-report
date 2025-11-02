@@ -1,21 +1,21 @@
-"Symbol","Name","Sector","RS_Rating","EPS_Rating","Comp_Rating","Composite_Score","Market_Cap_(mil)","Current_Price"
-"CLS","Celestica","ELECTRNCS",98,99,99,98.6666666666667,34120.8,296.62
-"FIX","Comfort Systems USA","BUILDING",96,99,99,98,34633.9,981.66
-"STRL","Sterling Infrastructure","BUILDING",96,99,99,98,11531.2,379.08
-"PLTR","Palantir Technologies","SOFTWARE",96,98,99,97.6666666666667,438005.5,184.63
-"RMBS","Rambus","CHIPS",95,99,99,97.6666666666667,11342.5,105.42
-"GFI","Gold Fields ADR","MINING",96,97,99,97.3333333333333,36086.4,40.3
-"APH","Amphenol Cl A","ELECTRNCS",93,99,99,97,163383.6,133.82
-"AVGO","Broadcom","CHIPS",93,99,99,97,1672331.1,354.13
-"NXT","Nextracker","ENERGY",97,96,98,97,14541.8,98.28
-"PBYI","Puma Biotechnology","MEDICAL",94,99,98,97,263.4,5.23
-"PRIM","Primoris Services","BUILDING",95,97,99,97,7689.7,142.37
-"SEI","Solaris Energy Infr","CHEMICAL",97,96,98,97,3441.3,50.92
-"TTMI","TTM Technologies","ELECTRNCS",97,96,98,97,6069.6,58.75
-"AGX","Argan","BUILDING",94,99,97,96.6666666666667,4095.7,296.55
-"FUTU","Futu Holdings ADR","FINANCE",93,99,98,96.6666666666667,24605,178.38
-"IDCC","InterDigital","ELECTRNCS",96,97,97,96.6666666666667,9769.2,378.62
-"IESC","IES Holdings","BUSINS SVC",94,98,98,96.6666666666667,8675.8,436.98
-"TTI","Tetra Technologies","ENERGY",97,98,95,96.6666666666667,1044.9,7.84
-"VRT","Vertiv Holdings","MACHINE",93,98,99,96.6666666666667,71137.8,186.06
-"WLDN","Willdan Group","BUILDING",96,95,99,96.6666666666667,1501.3,102.37
+"Symbol","Name","Sector","RS_Rating","EPS_Rating","Comp_Rating","Composite_Score","Market_Cap_.mil.","Current_Price"
+"CLS","Celestica","ELECTRNCS","98","99","99","98.66667","39626.2","344.48"
+"PLTR","Palantir Technologies","SOFTWARE","97","98","99","98.00000","475583.4","200.47"
+"FIX","Comfort Systems USA","BUILDING","96","99","99","98.00000","34057.0","965.58"
+"STRL","Sterling Infrastructure","BUILDING","96","99","99","98.00000","11495.3","377.90"
+"CCJ","Cameco","MINING","95","99","99","97.66667","44493.2","102.21"
+"RMBS","Rambus","CHIPS","95","99","99","97.66667","11064.9","102.84"
+"FUTU","Futu Holdings ADR","FINANCE","95","99","98","97.33333","27454.8","199.04"
+"APH","Amphenol Cl A","ELECTRNCS","94","99","99","97.33333","170123.1","139.34"
+"SEI","Solaris Energy Infr","CHEMICAL","97","96","98","97.00000","3597.4","53.23"
+"NXT","Nextracker","ENERGY","96","97","98","97.00000","14976.8","101.22"
+"GFI","Gold Fields ADR","MINING","95","97","99","97.00000","34394.0","38.41"
+"PRIM","Primoris Services","BUILDING","95","97","99","97.00000","7643.8","141.52"
+"IDCC","InterDigital","ELECTRNCS","94","99","98","97.00000","9339.3","361.96"
+"PBYI","Puma Biotechnology","MEDICAL","94","99","98","97.00000","256.9","5.10"
+"AVGO","Broadcom","CHIPS","93","99","99","97.00000","1745527.8","369.63"
+"TTMI","TTM Technologies","ELECTRNCS","97","94","99","96.66667","6942.6","67.20"
+"OPXS","Optex Systems Holdings","AEROSPACE","96","96","98","96.66667","119.1","17.23"
+"AGX","Argan","BUILDING","95","99","96","96.66667","4229.1","306.21"
+"MDB","MongoDB","SOFTWARE","93","99","98","96.66667","29273.5","359.82"
+"VRT","Vertiv Holdings","MACHINE","93","98","99","96.66667","73737.7","192.86"

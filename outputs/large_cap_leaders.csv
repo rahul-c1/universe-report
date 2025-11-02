@@ -1,16 +1,16 @@
-"Symbol","Name","Sector","RS_Rating","Comp_Rating","Market_Cap_(mil)","%_Chg_YTD","ROE"
-"NBIS","Nebius Group Cl A","SOFTWARE",99,57,27920.5,323.32,-8
-"SNDK","Sandisk","COMPUTER",99,90,27143.1,NA,4.3
-"BE","Bloom Energy","ENERGY",99,99,25828.6,396.98,12.1
-"OKLO","Oklo","ENERGY",99,85,20082.2,540.84,-66.1
-"BMNR","BitMine Immersion Techs","FINANCE",99,49,14879.9,546.28,-54.5
-"RGTI","Rigetti Computing","COMPUTER",99,71,12590.6,154.52,-170.2
-"IREN","IREN","FINANCE",99,94,12462.8,540.53,6
-"QBTS","D-Wave Quantum","COMPUTER",99,85,11055.5,288.69,-736.5
-"HOOD","Robinhood Markets","FINANCE",98,97,124227.9,275.17,13.5
-"CLS","Celestica","ELECTRNCS",98,99,34120.8,221.37,25.1
-"RKLB","Rocket Lab","AEROSPACE",98,78,30947.2,153.47,-40.6
-"CRDO","Credo Tech Group","CHIPS",98,99,26909.4,131.44,21.3
-"ASTS","AST SpaceMobile","TELECOM",98,76,26422.8,249.29,-103.8
-"SATS","EchoStar","TELECOM",98,71,21325.5,223.67,-0.6
-"KTOS","Kratos Defense & Sec","AEROSPACE",98,94,15390.6,245.64,6.4
+"Symbol","Name","Sector","RS_Rating","Comp_Rating","Market_Cap_.mil.","X._Chg_YTD","ROE"
+"NBIS","Nebius Group Cl A","SOFTWARE","99","64","31149.3","372.27","-8.0"
+"BE","Bloom Energy","ENERGY","99","99","30925.0","495.05","12.1"
+"SNDK","Sandisk","COMPUTER","99","90","29063.3","NA","4.3"
+"OKLO","Oklo","ENERGY","99","85","19598.0","525.39","-66.1"
+"RGTI","Rigetti Computing","COMPUTER","99","79","14350.8","190.10","-170.2"
+"BMNR","BitMine Immersion Techs","FINANCE","99","50","13770.0","498.08","-54.5"
+"QBTS","D-Wave Quantum","COMPUTER","99","91","12548.7","341.19","-736.5"
+"IREN","IREN","FINANCE","99","94","12036.8","518.64","6.0"
+"SFTBY","SoftBank Group ADR","TELECOM","98","NA","258454.5","205.03","10.9"
+"HOOD","Robinhood Markets","FINANCE","98","98","130439.7","293.93","13.5"
+"ATEYY","Advantest ADR","CHIPS","98","NA","114921.2","163.67","34.1"
+"WDC","Western Digital","COMPUTER","98","99","52111.2","233.37","22.5"
+"CLS","Celestica","ELECTRNCS","98","99","39626.2","273.22","25.1"
+"CRDO","Credo Tech Group","CHIPS","98","99","32457.3","179.15","21.3"
+"RKLB","Rocket Lab","AEROSPACE","98","79","30189.8","147.27","-40.6"

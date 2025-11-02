@@ -1,10 +1,14 @@
 ---
-title: "About"
+title: "Viz"
 ---
 
 About this site
 
 ```{r}
+#| warning: false
+#| echo: false
+#| message: false
+
 #!/usr/bin/env Rscript
 # Stock Analysis Visualizations in R
 # Creates distribution charts and top stocks bar chart
@@ -26,7 +30,7 @@ cat("Loading data...\n")
 # Load the original data
 df <- fread("data/Universe.csv", stringsAsFactors = FALSE)
 # Load the top stocks from previous analysis
-top_stocks <- read_csv("top_quality_stocks.csv", show_col_types = FALSE)
+top_stocks <- read_csv("outputs/top_quality_stocks.csv", show_col_types = FALSE)
 
 # Convert relevant columns to numeric
 numeric_cols <- c('RS Rating', 'Comp Rating', 'EPS Rating', 'Market Cap (mil)', 
@@ -136,7 +140,7 @@ combined_plot <- grid.arrange(
 )
 
 # Save the combined chart
-ggsave("stock_analysis_charts.png", combined_plot, 
+ggsave("images/stock_analysis_charts.png", combined_plot, 
        width = 16, height = 12, dpi = 300, bg = "white")
 
 cat("✓ Distribution charts saved: stock_analysis_charts.png\n")
@@ -195,7 +199,7 @@ p_top15 <- ggplot(top_15, aes(x = Label, y = `Quality Score`, fill = Color_Categ
   )
 
 # Save the top 15 chart
-ggsave("top_15_stocks.png", p_top15, 
+ggsave("images/top_15_stocks.png", p_top15, 
        width = 14, height = 10, dpi = 300, bg = "white")
 
 cat("✓ Top 15 chart saved: top_15_stocks.png\n")
@@ -258,12 +262,13 @@ if ("Sector" %in% names(df_stocks)) {
         panel.grid.minor = element_blank()
       )
     
-    ggsave("sector_analysis.png", p_sector, 
+    ggsave("images/sector_analysis.png", p_sector, 
            width = 12, height = 10, dpi = 300, bg = "white")
     
     cat("✓ Sector analysis chart saved: sector_analysis.png\n")
   }
 }
+
 
 # ===============================================================================
 # COMPLETE
@@ -276,8 +281,12 @@ cat("===========================================================================
 cat("\nGenerated files:\n")
 cat("  - stock_analysis_charts.png (4-panel distribution charts)\n")
 cat("  - top_15_stocks.png (bar chart of top performers)\n")
-if (file.exists("sector_analysis.png")) {
+if (file.exists("images/sector_analysis.png")) {
   cat("  - sector_analysis.png (sector comparison)\n")
 }
 cat("\n")
 ```
+![](images/stock_analysis_charts.png)
+![](images/sector_analysis.png)
+![](images/top_15_stocks.png)
+![](images/sector_analysis.png)
