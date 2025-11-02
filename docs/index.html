@@ -1,0 +1,3448 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>universe-report</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">universe-report</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">Viz</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./new_analysis.html"> 
+<span class="menu-text">TopPerf</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">universe-report</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This is a Quarto website.</p>
+<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Loading data...</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>================================================================================</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>COMPREHENSIVE STOCK ANALYSIS</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>================================================================================</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+1. FILTERING FOR HIGH-QUALITY STOCKS</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------------------------------------------</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>After excluding ETFs/Funds: 6277 stocks</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>After filtering for Market Cap &gt; $300M: 3915 stocks</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+2. TOP STOCKS BY COMPOSITE QUALITY SCORE</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------------------------------------------</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Quality Score = 25% RS Rating + 25% Comp Rating + 20% EPS Rating + 15% SMR + 15% A/D</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="ydwbhltjfl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#ydwbhltjfl .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ydwbhltjfl .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ydwbhltjfl .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ydwbhltjfl .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ydwbhltjfl .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ydwbhltjfl .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ydwbhltjfl .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ydwbhltjfl .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ydwbhltjfl .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ydwbhltjfl .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ydwbhltjfl .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ydwbhltjfl .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ydwbhltjfl .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ydwbhltjfl .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ydwbhltjfl .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ydwbhltjfl .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ydwbhltjfl .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ydwbhltjfl .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ydwbhltjfl .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ydwbhltjfl .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ydwbhltjfl .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ydwbhltjfl .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ydwbhltjfl .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ydwbhltjfl .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ydwbhltjfl .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ydwbhltjfl .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ydwbhltjfl .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ydwbhltjfl .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ydwbhltjfl .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ydwbhltjfl .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ydwbhltjfl .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ydwbhltjfl .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ydwbhltjfl .gt_left {
+  text-align: left;
+}
+
+#ydwbhltjfl .gt_center {
+  text-align: center;
+}
+
+#ydwbhltjfl .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ydwbhltjfl .gt_font_normal {
+  font-weight: normal;
+}
+
+#ydwbhltjfl .gt_font_bold {
+  font-weight: bold;
+}
+
+#ydwbhltjfl .gt_font_italic {
+  font-style: italic;
+}
+
+#ydwbhltjfl .gt_super {
+  font-size: 65%;
+}
+
+#ydwbhltjfl .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#ydwbhltjfl .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ydwbhltjfl .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ydwbhltjfl .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ydwbhltjfl .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ydwbhltjfl .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ydwbhltjfl .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead class="gt_col_headings">
+<tr class="header">
+<th id="Symbol" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Symbol</th>
+<th id="Name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Name</th>
+<th id="Current Price" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Current Price</th>
+<th id="Market Cap (mil)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Market Cap (mil)</th>
+<th id="RS Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">RS Rating</th>
+<th id="Comp Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Comp Rating</th>
+<th id="EPS Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">EPS Rating</th>
+<th id="SMR Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">SMR Rating</th>
+<th id="A/D Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">A/D Rating</th>
+<th id="Quality Score" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Quality Score</th>
+<th id="% Chg 3 Months" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% Chg 3 Months</th>
+<th id="% Chg 6 Months" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% Chg 6 Months</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">CLS</td>
+<td class="gt_row gt_left" headers="Name">Celestica</td>
+<td class="gt_row gt_right" headers="Current Price">344.48</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">39626</td>
+<td class="gt_row gt_right" headers="RS Rating">98</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">74.0</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">72.4</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">303.6</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">PLTR</td>
+<td class="gt_row gt_left" headers="Name">Palantir Technologies</td>
+<td class="gt_row gt_right" headers="Current Price">200.47</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">475583</td>
+<td class="gt_row gt_right" headers="RS Rating">97</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">98</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">73.6</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">26.6</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">69.3</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">FIX</td>
+<td class="gt_row gt_left" headers="Name">Comfort Systems USA</td>
+<td class="gt_row gt_right" headers="Current Price">965.58</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">34057</td>
+<td class="gt_row gt_right" headers="RS Rating">96</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">73.6</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">37.3</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">142.9</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">STRL</td>
+<td class="gt_row gt_left" headers="Name">Sterling Infrastructure</td>
+<td class="gt_row gt_right" headers="Current Price">377.90</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">11495</td>
+<td class="gt_row gt_right" headers="RS Rating">96</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">73.6</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">41.2</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">152.9</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">CCJ</td>
+<td class="gt_row gt_left" headers="Name">Cameco</td>
+<td class="gt_row gt_right" headers="Current Price">102.21</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">44493</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">73.3</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">36.4</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">126.4</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">RMBS</td>
+<td class="gt_row gt_left" headers="Name">Rambus</td>
+<td class="gt_row gt_right" headers="Current Price">102.84</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">11065</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">73.3</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">39.1</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">110.8</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">FUTU</td>
+<td class="gt_row gt_left" headers="Name">Futu Holdings ADR</td>
+<td class="gt_row gt_right" headers="Current Price">199.04</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">27455</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">73.0</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">29.5</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">115.6</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">APH</td>
+<td class="gt_row gt_left" headers="Name">Amphenol Cl A</td>
+<td class="gt_row gt_right" headers="Current Price">139.34</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">170123</td>
+<td class="gt_row gt_right" headers="RS Rating">94</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">73.0</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">30.8</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">81.1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">SEI</td>
+<td class="gt_row gt_left" headers="Name">Solaris Energy Infr</td>
+<td class="gt_row gt_right" headers="Current Price">53.23</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">3597</td>
+<td class="gt_row gt_right" headers="RS Rating">97</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">96</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">73.0</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">62.9</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">151.8</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">NXT</td>
+<td class="gt_row gt_left" headers="Name">Nextracker</td>
+<td class="gt_row gt_right" headers="Current Price">101.22</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">14977</td>
+<td class="gt_row gt_right" headers="RS Rating">96</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">97</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.9</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">73.7</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">149.2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">GFI</td>
+<td class="gt_row gt_left" headers="Name">Gold Fields ADR</td>
+<td class="gt_row gt_right" headers="Current Price">38.41</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">34394</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">97</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.9</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">57.7</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">70.4</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">PRIM</td>
+<td class="gt_row gt_left" headers="Name">Primoris Services</td>
+<td class="gt_row gt_right" headers="Current Price">141.52</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">7644</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">97</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.9</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">50.3</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">136.0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">TTMI</td>
+<td class="gt_row gt_left" headers="Name">TTM Technologies</td>
+<td class="gt_row gt_right" headers="Current Price">67.20</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">6943</td>
+<td class="gt_row gt_right" headers="RS Rating">97</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">94</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.8</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">42.2</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">235.7</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">IDCC</td>
+<td class="gt_row gt_left" headers="Name">InterDigital</td>
+<td class="gt_row gt_right" headers="Current Price">361.96</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">9339</td>
+<td class="gt_row gt_right" headers="RS Rating">94</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.8</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">40.2</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">80.1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">AVGO</td>
+<td class="gt_row gt_left" headers="Name">Broadcom</td>
+<td class="gt_row gt_right" headers="Current Price">369.63</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">1745528</td>
+<td class="gt_row gt_right" headers="RS Rating">93</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.8</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">25.9</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">92.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">VRT</td>
+<td class="gt_row gt_left" headers="Name">Vertiv Holdings</td>
+<td class="gt_row gt_right" headers="Current Price">192.86</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">73738</td>
+<td class="gt_row gt_right" headers="RS Rating">93</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">98</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.6</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">32.5</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">125.9</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">AGX</td>
+<td class="gt_row gt_left" headers="Name">Argan</td>
+<td class="gt_row gt_right" headers="Current Price">306.21</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">4229</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">96</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.6</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">25.0</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">100.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">MDB</td>
+<td class="gt_row gt_left" headers="Name">MongoDB</td>
+<td class="gt_row gt_right" headers="Current Price">359.82</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">29274</td>
+<td class="gt_row gt_right" headers="RS Rating">93</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.6</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">51.3</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">109.0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">WLDN</td>
+<td class="gt_row gt_left" headers="Name">Willdan Group</td>
+<td class="gt_row gt_right" headers="Current Price">94.51</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">1386</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">95</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.5</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">10.8</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">141.1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">DRD</td>
+<td class="gt_row gt_left" headers="Name">DRDGOLD ADR</td>
+<td class="gt_row gt_right" headers="Current Price">25.23</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">2181</td>
+<td class="gt_row gt_right" headers="RS Rating">96</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">94</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.3</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">89.1</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">69.3</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">TTI</td>
+<td class="gt_row gt_left" headers="Name">Tetra Technologies</td>
+<td class="gt_row gt_right" headers="Current Price">7.06</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">944</td>
+<td class="gt_row gt_right" headers="RS Rating">96</td>
+<td class="gt_row gt_right" headers="Comp Rating">95</td>
+<td class="gt_row gt_right" headers="EPS Rating">97</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.2</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">72.2</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">147.7</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">MEDP</td>
+<td class="gt_row gt_left" headers="Name">Medpace Holdings</td>
+<td class="gt_row gt_right" headers="Current Price">584.91</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">16476</td>
+<td class="gt_row gt_right" headers="RS Rating">93</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">97</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.2</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">36.9</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">89.7</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">AEM</td>
+<td class="gt_row gt_left" headers="Name">Agnico-Eagle Mines</td>
+<td class="gt_row gt_right" headers="Current Price">160.81</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">81012</td>
+<td class="gt_row gt_right" headers="RS Rating">91</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">98</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.1</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">29.3</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">36.8</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">NVMI</td>
+<td class="gt_row gt_left" headers="Name">Nova</td>
+<td class="gt_row gt_right" headers="Current Price">344.64</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">10132</td>
+<td class="gt_row gt_right" headers="RS Rating">91</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.0</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">31.2</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">75.6</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">ANET</td>
+<td class="gt_row gt_left" headers="Name">Arista Networks</td>
+<td class="gt_row gt_right" headers="Current Price">157.69</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">198195</td>
+<td class="gt_row gt_right" headers="RS Rating">90</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.0</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">28.0</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">91.7</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">NVDA</td>
+<td class="gt_row gt_left" headers="Name">NVIDIA</td>
+<td class="gt_row gt_right" headers="Current Price">202.49</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">4920507</td>
+<td class="gt_row gt_right" headers="RS Rating">90</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.0</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">13.8</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">85.9</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">OPRX</td>
+<td class="gt_row gt_left" headers="Name">OptimizeRx</td>
+<td class="gt_row gt_right" headers="Current Price">20.49</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">380</td>
+<td class="gt_row gt_right" headers="RS Rating">98</td>
+<td class="gt_row gt_right" headers="Comp Rating">97</td>
+<td class="gt_row gt_right" headers="EPS Rating">91</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.0</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">62.4</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">124.7</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">NVT</td>
+<td class="gt_row gt_left" headers="Name">nVent Electric</td>
+<td class="gt_row gt_right" headers="Current Price">114.35</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">18404</td>
+<td class="gt_row gt_right" headers="RS Rating">92</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">96</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">72.0</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">45.8</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">108.2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">KGC</td>
+<td class="gt_row gt_left" headers="Name">Kinross Gold</td>
+<td class="gt_row gt_right" headers="Current Price">23.24</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">28324</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">92</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">71.9</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">45.2</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">57.5</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">NET</td>
+<td class="gt_row gt_left" headers="Name">Cloudflare</td>
+<td class="gt_row gt_right" headers="Current Price">253.30</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">87407</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">93</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="A/D Rating">NA</td>
+<td class="gt_row gt_right" headers="Quality Score">71.8</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">22.0</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">109.7</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+3. BEST MOMENTUM STOCKS (High RS Rating)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------------------------------------------</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Stocks with RS Rating &gt;= 95 and strong fundamentals</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="vmgofurhlf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#vmgofurhlf .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#vmgofurhlf .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vmgofurhlf .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#vmgofurhlf .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#vmgofurhlf .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#vmgofurhlf .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vmgofurhlf .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vmgofurhlf .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#vmgofurhlf .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#vmgofurhlf .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#vmgofurhlf .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#vmgofurhlf .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#vmgofurhlf .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#vmgofurhlf .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#vmgofurhlf .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#vmgofurhlf .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#vmgofurhlf .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#vmgofurhlf .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vmgofurhlf .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#vmgofurhlf .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#vmgofurhlf .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vmgofurhlf .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#vmgofurhlf .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#vmgofurhlf .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vmgofurhlf .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vmgofurhlf .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#vmgofurhlf .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#vmgofurhlf .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vmgofurhlf .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vmgofurhlf .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vmgofurhlf .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vmgofurhlf .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vmgofurhlf .gt_left {
+  text-align: left;
+}
+
+#vmgofurhlf .gt_center {
+  text-align: center;
+}
+
+#vmgofurhlf .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#vmgofurhlf .gt_font_normal {
+  font-weight: normal;
+}
+
+#vmgofurhlf .gt_font_bold {
+  font-weight: bold;
+}
+
+#vmgofurhlf .gt_font_italic {
+  font-style: italic;
+}
+
+#vmgofurhlf .gt_super {
+  font-size: 65%;
+}
+
+#vmgofurhlf .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#vmgofurhlf .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#vmgofurhlf .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#vmgofurhlf .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#vmgofurhlf .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#vmgofurhlf .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#vmgofurhlf .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead class="gt_col_headings">
+<tr class="header">
+<th id="Symbol" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Symbol</th>
+<th id="Name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Name</th>
+<th id="Current Price" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Current Price</th>
+<th id="Market Cap (mil)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Market Cap (mil)</th>
+<th id="RS Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">RS Rating</th>
+<th id="Comp Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Comp Rating</th>
+<th id="EPS Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">EPS Rating</th>
+<th id="% Chg 3 Months" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% Chg 3 Months</th>
+<th id="% Chg 6 Months" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% Chg 6 Months</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">ABAT</td>
+<td class="gt_row gt_left" headers="Name">American Battery Tech</td>
+<td class="gt_row gt_right" headers="Current Price">5.13</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">606</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">87</td>
+<td class="gt_row gt_right" headers="EPS Rating">43</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">136.4</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">200.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">ABVX</td>
+<td class="gt_row gt_left" headers="Name">Abivax ADR</td>
+<td class="gt_row gt_right" headers="Current Price">102.42</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">7692</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">82</td>
+<td class="gt_row gt_right" headers="EPS Rating">11</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">42.7</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">1338.5</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">AMPX</td>
+<td class="gt_row gt_left" headers="Name">Amprius Technologies</td>
+<td class="gt_row gt_right" headers="Current Price">14.09</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">1762</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">94</td>
+<td class="gt_row gt_right" headers="EPS Rating">45</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">103.3</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">552.3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">ANRO</td>
+<td class="gt_row gt_left" headers="Name">Alto Neuroscience</td>
+<td class="gt_row gt_right" headers="Current Price">14.19</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">384</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">86</td>
+<td class="gt_row gt_right" headers="EPS Rating">16</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">362.2</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">469.9</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">APLD</td>
+<td class="gt_row gt_left" headers="Name">Applied Digital</td>
+<td class="gt_row gt_right" headers="Current Price">34.66</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">9694</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">86</td>
+<td class="gt_row gt_right" headers="EPS Rating">17</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">163.8</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">663.4</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">AXTI</td>
+<td class="gt_row gt_left" headers="Name">AXT</td>
+<td class="gt_row gt_right" headers="Current Price">7.95</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">367</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">88</td>
+<td class="gt_row gt_right" headers="EPS Rating">18</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">282.2</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">467.9</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">BE</td>
+<td class="gt_row gt_left" headers="Name">Bloom Energy</td>
+<td class="gt_row gt_right" headers="Current Price">132.16</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">30925</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">80</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">253.5</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">621.4</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">BW</td>
+<td class="gt_row gt_left" headers="Name">Babcock &amp; Wilcox Ents</td>
+<td class="gt_row gt_right" headers="Current Price">3.61</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">365</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">87</td>
+<td class="gt_row gt_right" headers="EPS Rating">45</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">271.9</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">700.4</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">CDTX</td>
+<td class="gt_row gt_left" headers="Name">Cidara Therapeutics</td>
+<td class="gt_row gt_right" headers="Current Price">109.24</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">2770</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">88</td>
+<td class="gt_row gt_right" headers="EPS Rating">20</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">72.5</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">423.1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">CIFR</td>
+<td class="gt_row gt_left" headers="Name">Cipher Mining</td>
+<td class="gt_row gt_right" headers="Current Price">18.65</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">7335</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">92</td>
+<td class="gt_row gt_right" headers="EPS Rating">39</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">241.6</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">554.4</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">CTEV</td>
+<td class="gt_row gt_left" headers="Name">Claritev</td>
+<td class="gt_row gt_right" headers="Current Price">65.10</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">1072</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">83</td>
+<td class="gt_row gt_right" headers="EPS Rating">60</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">63.3</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">190.2</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">DGNX</td>
+<td class="gt_row gt_left" headers="Name">Diginex</td>
+<td class="gt_row gt_right" headers="Current Price">20.89</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">3843</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">83</td>
+<td class="gt_row gt_right" headers="EPS Rating">47</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">215.3</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">88.2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">EOSE</td>
+<td class="gt_row gt_left" headers="Name">Eos Energy Enterprises</td>
+<td class="gt_row gt_right" headers="Current Price">16.03</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">4165</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">87</td>
+<td class="gt_row gt_right" headers="EPS Rating">19</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">181.2</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">207.1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">GRAL</td>
+<td class="gt_row gt_left" headers="Name">GRAIL</td>
+<td class="gt_row gt_right" headers="Current Price">91.93</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">3314</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">93</td>
+<td class="gt_row gt_right" headers="EPS Rating">56</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">168.7</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">166.5</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">INBX</td>
+<td class="gt_row gt_left" headers="Name">Inhibrx Biosciences</td>
+<td class="gt_row gt_right" headers="Current Price">81.66</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">1183</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">93</td>
+<td class="gt_row gt_right" headers="EPS Rating">18</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">272.5</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">562.3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">IREN</td>
+<td class="gt_row gt_left" headers="Name">IREN</td>
+<td class="gt_row gt_right" headers="Current Price">60.75</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">12037</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">94</td>
+<td class="gt_row gt_right" headers="EPS Rating">38</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">277.1</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">894.3</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">LAES</td>
+<td class="gt_row gt_left" headers="Name">SEALSQ</td>
+<td class="gt_row gt_right" headers="Current Price">7.42</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">1252</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">80</td>
+<td class="gt_row gt_right" headers="EPS Rating">47</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">140.1</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">205.3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">LEU</td>
+<td class="gt_row gt_left" headers="Name">Centrus Energy</td>
+<td class="gt_row gt_right" headers="Current Price">367.46</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">6690</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">88</td>
+<td class="gt_row gt_right" headers="EPS Rating">57</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">70.6</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">430.3</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">MCTA</td>
+<td class="gt_row gt_left" headers="Name">Charming Medical</td>
+<td class="gt_row gt_right" headers="Current Price">23.50</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">404</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">85</td>
+<td class="gt_row gt_right" headers="EPS Rating">80</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">NA</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">NA</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">MVST</td>
+<td class="gt_row gt_left" headers="Name">Microvast Holdings</td>
+<td class="gt_row gt_right" headers="Current Price">5.45</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">1773</td>
+<td class="gt_row gt_right" headers="RS Rating">99</td>
+<td class="gt_row gt_right" headers="Comp Rating">95</td>
+<td class="gt_row gt_right" headers="EPS Rating">80</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months">71.9</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">182.4</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+4. BEST FUNDAMENTAL STOCKS (High Comp + EPS Ratings)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------------------------------------------</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Stocks with Comp Rating &gt;= 95 and EPS Rating &gt;= 90</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="kroxhtvdgz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#kroxhtvdgz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#kroxhtvdgz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#kroxhtvdgz .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#kroxhtvdgz .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#kroxhtvdgz .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#kroxhtvdgz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kroxhtvdgz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#kroxhtvdgz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#kroxhtvdgz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#kroxhtvdgz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#kroxhtvdgz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#kroxhtvdgz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#kroxhtvdgz .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#kroxhtvdgz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#kroxhtvdgz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#kroxhtvdgz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#kroxhtvdgz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#kroxhtvdgz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kroxhtvdgz .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#kroxhtvdgz .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#kroxhtvdgz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kroxhtvdgz .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#kroxhtvdgz .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#kroxhtvdgz .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kroxhtvdgz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kroxhtvdgz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#kroxhtvdgz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#kroxhtvdgz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kroxhtvdgz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#kroxhtvdgz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kroxhtvdgz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#kroxhtvdgz .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kroxhtvdgz .gt_left {
+  text-align: left;
+}
+
+#kroxhtvdgz .gt_center {
+  text-align: center;
+}
+
+#kroxhtvdgz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#kroxhtvdgz .gt_font_normal {
+  font-weight: normal;
+}
+
+#kroxhtvdgz .gt_font_bold {
+  font-weight: bold;
+}
+
+#kroxhtvdgz .gt_font_italic {
+  font-style: italic;
+}
+
+#kroxhtvdgz .gt_super {
+  font-size: 65%;
+}
+
+#kroxhtvdgz .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#kroxhtvdgz .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#kroxhtvdgz .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#kroxhtvdgz .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#kroxhtvdgz .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#kroxhtvdgz .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#kroxhtvdgz .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead class="gt_col_headings">
+<tr class="header">
+<th id="Symbol" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Symbol</th>
+<th id="Name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Name</th>
+<th id="Current Price" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Current Price</th>
+<th id="Market Cap (mil)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Market Cap (mil)</th>
+<th id="RS Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">RS Rating</th>
+<th id="Comp Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Comp Rating</th>
+<th id="EPS Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">EPS Rating</th>
+<th id="SMR Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">SMR Rating</th>
+<th id="ROE" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">ROE</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">CLS</td>
+<td class="gt_row gt_left" headers="Name">Celestica</td>
+<td class="gt_row gt_right" headers="Current Price">344.48</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">39626</td>
+<td class="gt_row gt_right" headers="RS Rating">98</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">25.1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">PLTR</td>
+<td class="gt_row gt_left" headers="Name">Palantir Technologies</td>
+<td class="gt_row gt_right" headers="Current Price">200.47</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">475583</td>
+<td class="gt_row gt_right" headers="RS Rating">97</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">98</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">23.6</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">TTMI</td>
+<td class="gt_row gt_left" headers="Name">TTM Technologies</td>
+<td class="gt_row gt_right" headers="Current Price">67.20</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">6943</td>
+<td class="gt_row gt_right" headers="RS Rating">97</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">94</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">12.3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">FIX</td>
+<td class="gt_row gt_left" headers="Name">Comfort Systems USA</td>
+<td class="gt_row gt_right" headers="Current Price">965.58</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">34057</td>
+<td class="gt_row gt_right" headers="RS Rating">96</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">35.0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">STRL</td>
+<td class="gt_row gt_left" headers="Name">Sterling Infrastructure</td>
+<td class="gt_row gt_right" headers="Current Price">377.90</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">11495</td>
+<td class="gt_row gt_right" headers="RS Rating">96</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">28.8</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">CCJ</td>
+<td class="gt_row gt_left" headers="Name">Cameco</td>
+<td class="gt_row gt_right" headers="Current Price">102.21</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">44493</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">4.7</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">GFI</td>
+<td class="gt_row gt_left" headers="Name">Gold Fields ADR</td>
+<td class="gt_row gt_right" headers="Current Price">38.41</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">34394</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">97</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">25.3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">KGC</td>
+<td class="gt_row gt_left" headers="Name">Kinross Gold</td>
+<td class="gt_row gt_right" headers="Current Price">23.24</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">28324</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">92</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">13.0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">PRIM</td>
+<td class="gt_row gt_left" headers="Name">Primoris Services</td>
+<td class="gt_row gt_right" headers="Current Price">141.52</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">7644</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">97</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">16.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">RMBS</td>
+<td class="gt_row gt_left" headers="Name">Rambus</td>
+<td class="gt_row gt_right" headers="Current Price">102.84</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">11065</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">18.2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">WLDN</td>
+<td class="gt_row gt_left" headers="Name">Willdan Group</td>
+<td class="gt_row gt_right" headers="Current Price">94.51</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">1386</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">95</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">16.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">APH</td>
+<td class="gt_row gt_left" headers="Name">Amphenol Cl A</td>
+<td class="gt_row gt_right" headers="Current Price">139.34</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">170123</td>
+<td class="gt_row gt_right" headers="RS Rating">94</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">26.3</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">AVGO</td>
+<td class="gt_row gt_left" headers="Name">Broadcom</td>
+<td class="gt_row gt_right" headers="Current Price">369.63</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">1745528</td>
+<td class="gt_row gt_right" headers="RS Rating">93</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">51.8</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">VRT</td>
+<td class="gt_row gt_left" headers="Name">Vertiv Holdings</td>
+<td class="gt_row gt_right" headers="Current Price">192.86</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">73738</td>
+<td class="gt_row gt_right" headers="RS Rating">93</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">98</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">49.6</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">GOOGL</td>
+<td class="gt_row gt_left" headers="Name">Alphabet Cl A</td>
+<td class="gt_row gt_right" headers="Current Price">281.19</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">3400712</td>
+<td class="gt_row gt_right" headers="RS Rating">92</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">92</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">31.9</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">NVT</td>
+<td class="gt_row gt_left" headers="Name">nVent Electric</td>
+<td class="gt_row gt_right" headers="Current Price">114.35</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">18404</td>
+<td class="gt_row gt_right" headers="RS Rating">92</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">96</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">13.1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">AEM</td>
+<td class="gt_row gt_left" headers="Name">Agnico-Eagle Mines</td>
+<td class="gt_row gt_right" headers="Current Price">160.81</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">81012</td>
+<td class="gt_row gt_right" headers="RS Rating">91</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">98</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">10.5</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">GOOG</td>
+<td class="gt_row gt_left" headers="Name">Alphabet Cl C</td>
+<td class="gt_row gt_right" headers="Current Price">281.82</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">3408331</td>
+<td class="gt_row gt_right" headers="RS Rating">91</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">92</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">31.9</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">TME</td>
+<td class="gt_row gt_left" headers="Name">Tencent Music Ent ADR</td>
+<td class="gt_row gt_right" headers="Current Price">22.32</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">34510</td>
+<td class="gt_row gt_right" headers="RS Rating">91</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">94</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">12.4</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">ANET</td>
+<td class="gt_row gt_left" headers="Name">Arista Networks</td>
+<td class="gt_row gt_right" headers="Current Price">157.69</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">198195</td>
+<td class="gt_row gt_right" headers="RS Rating">90</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="SMR Rating">NA</td>
+<td class="gt_row gt_right" headers="ROE">33.8</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+5. BEST LARGE-CAP STOCKS (Market Cap &gt; $10B)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------------------------------------------</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="akepgmngts" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#akepgmngts .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#akepgmngts .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#akepgmngts .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#akepgmngts .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#akepgmngts .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#akepgmngts .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#akepgmngts .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#akepgmngts .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#akepgmngts .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#akepgmngts .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#akepgmngts .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#akepgmngts .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#akepgmngts .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#akepgmngts .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#akepgmngts .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#akepgmngts .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#akepgmngts .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#akepgmngts .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#akepgmngts .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#akepgmngts .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#akepgmngts .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#akepgmngts .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#akepgmngts .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#akepgmngts .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#akepgmngts .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#akepgmngts .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#akepgmngts .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#akepgmngts .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#akepgmngts .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#akepgmngts .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#akepgmngts .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#akepgmngts .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#akepgmngts .gt_left {
+  text-align: left;
+}
+
+#akepgmngts .gt_center {
+  text-align: center;
+}
+
+#akepgmngts .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#akepgmngts .gt_font_normal {
+  font-weight: normal;
+}
+
+#akepgmngts .gt_font_bold {
+  font-weight: bold;
+}
+
+#akepgmngts .gt_font_italic {
+  font-style: italic;
+}
+
+#akepgmngts .gt_super {
+  font-size: 65%;
+}
+
+#akepgmngts .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#akepgmngts .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#akepgmngts .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#akepgmngts .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#akepgmngts .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#akepgmngts .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#akepgmngts .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead class="gt_col_headings">
+<tr class="header">
+<th id="Symbol" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Symbol</th>
+<th id="Name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Name</th>
+<th id="Current Price" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Current Price</th>
+<th id="Market Cap (mil)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Market Cap (mil)</th>
+<th id="RS Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">RS Rating</th>
+<th id="Comp Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Comp Rating</th>
+<th id="EPS Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">EPS Rating</th>
+<th id="Quality Score" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Quality Score</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">CLS</td>
+<td class="gt_row gt_left" headers="Name">Celestica</td>
+<td class="gt_row gt_right" headers="Current Price">344.48</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">39626</td>
+<td class="gt_row gt_right" headers="RS Rating">98</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="Quality Score">74.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">PLTR</td>
+<td class="gt_row gt_left" headers="Name">Palantir Technologies</td>
+<td class="gt_row gt_right" headers="Current Price">200.47</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">475583</td>
+<td class="gt_row gt_right" headers="RS Rating">97</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">98</td>
+<td class="gt_row gt_right" headers="Quality Score">73.6</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">FIX</td>
+<td class="gt_row gt_left" headers="Name">Comfort Systems USA</td>
+<td class="gt_row gt_right" headers="Current Price">965.58</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">34057</td>
+<td class="gt_row gt_right" headers="RS Rating">96</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="Quality Score">73.6</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">STRL</td>
+<td class="gt_row gt_left" headers="Name">Sterling Infrastructure</td>
+<td class="gt_row gt_right" headers="Current Price">377.90</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">11495</td>
+<td class="gt_row gt_right" headers="RS Rating">96</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="Quality Score">73.6</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">CCJ</td>
+<td class="gt_row gt_left" headers="Name">Cameco</td>
+<td class="gt_row gt_right" headers="Current Price">102.21</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">44493</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="Quality Score">73.3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">RMBS</td>
+<td class="gt_row gt_left" headers="Name">Rambus</td>
+<td class="gt_row gt_right" headers="Current Price">102.84</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">11065</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="Quality Score">73.3</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">FUTU</td>
+<td class="gt_row gt_left" headers="Name">Futu Holdings ADR</td>
+<td class="gt_row gt_right" headers="Current Price">199.04</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">27455</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="Quality Score">73.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">APH</td>
+<td class="gt_row gt_left" headers="Name">Amphenol Cl A</td>
+<td class="gt_row gt_right" headers="Current Price">139.34</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">170123</td>
+<td class="gt_row gt_right" headers="RS Rating">94</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="Quality Score">73.0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">NXT</td>
+<td class="gt_row gt_left" headers="Name">Nextracker</td>
+<td class="gt_row gt_right" headers="Current Price">101.22</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">14977</td>
+<td class="gt_row gt_right" headers="RS Rating">96</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">97</td>
+<td class="gt_row gt_right" headers="Quality Score">72.9</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">GFI</td>
+<td class="gt_row gt_left" headers="Name">Gold Fields ADR</td>
+<td class="gt_row gt_right" headers="Current Price">38.41</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">34394</td>
+<td class="gt_row gt_right" headers="RS Rating">95</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">97</td>
+<td class="gt_row gt_right" headers="Quality Score">72.9</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">AVGO</td>
+<td class="gt_row gt_left" headers="Name">Broadcom</td>
+<td class="gt_row gt_right" headers="Current Price">369.63</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">1745528</td>
+<td class="gt_row gt_right" headers="RS Rating">93</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="Quality Score">72.8</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">VRT</td>
+<td class="gt_row gt_left" headers="Name">Vertiv Holdings</td>
+<td class="gt_row gt_right" headers="Current Price">192.86</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">73738</td>
+<td class="gt_row gt_right" headers="RS Rating">93</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">98</td>
+<td class="gt_row gt_right" headers="Quality Score">72.6</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">MDB</td>
+<td class="gt_row gt_left" headers="Name">MongoDB</td>
+<td class="gt_row gt_right" headers="Current Price">359.82</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">29274</td>
+<td class="gt_row gt_right" headers="RS Rating">93</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">99</td>
+<td class="gt_row gt_right" headers="Quality Score">72.6</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">MEDP</td>
+<td class="gt_row gt_left" headers="Name">Medpace Holdings</td>
+<td class="gt_row gt_right" headers="Current Price">584.91</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">16476</td>
+<td class="gt_row gt_right" headers="RS Rating">93</td>
+<td class="gt_row gt_right" headers="Comp Rating">98</td>
+<td class="gt_row gt_right" headers="EPS Rating">97</td>
+<td class="gt_row gt_right" headers="Quality Score">72.2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">AEM</td>
+<td class="gt_row gt_left" headers="Name">Agnico-Eagle Mines</td>
+<td class="gt_row gt_right" headers="Current Price">160.81</td>
+<td class="gt_row gt_right" headers="Market Cap (mil)">81012</td>
+<td class="gt_row gt_right" headers="RS Rating">91</td>
+<td class="gt_row gt_right" headers="Comp Rating">99</td>
+<td class="gt_row gt_right" headers="EPS Rating">98</td>
+<td class="gt_row gt_right" headers="Quality Score">72.1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+6. SUMMARY STATISTICS</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------------------------------------------</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total stocks analyzed: 3915</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Average RS Rating: 52.3</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Average Comp Rating: 58.9</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Average EPS Rating: 53.7</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Stocks with RS Rating &gt;= 90: 614</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Stocks with Comp Rating &gt;= 90: 507</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Stocks with EPS Rating &gt;= 90: 492</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+7. KEY INSIGHTS &amp; RECOMMENDATIONS</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------------------------------------------</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Based on the comprehensive analysis of 3915 stocks, here are the key findings:
+
+RATING DEFINITIONS:
+- RS Rating (Relative Strength): Measures price performance vs. all other stocks (0-100)
+- Comp Rating (Composite): Overall stock quality combining multiple factors (0-100)
+- EPS Rating: Earnings Per Share growth and stability (0-100)
+- SMR Rating: Sales + Margins + Return on Equity (A+ to E)
+- A/D Rating: Accumulation/Distribution - institutional buying/selling (A+ to E)
+
+TOP CATEGORIES:
+1. Highest Quality Score: Stocks that excel across all metrics
+2. Best Momentum: Stocks with exceptional price strength and fundamentals
+3. Best Fundamentals: Companies with superior earnings and composite ratings
+4. Best Large-Caps: Quality stocks with market caps exceeding $10 billion
+
+INVESTMENT APPROACH:
+- Look for stocks with RS Rating &gt;= 80 (strong momentum)
+- Seek Comp Rating &gt;= 85 (high quality)
+- Prefer EPS Rating &gt;= 80 (strong earnings)
+- Consider SMR Rating A or B (excellent fundamentals)
+- Check A/D Rating for institutional support
+
+The 'Quality Score' provides a balanced view combining all these factors.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>================================================================================</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ANALYSIS COMPLETE</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>================================================================================</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>✓ Detailed results saved to: top_quality_stocks.csv</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>✓ All stocks with scores saved to: all_stocks_with_scores.csv</code></pre>
+</div>
+</div>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
