@@ -4,7 +4,7 @@
     "href": "about.html",
     "title": "Viz",
     "section": "",
-    "text": "About this site\n\n\nLoading data...\n\n\nCreating distribution charts...\n\n\n\n\n\n\n\n\n\n✓ Distribution charts saved: stock_analysis_charts.png\n\n\nCreating top 15 stocks chart...\n\n\n✓ Top 15 chart saved: top_15_stocks.png\n\n\nCreating sector analysis chart...\n\n\n✓ Sector analysis chart saved: sector_analysis.png\n\n\n================================================================================\n\n\nVISUALIZATION COMPLETE\n\n\n================================================================================\n\n\n\nGenerated files:\n\n\n  - stock_analysis_charts.png (4-panel distribution charts)\n\n\n  - top_15_stocks.png (bar chart of top performers)\n\n\n  - sector_analysis.png (sector comparison)"
+    "text": "About this site\n\n\nLoading data...\n\n\nCreating distribution charts...\n\n\n✓ Distribution charts saved: stock_analysis_charts.png\n\n\nCreating top 15 stocks chart...\n\n\n✓ Top 15 chart saved: top_15_stocks.png\n\n\nCreating sector analysis chart...\n\n\n✓ Sector analysis chart saved: sector_analysis.png\n\n\n================================================================================\n\n\nVISUALIZATION COMPLETE\n\n\n================================================================================\n\n\n\nGenerated files:\n\n\n  - stock_analysis_charts.png (4-panel distribution charts)\n\n\n  - top_15_stocks.png (bar chart of top performers)\n\n\n  - sector_analysis.png (sector comparison)"
   },
   {
     "objectID": "index.html",

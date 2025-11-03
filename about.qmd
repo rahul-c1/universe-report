@@ -4,7 +4,7 @@ title: "Viz"
 
 About this site
 
-```{r}
+```{r generate_plots, fig.show='hide'}
 #| warning: false
 #| echo: false
 #| message: false
@@ -75,7 +75,6 @@ p1 <- ggplot(df_stocks, aes(x = `RS Rating`)) +
         axis.title = element_text(face = "bold", size = 11),
         panel.grid.minor = element_blank())
 
-p1
 
 # 2. Composite Rating Distribution
 p2 <- ggplot(df_stocks, aes(x = `Comp Rating`)) +

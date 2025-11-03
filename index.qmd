@@ -255,8 +255,8 @@ cat("===========================================================================
 # ===============================================================================
 
 # Save top quality stocks to CSV
-#write_csv(top_quality, "outputs/top_quality_stocks.csv")
-#cat("✓ Detailed results saved to: top_quality_stocks.csv\n")
+write_csv(top_quality, "outputs/top_quality_stocks.csv")
+cat("✓ Detailed results saved to: top_quality_stocks.csv\n")
 
 # Save all filtered stocks with quality scores for further analysis
 df_filtered_export <- df_filtered %>%
@@ -266,6 +266,6 @@ df_filtered_export <- df_filtered %>%
          Sector, ROE) %>%
   arrange(desc(`Quality Score`))
 
-#write_csv(df_filtered_export, "outputs/all_stocks_with_scores.csv")
-#cat("✓ All stocks with scores saved to: all_stocks_with_scores.csv\n")
+write_csv(df_filtered_export, "outputs/all_stocks_with_scores.csv")
+cat("✓ All stocks with scores saved to: all_stocks_with_scores.csv\n")
 ```
