@@ -38,6 +38,9 @@ library(gt)
 #gs4_auth(Sys.getenv("GOOGLE_SHEETS_EMAIL"))
 
 # quarto publish netlify
+#git reset --hard 90d453c
+#touch .nojekyll
+# git rm -r --cached docs/
 # ===============================================================================
 # LOAD AND PREPARE DATA
 # ===============================================================================
