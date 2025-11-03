@@ -1,8 +1,10 @@
+# Controls when the action will run. 
 on:
-  workflow_dispatch:
+  workflow_dispathc:
+  # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: main
-
+    branches: [ main, master ]
+    
 name: Quarto Publish
 
 jobs:
