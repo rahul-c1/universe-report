@@ -24,14 +24,29 @@ library(data.table)
 library(dplyr)
 library(readr)
 library(gt)
+# 
+# library(tidycensus)
+# age2020 <- get_decennial(geography="state",
+#                          variables = "P13_001N",
+#                          year=2020,
+#                          sumfile="dhc")
+
+#library(googlesheets4)
+
+#usethis::edit_r_environ()
+# 
+#gs4_auth(Sys.getenv("GOOGLE_SHEETS_EMAIL"))
 # ===============================================================================
 # LOAD AND PREPARE DATA
 # ===============================================================================
 
 # Load the data
 cat("Loading data...\n")
+
 df <- fread("data/Universe.csv", stringsAsFactors = FALSE)
 
+# Storing in google sheets taking really long time
+# df <- read_sheet("https://docs.google.com/spreadsheets/d/11mH8AkgpWaTuYWh4ZHBo8TVDA1IQgARpAqzbvaGyH9I/edit?gid=207977887#gid=207977887",sheet="Universe",range="A1:B11000")
 cat("================================================================================\n")
 cat("COMPREHENSIVE STOCK ANALYSIS\n")
 cat("================================================================================\n")
