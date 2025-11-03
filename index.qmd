@@ -36,6 +36,8 @@ library(gt)
 #usethis::edit_r_environ()
 # 
 #gs4_auth(Sys.getenv("GOOGLE_SHEETS_EMAIL"))
+
+# quarto publish netlify
 # ===============================================================================
 # LOAD AND PREPARE DATA
 # ===============================================================================
