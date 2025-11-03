@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: 3e9ca1cd-7756-4fd1-9dc0-562f214222f9
+      url: 'https://luminous-marshmallow-b93719.netlify.app'
