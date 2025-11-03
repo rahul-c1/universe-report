@@ -9,6 +9,4 @@
 .DS_Store
 .quarto
 /_site/
-index.qmd
-new_analysis.qmd
-about.qmd
+onlycharts.qmd

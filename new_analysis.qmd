@@ -1,0 +1,587 @@
+---
+title: "COMPREHENSIVE STOCK ANALYSIS SCRIPT"
+---
+```{r}
+#| warning: false
+#| echo: false
+#| message: false
+# ====================================================================
+
+# Purpose: Identify top stocks and generate insights from stock universe data
+# ====================================================================
+
+# Load required libraries
+library(data.table)
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(scales)
+library(corrplot)
+library(gridExtra)
+library(gt)
+
+# Set theme for all plots
+theme_set(theme_minimal(base_size = 12))
+
+# ====================================================================
+# 1. DATA LOADING AND CLEANING
+# ====================================================================
+
+cat("Loading data...\n")
+stocks <- fread("data/Universe.csv")
+
+cat(sprintf("Total stocks loaded: %d\n", nrow(stocks)))
+cat(sprintf("Total columns: %d\n", ncol(stocks)))
+
+# Display first few rows
+cat("\nFirst few rows:\n")
+as.data.table(t(head(stocks,2)),keep.rownames = T) %>% gt()
+
+# Check data structure
+cat("\nData structure:\n")
+str(stocks[, 1:20])
+
+# Clean column names (remove spaces if any)
+names(stocks) <- gsub(" ", "_", names(stocks))
+
+# Convert numeric columns that might be character
+# numeric_cols <- c("RS_Rating", "EPS_Rating", "Market_Cap_(mil)", "Current_Price", 
+#                   "Price_%_Chg", "%_Off_High", "Comp_Rating", "Beta", 
+#                   "ROE", "P/E_Ratio_Rank_in_Grp", "%_Chg_YTD", "%_Chg_1_Month",
+#                   "%_Chg_3_Months", "%_Chg_6_Months", "%_Chg_12_Months")
+
+numeric_cols <- setdiff(colnames(stocks),c("Symbol","Name","Ind_Group_RS","ETF/Closed_End_Fund","Timeliness_Rating",
+                                           "SMR_Rating","A/D_Rating","Incorp_Date","EPS_Kast_Rptd","ADR","ETF","EPS_Accel_3_Qtrs",
+                                           "AT_Margin_Accel","Sales_Accel_3_Qtrs","Exchange","IPO_Date","Sponsor_Rating",
+                                           "RS_Line_New_High","P/E_less_5_Yr_Avg","EPS_Trl_4Q_Geq_EPS_Lst_Fiscal_Yr","EPS_%_Chg_Lst_Q_Gtr_3-Yr_Growth",
+                                           "EPS_Trl_4Q_Geq_EPS_Lst_Fiscal_Yr","EPS_%_Chg_Lst_Q_Gtr_3-Yr_Growth",
+                                           "Sector","City","New_CEO_12_Months","EPS_Due_Date","Industry_Name",
+                                           "3-Yr_EPS_Growth_Geq_5-Yr","EPS_Trl_4Q_Gtr_EPS_4_Yrs_Ago",
+                                           "Order", "Current_Price", "%_New_Highs_in_Group", "Ind_Grp_Rnk_6_Mo_Ago", 
+                                           "Debt_%", "Number_of_Stocks", "52-Wk_Low", "52-Wk_High", "Ind_Grp_Rnk_3_Mo_Ago", 
+                                           "Ind_Grp_Rnk_Last_Week", "Trl_26_Wk_%_Perf_vs_S&P_500", "%_Chg_YTD", 
+                                           "EPS_Trailing_4_Qtrs", "RS_Rating", "Market_Cap_(mil)", "Shares_(1000s)", 
+                                           "Vol_%_Chg_vs_50-Day", "EPS_Rating", "Ind_Group_Rank", "10_Day_>_21_Day_>_50_Day", 
+                                           "Price_$_Chg", "Volume_(1000s)", "Daily_Closing_Range", "RS_Line_Within_5%_of_New_High", 
+                                           "50-Day_>_150-Day_>_200-Day", "Weekly_Closing_Range", "Current_day's_Volume_greater_than_previous_5_days'_Volume", 
+                                           "Current_day's_Volume_greater_than_previous_10_days'_Volume", 
+                                           "Current_day's_Volume_greater_than_previous_20_days'_Volume",
+                                           "Sales Accel 2 Qtrs","Company Description","%_New_Highs_in_Group",
+                                           "EPS Trl 4Q Gtr EPS 4 Yrs Ago","Industry Name","State","Debt_%","52-Wk_Low","52-Wk_High",
+                                           "Ind_Grp_Rnk_3_Mo_Ago","Ind_Grp_Rnk_Last_Week"
+                                           ))
+
+
+for(col in numeric_cols) {
+  if(col %in% names(stocks)) {
+    stocks[, (col) := as.numeric(get(col))]
+  }
+}
+
+# Remove ETFs and focus on regular stocks
+stocks_filtered <- stocks %>%
+  filter(ETF == "No" | is.na(ETF)) %>%
+  filter(!is.na(`RS_Rating`))
+
+cat(sprintf("\nStocks after filtering (excluding ETFs): %d\n", nrow(stocks_filtered)))
+
+# ====================================================================
+# 2. TOP STOCKS IDENTIFICATION - MULTIPLE CRITERIA
+# ====================================================================
+
+cat("\n" , rep("=", 70), "\n", sep="")
+cat("TOP STOCKS ANALYSIS\n")
+cat(rep("=", 70), "\n")
+
+# 2.1 Top Stocks by Composite Score (RS Rating + EPS Rating + Comp Rating)
+cat("\n--- Top 20 Stocks by Composite Score ---\n")
+top_by_composite <- stocks_filtered %>%
+  filter(!is.na(RS_Rating) & !is.na(EPS_Rating) & !is.na(Comp_Rating)) %>%
+  mutate(Composite_Score = (RS_Rating + EPS_Rating + Comp_Rating) / 3) %>%
+  arrange(desc(Composite_Score)) %>%
+  select(Symbol, Name, Sector, RS_Rating, EPS_Rating, Comp_Rating, 
+         Composite_Score, `Market_Cap_(mil)`, Current_Price) %>%
+  head(20) %>% gt()
+
+top_by_composite
+
+# 2.2 Top Growth Stocks (High RS Rating + Strong YTD Performance)
+cat("\n--- Top 20 Growth Stocks ---\n")
+top_growth <- stocks_filtered %>%
+  filter(!is.na(RS_Rating) & !is.na(`%_Chg_YTD`)) %>%
+  filter(RS_Rating >= 90 & `%_Chg_YTD` > 20) %>%
+  arrange(desc(RS_Rating), desc(`%_Chg_YTD`)) %>%
+  select(Symbol, Name, Sector, RS_Rating, `%_Chg_YTD`, `%_Chg_12_Months`,
+         `Market_Cap_(mil)`, Current_Price) %>%
+  head(20) %>% gt()
+
+top_growth
+
+# 2.3 Top Value Stocks (High EPS Rating + Low P/E in Group)
+cat("\n--- Top 20 Value Stocks ---\n")
+top_value <- stocks_filtered %>%
+  filter(!is.na(EPS_Rating) & !is.na(`P/E_Ratio_Rank_in_Grp`)) %>%
+  filter(EPS_Rating >= 80 & `P/E_Ratio_Rank_in_Grp` <= 30) %>%
+  arrange(desc(EPS_Rating), `P/E_Ratio_Rank_in_Grp`) %>%
+  select(Symbol, Name, Sector, EPS_Rating, `P/E_Ratio_Rank_in_Grp`, 
+         ROE, `Market_Cap_(mil)`, Current_Price) %>%
+  head(20) %>% gt()
+
+top_value
+
+# 2.4 Top Momentum Stocks (Strong recent performance)
+cat("\n--- Top 20 Momentum Stocks (3-Month Performance) ---\n")
+top_momentum <- stocks_filtered %>%
+  filter(!is.na(`%_Chg_3_Months`)) %>%
+  arrange(desc(`%_Chg_3_Months`)) %>%
+  select(Symbol, Name, Sector, `%_Chg_1_Month`, `%_Chg_3_Months`, 
+         `%_Chg_6_Months`, RS_Rating, `Market_Cap_(mil)`) %>%
+  head(20) %>% gt()
+
+top_momentum
+
+# 2.5 Large Cap Leaders (Market Cap > 10B with High Ratings)
+cat("\n--- Top 15 Large Cap Leaders ---\n")
+large_cap_leaders <- stocks_filtered %>%
+  filter(!is.na(`Market_Cap_(mil)`) & `Market_Cap_(mil)` > 10000) %>%
+  filter(!is.na(RS_Rating) & RS_Rating >= 85) %>%
+  arrange(desc(RS_Rating), desc(`Market_Cap_(mil)`)) %>%
+  select(Symbol, Name, Sector, RS_Rating, Comp_Rating, `Market_Cap_(mil)`,
+         `%_Chg_YTD`, ROE) %>%
+  head(15) %>% gt()
+
+large_cap_leaders
+
+# ====================================================================
+# 3. SECTOR AND INDUSTRY ANALYSIS
+# ====================================================================
+
+cat("\n", rep("=", 70), "\n", sep="")
+cat("SECTOR & INDUSTRY INSIGHTS\n")
+cat(rep("=", 70), "\n")
+
+# 3.1 Sector Performance Summary
+cat("\n--- Sector Performance Summary ---\n")
+sector_analysis <- stocks_filtered %>%
+  filter(!is.na(Sector)) %>%
+  group_by(Sector) %>%
+  summarise(
+    Num_Stocks = n(),
+    Avg_RS_Rating = round(mean(RS_Rating, na.rm = TRUE), 1),
+    Avg_YTD_Return = round(mean(`%_Chg_YTD`, na.rm = TRUE), 1),
+    Avg_3Mo_Return = round(mean(`%_Chg_3_Months`, na.rm = TRUE), 1),
+    Median_Market_Cap = round(median(`Market_Cap_(mil)`, na.rm = TRUE), 0),
+    Top_Performers = sum(RS_Rating >= 90, na.rm = TRUE)
+  ) %>%
+  arrange(desc(Avg_RS_Rating)) %>% gt()
+
+sector_analysis
+
+# 3.2 Top Industries by Average RS Rating
+cat("\n--- Top 15 Industries by Average RS Rating ---\n")
+industry_analysis <- stocks_filtered %>%
+  filter(!is.na(Industry_Name)) %>%
+  group_by(Industry_Name, Sector) %>%
+  summarise(
+    Num_Stocks = n(),
+    Avg_RS_Rating = round(mean(RS_Rating, na.rm = TRUE), 1),
+    Avg_YTD_Return = round(mean(`%_Chg_YTD`, na.rm = TRUE), 1),
+    .groups = 'drop'
+  ) %>%
+  filter(Num_Stocks >= 5) %>%  # At least 5 stocks in industry
+  arrange(desc(Avg_RS_Rating)) %>%
+  head(15) %>% gt()
+
+industry_analysis
+
+# ====================================================================
+# 4. STATISTICAL INSIGHTS
+# ====================================================================
+
+cat("\n", rep("=", 70), "\n", sep="")
+cat("KEY STATISTICAL INSIGHTS\n")
+cat(rep("=", 70), "\n")
+
+# 4.1 Distribution of RS Ratings
+cat("\n--- RS Rating Distribution ---\n")
+rs_distribution <- stocks_filtered %>%
+  summarise(
+    Min = min(RS_Rating, na.rm = TRUE),
+    Q1 = quantile(RS_Rating, 0.25, na.rm = TRUE),
+    Median = median(RS_Rating, na.rm = TRUE),
+    Mean = round(mean(RS_Rating, na.rm = TRUE), 2),
+    Q3 = quantile(RS_Rating, 0.75, na.rm = TRUE),
+    Max = max(RS_Rating, na.rm = TRUE),
+    Elite_Stocks_90_Plus = sum(RS_Rating >= 90, na.rm = TRUE)
+  ) %>% gt()
+
+rs_distribution
+
+# 4.2 YTD Performance Statistics
+cat("\n--- YTD Performance Statistics ---\n")
+ytd_stats <- stocks_filtered %>%
+  filter(!is.na(`%_Chg_YTD`)) %>%
+  summarise(
+    Best_Performer = round(max(`%_Chg_YTD`, na.rm = TRUE), 2),
+    Worst_Performer = round(min(`%_Chg_YTD`, na.rm = TRUE), 2),
+    Median_Return = round(median(`%_Chg_YTD`, na.rm = TRUE), 2),
+    Mean_Return = round(mean(`%_Chg_YTD`, na.rm = TRUE), 2),
+    Positive_Returns = sum(`%_Chg_YTD` > 0, na.rm = TRUE),
+    Negative_Returns = sum(`%_Chg_YTD` < 0, na.rm = TRUE),
+    Winners_Pct = round(100 * sum(`%_Chg_YTD` > 0, na.rm = TRUE) / n(), 1)
+  ) %>% gt()
+
+ytd_stats
+
+# 4.3 Correlation Analysis (Key Metrics)
+cat("\n--- Correlation Analysis ---\n")
+cor_data <- stocks_filtered %>%
+  select(RS_Rating, EPS_Rating, Comp_Rating, `%_Chg_YTD`, 
+         `%_Chg_3_Months`, Beta, ROE) %>%
+  filter(complete.cases(.))
+
+if(nrow(cor_data) > 0) {
+  cor_matrix <- cor(cor_data, use = "complete.obs")
+  print(round(cor_matrix, 3))
+  
+  # Find strongest correlations with RS_Rating
+  cat("\n--- Strongest Correlations with RS Rating ---\n")
+  rs_correlations <- sort(cor_matrix["RS_Rating",], decreasing = TRUE)
+  print(round(rs_correlations, 3))
+}
+
+# 4.4 Market Cap Segmentation
+cat("\n--- Market Cap Distribution ---\n")
+market_cap_segments <- stocks_filtered %>%
+  filter(!is.na(`Market_Cap_(mil)`)) %>%
+  mutate(Cap_Category = case_when(
+    `Market_Cap_(mil)` >= 10000 ~ "Large Cap (>$10B)",
+    `Market_Cap_(mil)` >= 2000 ~ "Mid Cap ($2B-$10B)",
+    `Market_Cap_(mil)` >= 300 ~ "Small Cap ($300M-$2B)",
+    TRUE ~ "Micro Cap (<$300M)"
+  )) %>%
+  group_by(Cap_Category) %>%
+  summarise(
+    Count = n(),
+    Avg_RS_Rating = round(mean(RS_Rating, na.rm = TRUE), 1),
+    Avg_YTD_Return = round(mean(`%_Chg_YTD`, na.rm = TRUE), 1),
+    Median_ROE = round(median(ROE, na.rm = TRUE), 1)
+  ) %>% gt()
+
+market_cap_segments
+
+# ====================================================================
+# 5. ADVANCED INSIGHTS
+# ====================================================================
+
+cat("\n", rep("=", 70), "\n", sep="")
+cat("ADVANCED INSIGHTS\n")
+cat(rep("=", 70), "\n")
+
+# 5.1 Stocks with Acceleration (Improving EPS)
+cat("\n--- Stocks with EPS Acceleration (3 Quarters) ---\n")
+eps_accelerators <- stocks_filtered %>%
+  filter(`EPS_Accel_3_Qtrs` == "Yes") %>%
+  filter(!is.na(RS_Rating)) %>%
+  arrange(desc(RS_Rating)) %>%
+  select(Symbol, Name, Sector, RS_Rating, EPS_Rating, `EPS_%_Chg_Last_Qtr`,
+         `Market_Cap_(mil)`) %>%
+  head(20) %>% gt()
+
+eps_accelerators
+
+# 5.2 Institutional Favorites (High Fund Ownership)
+cat("\n--- Top 15 Institutional Favorites (High Fund %) ---\n")
+institutional_favs <- stocks_filtered %>%
+  filter(!is.na(`Funds_%`)) %>%
+  mutate(`Funds_%` = as.numeric(`Funds_%`)) %>%
+  filter(`Funds_%` > 0) %>%
+  arrange(desc(`Funds_%`)) %>%
+  select(Symbol, Name, Sector, `Funds_%`, `Number_of_Funds`, 
+         RS_Rating, `Market_Cap_(mil)`) %>%
+  head(15) %>% gt()
+
+institutional_favs
+
+# 5.3 High ROE Stocks
+cat("\n--- Top 15 Stocks by Return on Equity (ROE) ---\n")
+high_roe <- stocks_filtered %>%
+  filter(!is.na(ROE) & ROE > 0) %>%
+  arrange(desc(ROE)) %>%
+  select(Symbol, Name, Sector, ROE, EPS_Rating, RS_Rating, 
+         `Market_Cap_(mil)`) %>%
+  head(15) %>% gt()
+
+high_roe
+
+# 5.4 Breakout Candidates (Near New Highs)
+cat("\n--- Breakout Candidates (Within 5% of New High) ---\n")
+breakout_candidates <- stocks_filtered %>%
+  filter(`RS_Line_Within_5%_of_New_High` == 1 | 
+         (`%_Off_High` >= -5 & `%_Off_High` <= 0)) %>%
+  filter(!is.na(RS_Rating) & RS_Rating >= 85) %>%
+  arrange(desc(RS_Rating)) %>%
+  select(Symbol, Name, Sector, RS_Rating, `%_Off_High`, `%_Chg_3_Months`,
+         `Market_Cap_(mil)`) %>%
+  head(20) %>% gt()
+
+breakout_candidates
+
+# 5.5 Sector Concentration of Top Performers
+cat("\n--- Sector Distribution of Elite Stocks (RS >= 90) ---\n")
+elite_sector_dist <- stocks_filtered %>%
+  filter(RS_Rating >= 90) %>%
+  group_by(Sector) %>%
+  summarise(
+    Elite_Count = n(),
+    Avg_RS = round(mean(RS_Rating, na.rm = TRUE), 1),
+    Avg_YTD = round(mean(`%_Chg_YTD`, na.rm = TRUE), 1)
+  ) %>%
+  arrange(desc(Elite_Count)) %>% gt()
+
+elite_sector_dist
+
+# ====================================================================
+# 6. VISUALIZATIONS
+# ====================================================================
+
+cat("\n", rep("=", 70), "\n", sep="")
+cat("GENERATING VISUALIZATIONS...\n")
+cat(rep("=", 70), "\n")
+
+# 6.1 RS Rating Distribution
+p1 <- ggplot(stocks_filtered %>% filter(!is.na(RS_Rating)), 
+             aes(x = RS_Rating)) +
+  geom_histogram(bins = 50, fill = "steelblue", color = "white", alpha = 0.8) +
+  geom_vline(xintercept = 90, color = "red", linetype = "dashed", size = 1) +
+  labs(title = "Distribution of RS Ratings",
+       subtitle = "Red line indicates elite threshold (RS >= 90)",
+       x = "RS Rating",
+       y = "Number of Stocks") +
+  theme_minimal(base_size = 14)
+
+ggsave("images/rs_rating_distribution.png", p1, 
+       width = 10, height = 6, dpi = 300)
+
+
+
+# 6.2 Sector Performance Comparison
+sector_plot_data <- stocks_filtered %>%
+  filter(!is.na(Sector) & !is.na(`%_Chg_YTD`)) %>%
+  group_by(Sector) %>%
+  summarise(
+    Avg_YTD = mean(`%_Chg_YTD`, na.rm = TRUE),
+    Count = n()
+  ) %>%
+  filter(Count >= 10)
+
+p2 <- ggplot(sector_plot_data, aes(x = reorder(Sector, Avg_YTD), y = Avg_YTD)) +
+  geom_col(fill = "coral", alpha = 0.8) +
+  coord_flip() +
+  labs(title = "Average YTD Performance by Sector",
+       subtitle = "Sectors with at least 10 stocks",
+       x = "Sector",
+       y = "Average YTD Return (%)") +
+  theme_minimal(base_size = 14) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray50")
+
+ggsave("images/sector_performance.png", p2, 
+       width = 10, height = 8, dpi = 300)
+
+# 6.3 Scatter Plot: RS Rating vs YTD Performance
+scatter_data <- stocks_filtered %>%
+  filter(!is.na(RS_Rating) & !is.na(`%_Chg_YTD`)) %>%
+  filter(`Market_Cap_(mil)` > 300)  # Focus on companies > 300M
+
+p3 <- ggplot(scatter_data, aes(x = RS_Rating, y = `%_Chg_YTD`)) +
+  geom_point(aes(color = Sector, size = `Market_Cap_(mil)`), alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, color = "darkblue") +
+  scale_size_continuous(name = "Market Cap (M)", range = c(1, 8),
+                        labels = comma) +
+  labs(title = "RS Rating vs YTD Performance",
+       subtitle = "Stocks with Market Cap > $300M",
+       x = "RS Rating",
+       y = "YTD Return (%)") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "right")
+
+ggsave("images/rs_vs_ytd_scatter.png", p3, 
+       width = 12, height = 8, dpi = 300)
+
+# 6.4 Top 10 Sectors by RS Rating
+top_sectors <- stocks_filtered %>%
+  filter(!is.na(Sector) & !is.na(RS_Rating)) %>%
+  group_by(Sector) %>%
+  summarise(
+    Avg_RS = mean(RS_Rating, na.rm = TRUE),
+    Count = n()
+  ) %>%
+  filter(Count >= 15) %>%
+  arrange(desc(Avg_RS)) %>%
+  head(10)
+
+p4 <- ggplot(top_sectors, aes(x = reorder(Sector, Avg_RS), y = Avg_RS)) +
+  geom_col(fill = "darkgreen", alpha = 0.8) +
+  geom_text(aes(label = round(Avg_RS, 1)), hjust = -0.2, size = 4) +
+  coord_flip() +
+  ylim(0, 100) +
+  labs(title = "Top 10 Sectors by Average RS Rating",
+       subtitle = "Sectors with at least 15 stocks",
+       x = "Sector",
+       y = "Average RS Rating") +
+  theme_minimal(base_size = 14)
+
+ggsave("images/top_sectors_rs.png", p4, 
+       width = 10, height = 7, dpi = 300)
+
+# 6.5 Market Cap Distribution
+cap_dist_data <- stocks_filtered %>%
+  filter(!is.na(`Market_Cap_(mil)`) & `Market_Cap_(mil)` > 0) %>%
+  mutate(Log_Market_Cap = log10(`Market_Cap_(mil)`))
+
+p5 <- ggplot(cap_dist_data, aes(x = Log_Market_Cap)) +
+  geom_histogram(bins = 40, fill = "purple", alpha = 0.7, color = "white") +
+  labs(title = "Distribution of Market Capitalization (Log Scale)",
+       x = "Market Cap (Log10 of Millions)",
+       y = "Number of Stocks") +
+  theme_minimal(base_size = 14)
+
+ggsave("images/market_cap_distribution.png", p5, 
+       width = 10, height = 6, dpi = 300)
+
+# 6.6 Correlation Heatmap
+if(exists("cor_matrix") && !is.null(cor_matrix)) {
+  png("images/correlation_heatmap.png", 
+      width = 10, height = 10, units = "in", res = 300)
+  corrplot(cor_matrix, method = "color", type = "upper",
+           addCoef.col = "black", number.cex = 0.8,
+           tl.col = "black", tl.srt = 45,
+           title = "Correlation Matrix of Key Metrics",
+           mar = c(0,0,2,0))
+  dev.off()
+}
+
+# 6.7 Performance Comparison: Multiple Timeframes
+performance_data <- stocks_filtered %>%
+  filter(!is.na(`%_Chg_1_Month`) & !is.na(`%_Chg_3_Months`) & 
+         !is.na(`%_Chg_6_Months`) & !is.na(`%_Chg_12_Months`)) %>%
+  select(Symbol, `%_Chg_1_Month`, `%_Chg_3_Months`, 
+         `%_Chg_6_Months`, `%_Chg_12_Months`) %>%
+  pivot_longer(cols = -Symbol, names_to = "Period", values_to = "Return") %>%
+  mutate(Period = factor(Period, 
+                        levels = c("%_Chg_1_Month", "%_Chg_3_Months", 
+                                  "%_Chg_6_Months", "%_Chg_12_Months"),
+                        labels = c("1 Month", "3 Months", "6 Months", "12 Months")))
+
+p6 <- ggplot(performance_data, aes(x = Period, y = Return)) +
+  geom_violin(fill = "lightblue", alpha = 0.7) +
+  geom_boxplot(width = 0.2, fill = "white", alpha = 0.5) +
+  labs(title = "Stock Performance Distribution Across Timeframes",
+       x = "Time Period",
+       y = "Return (%)") +
+  theme_minimal(base_size = 14) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red")
+
+ggsave("images/performance_timeframes.png", p6, 
+       width = 10, height = 6, dpi = 300)
+
+# 6.8 Top 20 Stocks Performance Chart
+top20_perf <- stocks_filtered %>%
+  filter(!is.na(`%_Chg_YTD`)) %>%
+  arrange(desc(`%_Chg_YTD`)) %>%
+  head(20) %>%
+  select(Symbol, Name, `%_Chg_YTD`, Sector)
+
+p7 <- ggplot(top20_perf, aes(x = reorder(Symbol, `%_Chg_YTD`), 
+                              y = `%_Chg_YTD`, fill = Sector)) +
+  geom_col(alpha = 0.8) +
+  coord_flip() +
+  labs(title = "Top 20 Stocks by YTD Performance",
+       x = "Stock Symbol",
+       y = "YTD Return (%)") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "right")
+
+ggsave("images/top20_ytd_performers.png", p7, 
+       width = 12, height = 8, dpi = 300)
+
+# ====================================================================
+# 7. EXPORT KEY RESULTS
+# ====================================================================
+
+cat("\n", rep("=", 70), "\n", sep="")
+cat("EXPORTING RESULTS...\n")
+cat(rep("=", 70), "\n")
+
+# Export top stocks lists to CSV
+write.csv(top_by_composite, 
+          "outputs/top_stocks_composite.csv", 
+          row.names = FALSE)
+
+write.csv(top_growth, 
+          "outputs/top_growth_stocks.csv", 
+          row.names = FALSE)
+
+write.csv(top_value, 
+          "outputs/top_value_stocks.csv", 
+          row.names = FALSE)
+
+write.csv(top_momentum, 
+          "outputs/top_momentum_stocks.csv", 
+          row.names = FALSE)
+
+write.csv(large_cap_leaders, 
+          "outputs/large_cap_leaders.csv", 
+          row.names = FALSE)
+
+write.csv(sector_analysis, 
+          "outputs/sector_analysis.csv", 
+          row.names = FALSE)
+
+write.csv(industry_analysis, 
+          "outputs/industry_analysis.csv", 
+          row.names = FALSE)
+
+# ====================================================================
+# 8. SUMMARY REPORT
+# ====================================================================
+
+cat("\n", rep("=", 70), "\n", sep="")
+cat("ANALYSIS COMPLETE!\n")
+cat(rep("=", 70), "\n")
+
+cat("\nKey Findings Summary:\n")
+cat(sprintf("- Total stocks analyzed: %d\n", nrow(stocks_filtered)))
+cat(sprintf("- Elite stocks (RS >= 90): %d (%.1f%%)\n", 
+            sum(stocks_filtered$RS_Rating >= 90, na.rm = TRUE),
+            100 * sum(stocks_filtered$RS_Rating >= 90, na.rm = TRUE) / nrow(stocks_filtered)))
+cat(sprintf("- Average RS Rating: %.1f\n", mean(stocks_filtered$RS_Rating, na.rm = TRUE)))
+cat(sprintf("- Median YTD Return: %.1f%%\n", median(stocks_filtered$`%_Chg_YTD`, na.rm = TRUE)))
+cat(sprintf("- Number of sectors: %d\n", length(unique(stocks_filtered$Sector[!is.na(stocks_filtered$Sector)]))))
+
+cat("\n\nOutput files generated:\n")
+cat("CSV Files:\n")
+cat("  - top_stocks_composite.csv\n")
+cat("  - top_growth_stocks.csv\n")
+cat("  - top_value_stocks.csv\n")
+cat("  - top_momentum_stocks.csv\n")
+cat("  - large_cap_leaders.csv\n")
+cat("  - sector_analysis.csv\n")
+cat("  - industry_analysis.csv\n")
+
+cat("\nVisualization Files:\n")
+cat("  - rs_rating_distribution.png\n")
+cat("  - sector_performance.png\n")
+cat("  - rs_vs_ytd_scatter.png\n")
+cat("  - top_sectors_rs.png\n")
+cat("  - market_cap_distribution.png\n")
+cat("  - correlation_heatmap.png\n")
+cat("  - performance_timeframes.png\n")
+cat("  - top20_ytd_performers.png\n")
+
+cat("\n", rep("=", 70), "\n", sep="")
+cat("Analysis completed successfully!\n")
+cat(rep("=", 70), "\n")
+
+```
+![](outputs/rs_rating_distribution.png)

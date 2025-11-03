@@ -1,0 +1,288 @@
+---
+title: "universe-report"
+---
+
+This is a Quarto website.
+
+To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+
+```{r}
+#| warning: false
+#| echo: false
+#| message: false
+
+#library(usethis)
+#use_git()
+#use_github
+
+#!/usr/bin/env Rscript
+# Stock Analysis Script in R
+# Comprehensive analysis of stock universe data
+
+# Load required libraries
+library(data.table)
+library(dplyr)
+library(readr)
+library(gt)
+# 
+# library(tidycensus)
+# age2020 <- get_decennial(geography="state",
+#                          variables = "P13_001N",
+#                          year=2020,
+#                          sumfile="dhc")
+
+#library(googlesheets4)
+
+#usethis::edit_r_environ()
+# 
+#gs4_auth(Sys.getenv("GOOGLE_SHEETS_EMAIL"))
+
+# quarto publish netlify
+# ===============================================================================
+# LOAD AND PREPARE DATA
+# ===============================================================================
+
+# Load the data
+cat("Loading data...\n")
+
+df <- fread("data/Universe.csv", stringsAsFactors = FALSE)
+
+# Storing in google sheets taking really long time
+# df <- read_sheet("https://docs.google.com/spreadsheets/d/11mH8AkgpWaTuYWh4ZHBo8TVDA1IQgARpAqzbvaGyH9I/edit?gid=207977887#gid=207977887",sheet="Universe",range="A1:B11000")
+cat("================================================================================\n")
+cat("COMPREHENSIVE STOCK ANALYSIS\n")
+cat("================================================================================\n")
+
+# Convert relevant columns to numeric
+# numeric_columns <- c('RS Rating', 'Comp Rating', 'EPS Rating', 'RS 3-Month Rating', 
+#                      'Market Cap (mil)', 'ROE', 'EPS % Chg Last Qtr', 'Sales % Chg Lst Qtr',
+#                      'Current Price', '% Chg 3 Months', '% Chg 6 Months', '% Chg 12 Months',
+#                      'Price vs 50-Day', 'Price vs 200-Day')
+
+numeric_cols <- setdiff(colnames(df),c("Symbol","Name","Ind_Group_RS","ETF/Closed_End_Fund","Timeliness_Rating",
+                                           "SMR_Rating","A/D_Rating","Incorp_Date","EPS_Kast_Rptd","ADR","ETF","EPS_Accel_3_Qtrs",
+                                           "AT_Margin_Accel","Sales_Accel_3_Qtrs","Exchange","IPO_Date","Sponsor_Rating",
+                                           "RS_Line_New_High","P/E_less_5_Yr_Avg","EPS_Trl_4Q_Geq_EPS_Lst_Fiscal_Yr","EPS_%_Chg_Lst_Q_Gtr_3-Yr_Growth",
+                                           "EPS_Trl_4Q_Geq_EPS_Lst_Fiscal_Yr","EPS_%_Chg_Lst_Q_Gtr_3-Yr_Growth",
+                                           "Sector","City","New_CEO_12_Months","EPS_Due_Date","Industry_Name",
+                                           "3-Yr_EPS_Growth_Geq_5-Yr","EPS_Trl_4Q_Gtr_EPS_4_Yrs_Ago"))
+
+
+for (col in numeric_cols) {
+  if (col %in% names(df)) {
+    df[[col]] <- suppressWarnings(as.numeric(df[[col]]))
+  }
+}
+
+# Function to convert letter ratings to numeric scores
+convert_rating <- function(rating) {
+  rating_map <- c('A+' = 100, 'A' = 95, 'A-' = 90,
+                  'B+' = 85, 'B' = 80, 'B-' = 75,
+                  'C+' = 70, 'C' = 65, 'C-' = 60,
+                  'D+' = 55, 'D' = 50, 'D-' = 45,
+                  'E' = 40)
+  
+  sapply(rating, function(r) {
+    if (is.na(r) || r == '-' || r == '') return(NA)
+    if (r %in% names(rating_map)) return(rating_map[r])
+    return(NA)
+  })
+}
+
+# Convert SMR Rating and A/D Rating to numeric scores
+df$`SMR Score` <- convert_rating(df$`SMR Rating`)
+df$`AD Score` <- convert_rating(df$`A/D Rating`)
+
+cat("\n1. FILTERING FOR HIGH-QUALITY STOCKS\n")
+cat("--------------------------------------------------------------------------------\n")
+
+# Filter out ETFs and funds
+df_stocks <- df %>%
+  filter(ETF != 'Yes' | is.na(ETF)) %>%
+  filter(`ETF/Closed-End Fund` != 'Yes' | is.na(`ETF/Closed-End Fund`))
+
+cat(sprintf("After excluding ETFs/Funds: %d stocks\n", nrow(df_stocks)))
+
+# Filter for established companies (Market Cap > $300M)
+df_filtered <- df_stocks %>%
+  filter(`Market Cap (mil)` > 300)
+
+cat(sprintf("After filtering for Market Cap > $300M: %d stocks\n", nrow(df_filtered)))
+
+# ===============================================================================
+# CALCULATE QUALITY SCORE
+# ===============================================================================
+
+# Create a composite score based on key metrics
+df_filtered <- df_filtered %>%
+  mutate(
+    `Quality Score` = 
+      (`RS Rating` * 0.25) +                                           # 25% weight
+      (`Comp Rating` * 0.25) +                                         # 25% weight
+      (`EPS Rating` * 0.20) +                                          # 20% weight
+      ((coalesce(`SMR Score`, 50) - 40) * 0.15 / 60 * 100) +          # 15% weight
+      ((coalesce(`AD Score`, 50) - 40) * 0.15 / 60 * 100)             # 15% weight
+  ) %>%
+  mutate(`Quality Score` = coalesce(`Quality Score`, 0))
+
+# ===============================================================================
+# TOP STOCKS BY QUALITY SCORE
+# ===============================================================================
+
+cat("\n2. TOP STOCKS BY COMPOSITE QUALITY SCORE\n")
+cat("--------------------------------------------------------------------------------\n")
+cat("Quality Score = 25% RS Rating + 25% Comp Rating + 20% EPS Rating + 15% SMR + 15% A/D\n\n")
+
+top_quality <- df_filtered %>%
+  arrange(desc(`Quality Score`)) %>%
+  head(30) %>%
+  select(Symbol, Name, `Current Price`, `Market Cap (mil)`, 
+         `RS Rating`, `Comp Rating`, `EPS Rating`, `SMR Rating`, `A/D Rating`,
+         `Quality Score`, `% Chg 3 Months`, `% Chg 6 Months`) %>%
+  mutate(
+    `Quality Score` = round(`Quality Score`, 1),
+    `Market Cap (mil)` = round(`Market Cap (mil)`, 0),
+    `Current Price` = round(`Current Price`, 2)
+  )
+
+head(top_quality, n = 30) %>% gt()
+
+# ===============================================================================
+# BEST MOMENTUM STOCKS
+# ===============================================================================
+
+cat("\n\n3. BEST MOMENTUM STOCKS (High RS Rating)\n")
+cat("--------------------------------------------------------------------------------\n")
+cat("Stocks with RS Rating >= 95 and strong fundamentals\n\n")
+
+momentum_stocks <- df_filtered %>%
+  filter(`RS Rating` >= 95, `Comp Rating` >= 80) %>%
+  arrange(desc(`RS Rating`)) %>%
+  head(20) %>%
+  select(Symbol, Name, `Current Price`, `Market Cap (mil)`,
+         `RS Rating`, `Comp Rating`, `EPS Rating`, `% Chg 3 Months`, `% Chg 6 Months`) %>%
+  mutate(
+    `Market Cap (mil)` = round(`Market Cap (mil)`, 0),
+    `Current Price` = round(`Current Price`, 2)
+  )
+
+head(momentum_stocks, n = 20) %>% gt()
+
+# ===============================================================================
+# BEST FUNDAMENTAL STOCKS
+# ===============================================================================
+
+cat("\n\n4. BEST FUNDAMENTAL STOCKS (High Comp + EPS Ratings)\n")
+cat("--------------------------------------------------------------------------------\n")
+cat("Stocks with Comp Rating >= 95 and EPS Rating >= 90\n\n")
+
+fundamental_stocks <- df_filtered %>%
+  filter(`Comp Rating` >= 95, `EPS Rating` >= 90) %>%
+  arrange(desc(`Comp Rating`)) %>%
+  head(20) %>%
+  select(Symbol, Name, `Current Price`, `Market Cap (mil)`,
+         `RS Rating`, `Comp Rating`, `EPS Rating`, `SMR Rating`, ROE) %>%
+  mutate(
+    `Market Cap (mil)` = round(`Market Cap (mil)`, 0),
+    `Current Price` = round(`Current Price`, 2)
+  )
+
+head(fundamental_stocks, n = 20) %>% gt()
+
+# ===============================================================================
+# BEST LARGE-CAP STOCKS
+# ===============================================================================
+
+cat("\n\n5. BEST LARGE-CAP STOCKS (Market Cap > $10B)\n")
+cat("--------------------------------------------------------------------------------\n\n")
+
+large_cap <- df_filtered %>%
+  filter(`Market Cap (mil)` > 10000) %>%
+  arrange(desc(`Quality Score`)) %>%
+  head(15) %>%
+  select(Symbol, Name, `Current Price`, `Market Cap (mil)`,
+         `RS Rating`, `Comp Rating`, `EPS Rating`, `Quality Score`) %>%
+  mutate(
+    `Market Cap (mil)` = round(`Market Cap (mil)`, 0),
+    `Current Price` = round(`Current Price`, 2),
+    `Quality Score` = round(`Quality Score`, 1)
+  )
+
+head(large_cap, n = 15) %>% gt()
+
+# ===============================================================================
+# SUMMARY STATISTICS
+# ===============================================================================
+
+cat("\n\n6. SUMMARY STATISTICS\n")
+cat("--------------------------------------------------------------------------------\n\n")
+
+cat(sprintf("Total stocks analyzed: %d\n\n", nrow(df_filtered)))
+
+cat(sprintf("Average RS Rating: %.1f\n", mean(df_filtered$`RS Rating`, na.rm = TRUE)))
+cat(sprintf("Average Comp Rating: %.1f\n", mean(df_filtered$`Comp Rating`, na.rm = TRUE)))
+cat(sprintf("Average EPS Rating: %.1f\n\n", mean(df_filtered$`EPS Rating`, na.rm = TRUE)))
+
+cat(sprintf("Stocks with RS Rating >= 90: %d\n", 
+            sum(df_filtered$`RS Rating` >= 90, na.rm = TRUE)))
+cat(sprintf("Stocks with Comp Rating >= 90: %d\n", 
+            sum(df_filtered$`Comp Rating` >= 90, na.rm = TRUE)))
+cat(sprintf("Stocks with EPS Rating >= 90: %d\n", 
+            sum(df_filtered$`EPS Rating` >= 90, na.rm = TRUE)))
+
+# ===============================================================================
+# KEY INSIGHTS
+# ===============================================================================
+
+cat("\n\n7. KEY INSIGHTS & RECOMMENDATIONS\n")
+cat("--------------------------------------------------------------------------------\n")
+cat(sprintf("
+Based on the comprehensive analysis of %d stocks, here are the key findings:
+
+RATING DEFINITIONS:
+- RS Rating (Relative Strength): Measures price performance vs. all other stocks (0-100)
+- Comp Rating (Composite): Overall stock quality combining multiple factors (0-100)
+- EPS Rating: Earnings Per Share growth and stability (0-100)
+- SMR Rating: Sales + Margins + Return on Equity (A+ to E)
+- A/D Rating: Accumulation/Distribution - institutional buying/selling (A+ to E)
+
+TOP CATEGORIES:
+1. Highest Quality Score: Stocks that excel across all metrics
+2. Best Momentum: Stocks with exceptional price strength and fundamentals
+3. Best Fundamentals: Companies with superior earnings and composite ratings
+4. Best Large-Caps: Quality stocks with market caps exceeding $10 billion
+
+INVESTMENT APPROACH:
+- Look for stocks with RS Rating >= 80 (strong momentum)
+- Seek Comp Rating >= 85 (high quality)
+- Prefer EPS Rating >= 80 (strong earnings)
+- Consider SMR Rating A or B (excellent fundamentals)
+- Check A/D Rating for institutional support
+
+The 'Quality Score' provides a balanced view combining all these factors.
+", nrow(df_filtered)))
+
+cat("\n")
+cat("================================================================================\n")
+cat("ANALYSIS COMPLETE\n")
+cat("================================================================================\n\n")
+
+# ===============================================================================
+# SAVE RESULTS
+# ===============================================================================
+
+# Save top quality stocks to CSV
+write_csv(top_quality, "outputs/top_quality_stocks.csv")
+cat("✓ Detailed results saved to: top_quality_stocks.csv\n")
+
+# Save all filtered stocks with quality scores for further analysis
+df_filtered_export <- df_filtered %>%
+  select(Symbol, Name, `Current Price`, `Market Cap (mil)`,
+         `RS Rating`, `Comp Rating`, `EPS Rating`, `SMR Rating`, `A/D Rating`,
+         `Quality Score`, `% Chg 3 Months`, `% Chg 6 Months`, `% Chg 12 Months`,
+         Sector, ROE) %>%
+  arrange(desc(`Quality Score`))
+
+write_csv(df_filtered_export, "outputs/all_stocks_with_scores.csv")
+cat("✓ All stocks with scores saved to: all_stocks_with_scores.csv\n")
+```
