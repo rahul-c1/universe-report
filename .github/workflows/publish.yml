@@ -1,41 +1,35 @@
 on:
-  workflow_dispatch:
   push:
     branches: main
 
-name: Quarto Publish
-
 jobs:
-  build-deploy:
+  update-report:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4 
-
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-        
-      - name: Install R
+      - name: Set up R
         uses: r-lib/actions/setup-r@v2
-        with:
-          r-version: '4.4.0'
-      
-      - name: Install R Dependencies 
+
+      - name: Install packages
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           packages: |
-	    any::data.table
-	    any::dplyr
-	    any::ggplot2
-	    any::tidyr
-	    any::scales
+            any::data.table 
+            any::dplyr
+            any::gt
+            any::ggplot2
+            any::scales
+            any::tidyr
             any::corrplot
-	    any::gridExtra
-	    any::gt
+            any::gridExtra
             any::readr
 
-      
-      - name: Render and Publish
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Check out repository
+        uses: actions/checkout@v3
+        
+      - name: Render and Publish to Netlify
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: netlify
