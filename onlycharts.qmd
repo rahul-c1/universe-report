@@ -1,0 +1,9 @@
+---
+title: "onlycharts"
+---
+
+#### only charts for now testing
+![](images/stock_analysis_charts.png) 
+![](images/sector_analysis.png) 
+![](images/top_15_stocks.png) 
+![](images/sector_analysis.png)

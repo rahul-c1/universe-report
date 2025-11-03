@@ -6,8 +6,12 @@ website:
   title: "universe-report"
   navbar:
     left:
-      - href: onlycharts.qmd
-        text: Charts
+      - href: index.qmd
+        text: Home
+      - href: about.qmd
+        text: Viz        
+      - href: new_analysis.qmd
+        text: TopPerf
 format:
   html:
     theme: cosmo
