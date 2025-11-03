@@ -25,7 +25,7 @@ library(scales)
 # LOAD DATA
 # ===============================================================================
 
-cat("Loading data...\n")
+#cat("Loading data...\n")
 
 # Load the original data
 df <- fread("data/Universe.csv", stringsAsFactors = FALSE)
@@ -52,7 +52,7 @@ df_stocks <- df %>%
 # CREATE DISTRIBUTION CHARTS (4-PANEL)
 # ===============================================================================
 
-cat("Creating distribution charts...\n")
+#cat("Creating distribution charts...\n")
 
 # Calculate means for reference lines
 rs_mean <- mean(df_stocks$`RS Rating`, na.rm = TRUE)
@@ -150,7 +150,7 @@ cat("✓ Distribution charts saved: stock_analysis_charts.png\n")
 # CREATE TOP 15 STOCKS BAR CHART
 # ===============================================================================
 
-cat("Creating top 15 stocks chart...\n")
+#cat("Creating top 15 stocks chart...\n")
 
 # Prepare top 15 data
 top_15 <- top_stocks %>%
@@ -209,7 +209,7 @@ cat("✓ Top 15 chart saved: top_15_stocks.png\n")
 # CREATE ADDITIONAL SECTOR ANALYSIS CHART
 # ===============================================================================
 
-cat("Creating sector analysis chart...\n")
+#cat("Creating sector analysis chart...\n")
 
 # Analyze by sector if sector data is available
 if ("Sector" %in% names(df_stocks)) {
