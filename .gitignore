@@ -9,7 +9,6 @@
 .DS_Store
 .quarto
 /_site/
-/docs/
 index.qmd
 new_analysis.qmd
 about.qmd
