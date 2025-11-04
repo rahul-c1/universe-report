@@ -23,13 +23,13 @@ jobs:
             any::gridExtra
             any::readr
 
+      - name: Check out repository
+        uses: actions/checkout@v4
+
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Check out repository
-        uses: actions/checkout@v3
 
-      
       - name: Render and Publish to Netlify
         uses: quarto-dev/quarto-actions/publish@v2
         with:
