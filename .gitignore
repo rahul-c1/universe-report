@@ -10,3 +10,5 @@
 .quarto
 /_site/
 onlycharts.qmd
+
+**/*.quarto_ipynb
