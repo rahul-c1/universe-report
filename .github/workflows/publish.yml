@@ -30,13 +30,13 @@ jobs:
         uses: actions/checkout@v3
         
       - name: Commit results
-          run: |
-            git config --local user.email "actions@github.com"
-            git config --local user.name "GitHub Actions"
-            git add .
-            git commit -m 'Docs updated' || echo "No changes to commit"
-            git push origin || echo "No changes to commit"
-        
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add .
+          git commit -m 'Docs updated' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"
+      
       - name: Render and Publish to Netlify
         uses: quarto-dev/quarto-actions/publish@v2
         with:
