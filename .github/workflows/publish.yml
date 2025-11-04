@@ -36,16 +36,23 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2
 
 
+
+       - name: Quarto render
+         run: |
+          quarto render --fail-if-warnings
+
+
+       - name: Commit files
+         run: |
+           git config --local user.email "actions@github.com"
+           git config --local user.name "GitHub Actions"
+           git add --all
+           git commit -am "add data"
+           git push 
+           
            
       - name: Render and Publish to Netlify
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: netlify
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-
-      - name: Render and Publish to GH
-        uses: quarto-dev/quarto-actions/publish@v2
-        with:
-          target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
