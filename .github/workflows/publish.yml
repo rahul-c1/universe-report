@@ -37,8 +37,8 @@ jobs:
 
 
 
-       - name: Quarto render
-         run: |
+      - name: Quarto render
+        run: |
           quarto render --fail-if-warnings
 
 
