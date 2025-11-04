@@ -1,7 +1,14 @@
+name: Update data
+
 on:
   push:
     branches: [master, main]
-
+   schedule:
+   - cron: "0 12 * * 1-5"
+   
+  # Allows you to run this workflow manually from the Actions tab
+   workflow_dispatch:
+  
 jobs:
   update-report:
     runs-on: ubuntu-latest
@@ -30,8 +37,16 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2
 
 
+           
       - name: Render and Publish to Netlify
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: netlify
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
+      - name: Render and Publish to GH
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
