@@ -42,14 +42,14 @@ jobs:
           quarto render --fail-if-warnings
 
 
-       - name: Commit files
-         run: |
-           git config --local user.email "actions@github.com"
-           git config --local user.name "GitHub Actions"
-           git add --all
-           git commit -am "add data"
-           git push 
-           
+      - name: Commit files
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add --all
+          git commit -am "add data"
+          git push 
+         
            
       - name: Render and Publish to Netlify
         uses: quarto-dev/quarto-actions/publish@v2
