@@ -1,11 +1,11 @@
-name: Update data
-
 on:
   push:
     branches: [master, main]
    schedule:
-   - cron: "0 12 * * 1-5"
-   
+   - cron: "59 23 * * 5-6"
+
+name: Quarto Publish
+
   # Allows you to run this workflow manually from the Actions tab
    workflow_dispatch:
   
