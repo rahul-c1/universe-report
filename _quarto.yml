@@ -9,7 +9,7 @@ website:
       - href: index.qmd
         text: Home
       - href: about.qmd
-        text: Viz        
+        text: Charts        
       - href: new_analysis.qmd
         text: TopPerf
 format:

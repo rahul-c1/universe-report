@@ -56,3 +56,8 @@ jobs:
         with:
           target: netlify
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
+#      - name: Install packages
+#        run: |
+#           R -e 'install.packages("renv")'
+#           R -e 'renv::restore()'

@@ -1,5 +1,5 @@
 ---
-title: "Viz"
+title: "Charts"
 ---
 
 About this site
