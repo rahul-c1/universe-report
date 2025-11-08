@@ -23,7 +23,7 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "Viz",
+    "title": "Charts",
     "section": "",
     "text": "About this site\n\n\n✓ Distribution charts saved: stock_analysis_charts.png\n\n\n✓ Top 15 chart saved: top_15_stocks.png\n\n\n✓ Sector analysis chart saved: sector_analysis.png\n\n\n================================================================================\n\n\nVISUALIZATION COMPLETE\n\n\n================================================================================\n\n\n\nGenerated files:\n\n\n  - stock_analysis_charts.png (4-panel distribution charts)\n\n\n  - top_15_stocks.png (bar chart of top performers)\n\n\n  - sector_analysis.png (sector comparison)"
   }
