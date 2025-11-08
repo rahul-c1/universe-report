@@ -10,5 +10,7 @@
 .quarto
 /_site/
 onlycharts.qmd
+/data/Universe_20251031.csv
+/data/Universe_merged.csv
 
 **/*.quarto_ipynb
