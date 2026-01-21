@@ -28,7 +28,7 @@ theme_set(theme_minimal(base_size = 12))
 # ====================================================================
 
 cat("Loading data...\n")
-stocks <- fread("data/Universe.csv")
+stocks <- fread("./Universe.csv")
 
 cat(sprintf("Total stocks loaded: %d\n", nrow(stocks)))
 cat(sprintf("Total columns: %d\n", ncol(stocks)))
@@ -167,8 +167,9 @@ sector_analysis <- stocks_filtered %>%
   group_by(Sector) %>%
   summarise(
     Num_Stocks = n(),
-    Avg_RS_Rating = round(mean(RS_Rating, na.rm = TRUE), 1),
-    Avg_YTD_Return = round(mean(`%_Chg_YTD`, na.rm = TRUE), 1),
+    Avg_RS_Rating = round(replace_na(mean(RS_Rating, na.rm = TRUE), 0),1),#round(mean(RS_Rating, na.rm = TRUE), 1),
+    #Avg_YTD_Return = round(replace_na(mean(`%_Chg_YTD`, na.rm = TRUE), 0), 1),
+    Avg_YTD_Return = round(replace_na(mean(as.numeric(`%_Chg_YTD`[`%_Chg_YTD` != ""]), na.rm = TRUE), 0), 1),
     Avg_3Mo_Return = round(mean(`%_Chg_3_Months`, na.rm = TRUE), 1),
     Median_Market_Cap = round(median(`Market_Cap_(mil)`, na.rm = TRUE), 0),
     Top_Performers = sum(RS_Rating >= 90, na.rm = TRUE)
@@ -222,8 +223,9 @@ cat("\n--- YTD Performance Statistics ---\n")
 ytd_stats <- stocks_filtered %>%
   filter(!is.na(`%_Chg_YTD`)) %>%
   summarise(
-    Best_Performer = round(max(`%_Chg_YTD`, na.rm = TRUE), 2),
-    Worst_Performer = round(min(`%_Chg_YTD`, na.rm = TRUE), 2),
+    #Best_Performer = round(max(`%_Chg_YTD`, na.rm = TRUE), 2),
+    Best_Performer = round(max(as.numeric(`%_Chg_YTD`[`%_Chg_YTD` != ""]), na.rm = TRUE), 2),
+    Worst_Performer = round(min(as.numeric(`%_Chg_YTD`[`%_Chg_YTD` != ""]), na.rm = TRUE), 2),
     Median_Return = round(median(`%_Chg_YTD`, na.rm = TRUE), 2),
     Mean_Return = round(mean(`%_Chg_YTD`, na.rm = TRUE), 2),
     Positive_Returns = sum(`%_Chg_YTD` > 0, na.rm = TRUE),
@@ -236,7 +238,7 @@ ytd_stats
 # 4.3 Correlation Analysis (Key Metrics)
 cat("\n--- Correlation Analysis ---\n")
 cor_data <- stocks_filtered %>%
-  select(RS_Rating, EPS_Rating, Comp_Rating, `%_Chg_YTD`, 
+  select(RS_Rating, EPS_Rating, Comp_Rating, `%_Chg_6_Months`, 
          `%_Chg_3_Months`, Beta, ROE) %>%
   filter(complete.cases(.))
 
