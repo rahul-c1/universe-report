@@ -48,6 +48,10 @@ library(gt)
 # Load the data
 cat("Loading data...\n")
 
+# ===============================================================================
+cat("Last Updated \n")
+cat(today_str <- format(Sys.Date(), "%Y_%m_%d"))
+# ===============================================================================
 df <- fread("data/Universe.csv", stringsAsFactors = FALSE)
 
 # Storing in google sheets taking really long time
