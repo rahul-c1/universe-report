@@ -32,7 +32,7 @@ cat(today_str <- format(Sys.Date(), "%Y_%m_%d"))
 # ===============================================================================
 
 cat("Loading data...\n")
-stocks <- fread("./data/Universe.csv")
+stocks <- fread("data/Universe.csv")
 
 cat(sprintf("Total stocks loaded: %d\n", nrow(stocks)))
 cat(sprintf("Total columns: %d\n", ncol(stocks)))
