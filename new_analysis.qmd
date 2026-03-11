@@ -563,7 +563,7 @@ cat(sprintf("- Elite stocks (RS >= 90): %d (%.1f%%)\n",
             sum(stocks_filtered$RS_Rating >= 90, na.rm = TRUE),
             100 * sum(stocks_filtered$RS_Rating >= 90, na.rm = TRUE) / nrow(stocks_filtered)))
 cat(sprintf("- Average RS Rating: %.1f\n", mean(stocks_filtered$RS_Rating, na.rm = TRUE)))
-cat(sprintf("- Median YTD Return: %.1f%%\n", median(stocks_filtered$`%_Chg_YTD`, na.rm = TRUE)))
+cat(sprintf("- Median YTD Return: %s\n", median(stocks_filtered$`%_Chg_YTD`, na.rm = TRUE)))
 cat(sprintf("- Number of sectors: %d\n", length(unique(stocks_filtered$Sector[!is.na(stocks_filtered$Sector)]))))
 
 cat("\n\nOutput files generated:\n")
