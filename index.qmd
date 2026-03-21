@@ -54,6 +54,8 @@ cat(today_str <- format(Sys.Date(), "%Y_%m_%d"))
 # ===============================================================================
 df <- fread("data/Universe.csv", stringsAsFactors = FALSE)
 
+cat(unique(df$timestamp))
+
 # Storing in google sheets taking really long time
 # df <- read_sheet("https://docs.google.com/spreadsheets/d/11mH8AkgpWaTuYWh4ZHBo8TVDA1IQgARpAqzbvaGyH9I/edit?gid=207977887#gid=207977887",sheet="Universe",range="A1:B11000")
 cat("================================================================================\n")
