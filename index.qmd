@@ -54,7 +54,7 @@ df <- fread("data/Universe.csv", stringsAsFactors = FALSE)
 
 # ===============================================================================
 cat("Last Data Timestamp \n")
-cat(unique(format(df$timestamp, "%Y_%m_%d")))
+cat(format(unique(df$timestamp),"%Y_%m_%d"))
 # ===============================================================================
 
 
