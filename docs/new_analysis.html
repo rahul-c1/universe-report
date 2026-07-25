@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -39,10 +42,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a547dd1b4798262c927e2e52fa668cb1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6ac2aec46ad7f46b16024ee4409aa65c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -145,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
 <pre><code>Last Updated </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>2026_07_24</code></pre>
+<pre><code>2026_07_25</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Loading data...</code></pre>
@@ -161,23 +164,23 @@ ul.task-list li input[type="checkbox"] {
 First few rows:</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="sibcwqnmrr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#sibcwqnmrr table {
+<div id="nbeugpuauo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#nbeugpuauo table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#sibcwqnmrr thead, #sibcwqnmrr tbody, #sibcwqnmrr tfoot, #sibcwqnmrr tr, #sibcwqnmrr td, #sibcwqnmrr th {
+#nbeugpuauo thead, #nbeugpuauo tbody, #nbeugpuauo tfoot, #nbeugpuauo tr, #nbeugpuauo td, #nbeugpuauo th {
   border-style: none;
 }
 
-#sibcwqnmrr p {
+#nbeugpuauo p {
   margin: 0;
   padding: 0;
 }
 
-#sibcwqnmrr .gt_table {
+#nbeugpuauo .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -203,12 +206,12 @@ First few rows:</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#sibcwqnmrr .gt_caption {
+#nbeugpuauo .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#sibcwqnmrr .gt_title {
+#nbeugpuauo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -220,7 +223,7 @@ First few rows:</code></pre>
   border-bottom-width: 0;
 }
 
-#sibcwqnmrr .gt_subtitle {
+#nbeugpuauo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -232,7 +235,7 @@ First few rows:</code></pre>
   border-top-width: 0;
 }
 
-#sibcwqnmrr .gt_heading {
+#nbeugpuauo .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -244,13 +247,13 @@ First few rows:</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#sibcwqnmrr .gt_bottom_border {
+#nbeugpuauo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#sibcwqnmrr .gt_col_headings {
+#nbeugpuauo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -265,7 +268,7 @@ First few rows:</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#sibcwqnmrr .gt_col_heading {
+#nbeugpuauo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -285,7 +288,7 @@ First few rows:</code></pre>
   overflow-x: hidden;
 }
 
-#sibcwqnmrr .gt_column_spanner_outer {
+#nbeugpuauo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -297,15 +300,15 @@ First few rows:</code></pre>
   padding-right: 4px;
 }
 
-#sibcwqnmrr .gt_column_spanner_outer:first-child {
+#nbeugpuauo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#sibcwqnmrr .gt_column_spanner_outer:last-child {
+#nbeugpuauo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#sibcwqnmrr .gt_column_spanner {
+#nbeugpuauo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -317,11 +320,11 @@ First few rows:</code></pre>
   width: 100%;
 }
 
-#sibcwqnmrr .gt_spanner_row {
+#nbeugpuauo .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#sibcwqnmrr .gt_group_heading {
+#nbeugpuauo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -347,7 +350,7 @@ First few rows:</code></pre>
   text-align: left;
 }
 
-#sibcwqnmrr .gt_empty_group_heading {
+#nbeugpuauo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -362,15 +365,15 @@ First few rows:</code></pre>
   vertical-align: middle;
 }
 
-#sibcwqnmrr .gt_from_md > :first-child {
+#nbeugpuauo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#sibcwqnmrr .gt_from_md > :last-child {
+#nbeugpuauo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#sibcwqnmrr .gt_row {
+#nbeugpuauo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -389,7 +392,7 @@ First few rows:</code></pre>
   overflow-x: hidden;
 }
 
-#sibcwqnmrr .gt_stub {
+#nbeugpuauo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -402,7 +405,7 @@ First few rows:</code></pre>
   padding-right: 5px;
 }
 
-#sibcwqnmrr .gt_stub_row_group {
+#nbeugpuauo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -416,15 +419,15 @@ First few rows:</code></pre>
   vertical-align: top;
 }
 
-#sibcwqnmrr .gt_row_group_first td {
+#nbeugpuauo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#sibcwqnmrr .gt_row_group_first th {
+#nbeugpuauo .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#sibcwqnmrr .gt_summary_row {
+#nbeugpuauo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -434,16 +437,16 @@ First few rows:</code></pre>
   padding-right: 5px;
 }
 
-#sibcwqnmrr .gt_first_summary_row {
+#nbeugpuauo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#sibcwqnmrr .gt_first_summary_row.thick {
+#nbeugpuauo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#sibcwqnmrr .gt_last_summary_row {
+#nbeugpuauo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -453,7 +456,7 @@ First few rows:</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#sibcwqnmrr .gt_grand_summary_row {
+#nbeugpuauo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -463,7 +466,7 @@ First few rows:</code></pre>
   padding-right: 5px;
 }
 
-#sibcwqnmrr .gt_first_grand_summary_row {
+#nbeugpuauo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -473,7 +476,7 @@ First few rows:</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#sibcwqnmrr .gt_last_grand_summary_row_top {
+#nbeugpuauo .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -483,11 +486,11 @@ First few rows:</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#sibcwqnmrr .gt_striped {
+#nbeugpuauo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#sibcwqnmrr .gt_table_body {
+#nbeugpuauo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -496,7 +499,7 @@ First few rows:</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#sibcwqnmrr .gt_footnotes {
+#nbeugpuauo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -510,7 +513,7 @@ First few rows:</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#sibcwqnmrr .gt_footnote {
+#nbeugpuauo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -519,7 +522,7 @@ First few rows:</code></pre>
   padding-right: 5px;
 }
 
-#sibcwqnmrr .gt_sourcenotes {
+#nbeugpuauo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -533,7 +536,7 @@ First few rows:</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#sibcwqnmrr .gt_sourcenote {
+#nbeugpuauo .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -541,72 +544,72 @@ First few rows:</code></pre>
   padding-right: 5px;
 }
 
-#sibcwqnmrr .gt_left {
+#nbeugpuauo .gt_left {
   text-align: left;
 }
 
-#sibcwqnmrr .gt_center {
+#nbeugpuauo .gt_center {
   text-align: center;
 }
 
-#sibcwqnmrr .gt_right {
+#nbeugpuauo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#sibcwqnmrr .gt_font_normal {
+#nbeugpuauo .gt_font_normal {
   font-weight: normal;
 }
 
-#sibcwqnmrr .gt_font_bold {
+#nbeugpuauo .gt_font_bold {
   font-weight: bold;
 }
 
-#sibcwqnmrr .gt_font_italic {
+#nbeugpuauo .gt_font_italic {
   font-style: italic;
 }
 
-#sibcwqnmrr .gt_super {
+#nbeugpuauo .gt_super {
   font-size: 65%;
 }
 
-#sibcwqnmrr .gt_footnote_marks {
+#nbeugpuauo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#sibcwqnmrr .gt_asterisk {
+#nbeugpuauo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#sibcwqnmrr .gt_indent_1 {
+#nbeugpuauo .gt_indent_1 {
   text-indent: 5px;
 }
 
-#sibcwqnmrr .gt_indent_2 {
+#nbeugpuauo .gt_indent_2 {
   text-indent: 10px;
 }
 
-#sibcwqnmrr .gt_indent_3 {
+#nbeugpuauo .gt_indent_3 {
   text-indent: 15px;
 }
 
-#sibcwqnmrr .gt_indent_4 {
+#nbeugpuauo .gt_indent_4 {
   text-indent: 20px;
 }
 
-#sibcwqnmrr .gt_indent_5 {
+#nbeugpuauo .gt_indent_5 {
   text-indent: 25px;
 }
 
-#sibcwqnmrr .katex-display {
+#nbeugpuauo .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#sibcwqnmrr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#nbeugpuauo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1446,7 +1449,7 @@ Data structure:</code></pre>
  $ IBD Big Cap 20              : chr  "No" "No" "No" "No" ...
  $ IBD 85-85 Index             : chr  "No" "No" "No" "No" ...
  $ IBD New America             : chr  "No" "No" "No" "No" ...
- - attr(*, ".internal.selfref")=&lt;pointer: 0x55cd5714ea70&gt; </code></pre>
+ - attr(*, ".internal.selfref")=&lt;pointer: 0x55b685d97a70&gt; </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1467,23 +1470,23 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
 --- Top 20 Stocks by Composite Score ---</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="ngnmmcqhzc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ngnmmcqhzc table {
+<div id="lnpksmbmmt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lnpksmbmmt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ngnmmcqhzc thead, #ngnmmcqhzc tbody, #ngnmmcqhzc tfoot, #ngnmmcqhzc tr, #ngnmmcqhzc td, #ngnmmcqhzc th {
+#lnpksmbmmt thead, #lnpksmbmmt tbody, #lnpksmbmmt tfoot, #lnpksmbmmt tr, #lnpksmbmmt td, #lnpksmbmmt th {
   border-style: none;
 }
 
-#ngnmmcqhzc p {
+#lnpksmbmmt p {
   margin: 0;
   padding: 0;
 }
 
-#ngnmmcqhzc .gt_table {
+#lnpksmbmmt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1509,12 +1512,12 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#ngnmmcqhzc .gt_caption {
+#lnpksmbmmt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ngnmmcqhzc .gt_title {
+#lnpksmbmmt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1526,7 +1529,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-width: 0;
 }
 
-#ngnmmcqhzc .gt_subtitle {
+#lnpksmbmmt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1538,7 +1541,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-top-width: 0;
 }
 
-#ngnmmcqhzc .gt_heading {
+#lnpksmbmmt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1550,13 +1553,13 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#ngnmmcqhzc .gt_bottom_border {
+#lnpksmbmmt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ngnmmcqhzc .gt_col_headings {
+#lnpksmbmmt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1571,7 +1574,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#ngnmmcqhzc .gt_col_heading {
+#lnpksmbmmt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1591,7 +1594,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   overflow-x: hidden;
 }
 
-#ngnmmcqhzc .gt_column_spanner_outer {
+#lnpksmbmmt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1603,15 +1606,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 4px;
 }
 
-#ngnmmcqhzc .gt_column_spanner_outer:first-child {
+#lnpksmbmmt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ngnmmcqhzc .gt_column_spanner_outer:last-child {
+#lnpksmbmmt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ngnmmcqhzc .gt_column_spanner {
+#lnpksmbmmt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1623,11 +1626,11 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   width: 100%;
 }
 
-#ngnmmcqhzc .gt_spanner_row {
+#lnpksmbmmt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ngnmmcqhzc .gt_group_heading {
+#lnpksmbmmt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1653,7 +1656,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   text-align: left;
 }
 
-#ngnmmcqhzc .gt_empty_group_heading {
+#lnpksmbmmt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1668,15 +1671,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   vertical-align: middle;
 }
 
-#ngnmmcqhzc .gt_from_md > :first-child {
+#lnpksmbmmt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ngnmmcqhzc .gt_from_md > :last-child {
+#lnpksmbmmt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ngnmmcqhzc .gt_row {
+#lnpksmbmmt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1695,7 +1698,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   overflow-x: hidden;
 }
 
-#ngnmmcqhzc .gt_stub {
+#lnpksmbmmt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1708,7 +1711,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#ngnmmcqhzc .gt_stub_row_group {
+#lnpksmbmmt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1722,15 +1725,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   vertical-align: top;
 }
 
-#ngnmmcqhzc .gt_row_group_first td {
+#lnpksmbmmt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ngnmmcqhzc .gt_row_group_first th {
+#lnpksmbmmt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ngnmmcqhzc .gt_summary_row {
+#lnpksmbmmt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1740,16 +1743,16 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#ngnmmcqhzc .gt_first_summary_row {
+#lnpksmbmmt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ngnmmcqhzc .gt_first_summary_row.thick {
+#lnpksmbmmt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ngnmmcqhzc .gt_last_summary_row {
+#lnpksmbmmt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1759,7 +1762,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#ngnmmcqhzc .gt_grand_summary_row {
+#lnpksmbmmt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1769,7 +1772,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#ngnmmcqhzc .gt_first_grand_summary_row {
+#lnpksmbmmt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1779,7 +1782,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#ngnmmcqhzc .gt_last_grand_summary_row_top {
+#lnpksmbmmt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1789,11 +1792,11 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#ngnmmcqhzc .gt_striped {
+#lnpksmbmmt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ngnmmcqhzc .gt_table_body {
+#lnpksmbmmt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1802,7 +1805,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#ngnmmcqhzc .gt_footnotes {
+#lnpksmbmmt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1816,7 +1819,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#ngnmmcqhzc .gt_footnote {
+#lnpksmbmmt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1825,7 +1828,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#ngnmmcqhzc .gt_sourcenotes {
+#lnpksmbmmt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1839,7 +1842,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#ngnmmcqhzc .gt_sourcenote {
+#lnpksmbmmt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1847,72 +1850,72 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#ngnmmcqhzc .gt_left {
+#lnpksmbmmt .gt_left {
   text-align: left;
 }
 
-#ngnmmcqhzc .gt_center {
+#lnpksmbmmt .gt_center {
   text-align: center;
 }
 
-#ngnmmcqhzc .gt_right {
+#lnpksmbmmt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ngnmmcqhzc .gt_font_normal {
+#lnpksmbmmt .gt_font_normal {
   font-weight: normal;
 }
 
-#ngnmmcqhzc .gt_font_bold {
+#lnpksmbmmt .gt_font_bold {
   font-weight: bold;
 }
 
-#ngnmmcqhzc .gt_font_italic {
+#lnpksmbmmt .gt_font_italic {
   font-style: italic;
 }
 
-#ngnmmcqhzc .gt_super {
+#lnpksmbmmt .gt_super {
   font-size: 65%;
 }
 
-#ngnmmcqhzc .gt_footnote_marks {
+#lnpksmbmmt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ngnmmcqhzc .gt_asterisk {
+#lnpksmbmmt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ngnmmcqhzc .gt_indent_1 {
+#lnpksmbmmt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ngnmmcqhzc .gt_indent_2 {
+#lnpksmbmmt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ngnmmcqhzc .gt_indent_3 {
+#lnpksmbmmt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ngnmmcqhzc .gt_indent_4 {
+#lnpksmbmmt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ngnmmcqhzc .gt_indent_5 {
+#lnpksmbmmt .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ngnmmcqhzc .katex-display {
+#lnpksmbmmt .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ngnmmcqhzc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#lnpksmbmmt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2162,23 +2165,23 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
 --- Top 20 Growth Stocks ---</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="ztwnmmvgxz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ztwnmmvgxz table {
+<div id="tkknzcmpki" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tkknzcmpki table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ztwnmmvgxz thead, #ztwnmmvgxz tbody, #ztwnmmvgxz tfoot, #ztwnmmvgxz tr, #ztwnmmvgxz td, #ztwnmmvgxz th {
+#tkknzcmpki thead, #tkknzcmpki tbody, #tkknzcmpki tfoot, #tkknzcmpki tr, #tkknzcmpki td, #tkknzcmpki th {
   border-style: none;
 }
 
-#ztwnmmvgxz p {
+#tkknzcmpki p {
   margin: 0;
   padding: 0;
 }
 
-#ztwnmmvgxz .gt_table {
+#tkknzcmpki .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2204,12 +2207,12 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#ztwnmmvgxz .gt_caption {
+#tkknzcmpki .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ztwnmmvgxz .gt_title {
+#tkknzcmpki .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2221,7 +2224,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-width: 0;
 }
 
-#ztwnmmvgxz .gt_subtitle {
+#tkknzcmpki .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2233,7 +2236,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-top-width: 0;
 }
 
-#ztwnmmvgxz .gt_heading {
+#tkknzcmpki .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2245,13 +2248,13 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#ztwnmmvgxz .gt_bottom_border {
+#tkknzcmpki .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ztwnmmvgxz .gt_col_headings {
+#tkknzcmpki .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2266,7 +2269,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#ztwnmmvgxz .gt_col_heading {
+#tkknzcmpki .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2286,7 +2289,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   overflow-x: hidden;
 }
 
-#ztwnmmvgxz .gt_column_spanner_outer {
+#tkknzcmpki .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2298,15 +2301,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 4px;
 }
 
-#ztwnmmvgxz .gt_column_spanner_outer:first-child {
+#tkknzcmpki .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ztwnmmvgxz .gt_column_spanner_outer:last-child {
+#tkknzcmpki .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ztwnmmvgxz .gt_column_spanner {
+#tkknzcmpki .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2318,11 +2321,11 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   width: 100%;
 }
 
-#ztwnmmvgxz .gt_spanner_row {
+#tkknzcmpki .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ztwnmmvgxz .gt_group_heading {
+#tkknzcmpki .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2348,7 +2351,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   text-align: left;
 }
 
-#ztwnmmvgxz .gt_empty_group_heading {
+#tkknzcmpki .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2363,15 +2366,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   vertical-align: middle;
 }
 
-#ztwnmmvgxz .gt_from_md > :first-child {
+#tkknzcmpki .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ztwnmmvgxz .gt_from_md > :last-child {
+#tkknzcmpki .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ztwnmmvgxz .gt_row {
+#tkknzcmpki .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2390,7 +2393,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   overflow-x: hidden;
 }
 
-#ztwnmmvgxz .gt_stub {
+#tkknzcmpki .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2403,7 +2406,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#ztwnmmvgxz .gt_stub_row_group {
+#tkknzcmpki .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2417,15 +2420,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   vertical-align: top;
 }
 
-#ztwnmmvgxz .gt_row_group_first td {
+#tkknzcmpki .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ztwnmmvgxz .gt_row_group_first th {
+#tkknzcmpki .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ztwnmmvgxz .gt_summary_row {
+#tkknzcmpki .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2435,16 +2438,16 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#ztwnmmvgxz .gt_first_summary_row {
+#tkknzcmpki .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ztwnmmvgxz .gt_first_summary_row.thick {
+#tkknzcmpki .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ztwnmmvgxz .gt_last_summary_row {
+#tkknzcmpki .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2454,7 +2457,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#ztwnmmvgxz .gt_grand_summary_row {
+#tkknzcmpki .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2464,7 +2467,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#ztwnmmvgxz .gt_first_grand_summary_row {
+#tkknzcmpki .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2474,7 +2477,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#ztwnmmvgxz .gt_last_grand_summary_row_top {
+#tkknzcmpki .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2484,11 +2487,11 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#ztwnmmvgxz .gt_striped {
+#tkknzcmpki .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ztwnmmvgxz .gt_table_body {
+#tkknzcmpki .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2497,7 +2500,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#ztwnmmvgxz .gt_footnotes {
+#tkknzcmpki .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2511,7 +2514,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#ztwnmmvgxz .gt_footnote {
+#tkknzcmpki .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2520,7 +2523,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#ztwnmmvgxz .gt_sourcenotes {
+#tkknzcmpki .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2534,7 +2537,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#ztwnmmvgxz .gt_sourcenote {
+#tkknzcmpki .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2542,72 +2545,72 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#ztwnmmvgxz .gt_left {
+#tkknzcmpki .gt_left {
   text-align: left;
 }
 
-#ztwnmmvgxz .gt_center {
+#tkknzcmpki .gt_center {
   text-align: center;
 }
 
-#ztwnmmvgxz .gt_right {
+#tkknzcmpki .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ztwnmmvgxz .gt_font_normal {
+#tkknzcmpki .gt_font_normal {
   font-weight: normal;
 }
 
-#ztwnmmvgxz .gt_font_bold {
+#tkknzcmpki .gt_font_bold {
   font-weight: bold;
 }
 
-#ztwnmmvgxz .gt_font_italic {
+#tkknzcmpki .gt_font_italic {
   font-style: italic;
 }
 
-#ztwnmmvgxz .gt_super {
+#tkknzcmpki .gt_super {
   font-size: 65%;
 }
 
-#ztwnmmvgxz .gt_footnote_marks {
+#tkknzcmpki .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ztwnmmvgxz .gt_asterisk {
+#tkknzcmpki .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ztwnmmvgxz .gt_indent_1 {
+#tkknzcmpki .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ztwnmmvgxz .gt_indent_2 {
+#tkknzcmpki .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ztwnmmvgxz .gt_indent_3 {
+#tkknzcmpki .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ztwnmmvgxz .gt_indent_4 {
+#tkknzcmpki .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ztwnmmvgxz .gt_indent_5 {
+#tkknzcmpki .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ztwnmmvgxz .katex-display {
+#tkknzcmpki .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ztwnmmvgxz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#tkknzcmpki div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2836,23 +2839,23 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
 --- Top 20 Value Stocks ---</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="thxcdcuege" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#thxcdcuege table {
+<div id="yoduolznes" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yoduolznes table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#thxcdcuege thead, #thxcdcuege tbody, #thxcdcuege tfoot, #thxcdcuege tr, #thxcdcuege td, #thxcdcuege th {
+#yoduolznes thead, #yoduolznes tbody, #yoduolznes tfoot, #yoduolznes tr, #yoduolznes td, #yoduolznes th {
   border-style: none;
 }
 
-#thxcdcuege p {
+#yoduolznes p {
   margin: 0;
   padding: 0;
 }
 
-#thxcdcuege .gt_table {
+#yoduolznes .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2878,12 +2881,12 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#thxcdcuege .gt_caption {
+#yoduolznes .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#thxcdcuege .gt_title {
+#yoduolznes .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2895,7 +2898,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-width: 0;
 }
 
-#thxcdcuege .gt_subtitle {
+#yoduolznes .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2907,7 +2910,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-top-width: 0;
 }
 
-#thxcdcuege .gt_heading {
+#yoduolznes .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2919,13 +2922,13 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#thxcdcuege .gt_bottom_border {
+#yoduolznes .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#thxcdcuege .gt_col_headings {
+#yoduolznes .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2940,7 +2943,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#thxcdcuege .gt_col_heading {
+#yoduolznes .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2960,7 +2963,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   overflow-x: hidden;
 }
 
-#thxcdcuege .gt_column_spanner_outer {
+#yoduolznes .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2972,15 +2975,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 4px;
 }
 
-#thxcdcuege .gt_column_spanner_outer:first-child {
+#yoduolznes .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#thxcdcuege .gt_column_spanner_outer:last-child {
+#yoduolznes .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#thxcdcuege .gt_column_spanner {
+#yoduolznes .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2992,11 +2995,11 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   width: 100%;
 }
 
-#thxcdcuege .gt_spanner_row {
+#yoduolznes .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#thxcdcuege .gt_group_heading {
+#yoduolznes .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3022,7 +3025,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   text-align: left;
 }
 
-#thxcdcuege .gt_empty_group_heading {
+#yoduolznes .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3037,15 +3040,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   vertical-align: middle;
 }
 
-#thxcdcuege .gt_from_md > :first-child {
+#yoduolznes .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#thxcdcuege .gt_from_md > :last-child {
+#yoduolznes .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#thxcdcuege .gt_row {
+#yoduolznes .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3064,7 +3067,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   overflow-x: hidden;
 }
 
-#thxcdcuege .gt_stub {
+#yoduolznes .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3077,7 +3080,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#thxcdcuege .gt_stub_row_group {
+#yoduolznes .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3091,15 +3094,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   vertical-align: top;
 }
 
-#thxcdcuege .gt_row_group_first td {
+#yoduolznes .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#thxcdcuege .gt_row_group_first th {
+#yoduolznes .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#thxcdcuege .gt_summary_row {
+#yoduolznes .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3109,16 +3112,16 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#thxcdcuege .gt_first_summary_row {
+#yoduolznes .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#thxcdcuege .gt_first_summary_row.thick {
+#yoduolznes .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#thxcdcuege .gt_last_summary_row {
+#yoduolznes .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3128,7 +3131,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#thxcdcuege .gt_grand_summary_row {
+#yoduolznes .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3138,7 +3141,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#thxcdcuege .gt_first_grand_summary_row {
+#yoduolznes .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3148,7 +3151,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#thxcdcuege .gt_last_grand_summary_row_top {
+#yoduolznes .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3158,11 +3161,11 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#thxcdcuege .gt_striped {
+#yoduolznes .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#thxcdcuege .gt_table_body {
+#yoduolznes .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3171,7 +3174,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#thxcdcuege .gt_footnotes {
+#yoduolznes .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3185,7 +3188,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#thxcdcuege .gt_footnote {
+#yoduolznes .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3194,7 +3197,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#thxcdcuege .gt_sourcenotes {
+#yoduolznes .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3208,7 +3211,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#thxcdcuege .gt_sourcenote {
+#yoduolznes .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3216,72 +3219,72 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#thxcdcuege .gt_left {
+#yoduolznes .gt_left {
   text-align: left;
 }
 
-#thxcdcuege .gt_center {
+#yoduolznes .gt_center {
   text-align: center;
 }
 
-#thxcdcuege .gt_right {
+#yoduolznes .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#thxcdcuege .gt_font_normal {
+#yoduolznes .gt_font_normal {
   font-weight: normal;
 }
 
-#thxcdcuege .gt_font_bold {
+#yoduolznes .gt_font_bold {
   font-weight: bold;
 }
 
-#thxcdcuege .gt_font_italic {
+#yoduolznes .gt_font_italic {
   font-style: italic;
 }
 
-#thxcdcuege .gt_super {
+#yoduolznes .gt_super {
   font-size: 65%;
 }
 
-#thxcdcuege .gt_footnote_marks {
+#yoduolznes .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#thxcdcuege .gt_asterisk {
+#yoduolznes .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#thxcdcuege .gt_indent_1 {
+#yoduolznes .gt_indent_1 {
   text-indent: 5px;
 }
 
-#thxcdcuege .gt_indent_2 {
+#yoduolznes .gt_indent_2 {
   text-indent: 10px;
 }
 
-#thxcdcuege .gt_indent_3 {
+#yoduolznes .gt_indent_3 {
   text-indent: 15px;
 }
 
-#thxcdcuege .gt_indent_4 {
+#yoduolznes .gt_indent_4 {
   text-indent: 20px;
 }
 
-#thxcdcuege .gt_indent_5 {
+#yoduolznes .gt_indent_5 {
   text-indent: 25px;
 }
 
-#thxcdcuege .katex-display {
+#yoduolznes .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#thxcdcuege div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#yoduolznes div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3510,23 +3513,23 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
 --- Top 20 Momentum Stocks (3-Month Performance) ---</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="jfszaocogm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#jfszaocogm table {
+<div id="srenoykkvr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#srenoykkvr table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#jfszaocogm thead, #jfszaocogm tbody, #jfszaocogm tfoot, #jfszaocogm tr, #jfszaocogm td, #jfszaocogm th {
+#srenoykkvr thead, #srenoykkvr tbody, #srenoykkvr tfoot, #srenoykkvr tr, #srenoykkvr td, #srenoykkvr th {
   border-style: none;
 }
 
-#jfszaocogm p {
+#srenoykkvr p {
   margin: 0;
   padding: 0;
 }
 
-#jfszaocogm .gt_table {
+#srenoykkvr .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3552,12 +3555,12 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#jfszaocogm .gt_caption {
+#srenoykkvr .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#jfszaocogm .gt_title {
+#srenoykkvr .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3569,7 +3572,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-width: 0;
 }
 
-#jfszaocogm .gt_subtitle {
+#srenoykkvr .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3581,7 +3584,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-top-width: 0;
 }
 
-#jfszaocogm .gt_heading {
+#srenoykkvr .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3593,13 +3596,13 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#jfszaocogm .gt_bottom_border {
+#srenoykkvr .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jfszaocogm .gt_col_headings {
+#srenoykkvr .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3614,7 +3617,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#jfszaocogm .gt_col_heading {
+#srenoykkvr .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3634,7 +3637,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   overflow-x: hidden;
 }
 
-#jfszaocogm .gt_column_spanner_outer {
+#srenoykkvr .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3646,15 +3649,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 4px;
 }
 
-#jfszaocogm .gt_column_spanner_outer:first-child {
+#srenoykkvr .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jfszaocogm .gt_column_spanner_outer:last-child {
+#srenoykkvr .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jfszaocogm .gt_column_spanner {
+#srenoykkvr .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3666,11 +3669,11 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   width: 100%;
 }
 
-#jfszaocogm .gt_spanner_row {
+#srenoykkvr .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#jfszaocogm .gt_group_heading {
+#srenoykkvr .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3696,7 +3699,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   text-align: left;
 }
 
-#jfszaocogm .gt_empty_group_heading {
+#srenoykkvr .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3711,15 +3714,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   vertical-align: middle;
 }
 
-#jfszaocogm .gt_from_md > :first-child {
+#srenoykkvr .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jfszaocogm .gt_from_md > :last-child {
+#srenoykkvr .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jfszaocogm .gt_row {
+#srenoykkvr .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3738,7 +3741,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   overflow-x: hidden;
 }
 
-#jfszaocogm .gt_stub {
+#srenoykkvr .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3751,7 +3754,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#jfszaocogm .gt_stub_row_group {
+#srenoykkvr .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3765,15 +3768,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   vertical-align: top;
 }
 
-#jfszaocogm .gt_row_group_first td {
+#srenoykkvr .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#jfszaocogm .gt_row_group_first th {
+#srenoykkvr .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#jfszaocogm .gt_summary_row {
+#srenoykkvr .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3783,16 +3786,16 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#jfszaocogm .gt_first_summary_row {
+#srenoykkvr .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#jfszaocogm .gt_first_summary_row.thick {
+#srenoykkvr .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#jfszaocogm .gt_last_summary_row {
+#srenoykkvr .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3802,7 +3805,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#jfszaocogm .gt_grand_summary_row {
+#srenoykkvr .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3812,7 +3815,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#jfszaocogm .gt_first_grand_summary_row {
+#srenoykkvr .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3822,7 +3825,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#jfszaocogm .gt_last_grand_summary_row_top {
+#srenoykkvr .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3832,11 +3835,11 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#jfszaocogm .gt_striped {
+#srenoykkvr .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jfszaocogm .gt_table_body {
+#srenoykkvr .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3845,7 +3848,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#jfszaocogm .gt_footnotes {
+#srenoykkvr .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3859,7 +3862,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#jfszaocogm .gt_footnote {
+#srenoykkvr .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3868,7 +3871,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#jfszaocogm .gt_sourcenotes {
+#srenoykkvr .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3882,7 +3885,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#jfszaocogm .gt_sourcenote {
+#srenoykkvr .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3890,72 +3893,72 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#jfszaocogm .gt_left {
+#srenoykkvr .gt_left {
   text-align: left;
 }
 
-#jfszaocogm .gt_center {
+#srenoykkvr .gt_center {
   text-align: center;
 }
 
-#jfszaocogm .gt_right {
+#srenoykkvr .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jfszaocogm .gt_font_normal {
+#srenoykkvr .gt_font_normal {
   font-weight: normal;
 }
 
-#jfszaocogm .gt_font_bold {
+#srenoykkvr .gt_font_bold {
   font-weight: bold;
 }
 
-#jfszaocogm .gt_font_italic {
+#srenoykkvr .gt_font_italic {
   font-style: italic;
 }
 
-#jfszaocogm .gt_super {
+#srenoykkvr .gt_super {
   font-size: 65%;
 }
 
-#jfszaocogm .gt_footnote_marks {
+#srenoykkvr .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#jfszaocogm .gt_asterisk {
+#srenoykkvr .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#jfszaocogm .gt_indent_1 {
+#srenoykkvr .gt_indent_1 {
   text-indent: 5px;
 }
 
-#jfszaocogm .gt_indent_2 {
+#srenoykkvr .gt_indent_2 {
   text-indent: 10px;
 }
 
-#jfszaocogm .gt_indent_3 {
+#srenoykkvr .gt_indent_3 {
   text-indent: 15px;
 }
 
-#jfszaocogm .gt_indent_4 {
+#srenoykkvr .gt_indent_4 {
   text-indent: 20px;
 }
 
-#jfszaocogm .gt_indent_5 {
+#srenoykkvr .gt_indent_5 {
   text-indent: 25px;
 }
 
-#jfszaocogm .katex-display {
+#srenoykkvr .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#jfszaocogm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#srenoykkvr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -4184,23 +4187,23 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
 --- Top 15 Large Cap Leaders ---</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="oruzgihbkg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#oruzgihbkg table {
+<div id="tqnoreqosr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tqnoreqosr table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#oruzgihbkg thead, #oruzgihbkg tbody, #oruzgihbkg tfoot, #oruzgihbkg tr, #oruzgihbkg td, #oruzgihbkg th {
+#tqnoreqosr thead, #tqnoreqosr tbody, #tqnoreqosr tfoot, #tqnoreqosr tr, #tqnoreqosr td, #tqnoreqosr th {
   border-style: none;
 }
 
-#oruzgihbkg p {
+#tqnoreqosr p {
   margin: 0;
   padding: 0;
 }
 
-#oruzgihbkg .gt_table {
+#tqnoreqosr .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -4226,12 +4229,12 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#oruzgihbkg .gt_caption {
+#tqnoreqosr .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#oruzgihbkg .gt_title {
+#tqnoreqosr .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -4243,7 +4246,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-width: 0;
 }
 
-#oruzgihbkg .gt_subtitle {
+#tqnoreqosr .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -4255,7 +4258,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-top-width: 0;
 }
 
-#oruzgihbkg .gt_heading {
+#tqnoreqosr .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -4267,13 +4270,13 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#oruzgihbkg .gt_bottom_border {
+#tqnoreqosr .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#oruzgihbkg .gt_col_headings {
+#tqnoreqosr .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4288,7 +4291,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#oruzgihbkg .gt_col_heading {
+#tqnoreqosr .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4308,7 +4311,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   overflow-x: hidden;
 }
 
-#oruzgihbkg .gt_column_spanner_outer {
+#tqnoreqosr .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4320,15 +4323,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 4px;
 }
 
-#oruzgihbkg .gt_column_spanner_outer:first-child {
+#tqnoreqosr .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#oruzgihbkg .gt_column_spanner_outer:last-child {
+#tqnoreqosr .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#oruzgihbkg .gt_column_spanner {
+#tqnoreqosr .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -4340,11 +4343,11 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   width: 100%;
 }
 
-#oruzgihbkg .gt_spanner_row {
+#tqnoreqosr .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#oruzgihbkg .gt_group_heading {
+#tqnoreqosr .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4370,7 +4373,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   text-align: left;
 }
 
-#oruzgihbkg .gt_empty_group_heading {
+#tqnoreqosr .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4385,15 +4388,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   vertical-align: middle;
 }
 
-#oruzgihbkg .gt_from_md > :first-child {
+#tqnoreqosr .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#oruzgihbkg .gt_from_md > :last-child {
+#tqnoreqosr .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#oruzgihbkg .gt_row {
+#tqnoreqosr .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4412,7 +4415,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   overflow-x: hidden;
 }
 
-#oruzgihbkg .gt_stub {
+#tqnoreqosr .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4425,7 +4428,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#oruzgihbkg .gt_stub_row_group {
+#tqnoreqosr .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4439,15 +4442,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   vertical-align: top;
 }
 
-#oruzgihbkg .gt_row_group_first td {
+#tqnoreqosr .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#oruzgihbkg .gt_row_group_first th {
+#tqnoreqosr .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#oruzgihbkg .gt_summary_row {
+#tqnoreqosr .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4457,16 +4460,16 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#oruzgihbkg .gt_first_summary_row {
+#tqnoreqosr .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#oruzgihbkg .gt_first_summary_row.thick {
+#tqnoreqosr .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#oruzgihbkg .gt_last_summary_row {
+#tqnoreqosr .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4476,7 +4479,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#oruzgihbkg .gt_grand_summary_row {
+#tqnoreqosr .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4486,7 +4489,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#oruzgihbkg .gt_first_grand_summary_row {
+#tqnoreqosr .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4496,7 +4499,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#oruzgihbkg .gt_last_grand_summary_row_top {
+#tqnoreqosr .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4506,11 +4509,11 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#oruzgihbkg .gt_striped {
+#tqnoreqosr .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#oruzgihbkg .gt_table_body {
+#tqnoreqosr .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4519,7 +4522,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#oruzgihbkg .gt_footnotes {
+#tqnoreqosr .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4533,7 +4536,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#oruzgihbkg .gt_footnote {
+#tqnoreqosr .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -4542,7 +4545,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#oruzgihbkg .gt_sourcenotes {
+#tqnoreqosr .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4556,7 +4559,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#oruzgihbkg .gt_sourcenote {
+#tqnoreqosr .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4564,72 +4567,72 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#oruzgihbkg .gt_left {
+#tqnoreqosr .gt_left {
   text-align: left;
 }
 
-#oruzgihbkg .gt_center {
+#tqnoreqosr .gt_center {
   text-align: center;
 }
 
-#oruzgihbkg .gt_right {
+#tqnoreqosr .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#oruzgihbkg .gt_font_normal {
+#tqnoreqosr .gt_font_normal {
   font-weight: normal;
 }
 
-#oruzgihbkg .gt_font_bold {
+#tqnoreqosr .gt_font_bold {
   font-weight: bold;
 }
 
-#oruzgihbkg .gt_font_italic {
+#tqnoreqosr .gt_font_italic {
   font-style: italic;
 }
 
-#oruzgihbkg .gt_super {
+#tqnoreqosr .gt_super {
   font-size: 65%;
 }
 
-#oruzgihbkg .gt_footnote_marks {
+#tqnoreqosr .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#oruzgihbkg .gt_asterisk {
+#tqnoreqosr .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#oruzgihbkg .gt_indent_1 {
+#tqnoreqosr .gt_indent_1 {
   text-indent: 5px;
 }
 
-#oruzgihbkg .gt_indent_2 {
+#tqnoreqosr .gt_indent_2 {
   text-indent: 10px;
 }
 
-#oruzgihbkg .gt_indent_3 {
+#tqnoreqosr .gt_indent_3 {
   text-indent: 15px;
 }
 
-#oruzgihbkg .gt_indent_4 {
+#tqnoreqosr .gt_indent_4 {
   text-indent: 20px;
 }
 
-#oruzgihbkg .gt_indent_5 {
+#tqnoreqosr .gt_indent_5 {
   text-indent: 25px;
 }
 
-#oruzgihbkg .katex-display {
+#tqnoreqosr .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#oruzgihbkg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#tqnoreqosr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -4818,23 +4821,23 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
 --- Sector Performance Summary ---</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="mlyglouklw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#mlyglouklw table {
+<div id="ymqdxncdqe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ymqdxncdqe table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#mlyglouklw thead, #mlyglouklw tbody, #mlyglouklw tfoot, #mlyglouklw tr, #mlyglouklw td, #mlyglouklw th {
+#ymqdxncdqe thead, #ymqdxncdqe tbody, #ymqdxncdqe tfoot, #ymqdxncdqe tr, #ymqdxncdqe td, #ymqdxncdqe th {
   border-style: none;
 }
 
-#mlyglouklw p {
+#ymqdxncdqe p {
   margin: 0;
   padding: 0;
 }
 
-#mlyglouklw .gt_table {
+#ymqdxncdqe .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -4860,12 +4863,12 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#mlyglouklw .gt_caption {
+#ymqdxncdqe .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#mlyglouklw .gt_title {
+#ymqdxncdqe .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -4877,7 +4880,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-width: 0;
 }
 
-#mlyglouklw .gt_subtitle {
+#ymqdxncdqe .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -4889,7 +4892,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-top-width: 0;
 }
 
-#mlyglouklw .gt_heading {
+#ymqdxncdqe .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -4901,13 +4904,13 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#mlyglouklw .gt_bottom_border {
+#ymqdxncdqe .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mlyglouklw .gt_col_headings {
+#ymqdxncdqe .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4922,7 +4925,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#mlyglouklw .gt_col_heading {
+#ymqdxncdqe .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4942,7 +4945,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   overflow-x: hidden;
 }
 
-#mlyglouklw .gt_column_spanner_outer {
+#ymqdxncdqe .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4954,15 +4957,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 4px;
 }
 
-#mlyglouklw .gt_column_spanner_outer:first-child {
+#ymqdxncdqe .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mlyglouklw .gt_column_spanner_outer:last-child {
+#ymqdxncdqe .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mlyglouklw .gt_column_spanner {
+#ymqdxncdqe .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -4974,11 +4977,11 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   width: 100%;
 }
 
-#mlyglouklw .gt_spanner_row {
+#ymqdxncdqe .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#mlyglouklw .gt_group_heading {
+#ymqdxncdqe .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5004,7 +5007,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   text-align: left;
 }
 
-#mlyglouklw .gt_empty_group_heading {
+#ymqdxncdqe .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -5019,15 +5022,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   vertical-align: middle;
 }
 
-#mlyglouklw .gt_from_md > :first-child {
+#ymqdxncdqe .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mlyglouklw .gt_from_md > :last-child {
+#ymqdxncdqe .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mlyglouklw .gt_row {
+#ymqdxncdqe .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5046,7 +5049,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   overflow-x: hidden;
 }
 
-#mlyglouklw .gt_stub {
+#ymqdxncdqe .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5059,7 +5062,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#mlyglouklw .gt_stub_row_group {
+#ymqdxncdqe .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5073,15 +5076,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   vertical-align: top;
 }
 
-#mlyglouklw .gt_row_group_first td {
+#ymqdxncdqe .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mlyglouklw .gt_row_group_first th {
+#ymqdxncdqe .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#mlyglouklw .gt_summary_row {
+#ymqdxncdqe .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -5091,16 +5094,16 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#mlyglouklw .gt_first_summary_row {
+#ymqdxncdqe .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mlyglouklw .gt_first_summary_row.thick {
+#ymqdxncdqe .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mlyglouklw .gt_last_summary_row {
+#ymqdxncdqe .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5110,7 +5113,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#mlyglouklw .gt_grand_summary_row {
+#ymqdxncdqe .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -5120,7 +5123,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#mlyglouklw .gt_first_grand_summary_row {
+#ymqdxncdqe .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5130,7 +5133,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#mlyglouklw .gt_last_grand_summary_row_top {
+#ymqdxncdqe .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5140,11 +5143,11 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#mlyglouklw .gt_striped {
+#ymqdxncdqe .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mlyglouklw .gt_table_body {
+#ymqdxncdqe .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -5153,7 +5156,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#mlyglouklw .gt_footnotes {
+#ymqdxncdqe .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -5167,7 +5170,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#mlyglouklw .gt_footnote {
+#ymqdxncdqe .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -5176,7 +5179,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#mlyglouklw .gt_sourcenotes {
+#ymqdxncdqe .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -5190,7 +5193,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#mlyglouklw .gt_sourcenote {
+#ymqdxncdqe .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -5198,72 +5201,72 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#mlyglouklw .gt_left {
+#ymqdxncdqe .gt_left {
   text-align: left;
 }
 
-#mlyglouklw .gt_center {
+#ymqdxncdqe .gt_center {
   text-align: center;
 }
 
-#mlyglouklw .gt_right {
+#ymqdxncdqe .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mlyglouklw .gt_font_normal {
+#ymqdxncdqe .gt_font_normal {
   font-weight: normal;
 }
 
-#mlyglouklw .gt_font_bold {
+#ymqdxncdqe .gt_font_bold {
   font-weight: bold;
 }
 
-#mlyglouklw .gt_font_italic {
+#ymqdxncdqe .gt_font_italic {
   font-style: italic;
 }
 
-#mlyglouklw .gt_super {
+#ymqdxncdqe .gt_super {
   font-size: 65%;
 }
 
-#mlyglouklw .gt_footnote_marks {
+#ymqdxncdqe .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#mlyglouklw .gt_asterisk {
+#ymqdxncdqe .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mlyglouklw .gt_indent_1 {
+#ymqdxncdqe .gt_indent_1 {
   text-indent: 5px;
 }
 
-#mlyglouklw .gt_indent_2 {
+#ymqdxncdqe .gt_indent_2 {
   text-indent: 10px;
 }
 
-#mlyglouklw .gt_indent_3 {
+#ymqdxncdqe .gt_indent_3 {
   text-indent: 15px;
 }
 
-#mlyglouklw .gt_indent_4 {
+#ymqdxncdqe .gt_indent_4 {
   text-indent: 20px;
 }
 
-#mlyglouklw .gt_indent_5 {
+#ymqdxncdqe .gt_indent_5 {
   text-indent: 25px;
 }
 
-#mlyglouklw .katex-display {
+#ymqdxncdqe .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#mlyglouklw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ymqdxncdqe div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -5579,23 +5582,23 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
 --- Top 15 Industries by Average RS Rating ---</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="botlnkeazy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#botlnkeazy table {
+<div id="vplwxuvomt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vplwxuvomt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#botlnkeazy thead, #botlnkeazy tbody, #botlnkeazy tfoot, #botlnkeazy tr, #botlnkeazy td, #botlnkeazy th {
+#vplwxuvomt thead, #vplwxuvomt tbody, #vplwxuvomt tfoot, #vplwxuvomt tr, #vplwxuvomt td, #vplwxuvomt th {
   border-style: none;
 }
 
-#botlnkeazy p {
+#vplwxuvomt p {
   margin: 0;
   padding: 0;
 }
 
-#botlnkeazy .gt_table {
+#vplwxuvomt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -5621,12 +5624,12 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#botlnkeazy .gt_caption {
+#vplwxuvomt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#botlnkeazy .gt_title {
+#vplwxuvomt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -5638,7 +5641,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-width: 0;
 }
 
-#botlnkeazy .gt_subtitle {
+#vplwxuvomt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -5650,7 +5653,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-top-width: 0;
 }
 
-#botlnkeazy .gt_heading {
+#vplwxuvomt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -5662,13 +5665,13 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#botlnkeazy .gt_bottom_border {
+#vplwxuvomt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#botlnkeazy .gt_col_headings {
+#vplwxuvomt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -5683,7 +5686,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#botlnkeazy .gt_col_heading {
+#vplwxuvomt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5703,7 +5706,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   overflow-x: hidden;
 }
 
-#botlnkeazy .gt_column_spanner_outer {
+#vplwxuvomt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5715,15 +5718,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 4px;
 }
 
-#botlnkeazy .gt_column_spanner_outer:first-child {
+#vplwxuvomt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#botlnkeazy .gt_column_spanner_outer:last-child {
+#vplwxuvomt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#botlnkeazy .gt_column_spanner {
+#vplwxuvomt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -5735,11 +5738,11 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   width: 100%;
 }
 
-#botlnkeazy .gt_spanner_row {
+#vplwxuvomt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#botlnkeazy .gt_group_heading {
+#vplwxuvomt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5765,7 +5768,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   text-align: left;
 }
 
-#botlnkeazy .gt_empty_group_heading {
+#vplwxuvomt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -5780,15 +5783,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   vertical-align: middle;
 }
 
-#botlnkeazy .gt_from_md > :first-child {
+#vplwxuvomt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#botlnkeazy .gt_from_md > :last-child {
+#vplwxuvomt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#botlnkeazy .gt_row {
+#vplwxuvomt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5807,7 +5810,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   overflow-x: hidden;
 }
 
-#botlnkeazy .gt_stub {
+#vplwxuvomt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5820,7 +5823,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#botlnkeazy .gt_stub_row_group {
+#vplwxuvomt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5834,15 +5837,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   vertical-align: top;
 }
 
-#botlnkeazy .gt_row_group_first td {
+#vplwxuvomt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#botlnkeazy .gt_row_group_first th {
+#vplwxuvomt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#botlnkeazy .gt_summary_row {
+#vplwxuvomt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -5852,16 +5855,16 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#botlnkeazy .gt_first_summary_row {
+#vplwxuvomt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#botlnkeazy .gt_first_summary_row.thick {
+#vplwxuvomt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#botlnkeazy .gt_last_summary_row {
+#vplwxuvomt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5871,7 +5874,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#botlnkeazy .gt_grand_summary_row {
+#vplwxuvomt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -5881,7 +5884,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#botlnkeazy .gt_first_grand_summary_row {
+#vplwxuvomt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5891,7 +5894,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#botlnkeazy .gt_last_grand_summary_row_top {
+#vplwxuvomt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5901,11 +5904,11 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#botlnkeazy .gt_striped {
+#vplwxuvomt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#botlnkeazy .gt_table_body {
+#vplwxuvomt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -5914,7 +5917,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#botlnkeazy .gt_footnotes {
+#vplwxuvomt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -5928,7 +5931,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#botlnkeazy .gt_footnote {
+#vplwxuvomt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -5937,7 +5940,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#botlnkeazy .gt_sourcenotes {
+#vplwxuvomt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -5951,7 +5954,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#botlnkeazy .gt_sourcenote {
+#vplwxuvomt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -5959,72 +5962,72 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#botlnkeazy .gt_left {
+#vplwxuvomt .gt_left {
   text-align: left;
 }
 
-#botlnkeazy .gt_center {
+#vplwxuvomt .gt_center {
   text-align: center;
 }
 
-#botlnkeazy .gt_right {
+#vplwxuvomt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#botlnkeazy .gt_font_normal {
+#vplwxuvomt .gt_font_normal {
   font-weight: normal;
 }
 
-#botlnkeazy .gt_font_bold {
+#vplwxuvomt .gt_font_bold {
   font-weight: bold;
 }
 
-#botlnkeazy .gt_font_italic {
+#vplwxuvomt .gt_font_italic {
   font-style: italic;
 }
 
-#botlnkeazy .gt_super {
+#vplwxuvomt .gt_super {
   font-size: 65%;
 }
 
-#botlnkeazy .gt_footnote_marks {
+#vplwxuvomt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#botlnkeazy .gt_asterisk {
+#vplwxuvomt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#botlnkeazy .gt_indent_1 {
+#vplwxuvomt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#botlnkeazy .gt_indent_2 {
+#vplwxuvomt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#botlnkeazy .gt_indent_3 {
+#vplwxuvomt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#botlnkeazy .gt_indent_4 {
+#vplwxuvomt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#botlnkeazy .gt_indent_5 {
+#vplwxuvomt .gt_indent_5 {
   text-indent: 25px;
 }
 
-#botlnkeazy .katex-display {
+#vplwxuvomt .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#botlnkeazy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#vplwxuvomt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -6165,23 +6168,23 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
 --- RS Rating Distribution ---</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="kjaaiodqwq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#kjaaiodqwq table {
+<div id="wglbsbsuft" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wglbsbsuft table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#kjaaiodqwq thead, #kjaaiodqwq tbody, #kjaaiodqwq tfoot, #kjaaiodqwq tr, #kjaaiodqwq td, #kjaaiodqwq th {
+#wglbsbsuft thead, #wglbsbsuft tbody, #wglbsbsuft tfoot, #wglbsbsuft tr, #wglbsbsuft td, #wglbsbsuft th {
   border-style: none;
 }
 
-#kjaaiodqwq p {
+#wglbsbsuft p {
   margin: 0;
   padding: 0;
 }
 
-#kjaaiodqwq .gt_table {
+#wglbsbsuft .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -6207,12 +6210,12 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#kjaaiodqwq .gt_caption {
+#wglbsbsuft .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#kjaaiodqwq .gt_title {
+#wglbsbsuft .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -6224,7 +6227,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-width: 0;
 }
 
-#kjaaiodqwq .gt_subtitle {
+#wglbsbsuft .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -6236,7 +6239,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-top-width: 0;
 }
 
-#kjaaiodqwq .gt_heading {
+#wglbsbsuft .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -6248,13 +6251,13 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#kjaaiodqwq .gt_bottom_border {
+#wglbsbsuft .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kjaaiodqwq .gt_col_headings {
+#wglbsbsuft .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -6269,7 +6272,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#kjaaiodqwq .gt_col_heading {
+#wglbsbsuft .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -6289,7 +6292,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   overflow-x: hidden;
 }
 
-#kjaaiodqwq .gt_column_spanner_outer {
+#wglbsbsuft .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -6301,15 +6304,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 4px;
 }
 
-#kjaaiodqwq .gt_column_spanner_outer:first-child {
+#wglbsbsuft .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kjaaiodqwq .gt_column_spanner_outer:last-child {
+#wglbsbsuft .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kjaaiodqwq .gt_column_spanner {
+#wglbsbsuft .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -6321,11 +6324,11 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   width: 100%;
 }
 
-#kjaaiodqwq .gt_spanner_row {
+#wglbsbsuft .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#kjaaiodqwq .gt_group_heading {
+#wglbsbsuft .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -6351,7 +6354,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   text-align: left;
 }
 
-#kjaaiodqwq .gt_empty_group_heading {
+#wglbsbsuft .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -6366,15 +6369,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   vertical-align: middle;
 }
 
-#kjaaiodqwq .gt_from_md > :first-child {
+#wglbsbsuft .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kjaaiodqwq .gt_from_md > :last-child {
+#wglbsbsuft .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kjaaiodqwq .gt_row {
+#wglbsbsuft .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -6393,7 +6396,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   overflow-x: hidden;
 }
 
-#kjaaiodqwq .gt_stub {
+#wglbsbsuft .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -6406,7 +6409,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#kjaaiodqwq .gt_stub_row_group {
+#wglbsbsuft .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -6420,15 +6423,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   vertical-align: top;
 }
 
-#kjaaiodqwq .gt_row_group_first td {
+#wglbsbsuft .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#kjaaiodqwq .gt_row_group_first th {
+#wglbsbsuft .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#kjaaiodqwq .gt_summary_row {
+#wglbsbsuft .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -6438,16 +6441,16 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#kjaaiodqwq .gt_first_summary_row {
+#wglbsbsuft .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#kjaaiodqwq .gt_first_summary_row.thick {
+#wglbsbsuft .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#kjaaiodqwq .gt_last_summary_row {
+#wglbsbsuft .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -6457,7 +6460,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#kjaaiodqwq .gt_grand_summary_row {
+#wglbsbsuft .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -6467,7 +6470,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#kjaaiodqwq .gt_first_grand_summary_row {
+#wglbsbsuft .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -6477,7 +6480,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#kjaaiodqwq .gt_last_grand_summary_row_top {
+#wglbsbsuft .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -6487,11 +6490,11 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#kjaaiodqwq .gt_striped {
+#wglbsbsuft .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kjaaiodqwq .gt_table_body {
+#wglbsbsuft .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -6500,7 +6503,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#kjaaiodqwq .gt_footnotes {
+#wglbsbsuft .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -6514,7 +6517,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#kjaaiodqwq .gt_footnote {
+#wglbsbsuft .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -6523,7 +6526,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#kjaaiodqwq .gt_sourcenotes {
+#wglbsbsuft .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -6537,7 +6540,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#kjaaiodqwq .gt_sourcenote {
+#wglbsbsuft .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -6545,72 +6548,72 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#kjaaiodqwq .gt_left {
+#wglbsbsuft .gt_left {
   text-align: left;
 }
 
-#kjaaiodqwq .gt_center {
+#wglbsbsuft .gt_center {
   text-align: center;
 }
 
-#kjaaiodqwq .gt_right {
+#wglbsbsuft .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kjaaiodqwq .gt_font_normal {
+#wglbsbsuft .gt_font_normal {
   font-weight: normal;
 }
 
-#kjaaiodqwq .gt_font_bold {
+#wglbsbsuft .gt_font_bold {
   font-weight: bold;
 }
 
-#kjaaiodqwq .gt_font_italic {
+#wglbsbsuft .gt_font_italic {
   font-style: italic;
 }
 
-#kjaaiodqwq .gt_super {
+#wglbsbsuft .gt_super {
   font-size: 65%;
 }
 
-#kjaaiodqwq .gt_footnote_marks {
+#wglbsbsuft .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#kjaaiodqwq .gt_asterisk {
+#wglbsbsuft .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#kjaaiodqwq .gt_indent_1 {
+#wglbsbsuft .gt_indent_1 {
   text-indent: 5px;
 }
 
-#kjaaiodqwq .gt_indent_2 {
+#wglbsbsuft .gt_indent_2 {
   text-indent: 10px;
 }
 
-#kjaaiodqwq .gt_indent_3 {
+#wglbsbsuft .gt_indent_3 {
   text-indent: 15px;
 }
 
-#kjaaiodqwq .gt_indent_4 {
+#wglbsbsuft .gt_indent_4 {
   text-indent: 20px;
 }
 
-#kjaaiodqwq .gt_indent_5 {
+#wglbsbsuft .gt_indent_5 {
   text-indent: 25px;
 }
 
-#kjaaiodqwq .katex-display {
+#wglbsbsuft .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#kjaaiodqwq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#wglbsbsuft div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -6647,23 +6650,23 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
 --- YTD Performance Statistics ---</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="lvprxyijeh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lvprxyijeh table {
+<div id="dfxwnxccpw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dfxwnxccpw table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lvprxyijeh thead, #lvprxyijeh tbody, #lvprxyijeh tfoot, #lvprxyijeh tr, #lvprxyijeh td, #lvprxyijeh th {
+#dfxwnxccpw thead, #dfxwnxccpw tbody, #dfxwnxccpw tfoot, #dfxwnxccpw tr, #dfxwnxccpw td, #dfxwnxccpw th {
   border-style: none;
 }
 
-#lvprxyijeh p {
+#dfxwnxccpw p {
   margin: 0;
   padding: 0;
 }
 
-#lvprxyijeh .gt_table {
+#dfxwnxccpw .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -6689,12 +6692,12 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#lvprxyijeh .gt_caption {
+#dfxwnxccpw .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lvprxyijeh .gt_title {
+#dfxwnxccpw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -6706,7 +6709,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-width: 0;
 }
 
-#lvprxyijeh .gt_subtitle {
+#dfxwnxccpw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -6718,7 +6721,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-top-width: 0;
 }
 
-#lvprxyijeh .gt_heading {
+#dfxwnxccpw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -6730,13 +6733,13 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#lvprxyijeh .gt_bottom_border {
+#dfxwnxccpw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lvprxyijeh .gt_col_headings {
+#dfxwnxccpw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -6751,7 +6754,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#lvprxyijeh .gt_col_heading {
+#dfxwnxccpw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -6771,7 +6774,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   overflow-x: hidden;
 }
 
-#lvprxyijeh .gt_column_spanner_outer {
+#dfxwnxccpw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -6783,15 +6786,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 4px;
 }
 
-#lvprxyijeh .gt_column_spanner_outer:first-child {
+#dfxwnxccpw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lvprxyijeh .gt_column_spanner_outer:last-child {
+#dfxwnxccpw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lvprxyijeh .gt_column_spanner {
+#dfxwnxccpw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -6803,11 +6806,11 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   width: 100%;
 }
 
-#lvprxyijeh .gt_spanner_row {
+#dfxwnxccpw .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lvprxyijeh .gt_group_heading {
+#dfxwnxccpw .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -6833,7 +6836,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   text-align: left;
 }
 
-#lvprxyijeh .gt_empty_group_heading {
+#dfxwnxccpw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -6848,15 +6851,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   vertical-align: middle;
 }
 
-#lvprxyijeh .gt_from_md > :first-child {
+#dfxwnxccpw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lvprxyijeh .gt_from_md > :last-child {
+#dfxwnxccpw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lvprxyijeh .gt_row {
+#dfxwnxccpw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -6875,7 +6878,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   overflow-x: hidden;
 }
 
-#lvprxyijeh .gt_stub {
+#dfxwnxccpw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -6888,7 +6891,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#lvprxyijeh .gt_stub_row_group {
+#dfxwnxccpw .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -6902,15 +6905,15 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   vertical-align: top;
 }
 
-#lvprxyijeh .gt_row_group_first td {
+#dfxwnxccpw .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lvprxyijeh .gt_row_group_first th {
+#dfxwnxccpw .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lvprxyijeh .gt_summary_row {
+#dfxwnxccpw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -6920,16 +6923,16 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#lvprxyijeh .gt_first_summary_row {
+#dfxwnxccpw .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lvprxyijeh .gt_first_summary_row.thick {
+#dfxwnxccpw .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lvprxyijeh .gt_last_summary_row {
+#dfxwnxccpw .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -6939,7 +6942,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#lvprxyijeh .gt_grand_summary_row {
+#dfxwnxccpw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -6949,7 +6952,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#lvprxyijeh .gt_first_grand_summary_row {
+#dfxwnxccpw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -6959,7 +6962,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#lvprxyijeh .gt_last_grand_summary_row_top {
+#dfxwnxccpw .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -6969,11 +6972,11 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#lvprxyijeh .gt_striped {
+#dfxwnxccpw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lvprxyijeh .gt_table_body {
+#dfxwnxccpw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -6982,7 +6985,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#lvprxyijeh .gt_footnotes {
+#dfxwnxccpw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -6996,7 +6999,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#lvprxyijeh .gt_footnote {
+#dfxwnxccpw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -7005,7 +7008,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#lvprxyijeh .gt_sourcenotes {
+#dfxwnxccpw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -7019,7 +7022,7 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#lvprxyijeh .gt_sourcenote {
+#dfxwnxccpw .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -7027,72 +7030,72 @@ Stocks after filtering (excluding ETFs): 1563</code></pre>
   padding-right: 5px;
 }
 
-#lvprxyijeh .gt_left {
+#dfxwnxccpw .gt_left {
   text-align: left;
 }
 
-#lvprxyijeh .gt_center {
+#dfxwnxccpw .gt_center {
   text-align: center;
 }
 
-#lvprxyijeh .gt_right {
+#dfxwnxccpw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lvprxyijeh .gt_font_normal {
+#dfxwnxccpw .gt_font_normal {
   font-weight: normal;
 }
 
-#lvprxyijeh .gt_font_bold {
+#dfxwnxccpw .gt_font_bold {
   font-weight: bold;
 }
 
-#lvprxyijeh .gt_font_italic {
+#dfxwnxccpw .gt_font_italic {
   font-style: italic;
 }
 
-#lvprxyijeh .gt_super {
+#dfxwnxccpw .gt_super {
   font-size: 65%;
 }
 
-#lvprxyijeh .gt_footnote_marks {
+#dfxwnxccpw .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lvprxyijeh .gt_asterisk {
+#dfxwnxccpw .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lvprxyijeh .gt_indent_1 {
+#dfxwnxccpw .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lvprxyijeh .gt_indent_2 {
+#dfxwnxccpw .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lvprxyijeh .gt_indent_3 {
+#dfxwnxccpw .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lvprxyijeh .gt_indent_4 {
+#dfxwnxccpw .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lvprxyijeh .gt_indent_5 {
+#dfxwnxccpw .gt_indent_5 {
   text-indent: 25px;
 }
 
-#lvprxyijeh .katex-display {
+#dfxwnxccpw .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#lvprxyijeh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#dfxwnxccpw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -7157,23 +7160,23 @@ ROE             0.013 1.000
 --- Market Cap Distribution ---</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="pnnwyslidi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#pnnwyslidi table {
+<div id="yikxsebhqn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yikxsebhqn table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#pnnwyslidi thead, #pnnwyslidi tbody, #pnnwyslidi tfoot, #pnnwyslidi tr, #pnnwyslidi td, #pnnwyslidi th {
+#yikxsebhqn thead, #yikxsebhqn tbody, #yikxsebhqn tfoot, #yikxsebhqn tr, #yikxsebhqn td, #yikxsebhqn th {
   border-style: none;
 }
 
-#pnnwyslidi p {
+#yikxsebhqn p {
   margin: 0;
   padding: 0;
 }
 
-#pnnwyslidi .gt_table {
+#yikxsebhqn .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -7199,12 +7202,12 @@ ROE             0.013 1.000
   border-left-color: #D3D3D3;
 }
 
-#pnnwyslidi .gt_caption {
+#yikxsebhqn .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#pnnwyslidi .gt_title {
+#yikxsebhqn .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -7216,7 +7219,7 @@ ROE             0.013 1.000
   border-bottom-width: 0;
 }
 
-#pnnwyslidi .gt_subtitle {
+#yikxsebhqn .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -7228,7 +7231,7 @@ ROE             0.013 1.000
   border-top-width: 0;
 }
 
-#pnnwyslidi .gt_heading {
+#yikxsebhqn .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -7240,13 +7243,13 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#pnnwyslidi .gt_bottom_border {
+#yikxsebhqn .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pnnwyslidi .gt_col_headings {
+#yikxsebhqn .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -7261,7 +7264,7 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#pnnwyslidi .gt_col_heading {
+#yikxsebhqn .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7281,7 +7284,7 @@ ROE             0.013 1.000
   overflow-x: hidden;
 }
 
-#pnnwyslidi .gt_column_spanner_outer {
+#yikxsebhqn .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7293,15 +7296,15 @@ ROE             0.013 1.000
   padding-right: 4px;
 }
 
-#pnnwyslidi .gt_column_spanner_outer:first-child {
+#yikxsebhqn .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pnnwyslidi .gt_column_spanner_outer:last-child {
+#yikxsebhqn .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pnnwyslidi .gt_column_spanner {
+#yikxsebhqn .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -7313,11 +7316,11 @@ ROE             0.013 1.000
   width: 100%;
 }
 
-#pnnwyslidi .gt_spanner_row {
+#yikxsebhqn .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#pnnwyslidi .gt_group_heading {
+#yikxsebhqn .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7343,7 +7346,7 @@ ROE             0.013 1.000
   text-align: left;
 }
 
-#pnnwyslidi .gt_empty_group_heading {
+#yikxsebhqn .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -7358,15 +7361,15 @@ ROE             0.013 1.000
   vertical-align: middle;
 }
 
-#pnnwyslidi .gt_from_md > :first-child {
+#yikxsebhqn .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pnnwyslidi .gt_from_md > :last-child {
+#yikxsebhqn .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pnnwyslidi .gt_row {
+#yikxsebhqn .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7385,7 +7388,7 @@ ROE             0.013 1.000
   overflow-x: hidden;
 }
 
-#pnnwyslidi .gt_stub {
+#yikxsebhqn .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7398,7 +7401,7 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#pnnwyslidi .gt_stub_row_group {
+#yikxsebhqn .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7412,15 +7415,15 @@ ROE             0.013 1.000
   vertical-align: top;
 }
 
-#pnnwyslidi .gt_row_group_first td {
+#yikxsebhqn .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pnnwyslidi .gt_row_group_first th {
+#yikxsebhqn .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#pnnwyslidi .gt_summary_row {
+#yikxsebhqn .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -7430,16 +7433,16 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#pnnwyslidi .gt_first_summary_row {
+#yikxsebhqn .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pnnwyslidi .gt_first_summary_row.thick {
+#yikxsebhqn .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pnnwyslidi .gt_last_summary_row {
+#yikxsebhqn .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7449,7 +7452,7 @@ ROE             0.013 1.000
   border-bottom-color: #D3D3D3;
 }
 
-#pnnwyslidi .gt_grand_summary_row {
+#yikxsebhqn .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -7459,7 +7462,7 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#pnnwyslidi .gt_first_grand_summary_row {
+#yikxsebhqn .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7469,7 +7472,7 @@ ROE             0.013 1.000
   border-top-color: #D3D3D3;
 }
 
-#pnnwyslidi .gt_last_grand_summary_row_top {
+#yikxsebhqn .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7479,11 +7482,11 @@ ROE             0.013 1.000
   border-bottom-color: #D3D3D3;
 }
 
-#pnnwyslidi .gt_striped {
+#yikxsebhqn .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pnnwyslidi .gt_table_body {
+#yikxsebhqn .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -7492,7 +7495,7 @@ ROE             0.013 1.000
   border-bottom-color: #D3D3D3;
 }
 
-#pnnwyslidi .gt_footnotes {
+#yikxsebhqn .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -7506,7 +7509,7 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#pnnwyslidi .gt_footnote {
+#yikxsebhqn .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -7515,7 +7518,7 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#pnnwyslidi .gt_sourcenotes {
+#yikxsebhqn .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -7529,7 +7532,7 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#pnnwyslidi .gt_sourcenote {
+#yikxsebhqn .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -7537,72 +7540,72 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#pnnwyslidi .gt_left {
+#yikxsebhqn .gt_left {
   text-align: left;
 }
 
-#pnnwyslidi .gt_center {
+#yikxsebhqn .gt_center {
   text-align: center;
 }
 
-#pnnwyslidi .gt_right {
+#yikxsebhqn .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pnnwyslidi .gt_font_normal {
+#yikxsebhqn .gt_font_normal {
   font-weight: normal;
 }
 
-#pnnwyslidi .gt_font_bold {
+#yikxsebhqn .gt_font_bold {
   font-weight: bold;
 }
 
-#pnnwyslidi .gt_font_italic {
+#yikxsebhqn .gt_font_italic {
   font-style: italic;
 }
 
-#pnnwyslidi .gt_super {
+#yikxsebhqn .gt_super {
   font-size: 65%;
 }
 
-#pnnwyslidi .gt_footnote_marks {
+#yikxsebhqn .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#pnnwyslidi .gt_asterisk {
+#yikxsebhqn .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pnnwyslidi .gt_indent_1 {
+#yikxsebhqn .gt_indent_1 {
   text-indent: 5px;
 }
 
-#pnnwyslidi .gt_indent_2 {
+#yikxsebhqn .gt_indent_2 {
   text-indent: 10px;
 }
 
-#pnnwyslidi .gt_indent_3 {
+#yikxsebhqn .gt_indent_3 {
   text-indent: 15px;
 }
 
-#pnnwyslidi .gt_indent_4 {
+#yikxsebhqn .gt_indent_4 {
   text-indent: 20px;
 }
 
-#pnnwyslidi .gt_indent_5 {
+#yikxsebhqn .gt_indent_5 {
   text-indent: 25px;
 }
 
-#pnnwyslidi .katex-display {
+#yikxsebhqn .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#pnnwyslidi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#yikxsebhqn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -7666,23 +7669,23 @@ ROE             0.013 1.000
 --- Stocks with EPS Acceleration (3 Quarters) ---</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="iahdjmobze" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#iahdjmobze table {
+<div id="jcaxwrnmox" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jcaxwrnmox table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#iahdjmobze thead, #iahdjmobze tbody, #iahdjmobze tfoot, #iahdjmobze tr, #iahdjmobze td, #iahdjmobze th {
+#jcaxwrnmox thead, #jcaxwrnmox tbody, #jcaxwrnmox tfoot, #jcaxwrnmox tr, #jcaxwrnmox td, #jcaxwrnmox th {
   border-style: none;
 }
 
-#iahdjmobze p {
+#jcaxwrnmox p {
   margin: 0;
   padding: 0;
 }
 
-#iahdjmobze .gt_table {
+#jcaxwrnmox .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -7708,12 +7711,12 @@ ROE             0.013 1.000
   border-left-color: #D3D3D3;
 }
 
-#iahdjmobze .gt_caption {
+#jcaxwrnmox .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#iahdjmobze .gt_title {
+#jcaxwrnmox .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -7725,7 +7728,7 @@ ROE             0.013 1.000
   border-bottom-width: 0;
 }
 
-#iahdjmobze .gt_subtitle {
+#jcaxwrnmox .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -7737,7 +7740,7 @@ ROE             0.013 1.000
   border-top-width: 0;
 }
 
-#iahdjmobze .gt_heading {
+#jcaxwrnmox .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -7749,13 +7752,13 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#iahdjmobze .gt_bottom_border {
+#jcaxwrnmox .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#iahdjmobze .gt_col_headings {
+#jcaxwrnmox .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -7770,7 +7773,7 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#iahdjmobze .gt_col_heading {
+#jcaxwrnmox .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7790,7 +7793,7 @@ ROE             0.013 1.000
   overflow-x: hidden;
 }
 
-#iahdjmobze .gt_column_spanner_outer {
+#jcaxwrnmox .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7802,15 +7805,15 @@ ROE             0.013 1.000
   padding-right: 4px;
 }
 
-#iahdjmobze .gt_column_spanner_outer:first-child {
+#jcaxwrnmox .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#iahdjmobze .gt_column_spanner_outer:last-child {
+#jcaxwrnmox .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#iahdjmobze .gt_column_spanner {
+#jcaxwrnmox .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -7822,11 +7825,11 @@ ROE             0.013 1.000
   width: 100%;
 }
 
-#iahdjmobze .gt_spanner_row {
+#jcaxwrnmox .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#iahdjmobze .gt_group_heading {
+#jcaxwrnmox .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7852,7 +7855,7 @@ ROE             0.013 1.000
   text-align: left;
 }
 
-#iahdjmobze .gt_empty_group_heading {
+#jcaxwrnmox .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -7867,15 +7870,15 @@ ROE             0.013 1.000
   vertical-align: middle;
 }
 
-#iahdjmobze .gt_from_md > :first-child {
+#jcaxwrnmox .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#iahdjmobze .gt_from_md > :last-child {
+#jcaxwrnmox .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#iahdjmobze .gt_row {
+#jcaxwrnmox .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7894,7 +7897,7 @@ ROE             0.013 1.000
   overflow-x: hidden;
 }
 
-#iahdjmobze .gt_stub {
+#jcaxwrnmox .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7907,7 +7910,7 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#iahdjmobze .gt_stub_row_group {
+#jcaxwrnmox .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7921,15 +7924,15 @@ ROE             0.013 1.000
   vertical-align: top;
 }
 
-#iahdjmobze .gt_row_group_first td {
+#jcaxwrnmox .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#iahdjmobze .gt_row_group_first th {
+#jcaxwrnmox .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#iahdjmobze .gt_summary_row {
+#jcaxwrnmox .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -7939,16 +7942,16 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#iahdjmobze .gt_first_summary_row {
+#jcaxwrnmox .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#iahdjmobze .gt_first_summary_row.thick {
+#jcaxwrnmox .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#iahdjmobze .gt_last_summary_row {
+#jcaxwrnmox .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7958,7 +7961,7 @@ ROE             0.013 1.000
   border-bottom-color: #D3D3D3;
 }
 
-#iahdjmobze .gt_grand_summary_row {
+#jcaxwrnmox .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -7968,7 +7971,7 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#iahdjmobze .gt_first_grand_summary_row {
+#jcaxwrnmox .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7978,7 +7981,7 @@ ROE             0.013 1.000
   border-top-color: #D3D3D3;
 }
 
-#iahdjmobze .gt_last_grand_summary_row_top {
+#jcaxwrnmox .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7988,11 +7991,11 @@ ROE             0.013 1.000
   border-bottom-color: #D3D3D3;
 }
 
-#iahdjmobze .gt_striped {
+#jcaxwrnmox .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#iahdjmobze .gt_table_body {
+#jcaxwrnmox .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -8001,7 +8004,7 @@ ROE             0.013 1.000
   border-bottom-color: #D3D3D3;
 }
 
-#iahdjmobze .gt_footnotes {
+#jcaxwrnmox .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -8015,7 +8018,7 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#iahdjmobze .gt_footnote {
+#jcaxwrnmox .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -8024,7 +8027,7 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#iahdjmobze .gt_sourcenotes {
+#jcaxwrnmox .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -8038,7 +8041,7 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#iahdjmobze .gt_sourcenote {
+#jcaxwrnmox .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -8046,72 +8049,72 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#iahdjmobze .gt_left {
+#jcaxwrnmox .gt_left {
   text-align: left;
 }
 
-#iahdjmobze .gt_center {
+#jcaxwrnmox .gt_center {
   text-align: center;
 }
 
-#iahdjmobze .gt_right {
+#jcaxwrnmox .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#iahdjmobze .gt_font_normal {
+#jcaxwrnmox .gt_font_normal {
   font-weight: normal;
 }
 
-#iahdjmobze .gt_font_bold {
+#jcaxwrnmox .gt_font_bold {
   font-weight: bold;
 }
 
-#iahdjmobze .gt_font_italic {
+#jcaxwrnmox .gt_font_italic {
   font-style: italic;
 }
 
-#iahdjmobze .gt_super {
+#jcaxwrnmox .gt_super {
   font-size: 65%;
 }
 
-#iahdjmobze .gt_footnote_marks {
+#jcaxwrnmox .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#iahdjmobze .gt_asterisk {
+#jcaxwrnmox .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#iahdjmobze .gt_indent_1 {
+#jcaxwrnmox .gt_indent_1 {
   text-indent: 5px;
 }
 
-#iahdjmobze .gt_indent_2 {
+#jcaxwrnmox .gt_indent_2 {
   text-indent: 10px;
 }
 
-#iahdjmobze .gt_indent_3 {
+#jcaxwrnmox .gt_indent_3 {
   text-indent: 15px;
 }
 
-#iahdjmobze .gt_indent_4 {
+#jcaxwrnmox .gt_indent_4 {
   text-indent: 20px;
 }
 
-#iahdjmobze .gt_indent_5 {
+#jcaxwrnmox .gt_indent_5 {
   text-indent: 25px;
 }
 
-#iahdjmobze .katex-display {
+#jcaxwrnmox .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#iahdjmobze div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#jcaxwrnmox div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -8319,23 +8322,23 @@ ROE             0.013 1.000
 --- Top 15 Institutional Favorites (High Fund %) ---</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="mugbostivx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#mugbostivx table {
+<div id="fjdhonjwye" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fjdhonjwye table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#mugbostivx thead, #mugbostivx tbody, #mugbostivx tfoot, #mugbostivx tr, #mugbostivx td, #mugbostivx th {
+#fjdhonjwye thead, #fjdhonjwye tbody, #fjdhonjwye tfoot, #fjdhonjwye tr, #fjdhonjwye td, #fjdhonjwye th {
   border-style: none;
 }
 
-#mugbostivx p {
+#fjdhonjwye p {
   margin: 0;
   padding: 0;
 }
 
-#mugbostivx .gt_table {
+#fjdhonjwye .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -8361,12 +8364,12 @@ ROE             0.013 1.000
   border-left-color: #D3D3D3;
 }
 
-#mugbostivx .gt_caption {
+#fjdhonjwye .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#mugbostivx .gt_title {
+#fjdhonjwye .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -8378,7 +8381,7 @@ ROE             0.013 1.000
   border-bottom-width: 0;
 }
 
-#mugbostivx .gt_subtitle {
+#fjdhonjwye .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -8390,7 +8393,7 @@ ROE             0.013 1.000
   border-top-width: 0;
 }
 
-#mugbostivx .gt_heading {
+#fjdhonjwye .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -8402,13 +8405,13 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#mugbostivx .gt_bottom_border {
+#fjdhonjwye .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mugbostivx .gt_col_headings {
+#fjdhonjwye .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -8423,7 +8426,7 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#mugbostivx .gt_col_heading {
+#fjdhonjwye .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -8443,7 +8446,7 @@ ROE             0.013 1.000
   overflow-x: hidden;
 }
 
-#mugbostivx .gt_column_spanner_outer {
+#fjdhonjwye .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -8455,15 +8458,15 @@ ROE             0.013 1.000
   padding-right: 4px;
 }
 
-#mugbostivx .gt_column_spanner_outer:first-child {
+#fjdhonjwye .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mugbostivx .gt_column_spanner_outer:last-child {
+#fjdhonjwye .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mugbostivx .gt_column_spanner {
+#fjdhonjwye .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -8475,11 +8478,11 @@ ROE             0.013 1.000
   width: 100%;
 }
 
-#mugbostivx .gt_spanner_row {
+#fjdhonjwye .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#mugbostivx .gt_group_heading {
+#fjdhonjwye .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8505,7 +8508,7 @@ ROE             0.013 1.000
   text-align: left;
 }
 
-#mugbostivx .gt_empty_group_heading {
+#fjdhonjwye .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -8520,15 +8523,15 @@ ROE             0.013 1.000
   vertical-align: middle;
 }
 
-#mugbostivx .gt_from_md > :first-child {
+#fjdhonjwye .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mugbostivx .gt_from_md > :last-child {
+#fjdhonjwye .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mugbostivx .gt_row {
+#fjdhonjwye .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8547,7 +8550,7 @@ ROE             0.013 1.000
   overflow-x: hidden;
 }
 
-#mugbostivx .gt_stub {
+#fjdhonjwye .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -8560,7 +8563,7 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#mugbostivx .gt_stub_row_group {
+#fjdhonjwye .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -8574,15 +8577,15 @@ ROE             0.013 1.000
   vertical-align: top;
 }
 
-#mugbostivx .gt_row_group_first td {
+#fjdhonjwye .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mugbostivx .gt_row_group_first th {
+#fjdhonjwye .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#mugbostivx .gt_summary_row {
+#fjdhonjwye .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -8592,16 +8595,16 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#mugbostivx .gt_first_summary_row {
+#fjdhonjwye .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mugbostivx .gt_first_summary_row.thick {
+#fjdhonjwye .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mugbostivx .gt_last_summary_row {
+#fjdhonjwye .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8611,7 +8614,7 @@ ROE             0.013 1.000
   border-bottom-color: #D3D3D3;
 }
 
-#mugbostivx .gt_grand_summary_row {
+#fjdhonjwye .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -8621,7 +8624,7 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#mugbostivx .gt_first_grand_summary_row {
+#fjdhonjwye .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8631,7 +8634,7 @@ ROE             0.013 1.000
   border-top-color: #D3D3D3;
 }
 
-#mugbostivx .gt_last_grand_summary_row_top {
+#fjdhonjwye .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8641,11 +8644,11 @@ ROE             0.013 1.000
   border-bottom-color: #D3D3D3;
 }
 
-#mugbostivx .gt_striped {
+#fjdhonjwye .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mugbostivx .gt_table_body {
+#fjdhonjwye .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -8654,7 +8657,7 @@ ROE             0.013 1.000
   border-bottom-color: #D3D3D3;
 }
 
-#mugbostivx .gt_footnotes {
+#fjdhonjwye .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -8668,7 +8671,7 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#mugbostivx .gt_footnote {
+#fjdhonjwye .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -8677,7 +8680,7 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#mugbostivx .gt_sourcenotes {
+#fjdhonjwye .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -8691,7 +8694,7 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#mugbostivx .gt_sourcenote {
+#fjdhonjwye .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -8699,72 +8702,72 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#mugbostivx .gt_left {
+#fjdhonjwye .gt_left {
   text-align: left;
 }
 
-#mugbostivx .gt_center {
+#fjdhonjwye .gt_center {
   text-align: center;
 }
 
-#mugbostivx .gt_right {
+#fjdhonjwye .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mugbostivx .gt_font_normal {
+#fjdhonjwye .gt_font_normal {
   font-weight: normal;
 }
 
-#mugbostivx .gt_font_bold {
+#fjdhonjwye .gt_font_bold {
   font-weight: bold;
 }
 
-#mugbostivx .gt_font_italic {
+#fjdhonjwye .gt_font_italic {
   font-style: italic;
 }
 
-#mugbostivx .gt_super {
+#fjdhonjwye .gt_super {
   font-size: 65%;
 }
 
-#mugbostivx .gt_footnote_marks {
+#fjdhonjwye .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#mugbostivx .gt_asterisk {
+#fjdhonjwye .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mugbostivx .gt_indent_1 {
+#fjdhonjwye .gt_indent_1 {
   text-indent: 5px;
 }
 
-#mugbostivx .gt_indent_2 {
+#fjdhonjwye .gt_indent_2 {
   text-indent: 10px;
 }
 
-#mugbostivx .gt_indent_3 {
+#fjdhonjwye .gt_indent_3 {
   text-indent: 15px;
 }
 
-#mugbostivx .gt_indent_4 {
+#fjdhonjwye .gt_indent_4 {
   text-indent: 20px;
 }
 
-#mugbostivx .gt_indent_5 {
+#fjdhonjwye .gt_indent_5 {
   text-indent: 25px;
 }
 
-#mugbostivx .katex-display {
+#fjdhonjwye .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#mugbostivx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#fjdhonjwye div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -8927,23 +8930,23 @@ ROE             0.013 1.000
 --- Top 15 Stocks by Return on Equity (ROE) ---</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="vdgjyyfsjy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vdgjyyfsjy table {
+<div id="gjdobfzarq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gjdobfzarq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vdgjyyfsjy thead, #vdgjyyfsjy tbody, #vdgjyyfsjy tfoot, #vdgjyyfsjy tr, #vdgjyyfsjy td, #vdgjyyfsjy th {
+#gjdobfzarq thead, #gjdobfzarq tbody, #gjdobfzarq tfoot, #gjdobfzarq tr, #gjdobfzarq td, #gjdobfzarq th {
   border-style: none;
 }
 
-#vdgjyyfsjy p {
+#gjdobfzarq p {
   margin: 0;
   padding: 0;
 }
 
-#vdgjyyfsjy .gt_table {
+#gjdobfzarq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -8969,12 +8972,12 @@ ROE             0.013 1.000
   border-left-color: #D3D3D3;
 }
 
-#vdgjyyfsjy .gt_caption {
+#gjdobfzarq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vdgjyyfsjy .gt_title {
+#gjdobfzarq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -8986,7 +8989,7 @@ ROE             0.013 1.000
   border-bottom-width: 0;
 }
 
-#vdgjyyfsjy .gt_subtitle {
+#gjdobfzarq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -8998,7 +9001,7 @@ ROE             0.013 1.000
   border-top-width: 0;
 }
 
-#vdgjyyfsjy .gt_heading {
+#gjdobfzarq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -9010,13 +9013,13 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#vdgjyyfsjy .gt_bottom_border {
+#gjdobfzarq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vdgjyyfsjy .gt_col_headings {
+#gjdobfzarq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -9031,7 +9034,7 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#vdgjyyfsjy .gt_col_heading {
+#gjdobfzarq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -9051,7 +9054,7 @@ ROE             0.013 1.000
   overflow-x: hidden;
 }
 
-#vdgjyyfsjy .gt_column_spanner_outer {
+#gjdobfzarq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -9063,15 +9066,15 @@ ROE             0.013 1.000
   padding-right: 4px;
 }
 
-#vdgjyyfsjy .gt_column_spanner_outer:first-child {
+#gjdobfzarq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vdgjyyfsjy .gt_column_spanner_outer:last-child {
+#gjdobfzarq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vdgjyyfsjy .gt_column_spanner {
+#gjdobfzarq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -9083,11 +9086,11 @@ ROE             0.013 1.000
   width: 100%;
 }
 
-#vdgjyyfsjy .gt_spanner_row {
+#gjdobfzarq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vdgjyyfsjy .gt_group_heading {
+#gjdobfzarq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -9113,7 +9116,7 @@ ROE             0.013 1.000
   text-align: left;
 }
 
-#vdgjyyfsjy .gt_empty_group_heading {
+#gjdobfzarq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -9128,15 +9131,15 @@ ROE             0.013 1.000
   vertical-align: middle;
 }
 
-#vdgjyyfsjy .gt_from_md > :first-child {
+#gjdobfzarq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vdgjyyfsjy .gt_from_md > :last-child {
+#gjdobfzarq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vdgjyyfsjy .gt_row {
+#gjdobfzarq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -9155,7 +9158,7 @@ ROE             0.013 1.000
   overflow-x: hidden;
 }
 
-#vdgjyyfsjy .gt_stub {
+#gjdobfzarq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -9168,7 +9171,7 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#vdgjyyfsjy .gt_stub_row_group {
+#gjdobfzarq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -9182,15 +9185,15 @@ ROE             0.013 1.000
   vertical-align: top;
 }
 
-#vdgjyyfsjy .gt_row_group_first td {
+#gjdobfzarq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vdgjyyfsjy .gt_row_group_first th {
+#gjdobfzarq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vdgjyyfsjy .gt_summary_row {
+#gjdobfzarq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -9200,16 +9203,16 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#vdgjyyfsjy .gt_first_summary_row {
+#gjdobfzarq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vdgjyyfsjy .gt_first_summary_row.thick {
+#gjdobfzarq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vdgjyyfsjy .gt_last_summary_row {
+#gjdobfzarq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -9219,7 +9222,7 @@ ROE             0.013 1.000
   border-bottom-color: #D3D3D3;
 }
 
-#vdgjyyfsjy .gt_grand_summary_row {
+#gjdobfzarq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -9229,7 +9232,7 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#vdgjyyfsjy .gt_first_grand_summary_row {
+#gjdobfzarq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -9239,7 +9242,7 @@ ROE             0.013 1.000
   border-top-color: #D3D3D3;
 }
 
-#vdgjyyfsjy .gt_last_grand_summary_row_top {
+#gjdobfzarq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -9249,11 +9252,11 @@ ROE             0.013 1.000
   border-bottom-color: #D3D3D3;
 }
 
-#vdgjyyfsjy .gt_striped {
+#gjdobfzarq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vdgjyyfsjy .gt_table_body {
+#gjdobfzarq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -9262,7 +9265,7 @@ ROE             0.013 1.000
   border-bottom-color: #D3D3D3;
 }
 
-#vdgjyyfsjy .gt_footnotes {
+#gjdobfzarq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -9276,7 +9279,7 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#vdgjyyfsjy .gt_footnote {
+#gjdobfzarq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -9285,7 +9288,7 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#vdgjyyfsjy .gt_sourcenotes {
+#gjdobfzarq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -9299,7 +9302,7 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#vdgjyyfsjy .gt_sourcenote {
+#gjdobfzarq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -9307,72 +9310,72 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#vdgjyyfsjy .gt_left {
+#gjdobfzarq .gt_left {
   text-align: left;
 }
 
-#vdgjyyfsjy .gt_center {
+#gjdobfzarq .gt_center {
   text-align: center;
 }
 
-#vdgjyyfsjy .gt_right {
+#gjdobfzarq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vdgjyyfsjy .gt_font_normal {
+#gjdobfzarq .gt_font_normal {
   font-weight: normal;
 }
 
-#vdgjyyfsjy .gt_font_bold {
+#gjdobfzarq .gt_font_bold {
   font-weight: bold;
 }
 
-#vdgjyyfsjy .gt_font_italic {
+#gjdobfzarq .gt_font_italic {
   font-style: italic;
 }
 
-#vdgjyyfsjy .gt_super {
+#gjdobfzarq .gt_super {
   font-size: 65%;
 }
 
-#vdgjyyfsjy .gt_footnote_marks {
+#gjdobfzarq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vdgjyyfsjy .gt_asterisk {
+#gjdobfzarq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vdgjyyfsjy .gt_indent_1 {
+#gjdobfzarq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vdgjyyfsjy .gt_indent_2 {
+#gjdobfzarq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vdgjyyfsjy .gt_indent_3 {
+#gjdobfzarq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vdgjyyfsjy .gt_indent_4 {
+#gjdobfzarq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vdgjyyfsjy .gt_indent_5 {
+#gjdobfzarq .gt_indent_5 {
   text-indent: 25px;
 }
 
-#vdgjyyfsjy .katex-display {
+#gjdobfzarq .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#vdgjyyfsjy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#gjdobfzarq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -9535,23 +9538,23 @@ ROE             0.013 1.000
 --- Breakout Candidates (Within 5% of New High) ---</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="pvizmkxpwa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#pvizmkxpwa table {
+<div id="jcgemroqer" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jcgemroqer table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#pvizmkxpwa thead, #pvizmkxpwa tbody, #pvizmkxpwa tfoot, #pvizmkxpwa tr, #pvizmkxpwa td, #pvizmkxpwa th {
+#jcgemroqer thead, #jcgemroqer tbody, #jcgemroqer tfoot, #jcgemroqer tr, #jcgemroqer td, #jcgemroqer th {
   border-style: none;
 }
 
-#pvizmkxpwa p {
+#jcgemroqer p {
   margin: 0;
   padding: 0;
 }
 
-#pvizmkxpwa .gt_table {
+#jcgemroqer .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -9577,12 +9580,12 @@ ROE             0.013 1.000
   border-left-color: #D3D3D3;
 }
 
-#pvizmkxpwa .gt_caption {
+#jcgemroqer .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#pvizmkxpwa .gt_title {
+#jcgemroqer .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -9594,7 +9597,7 @@ ROE             0.013 1.000
   border-bottom-width: 0;
 }
 
-#pvizmkxpwa .gt_subtitle {
+#jcgemroqer .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -9606,7 +9609,7 @@ ROE             0.013 1.000
   border-top-width: 0;
 }
 
-#pvizmkxpwa .gt_heading {
+#jcgemroqer .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -9618,13 +9621,13 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#pvizmkxpwa .gt_bottom_border {
+#jcgemroqer .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pvizmkxpwa .gt_col_headings {
+#jcgemroqer .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -9639,7 +9642,7 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#pvizmkxpwa .gt_col_heading {
+#jcgemroqer .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -9659,7 +9662,7 @@ ROE             0.013 1.000
   overflow-x: hidden;
 }
 
-#pvizmkxpwa .gt_column_spanner_outer {
+#jcgemroqer .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -9671,15 +9674,15 @@ ROE             0.013 1.000
   padding-right: 4px;
 }
 
-#pvizmkxpwa .gt_column_spanner_outer:first-child {
+#jcgemroqer .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pvizmkxpwa .gt_column_spanner_outer:last-child {
+#jcgemroqer .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pvizmkxpwa .gt_column_spanner {
+#jcgemroqer .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -9691,11 +9694,11 @@ ROE             0.013 1.000
   width: 100%;
 }
 
-#pvizmkxpwa .gt_spanner_row {
+#jcgemroqer .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#pvizmkxpwa .gt_group_heading {
+#jcgemroqer .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -9721,7 +9724,7 @@ ROE             0.013 1.000
   text-align: left;
 }
 
-#pvizmkxpwa .gt_empty_group_heading {
+#jcgemroqer .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -9736,15 +9739,15 @@ ROE             0.013 1.000
   vertical-align: middle;
 }
 
-#pvizmkxpwa .gt_from_md > :first-child {
+#jcgemroqer .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pvizmkxpwa .gt_from_md > :last-child {
+#jcgemroqer .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pvizmkxpwa .gt_row {
+#jcgemroqer .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -9763,7 +9766,7 @@ ROE             0.013 1.000
   overflow-x: hidden;
 }
 
-#pvizmkxpwa .gt_stub {
+#jcgemroqer .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -9776,7 +9779,7 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#pvizmkxpwa .gt_stub_row_group {
+#jcgemroqer .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -9790,15 +9793,15 @@ ROE             0.013 1.000
   vertical-align: top;
 }
 
-#pvizmkxpwa .gt_row_group_first td {
+#jcgemroqer .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pvizmkxpwa .gt_row_group_first th {
+#jcgemroqer .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#pvizmkxpwa .gt_summary_row {
+#jcgemroqer .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -9808,16 +9811,16 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#pvizmkxpwa .gt_first_summary_row {
+#jcgemroqer .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pvizmkxpwa .gt_first_summary_row.thick {
+#jcgemroqer .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pvizmkxpwa .gt_last_summary_row {
+#jcgemroqer .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -9827,7 +9830,7 @@ ROE             0.013 1.000
   border-bottom-color: #D3D3D3;
 }
 
-#pvizmkxpwa .gt_grand_summary_row {
+#jcgemroqer .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -9837,7 +9840,7 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#pvizmkxpwa .gt_first_grand_summary_row {
+#jcgemroqer .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -9847,7 +9850,7 @@ ROE             0.013 1.000
   border-top-color: #D3D3D3;
 }
 
-#pvizmkxpwa .gt_last_grand_summary_row_top {
+#jcgemroqer .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -9857,11 +9860,11 @@ ROE             0.013 1.000
   border-bottom-color: #D3D3D3;
 }
 
-#pvizmkxpwa .gt_striped {
+#jcgemroqer .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pvizmkxpwa .gt_table_body {
+#jcgemroqer .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -9870,7 +9873,7 @@ ROE             0.013 1.000
   border-bottom-color: #D3D3D3;
 }
 
-#pvizmkxpwa .gt_footnotes {
+#jcgemroqer .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -9884,7 +9887,7 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#pvizmkxpwa .gt_footnote {
+#jcgemroqer .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -9893,7 +9896,7 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#pvizmkxpwa .gt_sourcenotes {
+#jcgemroqer .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -9907,7 +9910,7 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#pvizmkxpwa .gt_sourcenote {
+#jcgemroqer .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -9915,72 +9918,72 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#pvizmkxpwa .gt_left {
+#jcgemroqer .gt_left {
   text-align: left;
 }
 
-#pvizmkxpwa .gt_center {
+#jcgemroqer .gt_center {
   text-align: center;
 }
 
-#pvizmkxpwa .gt_right {
+#jcgemroqer .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pvizmkxpwa .gt_font_normal {
+#jcgemroqer .gt_font_normal {
   font-weight: normal;
 }
 
-#pvizmkxpwa .gt_font_bold {
+#jcgemroqer .gt_font_bold {
   font-weight: bold;
 }
 
-#pvizmkxpwa .gt_font_italic {
+#jcgemroqer .gt_font_italic {
   font-style: italic;
 }
 
-#pvizmkxpwa .gt_super {
+#jcgemroqer .gt_super {
   font-size: 65%;
 }
 
-#pvizmkxpwa .gt_footnote_marks {
+#jcgemroqer .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#pvizmkxpwa .gt_asterisk {
+#jcgemroqer .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pvizmkxpwa .gt_indent_1 {
+#jcgemroqer .gt_indent_1 {
   text-indent: 5px;
 }
 
-#pvizmkxpwa .gt_indent_2 {
+#jcgemroqer .gt_indent_2 {
   text-indent: 10px;
 }
 
-#pvizmkxpwa .gt_indent_3 {
+#jcgemroqer .gt_indent_3 {
   text-indent: 15px;
 }
 
-#pvizmkxpwa .gt_indent_4 {
+#jcgemroqer .gt_indent_4 {
   text-indent: 20px;
 }
 
-#pvizmkxpwa .gt_indent_5 {
+#jcgemroqer .gt_indent_5 {
   text-indent: 25px;
 }
 
-#pvizmkxpwa .katex-display {
+#jcgemroqer .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#pvizmkxpwa div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#jcgemroqer div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -10188,23 +10191,23 @@ ROE             0.013 1.000
 --- Sector Distribution of Elite Stocks (RS &gt;= 90) ---</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="mwhwwgwlac" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#mwhwwgwlac table {
+<div id="lngyhhogfw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lngyhhogfw table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#mwhwwgwlac thead, #mwhwwgwlac tbody, #mwhwwgwlac tfoot, #mwhwwgwlac tr, #mwhwwgwlac td, #mwhwwgwlac th {
+#lngyhhogfw thead, #lngyhhogfw tbody, #lngyhhogfw tfoot, #lngyhhogfw tr, #lngyhhogfw td, #lngyhhogfw th {
   border-style: none;
 }
 
-#mwhwwgwlac p {
+#lngyhhogfw p {
   margin: 0;
   padding: 0;
 }
 
-#mwhwwgwlac .gt_table {
+#lngyhhogfw .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -10230,12 +10233,12 @@ ROE             0.013 1.000
   border-left-color: #D3D3D3;
 }
 
-#mwhwwgwlac .gt_caption {
+#lngyhhogfw .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#mwhwwgwlac .gt_title {
+#lngyhhogfw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -10247,7 +10250,7 @@ ROE             0.013 1.000
   border-bottom-width: 0;
 }
 
-#mwhwwgwlac .gt_subtitle {
+#lngyhhogfw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -10259,7 +10262,7 @@ ROE             0.013 1.000
   border-top-width: 0;
 }
 
-#mwhwwgwlac .gt_heading {
+#lngyhhogfw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -10271,13 +10274,13 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#mwhwwgwlac .gt_bottom_border {
+#lngyhhogfw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mwhwwgwlac .gt_col_headings {
+#lngyhhogfw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -10292,7 +10295,7 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#mwhwwgwlac .gt_col_heading {
+#lngyhhogfw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -10312,7 +10315,7 @@ ROE             0.013 1.000
   overflow-x: hidden;
 }
 
-#mwhwwgwlac .gt_column_spanner_outer {
+#lngyhhogfw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -10324,15 +10327,15 @@ ROE             0.013 1.000
   padding-right: 4px;
 }
 
-#mwhwwgwlac .gt_column_spanner_outer:first-child {
+#lngyhhogfw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mwhwwgwlac .gt_column_spanner_outer:last-child {
+#lngyhhogfw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mwhwwgwlac .gt_column_spanner {
+#lngyhhogfw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -10344,11 +10347,11 @@ ROE             0.013 1.000
   width: 100%;
 }
 
-#mwhwwgwlac .gt_spanner_row {
+#lngyhhogfw .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#mwhwwgwlac .gt_group_heading {
+#lngyhhogfw .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -10374,7 +10377,7 @@ ROE             0.013 1.000
   text-align: left;
 }
 
-#mwhwwgwlac .gt_empty_group_heading {
+#lngyhhogfw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -10389,15 +10392,15 @@ ROE             0.013 1.000
   vertical-align: middle;
 }
 
-#mwhwwgwlac .gt_from_md > :first-child {
+#lngyhhogfw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mwhwwgwlac .gt_from_md > :last-child {
+#lngyhhogfw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mwhwwgwlac .gt_row {
+#lngyhhogfw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -10416,7 +10419,7 @@ ROE             0.013 1.000
   overflow-x: hidden;
 }
 
-#mwhwwgwlac .gt_stub {
+#lngyhhogfw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -10429,7 +10432,7 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#mwhwwgwlac .gt_stub_row_group {
+#lngyhhogfw .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -10443,15 +10446,15 @@ ROE             0.013 1.000
   vertical-align: top;
 }
 
-#mwhwwgwlac .gt_row_group_first td {
+#lngyhhogfw .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mwhwwgwlac .gt_row_group_first th {
+#lngyhhogfw .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#mwhwwgwlac .gt_summary_row {
+#lngyhhogfw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -10461,16 +10464,16 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#mwhwwgwlac .gt_first_summary_row {
+#lngyhhogfw .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mwhwwgwlac .gt_first_summary_row.thick {
+#lngyhhogfw .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mwhwwgwlac .gt_last_summary_row {
+#lngyhhogfw .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -10480,7 +10483,7 @@ ROE             0.013 1.000
   border-bottom-color: #D3D3D3;
 }
 
-#mwhwwgwlac .gt_grand_summary_row {
+#lngyhhogfw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -10490,7 +10493,7 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#mwhwwgwlac .gt_first_grand_summary_row {
+#lngyhhogfw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -10500,7 +10503,7 @@ ROE             0.013 1.000
   border-top-color: #D3D3D3;
 }
 
-#mwhwwgwlac .gt_last_grand_summary_row_top {
+#lngyhhogfw .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -10510,11 +10513,11 @@ ROE             0.013 1.000
   border-bottom-color: #D3D3D3;
 }
 
-#mwhwwgwlac .gt_striped {
+#lngyhhogfw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mwhwwgwlac .gt_table_body {
+#lngyhhogfw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -10523,7 +10526,7 @@ ROE             0.013 1.000
   border-bottom-color: #D3D3D3;
 }
 
-#mwhwwgwlac .gt_footnotes {
+#lngyhhogfw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -10537,7 +10540,7 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#mwhwwgwlac .gt_footnote {
+#lngyhhogfw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -10546,7 +10549,7 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#mwhwwgwlac .gt_sourcenotes {
+#lngyhhogfw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -10560,7 +10563,7 @@ ROE             0.013 1.000
   border-right-color: #D3D3D3;
 }
 
-#mwhwwgwlac .gt_sourcenote {
+#lngyhhogfw .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -10568,72 +10571,72 @@ ROE             0.013 1.000
   padding-right: 5px;
 }
 
-#mwhwwgwlac .gt_left {
+#lngyhhogfw .gt_left {
   text-align: left;
 }
 
-#mwhwwgwlac .gt_center {
+#lngyhhogfw .gt_center {
   text-align: center;
 }
 
-#mwhwwgwlac .gt_right {
+#lngyhhogfw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mwhwwgwlac .gt_font_normal {
+#lngyhhogfw .gt_font_normal {
   font-weight: normal;
 }
 
-#mwhwwgwlac .gt_font_bold {
+#lngyhhogfw .gt_font_bold {
   font-weight: bold;
 }
 
-#mwhwwgwlac .gt_font_italic {
+#lngyhhogfw .gt_font_italic {
   font-style: italic;
 }
 
-#mwhwwgwlac .gt_super {
+#lngyhhogfw .gt_super {
   font-size: 65%;
 }
 
-#mwhwwgwlac .gt_footnote_marks {
+#lngyhhogfw .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#mwhwwgwlac .gt_asterisk {
+#lngyhhogfw .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mwhwwgwlac .gt_indent_1 {
+#lngyhhogfw .gt_indent_1 {
   text-indent: 5px;
 }
 
-#mwhwwgwlac .gt_indent_2 {
+#lngyhhogfw .gt_indent_2 {
   text-indent: 10px;
 }
 
-#mwhwwgwlac .gt_indent_3 {
+#lngyhhogfw .gt_indent_3 {
   text-indent: 15px;
 }
 
-#mwhwwgwlac .gt_indent_4 {
+#lngyhhogfw .gt_indent_4 {
   text-indent: 20px;
 }
 
-#mwhwwgwlac .gt_indent_5 {
+#lngyhhogfw .gt_indent_5 {
   text-indent: 25px;
 }
 
-#mwhwwgwlac .katex-display {
+#lngyhhogfw .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#mwhwwgwlac div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#lngyhhogfw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
