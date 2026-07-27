@@ -29,6 +29,8 @@ jobs:
             any::gridExtra
             any::readr
             any::tidyverse
+            any::DT
+            any::scales
 
       - name: Check out repository
         uses: actions/checkout@v4
