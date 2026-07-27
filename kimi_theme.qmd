@@ -1,0 +1,241 @@
+# ============================================================================
+# STOCK SCREENER — Pullback to 10SMA Setup
+# Add this chunk to your .qmd file as a new tab
+# ============================================================================
+
+# --- 1. LOAD LIBRARIES -------------------------------------------------------
+library(tidyverse)
+library(DT)
+library(gt)
+library(scales)
+
+# --- 2. LOAD DATA ------------------------------------------------------------
+# Adjust path if your qmd is in a different location relative to data/
+universe <- read_csv("data/Universe.csv", show_col_types = FALSE)
+
+# --- 3. CLEAN & TYPE-CAST ----------------------------------------------------
+universe <- universe %>%
+  mutate(
+    `RS Rating` = as.numeric(`RS Rating`),
+    `RS 3-Month Rating` = as.numeric(`RS 3-Month Rating`),
+    `RS 6-Month Rating` = as.numeric(`RS 6-Month Rating`),
+    `Comp Rating` = as.numeric(`Comp Rating`),
+    `Price vs 21-Day` = as.numeric(`Price vs 21-Day`),
+    `Price vs 50-Day` = as.numeric(`Price vs 50-Day`),
+    `Price vs 200-Day` = as.numeric(`Price vs 200-Day`),
+    `Price vs 10-Day` = as.numeric(`Price vs 10-Day`),
+    `Price vs 150-Day` = as.numeric(`Price vs 150-Day`),
+    `% Off High` = as.numeric(`% Off High`),
+    `% Chg 3 Months` = as.numeric(`% Chg 3 Months`),
+    `% Chg 6 Months` = as.numeric(`% Chg 6 Months`),
+    `% Chg YTD` = as.numeric(`% Chg YTD`),
+    `EPS Rating` = as.numeric(`EPS Rating`),
+    `EPS % Chg Last Qtr` = as.numeric(`EPS % Chg Last Qtr`),
+    `EPS Est Cur Yr %` = as.numeric(`EPS Est Cur Yr %`),
+    `Market Cap (mil)` = as.numeric(`Market Cap (mil)`),
+    `Volume (1000s)` = as.numeric(`Volume (1000s)`),
+    `50-Day Avg Vol (1000s)` = as.numeric(`50-Day Avg Vol (1000s)`),
+    `Weekly Closing Range` = as.numeric(`Weekly Closing Range`),
+    `Ind Group Rank` = as.numeric(`Ind Group Rank`),
+    `52-Wk High` = as.numeric(`52-Wk High`),
+    `Current Price` = as.numeric(`Current Price`)
+  )
+
+# --- 4. SECTOR THEME ANALYSIS (Hot Sectors) ----------------------------------
+sector_theme <- universe %>%
+  filter(Sector != "ETF/ETN/CEF", !is.na(Sector)) %>%
+  group_by(Sector) %>%
+  summarise(
+    Count = n(),
+    Avg_RS_3M = round(mean(`RS 3-Month Rating`, na.rm = TRUE), 1),
+    Avg_RS_6M = round(mean(`RS 6-Month Rating`, na.rm = TRUE), 1),
+    Avg_3M_Chg = round(mean(`% Chg 3 Months`, na.rm = TRUE), 1),
+    Avg_YTD_Chg = round(mean(`% Chg YTD`, na.rm = TRUE), 1),
+    Avg_vs200D = round(mean(`Price vs 200-Day`, na.rm = TRUE), 1),
+    .groups = "drop"
+  ) %>%
+  arrange(desc(Avg_RS_3M))
+
+# --- 5. BASE FILTERS (Non-Negotiable) ----------------------------------------
+base_filtered <- universe %>%
+  filter(
+    Sector != "ETF/ETN/CEF",
+    !is.na(Sector),
+    `Price vs 21-Day` > 0,
+    `Price vs 50-Day` > 0,
+    `Price vs 200-Day` > 0,
+    `10 Day > 21 Day > 50 Day` == "Yes",
+    `50-Day > 150-Day > 200-Day` == "Yes",
+    `RS Rating` >= 80,
+    `RS 3-Month Rating` >= 75,
+    `Comp Rating` >= 80,
+    `% Chg 3 Months` > 10,
+    `% Chg 6 Months` > 10,
+    `% Off High` > -15,
+    `% Off High` < -1,
+    `A/D Rating` %in% c("A+", "A", "A-", "B+", "B"),
+    `Weekly Closing Range` >= 40,
+    `EPS Rating` >= 70,
+    `Market Cap (mil)` > 300
+  )
+
+# --- 6. PULLBACK TO 10SMA CONDITIONS -----------------------------------------
+# Condition A: Pullback to 10SMA after 20-day high (RS line near new high)
+condition_a <- base_filtered %>%
+  filter(
+    `Price vs 10-Day` >= -3.0,
+    `Price vs 10-Day` <= 2.0,
+    `Price vs 21-Day` > 2.0,
+    (`RS Line New High` == "Yes" | `RS Line Within 5% of New High` == "Yes")
+  ) %>%
+  mutate(Setup = "A: PB to 10SMA after 20D High")
+
+# Condition B: Pullback to 10SMA after 50% rally in last 3 months
+condition_b <- base_filtered %>%
+  filter(
+    `Price vs 10-Day` >= -3.0,
+    `Price vs 10-Day` <= 2.0,
+    `% Chg 3 Months` >= 50,
+    `Price vs 50-Day` > 10
+  ) %>%
+  mutate(Setup = "B: PB to 10SMA after 50% 3M Rally")
+
+# Combine both setups
+screened <- bind_rows(condition_a, condition_b) %>%
+  distinct(Symbol, .keep_all = TRUE) %>%
+  mutate(
+    Setup = ifelse(
+      Symbol %in% intersect(condition_a$Symbol, condition_b$Symbol),
+      "A + B: Both Setups",
+      Setup
+    )
+  ) %>%
+  arrange(desc(`RS Rating`), desc(`Comp Rating`))
+
+# --- 7. ADD THEME / SECTOR STRENGTH RANKING ----------------------------------
+screened <- screened %>%
+  left_join(
+    sector_theme %>% select(Sector, Sector_RS_3M = Avg_RS_3M),
+    by = "Sector"
+  ) %>%
+  mutate(
+    Theme_Score = case_when(
+      Sector_RS_3M >= 65 ~ "Hot",
+      Sector_RS_3M >= 55 ~ "Warm",
+      Sector_RS_3M >= 45 ~ "Neutral",
+      TRUE ~ "Cold"
+    )
+  ) %>%
+  arrange(desc(Sector_RS_3M), desc(`RS Rating`))
+
+# --- 8. OUTPUT TABLES ---------------------------------------------------------
+
+## 8a. Sector Theme Overview
+cat("\n### Hot Sectors / Themes\n")
+sector_theme %>%
+  gt() %>%
+  tab_header(title = "Sector Momentum Rankings") %>%
+  fmt_number(columns = c(Avg_RS_3M, Avg_RS_6M, Avg_3M_Chg, Avg_YTD_Chg, Avg_vs200D), decimals = 1) %>%
+  data_color(
+    columns = Avg_RS_3M,
+    colors = scales::col_numeric(
+      palette = c("#d73027", "#fc8d59", "#fee08b", "#d9ef8b", "#91cf60", "#1a9850"),
+      domain = c(0, 80)
+    )
+  )
+
+## 8b. Screened Results — Summary
+cat("\n### Screened Stocks: Pullback to 10SMA Setups\n")
+cat(paste0("Total stocks passing all filters: **", nrow(screened), "**\n\n"))
+
+if (nrow(screened) > 0) {
+  
+  # Summary by Sector
+  summary_by_sector <- screened %>%
+    group_by(Sector, Theme_Score) %>%
+    summarise(
+      Count = n(),
+      Avg_RS = round(mean(`RS Rating`), 1),
+      Avg_Comp = round(mean(`Comp Rating`), 1),
+      Top_Symbol = Symbol[which.max(`RS Rating`)],
+      .groups = "drop"
+    ) %>%
+    arrange(desc(Count))
+  
+  summary_by_sector %>%
+    gt() %>%
+    tab_header(title = "Setup Distribution by Sector") %>%
+    fmt_number(columns = c(Avg_RS, Avg_Comp), decimals = 1)
+  
+  # Detailed Results Table
+  cat("\n### Detailed Stock List\n")
+  
+  detailed <- screened %>%
+    select(
+      Symbol, Name, Sector, `Industry Name`, Setup, Theme_Score,
+      `RS Rating`, `RS 3-Month Rating`, `Comp Rating`,
+      `Current Price`, `Price vs 10-Day`, `Price vs 21-Day`,
+      `Price vs 50-Day`, `Price vs 200-Day`, `% Off High`,
+      `% Chg 3 Months`, `% Chg 6 Months`, `% Chg YTD`,
+      `EPS Rating`, `EPS % Chg Last Qtr`, `EPS Est Cur Yr %`,
+      `A/D Rating`, `Market Cap (mil)`, `Volume (1000s)`,
+      `Ind Group Rank`, `RS Line New High`
+    ) %>%
+    arrange(desc(`RS Rating`))
+  
+  detailed %>%
+    mutate(
+      `Market Cap (mil)` = round(`Market Cap (mil)` / 1000, 1),
+      `Volume (1000s)` = comma(`Volume (1000s)`)
+    ) %>%
+    rename(`Mkt Cap (B)` = `Market Cap (mil)`) %>%
+    gt() %>%
+    tab_header(
+      title = "Pullback to 10SMA — High RS + Momentum Setups",
+      subtitle = paste0("Data as of: ", unique(universe$timestamp))
+    ) %>%
+    fmt_number(
+      columns = c(`RS Rating`, `RS 3-Month Rating`, `Comp Rating`, `EPS Rating`,
+                  `Price vs 10-Day`, `Price vs 21-Day`, `Price vs 50-Day`, `Price vs 200-Day`,
+                  `% Off High`, `% Chg 3 Months`, `% Chg 6 Months`, `% Chg YTD`,
+                  `EPS % Chg Last Qtr`, `EPS Est Cur Yr %`, `Ind Group Rank`),
+      decimals = 1
+    ) %>%
+    fmt_currency(columns = `Current Price`, decimals = 2) %>%
+    data_color(
+      columns = `RS Rating`,
+      colors = scales::col_numeric(
+        palette = c("#d73027", "#fc8d59", "#fee08b", "#d9ef8b", "#91cf60", "#1a9850"),
+        domain = c(70, 99)
+      )
+    ) %>%
+    data_color(
+      columns = `% Chg 3 Months`,
+      colors = scales::col_numeric(
+        palette = c("#d73027", "#fc8d59", "#fee08b", "#d9ef8b", "#91cf60", "#1a9850"),
+        domain = c(0, 100)
+      )
+    ) %>%
+    tab_options(
+      table.font.size = px(12),
+      data_row.padding = px(4)
+    )
+    
+} else {
+  cat("**No stocks passed all filters.** Consider loosening:\n")
+  cat("- Lower RS Rating threshold to 75\n")
+  cat("- Widen `% Off High` to -20\n")
+  cat("- Reduce `% Chg 3 Months` to 5\n")
+  cat("- Allow A/D Rating down to 'C+'\n")
+}
+
+# --- 9. INTERACTIVE DATATABLE (Optional — for HTML output) -------------------
+# screened %>%
+#   select(Symbol, Name, Sector, Setup, `RS Rating`, `Comp Rating`,
+#          `Current Price`, `% Chg 3 Months`, `% Off High`) %>%
+#   datatable(
+#     options = list(pageLength = 25, scrollX = TRUE),
+#     caption = "Pullback to 10SMA Setups"
+#   ) %>%
+#   formatPercentage("% Chg 3 Months", digits = 1) %>%
+#   formatCurrency("Current Price", digits = 2)
