@@ -28,6 +28,7 @@ jobs:
             any::corrplot
             any::gridExtra
             any::readr
+            any::tidyverse
 
       - name: Check out repository
         uses: actions/checkout@v4
