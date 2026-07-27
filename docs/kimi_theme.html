@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>kimi_theme – universe-report</title>
+<title>universe-report</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -73,36 +73,17 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="site_libs/datatables-binding-0.34.0/datatables.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -151,154 +132,1740 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">============================================================================</a></li>
-  <li><a href="#stock-screener-pullback-to-10sma-setup" id="toc-stock-screener-pullback-to-10sma-setup" class="nav-link" data-scroll-target="#stock-screener-pullback-to-10sma-setup">STOCK SCREENER — Pullback to 10SMA Setup</a></li>
-  <li><a href="#add-this-chunk-to-your-.qmd-file-as-a-new-tab" id="toc-add-this-chunk-to-your-.qmd-file-as-a-new-tab" class="nav-link" data-scroll-target="#add-this-chunk-to-your-.qmd-file-as-a-new-tab">Add this chunk to your .qmd file as a new tab</a></li>
-  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">============================================================================</a></li>
-  <li><a href="#load-libraries--" id="toc-load-libraries--" class="nav-link" data-scroll-target="#load-libraries--">— 1. LOAD LIBRARIES ——————————————————-</a></li>
-  <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data">— 2. LOAD DATA ————————————————————</a></li>
-  <li><a href="#adjust-path-if-your-qmd-is-in-a-different-location-relative-to-data" id="toc-adjust-path-if-your-qmd-is-in-a-different-location-relative-to-data" class="nav-link" data-scroll-target="#adjust-path-if-your-qmd-is-in-a-different-location-relative-to-data">Adjust path if your qmd is in a different location relative to data/</a></li>
-  <li><a href="#clean-type-cast--" id="toc-clean-type-cast--" class="nav-link" data-scroll-target="#clean-type-cast--">— 3. CLEAN &amp; TYPE-CAST —————————————————-</a></li>
-  <li><a href="#sector-theme-analysis-hot-sectors--" id="toc-sector-theme-analysis-hot-sectors--" class="nav-link" data-scroll-target="#sector-theme-analysis-hot-sectors--">— 4. SECTOR THEME ANALYSIS (Hot Sectors) ———————————-</a></li>
-  <li><a href="#base-filters-non-negotiable--" id="toc-base-filters-non-negotiable--" class="nav-link" data-scroll-target="#base-filters-non-negotiable--">— 5. BASE FILTERS (Non-Negotiable) —————————————-</a></li>
-  <li><a href="#pullback-to-10sma-conditions" id="toc-pullback-to-10sma-conditions" class="nav-link" data-scroll-target="#pullback-to-10sma-conditions">— 6. PULLBACK TO 10SMA CONDITIONS —————————————–</a></li>
-  <li><a href="#condition-a-pullback-to-10sma-after-20-day-high-rs-line-near-new-high" id="toc-condition-a-pullback-to-10sma-after-20-day-high-rs-line-near-new-high" class="nav-link" data-scroll-target="#condition-a-pullback-to-10sma-after-20-day-high-rs-line-near-new-high">Condition A: Pullback to 10SMA after 20-day high (RS line near new high)</a></li>
-  <li><a href="#condition-b-pullback-to-10sma-after-50-rally-in-last-3-months" id="toc-condition-b-pullback-to-10sma-after-50-rally-in-last-3-months" class="nav-link" data-scroll-target="#condition-b-pullback-to-10sma-after-50-rally-in-last-3-months">Condition B: Pullback to 10SMA after 50% rally in last 3 months</a></li>
-  <li><a href="#combine-both-setups" id="toc-combine-both-setups" class="nav-link" data-scroll-target="#combine-both-setups">Combine both setups</a></li>
-  <li><a href="#add-theme-sector-strength-ranking--" id="toc-add-theme-sector-strength-ranking--" class="nav-link" data-scroll-target="#add-theme-sector-strength-ranking--">— 7. ADD THEME / SECTOR STRENGTH RANKING ———————————-</a></li>
-  <li><a href="#output-tables" id="toc-output-tables" class="nav-link" data-scroll-target="#output-tables">— 8. OUTPUT TABLES ———————————————————</a>
-  <ul class="collapse">
-  <li><a href="#a.-sector-theme-overview" id="toc-a.-sector-theme-overview" class="nav-link" data-scroll-target="#a.-sector-theme-overview">8a. Sector Theme Overview</a></li>
-  <li><a href="#b.-screened-results-summary" id="toc-b.-screened-results-summary" class="nav-link" data-scroll-target="#b.-screened-results-summary">8b. Screened Results — Summary</a></li>
-  </ul></li>
-  <li><a href="#interactive-datatable-optional-for-html-output--" id="toc-interactive-datatable-optional-for-html-output--" class="nav-link" data-scroll-target="#interactive-datatable-optional-for-html-output--">— 9. INTERACTIVE DATATABLE (Optional — for HTML output) ——————-</a></li>
-  <li><a href="#screened" id="toc-screened" class="nav-link" data-scroll-target="#screened">screened %&gt;%</a></li>
-  <li><a href="#selectsymbol-name-sector-setup-rs-rating-comp-rating" id="toc-selectsymbol-name-sector-setup-rs-rating-comp-rating" class="nav-link" data-scroll-target="#selectsymbol-name-sector-setup-rs-rating-comp-rating">select(Symbol, Name, Sector, Setup, <code>RS Rating</code>, <code>Comp Rating</code>,</a></li>
-  <li><a href="#current-price-chg-3-months-off-high" id="toc-current-price-chg-3-months-off-high" class="nav-link" data-scroll-target="#current-price-chg-3-months-off-high"><code>Current Price</code>, <code>% Chg 3 Months</code>, <code>% Off High</code>) %&gt;%</a></li>
-  <li><a href="#datatable" id="toc-datatable" class="nav-link" data-scroll-target="#datatable">datatable(</a></li>
-  <li><a href="#options-listpagelength-25-scrollx-true" id="toc-options-listpagelength-25-scrollx-true" class="nav-link" data-scroll-target="#options-listpagelength-25-scrollx-true">options = list(pageLength = 25, scrollX = TRUE),</a></li>
-  <li><a href="#caption-pullback-to-10sma-setups" id="toc-caption-pullback-to-10sma-setups" class="nav-link" data-scroll-target="#caption-pullback-to-10sma-setups">caption = “Pullback to 10SMA Setups”</a></li>
-  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">) %&gt;%</a></li>
-  <li><a href="#formatpercentage-chg-3-months-digits-1" id="toc-formatpercentage-chg-3-months-digits-1" class="nav-link" data-scroll-target="#formatpercentage-chg-3-months-digits-1">formatPercentage(“% Chg 3 Months”, digits = 1) %&gt;%</a></li>
-  <li><a href="#formatcurrencycurrent-price-digits-2" id="toc-formatcurrencycurrent-price-digits-2" class="nav-link" data-scroll-target="#formatcurrencycurrent-price-digits-2">formatCurrency(“Current Price”, digits = 2)</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">universe-report</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="section" class="level1">
-<h1>============================================================================</h1>
-</section>
-<section id="stock-screener-pullback-to-10sma-setup" class="level1">
-<h1>STOCK SCREENER — Pullback to 10SMA Setup</h1>
-</section>
-<section id="add-this-chunk-to-your-.qmd-file-as-a-new-tab" class="level1">
-<h1>Add this chunk to your .qmd file as a new tab</h1>
-</section>
-<section id="section-1" class="level1">
-<h1>============================================================================</h1>
-</section>
-<section id="load-libraries--" class="level1">
-<h1>— 1. LOAD LIBRARIES ——————————————————-</h1>
-<p>library(tidyverse) library(DT) library(gt) library(scales)</p>
-</section>
-<section id="load-data" class="level1">
-<h1>— 2. LOAD DATA ————————————————————</h1>
-</section>
-<section id="adjust-path-if-your-qmd-is-in-a-different-location-relative-to-data" class="level1">
-<h1>Adjust path if your qmd is in a different location relative to data/</h1>
-<p>universe &lt;- read_csv(“data/Universe.csv”, show_col_types = FALSE)</p>
-</section>
-<section id="clean-type-cast--" class="level1">
-<h1>— 3. CLEAN &amp; TYPE-CAST —————————————————-</h1>
-<p>universe &lt;- universe %&gt;% mutate( <code>RS Rating</code> = as.numeric(<code>RS Rating</code>), <code>RS 3-Month Rating</code> = as.numeric(<code>RS 3-Month Rating</code>), <code>RS 6-Month Rating</code> = as.numeric(<code>RS 6-Month Rating</code>), <code>Comp Rating</code> = as.numeric(<code>Comp Rating</code>), <code>Price vs 21-Day</code> = as.numeric(<code>Price vs 21-Day</code>), <code>Price vs 50-Day</code> = as.numeric(<code>Price vs 50-Day</code>), <code>Price vs 200-Day</code> = as.numeric(<code>Price vs 200-Day</code>), <code>Price vs 10-Day</code> = as.numeric(<code>Price vs 10-Day</code>), <code>Price vs 150-Day</code> = as.numeric(<code>Price vs 150-Day</code>), <code>% Off High</code> = as.numeric(<code>% Off High</code>), <code>% Chg 3 Months</code> = as.numeric(<code>% Chg 3 Months</code>), <code>% Chg 6 Months</code> = as.numeric(<code>% Chg 6 Months</code>), <code>% Chg YTD</code> = as.numeric(<code>% Chg YTD</code>), <code>EPS Rating</code> = as.numeric(<code>EPS Rating</code>), <code>EPS % Chg Last Qtr</code> = as.numeric(<code>EPS % Chg Last Qtr</code>), <code>EPS Est Cur Yr %</code> = as.numeric(<code>EPS Est Cur Yr %</code>), <code>Market Cap (mil)</code> = as.numeric(<code>Market Cap (mil)</code>), <code>Volume (1000s)</code> = as.numeric(<code>Volume (1000s)</code>), <code>50-Day Avg Vol (1000s)</code> = as.numeric(<code>50-Day Avg Vol (1000s)</code>), <code>Weekly Closing Range</code> = as.numeric(<code>Weekly Closing Range</code>), <code>Ind Group Rank</code> = as.numeric(<code>Ind Group Rank</code>), <code>52-Wk High</code> = as.numeric(<code>52-Wk High</code>), <code>Current Price</code> = as.numeric(<code>Current Price</code>) )</p>
-</section>
-<section id="sector-theme-analysis-hot-sectors--" class="level1">
-<h1>— 4. SECTOR THEME ANALYSIS (Hot Sectors) ———————————-</h1>
-<p>sector_theme &lt;- universe %&gt;% filter(Sector != “ETF/ETN/CEF”, !is.na(Sector)) %&gt;% group_by(Sector) %&gt;% summarise( Count = n(), Avg_RS_3M = round(mean(<code>RS 3-Month Rating</code>, na.rm = TRUE), 1), Avg_RS_6M = round(mean(<code>RS 6-Month Rating</code>, na.rm = TRUE), 1), Avg_3M_Chg = round(mean(<code>% Chg 3 Months</code>, na.rm = TRUE), 1), Avg_YTD_Chg = round(mean(<code>% Chg YTD</code>, na.rm = TRUE), 1), Avg_vs200D = round(mean(<code>Price vs 200-Day</code>, na.rm = TRUE), 1), .groups = “drop” ) %&gt;% arrange(desc(Avg_RS_3M))</p>
-</section>
-<section id="base-filters-non-negotiable--" class="level1">
-<h1>— 5. BASE FILTERS (Non-Negotiable) —————————————-</h1>
-<p>base_filtered &lt;- universe %&gt;% filter( Sector != “ETF/ETN/CEF”, !is.na(Sector), <code>Price vs 21-Day</code> &gt; 0, <code>Price vs 50-Day</code> &gt; 0, <code>Price vs 200-Day</code> &gt; 0, <code>10 Day &gt; 21 Day &gt; 50 Day</code> == “Yes”, <code>50-Day &gt; 150-Day &gt; 200-Day</code> == “Yes”, <code>RS Rating</code> &gt;= 80, <code>RS 3-Month Rating</code> &gt;= 75, <code>Comp Rating</code> &gt;= 80, <code>% Chg 3 Months</code> &gt; 10, <code>% Chg 6 Months</code> &gt; 10, <code>% Off High</code> &gt; -15, <code>% Off High</code> &lt; -1, <code>A/D Rating</code> %in% c(“A+”, “A”, “A-”, “B+”, “B”), <code>Weekly Closing Range</code> &gt;= 40, <code>EPS Rating</code> &gt;= 70, <code>Market Cap (mil)</code> &gt; 300 )</p>
-</section>
-<section id="pullback-to-10sma-conditions" class="level1">
-<h1>— 6. PULLBACK TO 10SMA CONDITIONS —————————————–</h1>
-</section>
-<section id="condition-a-pullback-to-10sma-after-20-day-high-rs-line-near-new-high" class="level1">
-<h1>Condition A: Pullback to 10SMA after 20-day high (RS line near new high)</h1>
-<p>condition_a &lt;- base_filtered %&gt;% filter( <code>Price vs 10-Day</code> &gt;= -3.0, <code>Price vs 10-Day</code> &lt;= 2.0, <code>Price vs 21-Day</code> &gt; 2.0, (<code>RS Line New High</code> == “Yes” | <code>RS Line Within 5% of New High</code> == “Yes”) ) %&gt;% mutate(Setup = “A: PB to 10SMA after 20D High”)</p>
-</section>
-<section id="condition-b-pullback-to-10sma-after-50-rally-in-last-3-months" class="level1">
-<h1>Condition B: Pullback to 10SMA after 50% rally in last 3 months</h1>
-<p>condition_b &lt;- base_filtered %&gt;% filter( <code>Price vs 10-Day</code> &gt;= -3.0, <code>Price vs 10-Day</code> &lt;= 2.0, <code>% Chg 3 Months</code> &gt;= 50, <code>Price vs 50-Day</code> &gt; 10 ) %&gt;% mutate(Setup = “B: PB to 10SMA after 50% 3M Rally”)</p>
-</section>
-<section id="combine-both-setups" class="level1">
-<h1>Combine both setups</h1>
-<p>screened &lt;- bind_rows(condition_a, condition_b) %&gt;% distinct(Symbol, .keep_all = TRUE) %&gt;% mutate( Setup = ifelse( Symbol %in% intersect(condition_a<span class="math inline">\(Symbol, condition_b\)</span>Symbol), “A + B: Both Setups”, Setup ) ) %&gt;% arrange(desc(<code>RS Rating</code>), desc(<code>Comp Rating</code>))</p>
-</section>
-<section id="add-theme-sector-strength-ranking--" class="level1">
-<h1>— 7. ADD THEME / SECTOR STRENGTH RANKING ———————————-</h1>
-<p>screened &lt;- screened %&gt;% left_join( sector_theme %&gt;% select(Sector, Sector_RS_3M = Avg_RS_3M), by = “Sector” ) %&gt;% mutate( Theme_Score = case_when( Sector_RS_3M &gt;= 65 ~ “Hot”, Sector_RS_3M &gt;= 55 ~ “Warm”, Sector_RS_3M &gt;= 45 ~ “Neutral”, TRUE ~ “Cold” ) ) %&gt;% arrange(desc(Sector_RS_3M), desc(<code>RS Rating</code>))</p>
-</section>
-<section id="output-tables" class="level1">
-<h1>— 8. OUTPUT TABLES ———————————————————</h1>
-<section id="a.-sector-theme-overview" class="level2">
-<h2 class="anchored" data-anchor-id="a.-sector-theme-overview">8a. Sector Theme Overview</h2>
-<p>cat(“### Hot Sectors / Themes”) sector_theme %&gt;% gt() %&gt;% tab_header(title = “Sector Momentum Rankings”) %&gt;% fmt_number(columns = c(Avg_RS_3M, Avg_RS_6M, Avg_3M_Chg, Avg_YTD_Chg, Avg_vs200D), decimals = 1) %&gt;% data_color( columns = Avg_RS_3M, colors = scales::col_numeric( palette = c(“#d73027”, “#fc8d59”, “#fee08b”, “#d9ef8b”, “#91cf60”, “#1a9850”), domain = c(0, 80) ) )</p>
-</section>
-<section id="b.-screened-results-summary" class="level2">
-<h2 class="anchored" data-anchor-id="b.-screened-results-summary">8b. Screened Results — Summary</h2>
-<p>cat(“### Screened Stocks: Pullback to 10SMA Setups”) cat(paste0(“Total stocks passing all filters: <strong>”, nrow(screened), ”</strong>”))</p>
-<p>if (nrow(screened) &gt; 0) {</p>
-<p># Summary by Sector summary_by_sector &lt;- screened %&gt;% group_by(Sector, Theme_Score) %&gt;% summarise( Count = n(), Avg_RS = round(mean(<code>RS Rating</code>), 1), Avg_Comp = round(mean(<code>Comp Rating</code>), 1), Top_Symbol = Symbol[which.max(<code>RS Rating</code>)], .groups = “drop” ) %&gt;% arrange(desc(Count))</p>
-<p>summary_by_sector %&gt;% gt() %&gt;% tab_header(title = “Setup Distribution by Sector”) %&gt;% fmt_number(columns = c(Avg_RS, Avg_Comp), decimals = 1)</p>
-<p># Detailed Results Table cat(“### Detailed Stock List”)</p>
-<p>detailed &lt;- screened %&gt;% select( Symbol, Name, Sector, <code>Industry Name</code>, Setup, Theme_Score, <code>RS Rating</code>, <code>RS 3-Month Rating</code>, <code>Comp Rating</code>, <code>Current Price</code>, <code>Price vs 10-Day</code>, <code>Price vs 21-Day</code>, <code>Price vs 50-Day</code>, <code>Price vs 200-Day</code>, <code>% Off High</code>, <code>% Chg 3 Months</code>, <code>% Chg 6 Months</code>, <code>% Chg YTD</code>, <code>EPS Rating</code>, <code>EPS % Chg Last Qtr</code>, <code>EPS Est Cur Yr %</code>, <code>A/D Rating</code>, <code>Market Cap (mil)</code>, <code>Volume (1000s)</code>, <code>Ind Group Rank</code>, <code>RS Line New High</code> ) %&gt;% arrange(desc(<code>RS Rating</code>))</p>
-<p>detailed %&gt;% mutate( <code>Market Cap (mil)</code> = round(<code>Market Cap (mil)</code> / 1000, 1), <code>Volume (1000s)</code> = comma(<code>Volume (1000s)</code>) ) %&gt;% rename(<code>Mkt Cap (B)</code> = <code>Market Cap (mil)</code>) %&gt;% gt() %&gt;% tab_header( title = “Pullback to 10SMA — High RS + Momentum Setups”, subtitle = paste0(“Data as of:”, unique(universe$timestamp)) ) %&gt;% fmt_number( columns = c(<code>RS Rating</code>, <code>RS 3-Month Rating</code>, <code>Comp Rating</code>, <code>EPS Rating</code>, <code>Price vs 10-Day</code>, <code>Price vs 21-Day</code>, <code>Price vs 50-Day</code>, <code>Price vs 200-Day</code>, <code>% Off High</code>, <code>% Chg 3 Months</code>, <code>% Chg 6 Months</code>, <code>% Chg YTD</code>, <code>EPS % Chg Last Qtr</code>, <code>EPS Est Cur Yr %</code>, <code>Ind Group Rank</code>), decimals = 1 ) %&gt;% fmt_currency(columns = <code>Current Price</code>, decimals = 2) %&gt;% data_color( columns = <code>RS Rating</code>, colors = scales::col_numeric( palette = c(“#d73027”, “#fc8d59”, “#fee08b”, “#d9ef8b”, “#91cf60”, “#1a9850”), domain = c(70, 99) ) ) %&gt;% data_color( columns = <code>% Chg 3 Months</code>, colors = scales::col_numeric( palette = c(“#d73027”, “#fc8d59”, “#fee08b”, “#d9ef8b”, “#91cf60”, “#1a9850”), domain = c(0, 100) ) ) %&gt;% tab_options( table.font.size = px(12), data_row.padding = px(4) )</p>
-<p>} else { cat(“<strong>No stocks passed all filters.</strong> Consider loosening:”) cat(“- Lower RS Rating threshold to 75”) cat(“- Widen <code>% Off High</code> to -20”) cat(“- Reduce <code>% Chg 3 Months</code> to 5”) cat(“- Allow A/D Rating down to ‘C+’”) }</p>
-</section>
-</section>
-<section id="interactive-datatable-optional-for-html-output--" class="level1">
-<h1>— 9. INTERACTIVE DATATABLE (Optional — for HTML output) ——————-</h1>
-</section>
-<section id="screened" class="level1">
-<h1>screened %&gt;%</h1>
-</section>
-<section id="selectsymbol-name-sector-setup-rs-rating-comp-rating" class="level1">
-<h1>select(Symbol, Name, Sector, Setup, <code>RS Rating</code>, <code>Comp Rating</code>,</h1>
-</section>
-<section id="current-price-chg-3-months-off-high" class="level1">
-<h1><code>Current Price</code>, <code>% Chg 3 Months</code>, <code>% Off High</code>) %&gt;%</h1>
-</section>
-<section id="datatable" class="level1">
-<h1>datatable(</h1>
-</section>
-<section id="options-listpagelength-25-scrollx-true" class="level1">
-<h1>options = list(pageLength = 25, scrollX = TRUE),</h1>
-</section>
-<section id="caption-pullback-to-10sma-setups" class="level1">
-<h1>caption = “Pullback to 10SMA Setups”</h1>
-</section>
-<section id="section-2" class="level1">
-<h1>) %&gt;%</h1>
-</section>
-<section id="formatpercentage-chg-3-months-digits-1" class="level1">
-<h1>formatPercentage(“% Chg 3 Months”, digits = 1) %&gt;%</h1>
-</section>
-<section id="formatcurrencycurrent-price-digits-2" class="level1">
-<h1>formatCurrency(“Current Price”, digits = 2)</h1>
+    
+  
+    
+  </div>
+  
 
 
-</section>
+</header>
+
+
+<p>This is a Quarto website.</p>
+<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+### Hot Sectors / Themes</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="inwycammww" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#inwycammww table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#inwycammww thead, #inwycammww tbody, #inwycammww tfoot, #inwycammww tr, #inwycammww td, #inwycammww th {
+  border-style: none;
+}
+
+#inwycammww p {
+  margin: 0;
+  padding: 0;
+}
+
+#inwycammww .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#inwycammww .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#inwycammww .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#inwycammww .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#inwycammww .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#inwycammww .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#inwycammww .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#inwycammww .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#inwycammww .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#inwycammww .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#inwycammww .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#inwycammww .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#inwycammww .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#inwycammww .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#inwycammww .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#inwycammww .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#inwycammww .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#inwycammww .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#inwycammww .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#inwycammww .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#inwycammww .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#inwycammww .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#inwycammww .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#inwycammww .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#inwycammww .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#inwycammww .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#inwycammww .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#inwycammww .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#inwycammww .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#inwycammww .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#inwycammww .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#inwycammww .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#inwycammww .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#inwycammww .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#inwycammww .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#inwycammww .gt_left {
+  text-align: left;
+}
+
+#inwycammww .gt_center {
+  text-align: center;
+}
+
+#inwycammww .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#inwycammww .gt_font_normal {
+  font-weight: normal;
+}
+
+#inwycammww .gt_font_bold {
+  font-weight: bold;
+}
+
+#inwycammww .gt_font_italic {
+  font-style: italic;
+}
+
+#inwycammww .gt_super {
+  font-size: 65%;
+}
+
+#inwycammww .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#inwycammww .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#inwycammww .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#inwycammww .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#inwycammww .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#inwycammww .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#inwycammww .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#inwycammww .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#inwycammww div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border">Sector Momentum Rankings</td>
+</tr>
+<tr class="gt_col_headings even">
+<th id="Sector" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Sector</th>
+<th id="Count" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Count</th>
+<th id="Avg_RS_3M" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Avg_RS_3M</th>
+<th id="Avg_RS_6M" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Avg_RS_6M</th>
+<th id="Avg_3M_Chg" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Avg_3M_Chg</th>
+<th id="Avg_YTD_Chg" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Avg_YTD_Chg</th>
+<th id="Avg_vs200D" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Avg_vs200D</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Sector">INSURANCE</td>
+<td class="gt_row gt_right" headers="Count">36</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #64B659; color: #000000">71.2</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">66.4</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">9.4</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">7.0</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">9.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Sector">BANKS</td>
+<td class="gt_row gt_right" headers="Count">95</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #7BC25C; color: #000000">67.7</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">69.7</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">8.8</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">20.4</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">15.2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Sector">REAL EST</td>
+<td class="gt_row gt_right" headers="Count">61</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #A5D86B; color: #000000">59.7</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">59.2</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">5.7</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">11.5</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">7.2</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Sector">SOFTWARE</td>
+<td class="gt_row gt_right" headers="Count">83</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #A7D96D; color: #000000">59.1</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">49.8</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">14.8</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">−5.1</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">−3.6</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Sector">METALS</td>
+<td class="gt_row gt_right" headers="Count">16</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #B4DF75; color: #000000">56.2</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">61.1</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">11.7</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">24.9</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">12.7</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Sector">CONSUMER</td>
+<td class="gt_row gt_right" headers="Count">42</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #B9E178; color: #000000">55.2</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">52.1</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">1.9</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">5.2</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">1.6</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Sector">BUSINS SVC</td>
+<td class="gt_row gt_right" headers="Count">69</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #C1E47D; color: #000000">53.3</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">52.7</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">149.4</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">196.2</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">23.6</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Sector">MEDICAL</td>
+<td class="gt_row gt_right" headers="Count">220</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #C1E47D; color: #000000">53.3</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">51.4</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">9.6</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">14.3</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">6.4</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Sector">MISC</td>
+<td class="gt_row gt_right" headers="Count">15</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #C6E67F; color: #000000">52.3</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">49.1</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">0.1</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">4.7</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">2.6</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Sector">LEISURE</td>
+<td class="gt_row gt_right" headers="Count">45</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #CDEA84; color: #000000">50.7</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">53.5</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">12.7</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">13.7</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">3.5</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Sector">FOOD/BEV</td>
+<td class="gt_row gt_right" headers="Count">26</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #D1EB86; color: #000000">49.8</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">51.3</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">7.2</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">12.7</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">1.2</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Sector">FINANCE</td>
+<td class="gt_row gt_right" headers="Count">98</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #D2EC87; color: #000000">49.6</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">48.1</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">−1.3</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">2.9</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">−1.2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Sector">MEDIA</td>
+<td class="gt_row gt_right" headers="Count">18</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #D3EC87; color: #000000">49.4</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">50.2</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">−2.1</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">5.4</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">2.3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Sector">COMPUTER</td>
+<td class="gt_row gt_right" headers="Count">17</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #D4ED88; color: #000000">49.2</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">59.1</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">36.7</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">95.6</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">24.8</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Sector">ENERGY</td>
+<td class="gt_row gt_right" headers="Count">81</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #D5ED89; color: #000000">48.8</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">51.8</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">2.2</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">24.1</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">5.2</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Sector">TRANSPORTATION</td>
+<td class="gt_row gt_right" headers="Count">40</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #D5ED89; color: #000000">48.8</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">52.9</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">1.5</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">20.5</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">7.1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Sector">ELECTRNCS</td>
+<td class="gt_row gt_right" headers="Count">16</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #D6EE89; color: #000000">48.6</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">68.0</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">19.3</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">74.8</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">23.6</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Sector">RETAIL</td>
+<td class="gt_row gt_right" headers="Count">70</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #D9EF8B; color: #000000">48.0</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">45.1</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">−4.0</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">−0.5</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">−3.1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Sector">UTILITY</td>
+<td class="gt_row gt_right" headers="Count">25</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #DAEE8B; color: #000000">47.4</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">49.8</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">0.6</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">10.2</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">3.3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Sector">BUILDING</td>
+<td class="gt_row gt_right" headers="Count">45</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #DDEE8B; color: #000000">46.5</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">49.1</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">4.6</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">15.8</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">4.3</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Sector">INTERNET</td>
+<td class="gt_row gt_right" headers="Count">24</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #E4EB8B; color: #000000">43.3</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">39.8</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">−4.2</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">−13.7</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">−12.7</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Sector">CHIPS</td>
+<td class="gt_row gt_right" headers="Count">30</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #ECE88B; color: #000000">40.1</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">58.5</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">12.9</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">58.8</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">18.0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Sector">MACHINE</td>
+<td class="gt_row gt_right" headers="Count">40</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #F0E68B; color: #000000">38.5</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">41.1</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">−0.6</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">8.9</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">−0.8</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Sector">AUTO</td>
+<td class="gt_row gt_right" headers="Count">31</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #F1E68B; color: #000000">37.8</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">35.0</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">−7.8</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">−9.4</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">−8.9</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Sector">CHEMICAL</td>
+<td class="gt_row gt_right" headers="Count">13</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #F3E58B; color: #000000">37.2</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">44.4</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">−7.3</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">19.0</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">2.6</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Sector">TELECOM</td>
+<td class="gt_row gt_right" headers="Count">39</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #F8E38B; color: #000000">34.8</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">38.0</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">−9.2</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">13.2</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">−2.4</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Sector">ALCOHL/TOB/THC</td>
+<td class="gt_row gt_right" headers="Count">14</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #FAE28B; color: #000000">33.9</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">32.6</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">−12.1</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">−17.8</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">−17.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Sector">AGRICULTURE</td>
+<td class="gt_row gt_right" headers="Count">6</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #FFD282; color: #000000">29.2</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">31.8</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">−9.1</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">19.3</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">4.4</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Sector">AEROSPACE/DEFENSE</td>
+<td class="gt_row gt_right" headers="Count">22</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #FFCC7E; color: #000000">28.0</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">35.5</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">−11.4</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">24.2</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">−2.8</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Sector">MINING</td>
+<td class="gt_row gt_right" headers="Count">34</td>
+<td class="gt_row gt_right" headers="Avg_RS_3M" style="background-color: #F57B4E; color: #FFFFFF">12.5</td>
+<td class="gt_row gt_right" headers="Avg_RS_6M">17.3</td>
+<td class="gt_row gt_right" headers="Avg_3M_Chg">−26.3</td>
+<td class="gt_row gt_right" headers="Avg_YTD_Chg">−7.4</td>
+<td class="gt_row gt_right" headers="Avg_vs200D">−15.5</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+### Screened Stocks: Pullback to 10SMA Setups</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total stocks passing all filters: **16**</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+### Detailed Stock List</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="iixrlsrbzx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#iixrlsrbzx table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#iixrlsrbzx thead, #iixrlsrbzx tbody, #iixrlsrbzx tfoot, #iixrlsrbzx tr, #iixrlsrbzx td, #iixrlsrbzx th {
+  border-style: none;
+}
+
+#iixrlsrbzx p {
+  margin: 0;
+  padding: 0;
+}
+
+#iixrlsrbzx .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#iixrlsrbzx .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#iixrlsrbzx .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#iixrlsrbzx .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#iixrlsrbzx .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iixrlsrbzx .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iixrlsrbzx .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iixrlsrbzx .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#iixrlsrbzx .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#iixrlsrbzx .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#iixrlsrbzx .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#iixrlsrbzx .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#iixrlsrbzx .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#iixrlsrbzx .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#iixrlsrbzx .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#iixrlsrbzx .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#iixrlsrbzx .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#iixrlsrbzx .gt_row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#iixrlsrbzx .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iixrlsrbzx .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#iixrlsrbzx .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#iixrlsrbzx .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#iixrlsrbzx .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iixrlsrbzx .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#iixrlsrbzx .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#iixrlsrbzx .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iixrlsrbzx .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iixrlsrbzx .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#iixrlsrbzx .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iixrlsrbzx .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#iixrlsrbzx .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iixrlsrbzx .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iixrlsrbzx .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iixrlsrbzx .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iixrlsrbzx .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iixrlsrbzx .gt_left {
+  text-align: left;
+}
+
+#iixrlsrbzx .gt_center {
+  text-align: center;
+}
+
+#iixrlsrbzx .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#iixrlsrbzx .gt_font_normal {
+  font-weight: normal;
+}
+
+#iixrlsrbzx .gt_font_bold {
+  font-weight: bold;
+}
+
+#iixrlsrbzx .gt_font_italic {
+  font-style: italic;
+}
+
+#iixrlsrbzx .gt_super {
+  font-size: 65%;
+}
+
+#iixrlsrbzx .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#iixrlsrbzx .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#iixrlsrbzx .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#iixrlsrbzx .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#iixrlsrbzx .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#iixrlsrbzx .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#iixrlsrbzx .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#iixrlsrbzx .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#iixrlsrbzx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="26" class="gt_heading gt_title gt_font_normal">Pullback to 10SMA — High RS + Momentum Setups</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="26" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Data as of: 2026-07-24</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="Symbol" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Symbol</th>
+<th id="Name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Name</th>
+<th id="Sector" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Sector</th>
+<th id="Industry-Name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Industry Name</th>
+<th id="Setup" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Setup</th>
+<th id="Theme_Score" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Theme_Score</th>
+<th id="RS-Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">RS Rating</th>
+<th id="RS-3-Month-Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">RS 3-Month Rating</th>
+<th id="Comp-Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Comp Rating</th>
+<th id="Current-Price" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Current Price</th>
+<th id="Price-vs-10-Day" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Price vs 10-Day</th>
+<th id="Price-vs-21-Day" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Price vs 21-Day</th>
+<th id="Price-vs-50-Day" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Price vs 50-Day</th>
+<th id="Price-vs-200-Day" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Price vs 200-Day</th>
+<th id="a%-Off-High" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% Off High</th>
+<th id="a%-Chg-3-Months" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% Chg 3 Months</th>
+<th id="a%-Chg-6-Months" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% Chg 6 Months</th>
+<th id="a%-Chg-YTD" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">% Chg YTD</th>
+<th id="EPS-Rating" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">EPS Rating</th>
+<th id="EPS-%-Chg-Last-Qtr" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">EPS % Chg Last Qtr</th>
+<th id="EPS-Est-Cur-Yr-%" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">EPS Est Cur Yr %</th>
+<th id="A/D-Rating" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">A/D Rating</th>
+<th id="Mkt-Cap-(B)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Mkt Cap (B)</th>
+<th id="Volume-(1000s)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Volume (1000s)</th>
+<th id="Ind-Group-Rank" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Ind Group Rank</th>
+<th id="RS-Line-New-High" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">RS Line New High</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">SEZL</td>
+<td class="gt_row gt_left" headers="Name">Sezzle Inc.</td>
+<td class="gt_row gt_left" headers="Sector">FINANCE</td>
+<td class="gt_row gt_left" headers="Industry Name">Finance-CrdtCard/PmtPr</td>
+<td class="gt_row gt_left" headers="Setup">B: PB to 10SMA after 50% 3M Rally</td>
+<td class="gt_row gt_left" headers="Theme_Score">Neutral</td>
+<td class="gt_row gt_right" headers="RS Rating" style="background-color: #73BE5B; color: #000000">95.0</td>
+<td class="gt_row gt_right" headers="RS 3-Month Rating">94.0</td>
+<td class="gt_row gt_right" headers="Comp Rating">99.0</td>
+<td class="gt_row gt_right" headers="Current Price">$174.67</td>
+<td class="gt_row gt_right" headers="Price vs 10-Day">−1.6</td>
+<td class="gt_row gt_right" headers="Price vs 21-Day">3.4</td>
+<td class="gt_row gt_right" headers="Price vs 50-Day">29.0</td>
+<td class="gt_row gt_right" headers="Price vs 200-Day">103.5</td>
+<td class="gt_row gt_right" headers="% Off High">−10.8</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months" style="background-color: #808080; color: #FFFFFF">116.4</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">155.0</td>
+<td class="gt_row gt_right" headers="% Chg YTD">175.2</td>
+<td class="gt_row gt_right" headers="EPS Rating">97.0</td>
+<td class="gt_row gt_right" headers="EPS % Chg Last Qtr">43.0</td>
+<td class="gt_row gt_right" headers="EPS Est Cur Yr %">43.0</td>
+<td class="gt_row gt_left" headers="A/D Rating">B+</td>
+<td class="gt_row gt_right" headers="Mkt Cap (B)">6.1</td>
+<td class="gt_row gt_right" headers="Volume (1000s)">728</td>
+<td class="gt_row gt_right" headers="Ind Group Rank">54.0</td>
+<td class="gt_row gt_left" headers="RS Line New High">No</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">VMD</td>
+<td class="gt_row gt_left" headers="Name">Viemed Healthcare Inc.</td>
+<td class="gt_row gt_left" headers="Sector">MEDICAL</td>
+<td class="gt_row gt_left" headers="Industry Name">Medical-Distribution</td>
+<td class="gt_row gt_left" headers="Setup">A: PB to 10SMA after 20D High</td>
+<td class="gt_row gt_left" headers="Theme_Score">Neutral</td>
+<td class="gt_row gt_right" headers="RS Rating" style="background-color: #84C75E; color: #000000">94.0</td>
+<td class="gt_row gt_right" headers="RS 3-Month Rating">92.0</td>
+<td class="gt_row gt_right" headers="Comp Rating">96.0</td>
+<td class="gt_row gt_right" headers="Current Price">$12.15</td>
+<td class="gt_row gt_right" headers="Price vs 10-Day">0.3</td>
+<td class="gt_row gt_right" headers="Price vs 21-Day">4.7</td>
+<td class="gt_row gt_right" headers="Price vs 50-Day">15.9</td>
+<td class="gt_row gt_right" headers="Price vs 200-Day">42.4</td>
+<td class="gt_row gt_right" headers="% Off High">−3.6</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months" style="background-color: #FEA164; color: #000000">24.7</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">65.8</td>
+<td class="gt_row gt_right" headers="% Chg YTD">63.5</td>
+<td class="gt_row gt_right" headers="EPS Rating">85.0</td>
+<td class="gt_row gt_right" headers="EPS % Chg Last Qtr">0.0</td>
+<td class="gt_row gt_right" headers="EPS Est Cur Yr %">23.0</td>
+<td class="gt_row gt_left" headers="A/D Rating">A-</td>
+<td class="gt_row gt_right" headers="Mkt Cap (B)">0.5</td>
+<td class="gt_row gt_right" headers="Volume (1000s)">213</td>
+<td class="gt_row gt_right" headers="Ind Group Rank">91.0</td>
+<td class="gt_row gt_left" headers="RS Line New High">No</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">STT</td>
+<td class="gt_row gt_left" headers="Name">State Street Corp.</td>
+<td class="gt_row gt_left" headers="Sector">FINANCE</td>
+<td class="gt_row gt_left" headers="Industry Name">Finance-Investment Mgmt</td>
+<td class="gt_row gt_left" headers="Setup">A: PB to 10SMA after 20D High</td>
+<td class="gt_row gt_left" headers="Theme_Score">Neutral</td>
+<td class="gt_row gt_right" headers="RS Rating" style="background-color: #A0D669; color: #000000">92.0</td>
+<td class="gt_row gt_right" headers="RS 3-Month Rating">87.0</td>
+<td class="gt_row gt_right" headers="Comp Rating">98.0</td>
+<td class="gt_row gt_right" headers="Current Price">$182.50</td>
+<td class="gt_row gt_right" headers="Price vs 10-Day">1.5</td>
+<td class="gt_row gt_right" headers="Price vs 21-Day">4.4</td>
+<td class="gt_row gt_right" headers="Price vs 50-Day">11.1</td>
+<td class="gt_row gt_right" headers="Price vs 200-Day">34.1</td>
+<td class="gt_row gt_right" headers="% Off High">−5.2</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months" style="background-color: #FEA566; color: #000000">25.5</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">42.6</td>
+<td class="gt_row gt_right" headers="% Chg YTD">41.5</td>
+<td class="gt_row gt_right" headers="EPS Rating">94.0</td>
+<td class="gt_row gt_right" headers="EPS % Chg Last Qtr">44.0</td>
+<td class="gt_row gt_right" headers="EPS Est Cur Yr %">31.0</td>
+<td class="gt_row gt_left" headers="A/D Rating">A</td>
+<td class="gt_row gt_right" headers="Mkt Cap (B)">51.4</td>
+<td class="gt_row gt_right" headers="Volume (1000s)">3,190</td>
+<td class="gt_row gt_right" headers="Ind Group Rank">71.0</td>
+<td class="gt_row gt_left" headers="RS Line New High">Yes</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">PGNY</td>
+<td class="gt_row gt_left" headers="Name">Progyny Inc.</td>
+<td class="gt_row gt_left" headers="Sector">MEDICAL</td>
+<td class="gt_row gt_left" headers="Industry Name">Medical-Services</td>
+<td class="gt_row gt_left" headers="Setup">A + B: Both Setups</td>
+<td class="gt_row gt_left" headers="Theme_Score">Neutral</td>
+<td class="gt_row gt_right" headers="RS Rating" style="background-color: #ADDB70; color: #000000">91.0</td>
+<td class="gt_row gt_right" headers="RS 3-Month Rating">98.0</td>
+<td class="gt_row gt_right" headers="Comp Rating">99.0</td>
+<td class="gt_row gt_right" headers="Current Price">$31.93</td>
+<td class="gt_row gt_right" headers="Price vs 10-Day">2.0</td>
+<td class="gt_row gt_right" headers="Price vs 21-Day">9.1</td>
+<td class="gt_row gt_right" headers="Price vs 50-Day">20.8</td>
+<td class="gt_row gt_right" headers="Price vs 200-Day">40.3</td>
+<td class="gt_row gt_right" headers="% Off High">−3.4</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months" style="background-color: #9FD568; color: #000000">76.2</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">30.2</td>
+<td class="gt_row gt_right" headers="% Chg YTD">24.3</td>
+<td class="gt_row gt_right" headers="EPS Rating">92.0</td>
+<td class="gt_row gt_right" headers="EPS % Chg Last Qtr">71.0</td>
+<td class="gt_row gt_right" headers="EPS Est Cur Yr %">98.0</td>
+<td class="gt_row gt_left" headers="A/D Rating">A+</td>
+<td class="gt_row gt_right" headers="Mkt Cap (B)">2.5</td>
+<td class="gt_row gt_right" headers="Volume (1000s)">962</td>
+<td class="gt_row gt_right" headers="Ind Group Rank">11.0</td>
+<td class="gt_row gt_left" headers="RS Line New High">Yes</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">PLGO</td>
+<td class="gt_row gt_left" headers="Name">Pelagos Insurance Capital Ltd.</td>
+<td class="gt_row gt_left" headers="Sector">INSURANCE</td>
+<td class="gt_row gt_left" headers="Industry Name">Insurance</td>
+<td class="gt_row gt_left" headers="Setup">A: PB to 10SMA after 20D High</td>
+<td class="gt_row gt_left" headers="Theme_Score">Hot</td>
+<td class="gt_row gt_right" headers="RS Rating" style="background-color: #B9E178; color: #000000">90.0</td>
+<td class="gt_row gt_right" headers="RS 3-Month Rating">90.0</td>
+<td class="gt_row gt_right" headers="Comp Rating">96.0</td>
+<td class="gt_row gt_right" headers="Current Price">$25.40</td>
+<td class="gt_row gt_right" headers="Price vs 10-Day">1.4</td>
+<td class="gt_row gt_right" headers="Price vs 21-Day">3.9</td>
+<td class="gt_row gt_right" headers="Price vs 50-Day">9.9</td>
+<td class="gt_row gt_right" headers="Price vs 200-Day">26.4</td>
+<td class="gt_row gt_right" headers="% Off High">−2.4</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months" style="background-color: #FD925C; color: #000000">21.1</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">38.4</td>
+<td class="gt_row gt_right" headers="% Chg YTD">29.8</td>
+<td class="gt_row gt_right" headers="EPS Rating">75.0</td>
+<td class="gt_row gt_right" headers="EPS % Chg Last Qtr">329.0</td>
+<td class="gt_row gt_right" headers="EPS Est Cur Yr %">86.0</td>
+<td class="gt_row gt_left" headers="A/D Rating">A+</td>
+<td class="gt_row gt_right" headers="Mkt Cap (B)">2.2</td>
+<td class="gt_row gt_right" headers="Volume (1000s)">326</td>
+<td class="gt_row gt_right" headers="Ind Group Rank">35.0</td>
+<td class="gt_row gt_left" headers="RS Line New High">Yes</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">RPRX</td>
+<td class="gt_row gt_left" headers="Name">Royalty Pharma PLC</td>
+<td class="gt_row gt_left" headers="Sector">MEDICAL</td>
+<td class="gt_row gt_left" headers="Industry Name">Medical - Profitable Biotech</td>
+<td class="gt_row gt_left" headers="Setup">A: PB to 10SMA after 20D High</td>
+<td class="gt_row gt_left" headers="Theme_Score">Neutral</td>
+<td class="gt_row gt_right" headers="RS Rating" style="background-color: #B9E178; color: #000000">90.0</td>
+<td class="gt_row gt_right" headers="RS 3-Month Rating">83.0</td>
+<td class="gt_row gt_right" headers="Comp Rating">98.0</td>
+<td class="gt_row gt_right" headers="Current Price">$58.18</td>
+<td class="gt_row gt_right" headers="Price vs 10-Day">1.7</td>
+<td class="gt_row gt_right" headers="Price vs 21-Day">3.9</td>
+<td class="gt_row gt_right" headers="Price vs 50-Day">6.6</td>
+<td class="gt_row gt_right" headers="Price vs 200-Day">28.7</td>
+<td class="gt_row gt_right" headers="% Off High">−2.1</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months" style="background-color: #F67E50; color: #FFFFFF">16.4</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">47.1</td>
+<td class="gt_row gt_right" headers="% Chg YTD">50.6</td>
+<td class="gt_row gt_right" headers="EPS Rating">87.0</td>
+<td class="gt_row gt_right" headers="EPS % Chg Last Qtr">73.0</td>
+<td class="gt_row gt_right" headers="EPS Est Cur Yr %">8.0</td>
+<td class="gt_row gt_left" headers="A/D Rating">A</td>
+<td class="gt_row gt_right" headers="Mkt Cap (B)">33.7</td>
+<td class="gt_row gt_right" headers="Volume (1000s)">2,540</td>
+<td class="gt_row gt_right" headers="Ind Group Rank">79.0</td>
+<td class="gt_row gt_left" headers="RS Line New High">Yes</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">TATYY</td>
+<td class="gt_row gt_left" headers="Name">Tate &amp; Lyle PLC ADR</td>
+<td class="gt_row gt_left" headers="Sector">FOOD/BEV</td>
+<td class="gt_row gt_left" headers="Industry Name">Food - Foodstuffs</td>
+<td class="gt_row gt_left" headers="Setup">B: PB to 10SMA after 50% 3M Rally</td>
+<td class="gt_row gt_left" headers="Theme_Score">Neutral</td>
+<td class="gt_row gt_right" headers="RS Rating" style="background-color: #B9E178; color: #000000">90.0</td>
+<td class="gt_row gt_right" headers="RS 3-Month Rating">89.0</td>
+<td class="gt_row gt_right" headers="Comp Rating">92.0</td>
+<td class="gt_row gt_right" headers="Current Price">$29.95</td>
+<td class="gt_row gt_right" headers="Price vs 10-Day">0.5</td>
+<td class="gt_row gt_right" headers="Price vs 21-Day">0.8</td>
+<td class="gt_row gt_right" headers="Price vs 50-Day">18.4</td>
+<td class="gt_row gt_right" headers="Price vs 200-Day">41.3</td>
+<td class="gt_row gt_right" headers="% Off High">−1.8</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months" style="background-color: #D9EF8B; color: #000000">59.9</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">48.5</td>
+<td class="gt_row gt_right" headers="% Chg YTD">48.5</td>
+<td class="gt_row gt_right" headers="EPS Rating">82.0</td>
+<td class="gt_row gt_right" headers="EPS % Chg Last Qtr">294.0</td>
+<td class="gt_row gt_right" headers="EPS Est Cur Yr %">−10.0</td>
+<td class="gt_row gt_left" headers="A/D Rating">A+</td>
+<td class="gt_row gt_right" headers="Mkt Cap (B)">3.3</td>
+<td class="gt_row gt_right" headers="Volume (1000s)">0</td>
+<td class="gt_row gt_right" headers="Ind Group Rank">65.0</td>
+<td class="gt_row gt_left" headers="RS Line New High">No</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">WLY</td>
+<td class="gt_row gt_left" headers="Name">John Wiley &amp; Sons Inc. Cl A</td>
+<td class="gt_row gt_left" headers="Sector">MEDIA</td>
+<td class="gt_row gt_left" headers="Industry Name">Media</td>
+<td class="gt_row gt_left" headers="Setup">A: PB to 10SMA after 20D High</td>
+<td class="gt_row gt_left" headers="Theme_Score">Neutral</td>
+<td class="gt_row gt_right" headers="RS Rating" style="background-color: #D2EC87; color: #000000">88.0</td>
+<td class="gt_row gt_right" headers="RS 3-Month Rating">93.0</td>
+<td class="gt_row gt_right" headers="Comp Rating">87.0</td>
+<td class="gt_row gt_right" headers="Current Price">$50.97</td>
+<td class="gt_row gt_right" headers="Price vs 10-Day">0.3</td>
+<td class="gt_row gt_right" headers="Price vs 21-Day">5.0</td>
+<td class="gt_row gt_right" headers="Price vs 50-Day">13.7</td>
+<td class="gt_row gt_right" headers="Price vs 200-Day">36.3</td>
+<td class="gt_row gt_right" headers="% Off High">−4.3</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months" style="background-color: #FD9960; color: #000000">22.8</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">64.7</td>
+<td class="gt_row gt_right" headers="% Chg YTD">66.4</td>
+<td class="gt_row gt_right" headers="EPS Rating">72.0</td>
+<td class="gt_row gt_right" headers="EPS % Chg Last Qtr">22.0</td>
+<td class="gt_row gt_right" headers="EPS Est Cur Yr %">15.0</td>
+<td class="gt_row gt_left" headers="A/D Rating">A</td>
+<td class="gt_row gt_right" headers="Mkt Cap (B)">2.6</td>
+<td class="gt_row gt_right" headers="Volume (1000s)">396</td>
+<td class="gt_row gt_right" headers="Ind Group Rank">118.0</td>
+<td class="gt_row gt_left" headers="RS Line New High">No</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">UVSP</td>
+<td class="gt_row gt_left" headers="Name">Univest Financial Corp.</td>
+<td class="gt_row gt_left" headers="Sector">BANKS</td>
+<td class="gt_row gt_left" headers="Industry Name">Banks-Regional</td>
+<td class="gt_row gt_left" headers="Setup">A: PB to 10SMA after 20D High</td>
+<td class="gt_row gt_left" headers="Theme_Score">Hot</td>
+<td class="gt_row gt_right" headers="RS Rating" style="background-color: #DCEE8B; color: #000000">87.0</td>
+<td class="gt_row gt_right" headers="RS 3-Month Rating">84.0</td>
+<td class="gt_row gt_right" headers="Comp Rating">98.0</td>
+<td class="gt_row gt_right" headers="Current Price">$44.58</td>
+<td class="gt_row gt_right" headers="Price vs 10-Day">1.6</td>
+<td class="gt_row gt_right" headers="Price vs 21-Day">2.5</td>
+<td class="gt_row gt_right" headers="Price vs 50-Day">8.2</td>
+<td class="gt_row gt_right" headers="Price vs 200-Day">26.7</td>
+<td class="gt_row gt_right" headers="% Off High">−1.9</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months" style="background-color: #FA8755; color: #000000">18.6</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">33.1</td>
+<td class="gt_row gt_right" headers="% Chg YTD">36.2</td>
+<td class="gt_row gt_right" headers="EPS Rating">81.0</td>
+<td class="gt_row gt_right" headers="EPS % Chg Last Qtr">25.0</td>
+<td class="gt_row gt_right" headers="EPS Est Cur Yr %">17.0</td>
+<td class="gt_row gt_left" headers="A/D Rating">A</td>
+<td class="gt_row gt_right" headers="Mkt Cap (B)">1.3</td>
+<td class="gt_row gt_right" headers="Volume (1000s)">320</td>
+<td class="gt_row gt_right" headers="Ind Group Rank">22.0</td>
+<td class="gt_row gt_left" headers="RS Line New High">No</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">SUTNY</td>
+<td class="gt_row gt_left" headers="Name">Sumitomo Mitsui Trust Group Inc. ADR</td>
+<td class="gt_row gt_left" headers="Sector">BANKS</td>
+<td class="gt_row gt_left" headers="Industry Name">Banks-Money Center</td>
+<td class="gt_row gt_left" headers="Setup">A: PB to 10SMA after 20D High</td>
+<td class="gt_row gt_left" headers="Theme_Score">Hot</td>
+<td class="gt_row gt_right" headers="RS Rating" style="background-color: #DCEE8B; color: #000000">87.0</td>
+<td class="gt_row gt_right" headers="RS 3-Month Rating">82.0</td>
+<td class="gt_row gt_right" headers="Comp Rating">97.0</td>
+<td class="gt_row gt_right" headers="Current Price">$8.02</td>
+<td class="gt_row gt_right" headers="Price vs 10-Day">−1.2</td>
+<td class="gt_row gt_right" headers="Price vs 21-Day">3.0</td>
+<td class="gt_row gt_right" headers="Price vs 50-Day">8.4</td>
+<td class="gt_row gt_right" headers="Price vs 200-Day">23.4</td>
+<td class="gt_row gt_right" headers="% Off High">−3.8</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months" style="background-color: #F88453; color: #000000">17.8</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">23.0</td>
+<td class="gt_row gt_right" headers="% Chg YTD">31.6</td>
+<td class="gt_row gt_right" headers="EPS Rating">92.0</td>
+<td class="gt_row gt_right" headers="EPS % Chg Last Qtr">46.0</td>
+<td class="gt_row gt_right" headers="EPS Est Cur Yr %">0.0</td>
+<td class="gt_row gt_left" headers="A/D Rating">B</td>
+<td class="gt_row gt_right" headers="Mkt Cap (B)">28.7</td>
+<td class="gt_row gt_right" headers="Volume (1000s)">62</td>
+<td class="gt_row gt_right" headers="Ind Group Rank">23.0</td>
+<td class="gt_row gt_left" headers="RS Line New High">No</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">SHBI</td>
+<td class="gt_row gt_left" headers="Name">Shore Bancshares Inc.</td>
+<td class="gt_row gt_left" headers="Sector">BANKS</td>
+<td class="gt_row gt_left" headers="Industry Name">Banks-Regional</td>
+<td class="gt_row gt_left" headers="Setup">A: PB to 10SMA after 20D High</td>
+<td class="gt_row gt_left" headers="Theme_Score">Hot</td>
+<td class="gt_row gt_right" headers="RS Rating" style="background-color: #E2EC8B; color: #000000">86.0</td>
+<td class="gt_row gt_right" headers="RS 3-Month Rating">83.0</td>
+<td class="gt_row gt_right" headers="Comp Rating">99.0</td>
+<td class="gt_row gt_right" headers="Current Price">$23.18</td>
+<td class="gt_row gt_right" headers="Price vs 10-Day">1.8</td>
+<td class="gt_row gt_right" headers="Price vs 21-Day">2.2</td>
+<td class="gt_row gt_right" headers="Price vs 50-Day">8.5</td>
+<td class="gt_row gt_right" headers="Price vs 200-Day">23.5</td>
+<td class="gt_row gt_right" headers="% Off High">−2.1</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months" style="background-color: #F57D4F; color: #FFFFFF">16.0</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">26.9</td>
+<td class="gt_row gt_right" headers="% Chg YTD">31.1</td>
+<td class="gt_row gt_right" headers="EPS Rating">89.0</td>
+<td class="gt_row gt_right" headers="EPS % Chg Last Qtr">24.0</td>
+<td class="gt_row gt_right" headers="EPS Est Cur Yr %">17.0</td>
+<td class="gt_row gt_left" headers="A/D Rating">A</td>
+<td class="gt_row gt_right" headers="Mkt Cap (B)">0.8</td>
+<td class="gt_row gt_right" headers="Volume (1000s)">197</td>
+<td class="gt_row gt_right" headers="Ind Group Rank">22.0</td>
+<td class="gt_row gt_left" headers="RS Line New High">Yes</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">PDLB</td>
+<td class="gt_row gt_left" headers="Name">Ponce Financial Group Inc.</td>
+<td class="gt_row gt_left" headers="Sector">BANKS</td>
+<td class="gt_row gt_left" headers="Industry Name">Banks-Regional</td>
+<td class="gt_row gt_left" headers="Setup">A: PB to 10SMA after 20D High</td>
+<td class="gt_row gt_left" headers="Theme_Score">Hot</td>
+<td class="gt_row gt_right" headers="RS Rating" style="background-color: #F6E48B; color: #000000">83.0</td>
+<td class="gt_row gt_right" headers="RS 3-Month Rating">76.0</td>
+<td class="gt_row gt_right" headers="Comp Rating">95.0</td>
+<td class="gt_row gt_right" headers="Current Price">$20.25</td>
+<td class="gt_row gt_right" headers="Price vs 10-Day">1.3</td>
+<td class="gt_row gt_right" headers="Price vs 21-Day">2.2</td>
+<td class="gt_row gt_right" headers="Price vs 50-Day">6.4</td>
+<td class="gt_row gt_right" headers="Price vs 200-Day">20.0</td>
+<td class="gt_row gt_right" headers="% Off High">−2.4</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months" style="background-color: #F06F46; color: #FFFFFF">12.8</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">23.1</td>
+<td class="gt_row gt_right" headers="% Chg YTD">23.9</td>
+<td class="gt_row gt_right" headers="EPS Rating">70.0</td>
+<td class="gt_row gt_right" headers="EPS % Chg Last Qtr">44.0</td>
+<td class="gt_row gt_right" headers="EPS Est Cur Yr %">38.0</td>
+<td class="gt_row gt_left" headers="A/D Rating">A-</td>
+<td class="gt_row gt_right" headers="Mkt Cap (B)">0.5</td>
+<td class="gt_row gt_right" headers="Volume (1000s)">122</td>
+<td class="gt_row gt_right" headers="Ind Group Rank">22.0</td>
+<td class="gt_row gt_left" headers="RS Line New High">Yes</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">RBCAA</td>
+<td class="gt_row gt_left" headers="Name">Republic Bancorp Inc. (Kentucky) Cl A</td>
+<td class="gt_row gt_left" headers="Sector">BANKS</td>
+<td class="gt_row gt_left" headers="Industry Name">Banks-Regional</td>
+<td class="gt_row gt_left" headers="Setup">A: PB to 10SMA after 20D High</td>
+<td class="gt_row gt_left" headers="Theme_Score">Hot</td>
+<td class="gt_row gt_right" headers="RS Rating" style="background-color: #F6E48B; color: #000000">83.0</td>
+<td class="gt_row gt_right" headers="RS 3-Month Rating">85.0</td>
+<td class="gt_row gt_right" headers="Comp Rating">95.0</td>
+<td class="gt_row gt_right" headers="Current Price">$90.91</td>
+<td class="gt_row gt_right" headers="Price vs 10-Day">1.5</td>
+<td class="gt_row gt_right" headers="Price vs 21-Day">2.5</td>
+<td class="gt_row gt_right" headers="Price vs 50-Day">8.4</td>
+<td class="gt_row gt_right" headers="Price vs 200-Day">23.0</td>
+<td class="gt_row gt_right" headers="% Off High">−3.1</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months" style="background-color: #FC8F5A; color: #000000">20.5</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">25.5</td>
+<td class="gt_row gt_right" headers="% Chg YTD">31.8</td>
+<td class="gt_row gt_right" headers="EPS Rating">79.0</td>
+<td class="gt_row gt_right" headers="EPS % Chg Last Qtr">−10.0</td>
+<td class="gt_row gt_right" headers="EPS Est Cur Yr %">−1.0</td>
+<td class="gt_row gt_left" headers="A/D Rating">B</td>
+<td class="gt_row gt_right" headers="Mkt Cap (B)">1.6</td>
+<td class="gt_row gt_right" headers="Volume (1000s)">99</td>
+<td class="gt_row gt_right" headers="Ind Group Rank">22.0</td>
+<td class="gt_row gt_left" headers="RS Line New High">Yes</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">UBS</td>
+<td class="gt_row gt_left" headers="Name">UBS Group AG</td>
+<td class="gt_row gt_left" headers="Sector">BANKS</td>
+<td class="gt_row gt_left" headers="Industry Name">Banks-Money Center</td>
+<td class="gt_row gt_left" headers="Setup">A: PB to 10SMA after 20D High</td>
+<td class="gt_row gt_left" headers="Theme_Score">Hot</td>
+<td class="gt_row gt_right" headers="RS Rating" style="background-color: #F6E48B; color: #000000">83.0</td>
+<td class="gt_row gt_right" headers="RS 3-Month Rating">85.0</td>
+<td class="gt_row gt_right" headers="Comp Rating">95.0</td>
+<td class="gt_row gt_right" headers="Current Price">$52.73</td>
+<td class="gt_row gt_right" headers="Price vs 10-Day">0.6</td>
+<td class="gt_row gt_right" headers="Price vs 21-Day">3.1</td>
+<td class="gt_row gt_right" headers="Price vs 50-Day">8.5</td>
+<td class="gt_row gt_right" headers="Price vs 200-Day">21.5</td>
+<td class="gt_row gt_right" headers="% Off High">−4.4</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months" style="background-color: #FC905A; color: #000000">20.6</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">11.3</td>
+<td class="gt_row gt_right" headers="% Chg YTD">13.9</td>
+<td class="gt_row gt_right" headers="EPS Rating">87.0</td>
+<td class="gt_row gt_right" headers="EPS % Chg Last Qtr">84.0</td>
+<td class="gt_row gt_right" headers="EPS Est Cur Yr %">28.0</td>
+<td class="gt_row gt_left" headers="A/D Rating">B</td>
+<td class="gt_row gt_right" headers="Mkt Cap (B)">162.4</td>
+<td class="gt_row gt_right" headers="Volume (1000s)">1,489</td>
+<td class="gt_row gt_right" headers="Ind Group Rank">23.0</td>
+<td class="gt_row gt_left" headers="RS Line New High">No</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Symbol">UMBF</td>
+<td class="gt_row gt_left" headers="Name">UMB Financial Corp.</td>
+<td class="gt_row gt_left" headers="Sector">BANKS</td>
+<td class="gt_row gt_left" headers="Industry Name">Banks-Regional</td>
+<td class="gt_row gt_left" headers="Setup">A: PB to 10SMA after 20D High</td>
+<td class="gt_row gt_left" headers="Theme_Score">Hot</td>
+<td class="gt_row gt_right" headers="RS Rating" style="background-color: #FCE18B; color: #000000">82.0</td>
+<td class="gt_row gt_right" headers="RS 3-Month Rating">84.0</td>
+<td class="gt_row gt_right" headers="Comp Rating">99.0</td>
+<td class="gt_row gt_right" headers="Current Price">$145.99</td>
+<td class="gt_row gt_right" headers="Price vs 10-Day">1.0</td>
+<td class="gt_row gt_right" headers="Price vs 21-Day">2.8</td>
+<td class="gt_row gt_right" headers="Price vs 50-Day">8.0</td>
+<td class="gt_row gt_right" headers="Price vs 200-Day">19.7</td>
+<td class="gt_row gt_right" headers="% Off High">−1.6</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months" style="background-color: #F98554; color: #000000">18.1</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">19.6</td>
+<td class="gt_row gt_right" headers="% Chg YTD">26.9</td>
+<td class="gt_row gt_right" headers="EPS Rating">93.0</td>
+<td class="gt_row gt_right" headers="EPS % Chg Last Qtr">32.0</td>
+<td class="gt_row gt_right" headers="EPS Est Cur Yr %">14.0</td>
+<td class="gt_row gt_left" headers="A/D Rating">A</td>
+<td class="gt_row gt_right" headers="Mkt Cap (B)">11.2</td>
+<td class="gt_row gt_right" headers="Volume (1000s)">392</td>
+<td class="gt_row gt_right" headers="Ind Group Rank">22.0</td>
+<td class="gt_row gt_left" headers="RS Line New High">Yes</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Symbol">SRCE</td>
+<td class="gt_row gt_left" headers="Name">1st Source Corp.</td>
+<td class="gt_row gt_left" headers="Sector">BANKS</td>
+<td class="gt_row gt_left" headers="Industry Name">Banks-Regional</td>
+<td class="gt_row gt_left" headers="Setup">A: PB to 10SMA after 20D High</td>
+<td class="gt_row gt_left" headers="Theme_Score">Hot</td>
+<td class="gt_row gt_right" headers="RS Rating" style="background-color: #FFD886; color: #000000">81.0</td>
+<td class="gt_row gt_right" headers="RS 3-Month Rating">79.0</td>
+<td class="gt_row gt_right" headers="Comp Rating">97.0</td>
+<td class="gt_row gt_right" headers="Current Price">$83.48</td>
+<td class="gt_row gt_right" headers="Price vs 10-Day">1.9</td>
+<td class="gt_row gt_right" headers="Price vs 21-Day">3.3</td>
+<td class="gt_row gt_right" headers="Price vs 50-Day">8.5</td>
+<td class="gt_row gt_right" headers="Price vs 200-Day">21.6</td>
+<td class="gt_row gt_right" headers="% Off High">−3.6</td>
+<td class="gt_row gt_right" headers="% Chg 3 Months" style="background-color: #EE6B44; color: #FFFFFF">11.8</td>
+<td class="gt_row gt_right" headers="% Chg 6 Months">29.0</td>
+<td class="gt_row gt_right" headers="% Chg YTD">33.6</td>
+<td class="gt_row gt_right" headers="EPS Rating">80.0</td>
+<td class="gt_row gt_right" headers="EPS % Chg Last Qtr">7.0</td>
+<td class="gt_row gt_right" headers="EPS Est Cur Yr %">6.0</td>
+<td class="gt_row gt_left" headers="A/D Rating">A</td>
+<td class="gt_row gt_right" headers="Mkt Cap (B)">2.0</td>
+<td class="gt_row gt_right" headers="Volume (1000s)">116</td>
+<td class="gt_row gt_right" headers="Ind Group Rank">22.0</td>
+<td class="gt_row gt_left" headers="RS Line New High">Yes</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-ed2ebda298dc67043a66" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ed2ebda298dc67043a66">{"x":{"filter":"none","vertical":false,"caption":"<caption>Pullback to 10SMA Setups<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],["PLGO","UVSP","SUTNY","SHBI","PDLB","RBCAA","UBS","UMBF","SRCE","VMD","PGNY","RPRX","TATYY","SEZL","STT","WLY"],["Pelagos Insurance Capital Ltd.","Univest Financial Corp.","Sumitomo Mitsui Trust Group Inc. ADR","Shore Bancshares Inc.","Ponce Financial Group Inc.","Republic Bancorp Inc. (Kentucky) Cl A","UBS Group AG","UMB Financial Corp.","1st Source Corp.","Viemed Healthcare Inc.","Progyny Inc.","Royalty Pharma PLC","Tate &amp; Lyle PLC ADR","Sezzle Inc.","State Street Corp.","John Wiley &amp; Sons Inc. Cl A"],["INSURANCE","BANKS","BANKS","BANKS","BANKS","BANKS","BANKS","BANKS","BANKS","MEDICAL","MEDICAL","MEDICAL","FOOD/BEV","FINANCE","FINANCE","MEDIA"],["A: PB to 10SMA after 20D High","A: PB to 10SMA after 20D High","A: PB to 10SMA after 20D High","A: PB to 10SMA after 20D High","A: PB to 10SMA after 20D High","A: PB to 10SMA after 20D High","A: PB to 10SMA after 20D High","A: PB to 10SMA after 20D High","A: PB to 10SMA after 20D High","A: PB to 10SMA after 20D High","A + B: Both Setups","A: PB to 10SMA after 20D High","B: PB to 10SMA after 50% 3M Rally","B: PB to 10SMA after 50% 3M Rally","A: PB to 10SMA after 20D High","A: PB to 10SMA after 20D High"],[90,87,87,86,83,83,83,82,81,94,91,90,90,95,92,88],[96,98,97,99,95,95,95,99,97,96,99,98,92,99,98,87],[25.4,44.58,8.02,23.18,20.25,90.91,52.73,145.99,83.48,12.15,31.93,58.18,29.95,174.67,182.5,50.97],[21.1,18.6,17.8,16,12.8,20.5,20.6,18.1,11.8,24.7,76.2,16.4,59.9,116.4,25.5,22.8],[-2.38,-1.93,-3.78,-2.11,-2.36,-3.13,-4.39,-1.56,-3.65,-3.65,-3.43,-2.12,-1.83,-10.75,-5.2,-4.26]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Symbol<\/th>\n      <th>Name<\/th>\n      <th>Sector<\/th>\n      <th>Setup<\/th>\n      <th>RS Rating<\/th>\n      <th>Comp Rating<\/th>\n      <th>Current Price<\/th>\n      <th>% Chg 3 Months<\/th>\n      <th>% Off High<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":25,"scrollX":true,"columnDefs":[{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatCurrency(data, \"$\", 2, 3, \",\", \".\", true, null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatPercentage(data, 1, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[5,6,7,8,9]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Symbol","targets":1},{"name":"Name","targets":2},{"name":"Sector","targets":3},{"name":"Setup","targets":4},{"name":"RS Rating","targets":5},{"name":"Comp Rating","targets":6},{"name":"Current Price","targets":7},{"name":"% Chg 3 Months","targets":8},{"name":"% Off High","targets":9}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
+</div>
+</div>
+
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
