@@ -6,6 +6,9 @@ website:
   title: "universe-report"
   navbar:
     left:
+    
+      - href: kimi_theme.qmd
+        text: Themes
       - href: index.qmd
         text: Home
       - href: about.qmd
