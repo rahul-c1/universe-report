@@ -1,3 +1,20 @@
+---
+title: "universe-report"
+---
+
+This is a Quarto website.
+
+To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+
+```{r}
+#| warning: false
+#| echo: false
+#| message: false
+
+
+
+
+
 # ============================================================================
 # STOCK SCREENER — Pullback to 10SMA Setup
 # Add this chunk to your .qmd file as a new tab
@@ -229,13 +246,16 @@ if (nrow(screened) > 0) {
   cat("- Allow A/D Rating down to 'C+'\n")
 }
 
+
 # --- 9. INTERACTIVE DATATABLE (Optional — for HTML output) -------------------
-# screened %>%
-#   select(Symbol, Name, Sector, Setup, `RS Rating`, `Comp Rating`,
-#          `Current Price`, `% Chg 3 Months`, `% Off High`) %>%
-#   datatable(
-#     options = list(pageLength = 25, scrollX = TRUE),
-#     caption = "Pullback to 10SMA Setups"
-#   ) %>%
-#   formatPercentage("% Chg 3 Months", digits = 1) %>%
-#   formatCurrency("Current Price", digits = 2)
+ screened %>%
+   select(Symbol, Name, Sector, Setup, `RS Rating`, `Comp Rating`,
+          `Current Price`, `% Chg 3 Months`, `% Off High`) %>%
+   datatable(
+     options = list(pageLength = 25, scrollX = TRUE),
+     caption = "Pullback to 10SMA Setups"
+   ) %>%
+   formatPercentage("% Chg 3 Months", digits = 1) %>%
+   formatCurrency("Current Price", digits = 2)
+
+```
