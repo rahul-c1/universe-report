@@ -15,6 +15,8 @@ website:
         text: Charts        
       - href: new_analysis.qmd
         text: TopPerf
+      - href: focus.qmd
+        text: Focus
 format:
   html:
     theme: cosmo
