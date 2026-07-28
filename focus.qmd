@@ -5,7 +5,7 @@ title: "Focus"
 Focus
 
 
-```{r generate_plots, fig.show='hide'}
+```{r generate_plots, fig.show='show'}
 #| warning: false
 #| echo: false
 #| message: false
@@ -274,6 +274,9 @@ value_top <- stocks %>%
          `Market Cap (mil)` > 300) %>%
   arrange(desc(Quality_Score), desc(`RS Rating`)) %>%
   head(30)
+
+
+
 
 # --- 8. VISUALIZATION 1: SECTOR ROTATION HEATMAP ----------------------------
 # --- 8. VISUALIZATION 1: SECTOR ROTATION HEATMAP ----------------------------
@@ -675,7 +678,10 @@ weekly_snapshot <- tibble(
 )
 
 # Append to a running CSV for trend analysis
-# write_csv(weekly_snapshot, "data/weekly_snapshots.csv", append = TRUE)
+ write_csv(weekly_snapshot, "data/weekly_snapshots.csv", append = TRUE)
+
+
+
 
 cat("\n### Weekly Snapshot Metrics\n")
 weekly_snapshot %>%
@@ -683,5 +689,243 @@ weekly_snapshot %>%
   tab_header(title = "Weekly Market Snapshot",
              subtitle = report_date) %>%
   fmt_number(columns = c(Avg_Mkt_RS3M, Top_Sector_RS3M), decimals = 1)
+
+
+
+
+# --- 3. CLEAN & TYPE-CAST ----------------------------------------------------
+num_cols <- c("RS Rating", "RS 3-Month Rating", "RS 6-Month Rating", "Comp Rating",
+              "EPS Rating", "Price vs 10-Day", "Price vs 21-Day", "Price vs 50-Day",
+              "Price vs 150-Day", "Price vs 200-Day", "% Off High",
+              "% Chg 1 Month", "% Chg 3 Months", "% Chg 6 Months", "% Chg YTD", "% Chg 12 Months",
+              "EPS % Chg Last Qtr", "EPS % Chg Lst Yr", "Avg EPS % Chg 3Q", "Avg EPS % Chg 6Q",
+              "Sales % Chg Lst Qtr", "Avg Sales % Chg 3Q", "Avg Sales % Chg 6Q",
+              "EPS Est Cur Yr %", "EPS Est Next Yr %", "EPS Surprise",
+              "P/E", "Forward P/E", "PEG", "Price to Sales", "Price to Book",
+              "Market Cap (mil)", "Volume (1000s)", "50-Day Avg Vol (1000s)",
+              "Debt %", "Current Ratio", "ROE", "Beta",
+              "Ind Group Rank", "Ind Grp Rnk 3 Mo Ago", "Ind Grp Rnk 6 Mo Ago",
+              "Up/Down Vol", "Funds %", "Number of Funds",
+              "52-Wk High", "52-Wk Low", "Current Price",
+              "50 Day ATR %", "21 Day ATR %", "Daily Closing Range", "Weekly Closing Range")
+
+universe <- universe %>%
+  mutate(across(any_of(num_cols), ~as.numeric(as.character(.))))
+
+stocks <- universe %>% filter(Sector != "ETF/ETN/CEF", !is.na(Sector))
+report_date <- unique(universe$timestamp)[1]
+
+# --- 4. SECTOR THEME ANALYSIS ------------------------------------------------
+sector_perf <- stocks %>%
+  group_by(Sector) %>%
+  summarise(
+    Count = n(),
+    Avg_RS_3M = round(mean(`RS 3-Month Rating`, na.rm = TRUE), 1),
+    Avg_RS_6M = round(mean(`RS 6-Month Rating`, na.rm = TRUE), 1),
+    Avg_Comp = round(mean(`Comp Rating`, na.rm = TRUE), 1),
+    Avg_3M = round(mean(`% Chg 3 Months`, na.rm = TRUE), 1),
+    Avg_6M = round(mean(`% Chg 6 Months`, na.rm = TRUE), 1),
+    Avg_YTD = round(mean(`% Chg YTD`, na.rm = TRUE), 1),
+    Avg_12M = round(mean(`% Chg 12 Months`, na.rm = TRUE), 1),
+    Avg_EPS_Q = round(mean(`EPS % Chg Last Qtr`, na.rm = TRUE), 1),
+    Avg_vs200D = round(mean(`Price vs 200-Day`, na.rm = TRUE), 1),
+    Pct_Above_50SMA = round(mean(`Price vs 50-Day` > 0, na.rm = TRUE) * 100, 1),
+    Pct_Above_200SMA = round(mean(`Price vs 200-Day` > 0, na.rm = TRUE) * 100, 1),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    Theme_Strength = case_when(
+      Avg_RS_3M >= 65 & Avg_YTD > 10 ~ "Leading",
+      Avg_RS_3M >= 55 ~ "Strong",
+      Avg_RS_3M >= 45 ~ "Improving",
+      TRUE ~ "Weak"
+    )
+  ) %>%
+  arrange(desc(Avg_RS_3M))
+
+# --- 5. COMPOSITE SCORES ------------------------------------------------------
+stocks <- stocks %>%
+  mutate(
+    C_Score = case_when(
+      `EPS % Chg Last Qtr` > 100 ~ 25,
+      `EPS % Chg Last Qtr` > 50  ~ 20,
+      `EPS % Chg Last Qtr` > 25  ~ 15,
+      `EPS % Chg Last Qtr` > 10  ~ 10,
+      TRUE ~ 0
+    ) + case_when(
+      `Sales % Chg Lst Qtr` > 50 ~ 10,
+      `Sales % Chg Lst Qtr` > 25 ~ 7,
+      `Sales % Chg Lst Qtr` > 10 ~ 5,
+      TRUE ~ 0
+    ),
+    A_Score = case_when(
+      `Avg EPS % Chg 3Q` > 50 ~ 15,
+      `Avg EPS % Chg 3Q` > 25 ~ 12,
+      `Avg EPS % Chg 3Q` > 15 ~ 8,
+      TRUE ~ 0
+    ),
+    N_Score = case_when(
+      `RS Line New High` == "Yes" ~ 10,
+      `RS Line Within 5% of New High` == "Yes" ~ 7,
+      `RS Rating` >= 90 ~ 5,
+      TRUE ~ 0
+    ),
+    S_Score = case_when(
+      `Volume (1000s)` > `50-Day Avg Vol (1000s)` * 2 ~ 10,
+      `Volume (1000s)` > `50-Day Avg Vol (1000s)` * 1.5 ~ 7,
+      `Volume (1000s)` > `50-Day Avg Vol (1000s)` * 1.2 ~ 5,
+      TRUE ~ 0
+    ),
+    L_Score = case_when(
+      `RS Rating` >= 95 ~ 15,
+      `RS Rating` >= 90 ~ 12,
+      `RS Rating` >= 85 ~ 10,
+      `RS Rating` >= 80 ~ 7,
+      TRUE ~ 0
+    ),
+    I_Score = case_when(
+      `Funds %` >= 20 ~ 10,
+      `Funds %` >= 10 ~ 7,
+      `Funds %` >= 5  ~ 5,
+      TRUE ~ 0
+    ),
+    M_Score = case_when(
+      `Price vs 200-Day` > 20 ~ 10,
+      `Price vs 200-Day` > 10 ~ 7,
+      `Price vs 200-Day` > 0  ~ 5,
+      TRUE ~ 0
+    ),
+    CANSLIM_Score = C_Score + A_Score + N_Score + S_Score + L_Score + I_Score + M_Score,
+    
+    Momentum_Score = (`RS Rating` + `RS 3-Month Rating` + `Comp Rating`) / 3 +
+      case_when(`% Chg 3 Months` > 50 ~ 15, `% Chg 3 Months` > 30 ~ 10, `% Chg 3 Months` > 15 ~ 5, TRUE ~ 0) +
+      case_when(`Price vs 50-Day` > 10 ~ 5, `Price vs 50-Day` > 0 ~ 2, TRUE ~ 0),
+    
+    Quality_Score = case_when(`ROE` > 25 ~ 20, `ROE` > 15 ~ 15, `ROE` > 10 ~ 10, TRUE ~ 0) +
+      case_when(`Debt %` < 20 ~ 15, `Debt %` < 40 ~ 10, `Debt %` < 60 ~ 5, TRUE ~ 0) +
+      case_when(`Current Ratio` > 2 ~ 10, `Current Ratio` > 1 ~ 5, TRUE ~ 0) +
+      case_when(`EPS Rating` >= 80 ~ 15, `EPS Rating` >= 60 ~ 10, TRUE ~ 0),
+    
+    EPS_Accel = `EPS % Chg Last Qtr` > `Avg EPS % Chg 3Q` & `EPS % Chg Last Qtr` > 25,
+    Sales_Accel = `Sales % Chg Lst Qtr` > `Avg Sales % Chg 3Q` & `Sales % Chg Lst Qtr` > 20,
+    
+    Setup_Type = case_when(
+      `Price vs 10-Day` >= -3 & `Price vs 10-Day` <= 2 & 
+        `Price vs 21-Day` > 2 & `RS Rating` >= 80 & `% Off High` > -15 & `% Off High` < -1 ~ "Pullback to 10SMA",
+      `% Off High` > -5 & `% Off High` < 0 & `RS Rating` >= 85 & 
+        `RS Line New High` == "Yes" & `Volume (1000s)` > `50-Day Avg Vol (1000s)` * 1.2 & `Price vs 50-Day` > 0 ~ "Breakout",
+      `10 Day > 21 Day > 50 Day` == "Yes" & `50-Day > 150-Day > 200-Day` == "Yes" &
+        `RS Rating` >= 85 & `Comp Rating` >= 85 & `% Chg 3 Months` > 20 ~ "Momentum Leader",
+      EPS_Accel & Sales_Accel & `RS Rating` >= 75 & `EPS Rating` >= 75 ~ "Earnings Accelerator",
+      CANSLIM_Score >= 55 ~ "CANSLIM Growth",
+      `Price vs 200-Day` > 0 & `PEG` > 0 & `PEG` < 1.5 & `P/E` > 0 & `P/E` < 20 & 
+        `ROE` > 15 & `Debt %` < 60 & `RS Rating` >= 60 ~ "Value + Quality",
+      TRUE ~ "Other"
+    )
+  )
+
+# --- 6. SCREEN EACH STRATEGY -------------------------------------------------
+
+canslim_top <- stocks %>%
+  filter(CANSLIM_Score >= 55, `Market Cap (mil)` > 300) %>%
+  mutate(List = "CANSLIM Growth")
+
+momentum_top <- stocks %>%
+  filter(Momentum_Score >= 75, `Market Cap (mil)` > 300) %>%
+  mutate(List = "Momentum Leader")
+
+accel_top <- stocks %>%
+  filter(EPS_Accel, `RS Rating` >= 75, `EPS Rating` >= 70, `Market Cap (mil)` > 300) %>%
+  mutate(List = "Earnings Accelerator")
+
+breakout_top <- stocks %>%
+  filter(`% Off High` > -5, `% Off High` < 0, `RS Rating` >= 85,
+         `RS Line New High` == "Yes", `Price vs 50-Day` > 0,
+         `Volume (1000s)` > `50-Day Avg Vol (1000s)` * 1.2,
+         `Market Cap (mil)` > 300) %>%
+  mutate(List = "Breakout")
+
+pb_top <- stocks %>%
+  filter(`Price vs 10-Day` >= -3, `Price vs 10-Day` <= 2,
+         `Price vs 21-Day` > 0, `Price vs 50-Day` > 0, `Price vs 200-Day` > 0,
+         `RS Rating` >= 80, `RS 3-Month Rating` >= 75, `Comp Rating` >= 80,
+         `% Off High` > -15, `% Off High` < -1,
+         `A/D Rating` %in% c("A+","A","A-","B+","B"),
+         `Market Cap (mil)` > 300) %>%
+  mutate(List = "Pullback to 10SMA")
+
+value_top <- stocks %>%
+  filter(`P/E` > 0, `P/E` < 25, `PEG` > 0, `PEG` < 2, `ROE` > 15,
+         `Debt %` < 60, `RS Rating` >= 60, `Price vs 200-Day` > 0,
+         `Market Cap (mil)` > 300) %>%
+  mutate(List = "Value + Quality")
+
+# Combine all setups
+all_setups <- bind_rows(canslim_top, momentum_top, accel_top, breakout_top, pb_top, value_top) %>%
+  distinct(Symbol, .keep_all = TRUE) %>%
+  arrange(desc(`RS Rating`), desc(`Comp Rating`))
+
+# Add sector theme info
+all_setups <- all_setups %>%
+  left_join(
+    sector_perf %>% select(Sector, Sector_RS3M = Avg_RS_3M, Theme_Strength),
+    by = "Sector"
+  )
+
+# --- 7. HIGH CONVICTION TIGHTENED LIST ----------------------------------------
+high_conviction <- stocks %>%
+  filter(
+    `Price vs 21-Day` > 0, `Price vs 50-Day` > 0, `Price vs 200-Day` > 0,
+    `10 Day > 21 Day > 50 Day` == "Yes",
+    `RS Rating` >= 85, `Comp Rating` >= 80,
+    `% Off High` > -20, `% Off High` < 0,
+    `EPS Rating` >= 70,
+    `A/D Rating` %in% c("A+","A","A-","B+","B"),
+    `Market Cap (mil)` > 500,
+    `% Chg 3 Months` > 5
+  ) %>%
+  arrange(desc(`RS Rating`), desc(`Comp Rating`))
+
+# --- 8. AUTO EXPORT CSV FILES -------------------------------------------------
+# These save automatically every time you knit the qmd
+
+# CSV 1: Full screened list (all strategies)
+write_csv(all_setups, paste0("data/screened_stocks_", report_date, ".csv"))
+
+# CSV 2: High conviction tightened list
+write_csv(high_conviction, paste0("data/high_conviction_", report_date, ".csv"))
+
+# CSV 3: Weekly snapshot for time-series tracking
+weekly_snapshot <- tibble(
+  Date = report_date,
+  Total_Stocks = nrow(stocks),
+  Above_50SMA = sum(stocks$`Price vs 50-Day` > 0, na.rm = TRUE),
+  Above_200SMA = sum(stocks$`Price vs 200-Day` > 0, na.rm = TRUE),
+  RS_80_Plus = sum(stocks$`RS Rating` >= 80, na.rm = TRUE),
+  RS_Line_New_High = sum(stocks$`RS Line New High` == "Yes", na.rm = TRUE),
+  CANSLIM_Count = nrow(canslim_top),
+  Momentum_Count = nrow(momentum_top),
+  Breakout_Count = nrow(breakout_top),
+  PB_Count = nrow(pb_top),
+  Value_Count = nrow(value_top),
+  Avg_Mkt_RS3M = round(mean(sector_perf$Avg_RS_3M, na.rm = TRUE), 1),
+  Top_Sector = sector_perf$Sector[1],
+  Top_Sector_RS3M = sector_perf$Avg_RS_3M[1]
+)
+
+# Append to running history (creates file if doesn't exist)
+#snapshot_file <- "data/weekly_snapshots.csv"
+#if (file.exists(snapshot_file)) {
+#  write_csv(weekly_snapshot, snapshot_file, append = TRUE)
+#} else {
+#  write_csv(weekly_snapshot, snapshot_file)
+#}
+
+cat(paste0("\n✅ CSVs exported:\n",
+           "  1. data/screened_stocks_", report_date, ".csv (", nrow(all_setups), " stocks)\n",
+           "  2. data/high_conviction_", report_date, ".csv (", nrow(high_conviction), " stocks)\n",
+           "  3. data/weekly_snapshots.csv (appended)\n"))
+
+
 
 ```
