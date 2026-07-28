@@ -1,8 +1,8 @@
 ---
-  title: "Focus"
+title: "Focus"
 ---
-  
-  Focus
+
+Focus
 
 
 ```{r generate_plots, fig.show='show'}
@@ -31,7 +31,7 @@ library(viridis)
 library(patchwork)
 
 # --- 2. LOAD & CLEAN DATA ----------------------------------------------------
-universe <- read_csv("~/Downloads/Universe.csv", show_col_types = FALSE)
+universe <- read_csv("data/Universe.csv", show_col_types = FALSE)
 
 # Coerce key columns to numeric
 num_cols <- c("RS Rating", "RS 3-Month Rating", "RS 6-Month Rating", "Comp Rating",
@@ -119,8 +119,8 @@ indgrp <- stocks %>%
 # --- 5. MARKET BREADTH METRICS ------------------------------------------------
 breadth <- tibble(
   Metric = c("Above 50SMA", "Above 200SMA", "RS >= 80", "RS Line New High",
-             "A/D A or B", "EPS Rating >= 80", "Comp Rating >= 80",
-             "Price > All MAs", "Strong Up/Down Vol"),
+               "A/D A or B", "EPS Rating >= 80", "Comp Rating >= 80",
+               "Price > All MAs", "Strong Up/Down Vol"),
   Count = c(
     sum(stocks$`Price vs 50-Day` > 0, na.rm = TRUE),
     sum(stocks$`Price vs 200-Day` > 0, na.rm = TRUE),
@@ -130,7 +130,7 @@ breadth <- tibble(
     sum(stocks$`EPS Rating` >= 80, na.rm = TRUE),
     sum(stocks$`Comp Rating` >= 80, na.rm = TRUE),
     sum(stocks$`Price vs 10-Day` > 0 & stocks$`Price vs 21-Day` > 0 & 
-          stocks$`Price vs 50-Day` > 0 & stocks$`Price vs 200-Day` > 0, na.rm = TRUE),
+        stocks$`Price vs 50-Day` > 0 & stocks$`Price vs 200-Day` > 0, na.rm = TRUE),
     sum(stocks$`Up/Down Vol` > 1.5, na.rm = TRUE)
   ),
   Pct = Count / nrow(stocks) * 100
@@ -190,12 +190,12 @@ stocks <- stocks %>%
       TRUE ~ 0
     ),
     CANSLIM_Score = C_Score + A_Score + N_Score + S_Score + L_Score + I_Score + M_Score,
-    
+
     # Momentum Score
     Momentum_Score = (`RS Rating` + `RS 3-Month Rating` + `Comp Rating`) / 3 +
       case_when(`% Chg 3 Months` > 50 ~ 15, `% Chg 3 Months` > 30 ~ 10, `% Chg 3 Months` > 15 ~ 5, TRUE ~ 0) +
       case_when(`Price vs 50-Day` > 10 ~ 5, `Price vs 50-Day` > 0 ~ 2, TRUE ~ 0),
-    
+
     # Quality Score (GARP)
     Quality_Score = case_when(
       `ROE` > 25 ~ 20, `ROE` > 15 ~ 15, `ROE` > 10 ~ 10, TRUE ~ 0
@@ -208,11 +208,11 @@ stocks <- stocks %>%
     ) + case_when(
       `SMR Rating` >= 80 ~ 10, TRUE ~ 0  # Will be 0 if SMR is missing
     ),
-    
+
     # Earnings Acceleration Flag
     EPS_Accel = `EPS % Chg Last Qtr` > `Avg EPS % Chg 3Q` & `EPS % Chg Last Qtr` > 25,
     Sales_Accel = `Sales % Chg Lst Qtr` > `Avg Sales % Chg 3Q` & `Sales % Chg Lst Qtr` > 20,
-    
+
     # Setup Classification
     Setup_Type = case_when(
       `Price vs 10-Day` >= -3 & `Price vs 10-Day` <= 2 & 
@@ -328,7 +328,7 @@ rs_momentum_data <- stocks %>%
   filter(`Market Cap (mil)` > 300, `% Chg 3 Months` > -100, `% Chg 3 Months` < 300) %>%
   mutate(
     Sector_Label = ifelse(Sector %in% c("INSURANCE","BANKS","SOFTWARE","MEDICAL",
-                                        "ENERGY","CHIPS","COMPUTER","ELECTRNCS"),
+                                          "ENERGY","CHIPS","COMPUTER","ELECTRNCS"),
                           Sector, "Other"),
     Size_Bucket = case_when(
       `Market Cap (mil)` > 50000 ~ "Large Cap",
@@ -588,10 +588,10 @@ plot_sector_waterfall <- sector_perf %>%
   select(Sector, Avg_3M, Avg_6M, Avg_YTD, Avg_12M) %>%
   pivot_longer(cols = -Sector, names_to = "Period", values_to = "Return") %>%
   mutate(Period = recode(Period,
-                         "Avg_3M" = "3M",
-                         "Avg_6M" = "6M",
-                         "Avg_YTD" = "YTD",
-                         "Avg_12M" = "12M"
+    "Avg_3M" = "3M",
+    "Avg_6M" = "6M",
+    "Avg_YTD" = "YTD",
+    "Avg_12M" = "12M"
   )) %>%
   filter(Sector %in% (sector_perf %>% head(15) %>% pull(Sector))) %>%
   ggplot(aes(x = Period, y = Return, group = Sector, color = Sector)) +
@@ -668,7 +668,7 @@ canslim_top %>%
   fmt_currency(columns = `Current Price`, decimals = 2) %>%
   data_color(columns = CANSLIM_Score,
              colors = scales::col_numeric(palette = c("#d73027", "#fc8d59", "#fee08b", "#91cf60", "#1a9850"),
-                                          domain = c(40, 90)))
+                                           domain = c(40, 90)))
 
 cat("\n### Top Momentum Leaders\n")
 momentum_top %>%
@@ -890,19 +890,19 @@ stocks <- stocks %>%
       TRUE ~ 0
     ),
     CANSLIM_Score = C_Score + A_Score + N_Score + S_Score + L_Score + I_Score + M_Score,
-    
+
     Momentum_Score = (`RS Rating` + `RS 3-Month Rating` + `Comp Rating`) / 3 +
       case_when(`% Chg 3 Months` > 50 ~ 15, `% Chg 3 Months` > 30 ~ 10, `% Chg 3 Months` > 15 ~ 5, TRUE ~ 0) +
       case_when(`Price vs 50-Day` > 10 ~ 5, `Price vs 50-Day` > 0 ~ 2, TRUE ~ 0),
-    
+
     Quality_Score = case_when(`ROE` > 25 ~ 20, `ROE` > 15 ~ 15, `ROE` > 10 ~ 10, TRUE ~ 0) +
       case_when(`Debt %` < 20 ~ 15, `Debt %` < 40 ~ 10, `Debt %` < 60 ~ 5, TRUE ~ 0) +
       case_when(`Current Ratio` > 2 ~ 10, `Current Ratio` > 1 ~ 5, TRUE ~ 0) +
       case_when(`EPS Rating` >= 80 ~ 15, `EPS Rating` >= 60 ~ 10, TRUE ~ 0),
-    
+
     EPS_Accel = `EPS % Chg Last Qtr` > `Avg EPS % Chg 3Q` & `EPS % Chg Last Qtr` > 25,
     Sales_Accel = `Sales % Chg Lst Qtr` > `Avg Sales % Chg 3Q` & `Sales % Chg Lst Qtr` > 20,
-    
+
     Setup_Type = case_when(
       `Price vs 10-Day` >= -3 & `Price vs 10-Day` <= 2 & 
         `Price vs 21-Day` > 2 & `RS Rating` >= 80 & `% Off High` > -15 & `% Off High` < -1 ~ "Pullback to 10SMA",
