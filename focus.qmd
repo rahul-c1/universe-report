@@ -1,0 +1,662 @@
+---
+title: "Focus"
+---
+
+Focus
+
+
+```{r generate_plots, fig.show='hide'}
+#| warning: false
+#| echo: false
+#| message: false
+
+#!/usr/bin/env Rscript
+# Stock Analysis Visualizations in R
+# Creates distribution charts and top stocks bar chart
+
+
+# ============================================================================
+# COMPREHENSIVE UNIVERSE STOCK SCREENER & VISUALIZATION DASHBOARD
+# Designed for weekly updates in Quarto (.qmd)
+# ============================================================================
+
+# --- 1. LOAD LIBRARIES -------------------------------------------------------
+library(tidyverse)
+library(gt)
+library(scales)
+library(ggrepel)
+library(viridis)
+library(patchwork)
+
+# --- 2. LOAD & CLEAN DATA ----------------------------------------------------
+universe <- read_csv("data/Universe.csv", show_col_types = FALSE)
+
+# Coerce key columns to numeric
+num_cols <- c("RS Rating", "RS 3-Month Rating", "RS 6-Month Rating", "Comp Rating",
+              "EPS Rating", "Price vs 10-Day", "Price vs 21-Day", "Price vs 50-Day",
+              "Price vs 150-Day", "Price vs 200-Day", "% Off High",
+              "% Chg 1 Month", "% Chg 3 Months", "% Chg 6 Months", "% Chg YTD", "% Chg 12 Months",
+              "EPS % Chg Last Qtr", "EPS % Chg Lst Yr", "Avg EPS % Chg 3Q", "Avg EPS % Chg 6Q",
+              "Sales % Chg Lst Qtr", "Avg Sales % Chg 3Q", "Avg Sales % Chg 6Q",
+              "EPS Est Cur Yr %", "EPS Est Next Yr %", "EPS Surprise",
+              "P/E", "Forward P/E", "PEG", "Price to Sales", "Price to Book",
+              "Market Cap (mil)", "Volume (1000s)", "50-Day Avg Vol (1000s)",
+              "Debt %", "Current Ratio", "ROE", "Beta",
+              "Ind Group Rank", "Ind Grp Rnk 3 Mo Ago", "Ind Grp Rnk 6 Mo Ago",
+              "Up/Down Vol", "Funds %", "Number of Funds",
+              "52-Wk High", "52-Wk Low", "Current Price",
+              "50 Day ATR %", "21 Day ATR %", "Daily Closing Range", "Weekly Closing Range")
+
+universe <- universe %>%
+  mutate(across(any_of(num_cols), ~as.numeric(as.character(.))))
+
+# Separate stocks from ETFs
+stocks <- universe %>% filter(Sector != "ETF/ETN/CEF", !is.na(Sector))
+etfs   <- universe %>% filter(Sector == "ETF/ETN/CEF")
+
+report_date <- unique(universe$timestamp)[1]
+
+# --- 3. SECTOR ANALYSIS ------------------------------------------------------
+sector_perf <- stocks %>%
+  group_by(Sector) %>%
+  summarise(
+    Count = n(),
+    Avg_RS = mean(`RS Rating`, na.rm = TRUE),
+    Avg_RS3M = mean(`RS 3-Month Rating`, na.rm = TRUE),
+    Avg_RS6M = mean(`RS 6-Month Rating`, na.rm = TRUE),
+    Avg_Comp = mean(`Comp Rating`, na.rm = TRUE),
+    Avg_1M = mean(`% Chg 1 Month`, na.rm = TRUE),
+    Avg_3M = mean(`% Chg 3 Months`, na.rm = TRUE),
+    Avg_6M = mean(`% Chg 6 Months`, na.rm = TRUE),
+    Avg_YTD = mean(`% Chg YTD`, na.rm = TRUE),
+    Avg_12M = mean(`% Chg 12 Months`, na.rm = TRUE),
+    Avg_EPS_Q = mean(`EPS % Chg Last Qtr`, na.rm = TRUE),
+    Avg_Sales_Q = mean(`Sales % Chg Lst Qtr`, na.rm = TRUE),
+    Avg_vs50D = mean(`Price vs 50-Day`, na.rm = TRUE),
+    Avg_vs200D = mean(`Price vs 200-Day`, na.rm = TRUE),
+    Pct_Above_50SMA = mean(`Price vs 50-Day` > 0, na.rm = TRUE) * 100,
+    Pct_Above_200SMA = mean(`Price vs 200-Day` > 0, na.rm = TRUE) * 100,
+    Pct_RS80 = mean(`RS Rating` >= 80, na.rm = TRUE) * 100,
+    .groups = "drop"
+  ) %>%
+  mutate(
+    Theme_Strength = case_when(
+      Avg_RS3M >= 65 & Avg_YTD > 10 ~ "🔥 Leading",
+      Avg_RS3M >= 55 ~ "⚡ Strong",
+      Avg_RS3M >= 45 ~ "🟡 Improving",
+      TRUE ~ "❄️ Weak"
+    )
+  ) %>%
+  arrange(desc(Avg_RS3M))
+
+# --- 4. INDUSTRY GROUP MOMENTUM -----------------------------------------------
+indgrp <- stocks %>%
+  group_by(`Industry Name`) %>%
+  summarise(
+    Count = n(),
+    Rank_Now = mean(`Ind Group Rank`, na.rm = TRUE),
+    Rank_3M = mean(`Ind Grp Rnk 3 Mo Ago`, na.rm = TRUE),
+    Rank_6M = mean(`Ind Grp Rnk 6 Mo Ago`, na.rm = TRUE),
+    Avg_RS = mean(`RS Rating`, na.rm = TRUE),
+    Avg_RS3M = mean(`RS 3-Month Rating`, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  filter(Count >= 3) %>%
+  mutate(
+    Rank_Momentum = Rank_6M - Rank_Now,  # Higher = improving
+    Theme_Strength = case_when(
+      Rank_Now <= 20 & Rank_Momentum > 30 ~ "🔥 Leading + Improving",
+      Rank_Now <= 30 ~ "⚡ Leading",
+      Rank_Momentum > 40 ~ "📈 Strongly Improving",
+      Rank_Momentum > 20 ~ "🟡 Improving",
+      TRUE ~ "➖ Neutral/Declining"
+    )
+  ) %>%
+  arrange(desc(Rank_Momentum))
+
+# --- 5. MARKET BREADTH METRICS ------------------------------------------------
+breadth <- tibble(
+  Metric = c("Above 50SMA", "Above 200SMA", "RS >= 80", "RS Line New High",
+               "A/D A or B", "EPS Rating >= 80", "Comp Rating >= 80",
+               "Price > All MAs", "Strong Up/Down Vol"),
+  Count = c(
+    sum(stocks$`Price vs 50-Day` > 0, na.rm = TRUE),
+    sum(stocks$`Price vs 200-Day` > 0, na.rm = TRUE),
+    sum(stocks$`RS Rating` >= 80, na.rm = TRUE),
+    sum(stocks$`RS Line New High` == "Yes", na.rm = TRUE),
+    sum(stocks$`A/D Rating` %in% c("A+","A","A-","B+","B"), na.rm = TRUE),
+    sum(stocks$`EPS Rating` >= 80, na.rm = TRUE),
+    sum(stocks$`Comp Rating` >= 80, na.rm = TRUE),
+    sum(stocks$`Price vs 10-Day` > 0 & stocks$`Price vs 21-Day` > 0 & 
+        stocks$`Price vs 50-Day` > 0 & stocks$`Price vs 200-Day` > 0, na.rm = TRUE),
+    sum(stocks$`Up/Down Vol` > 1.5, na.rm = TRUE)
+  ),
+  Pct = Count / nrow(stocks) * 100
+)
+
+# --- 6. COMPOSITE SCORES ------------------------------------------------------
+# CANSLIM Score (0-100)
+stocks <- stocks %>%
+  mutate(
+    C_Score = case_when(
+      `EPS % Chg Last Qtr` > 100 ~ 25,
+      `EPS % Chg Last Qtr` > 50  ~ 20,
+      `EPS % Chg Last Qtr` > 25  ~ 15,
+      `EPS % Chg Last Qtr` > 10  ~ 10,
+      TRUE ~ 0
+    ) + case_when(
+      `Sales % Chg Lst Qtr` > 50 ~ 10,
+      `Sales % Chg Lst Qtr` > 25 ~ 7,
+      `Sales % Chg Lst Qtr` > 10 ~ 5,
+      TRUE ~ 0
+    ),
+    A_Score = case_when(
+      `Avg EPS % Chg 3Q` > 50 ~ 15,
+      `Avg EPS % Chg 3Q` > 25 ~ 12,
+      `Avg EPS % Chg 3Q` > 15 ~ 8,
+      TRUE ~ 0
+    ),
+    N_Score = case_when(
+      `RS Line New High` == "Yes" ~ 10,
+      `RS Line Within 5% of New High` == "Yes" ~ 7,
+      `RS Rating` >= 90 ~ 5,
+      TRUE ~ 0
+    ),
+    S_Score = case_when(
+      `Volume (1000s)` > `50-Day Avg Vol (1000s)` * 2 ~ 10,
+      `Volume (1000s)` > `50-Day Avg Vol (1000s)` * 1.5 ~ 7,
+      `Volume (1000s)` > `50-Day Avg Vol (1000s)` * 1.2 ~ 5,
+      TRUE ~ 0
+    ),
+    L_Score = case_when(
+      `RS Rating` >= 95 ~ 15,
+      `RS Rating` >= 90 ~ 12,
+      `RS Rating` >= 85 ~ 10,
+      `RS Rating` >= 80 ~ 7,
+      TRUE ~ 0
+    ),
+    I_Score = case_when(
+      `Funds %` >= 20 ~ 10,
+      `Funds %` >= 10 ~ 7,
+      `Funds %` >= 5  ~ 5,
+      TRUE ~ 0
+    ),
+    M_Score = case_when(
+      `Price vs 200-Day` > 20 ~ 10,
+      `Price vs 200-Day` > 10 ~ 7,
+      `Price vs 200-Day` > 0  ~ 5,
+      TRUE ~ 0
+    ),
+    CANSLIM_Score = C_Score + A_Score + N_Score + S_Score + L_Score + I_Score + M_Score,
+
+    # Momentum Score
+    Momentum_Score = (`RS Rating` + `RS 3-Month Rating` + `Comp Rating`) / 3 +
+      case_when(`% Chg 3 Months` > 50 ~ 15, `% Chg 3 Months` > 30 ~ 10, `% Chg 3 Months` > 15 ~ 5, TRUE ~ 0) +
+      case_when(`Price vs 50-Day` > 10 ~ 5, `Price vs 50-Day` > 0 ~ 2, TRUE ~ 0),
+
+    # Quality Score (GARP)
+    Quality_Score = case_when(
+      `ROE` > 25 ~ 20, `ROE` > 15 ~ 15, `ROE` > 10 ~ 10, TRUE ~ 0
+    ) + case_when(
+      `Debt %` < 20 ~ 15, `Debt %` < 40 ~ 10, `Debt %` < 60 ~ 5, TRUE ~ 0
+    ) + case_when(
+      `Current Ratio` > 2 ~ 10, `Current Ratio` > 1 ~ 5, TRUE ~ 0
+    ) + case_when(
+      `EPS Rating` >= 80 ~ 15, `EPS Rating` >= 60 ~ 10, TRUE ~ 0
+    ) + case_when(
+      `SMR Rating` >= 80 ~ 10, TRUE ~ 0  # Will be 0 if SMR is missing
+    ),
+
+    # Earnings Acceleration Flag
+    EPS_Accel = `EPS % Chg Last Qtr` > `Avg EPS % Chg 3Q` & `EPS % Chg Last Qtr` > 25,
+    Sales_Accel = `Sales % Chg Lst Qtr` > `Avg Sales % Chg 3Q` & `Sales % Chg Lst Qtr` > 20,
+
+    # Setup Classification
+    Setup_Type = case_when(
+      `Price vs 10-Day` >= -3 & `Price vs 10-Day` <= 2 & 
+        `Price vs 21-Day` > 2 & `RS Rating` >= 80 & `% Off High` > -15 & `% Off High` < -1 ~ "Pullback to 10SMA",
+      `% Off High` > -5 & `% Off High` < 0 & `RS Rating` >= 85 & 
+        `RS Line New High` == "Yes" & `Volume (1000s)` > `50-Day Avg Vol (1000s)` * 1.2 ~ "Breakout",
+      `10 Day > 21 Day > 50 Day` == "Yes" & `50-Day > 150-Day > 200-Day` == "Yes" &
+        `RS Rating` >= 85 & `Comp Rating` >= 85 & `% Chg 3 Months` > 20 ~ "Momentum Leader",
+      EPS_Accel & Sales_Accel & `RS Rating` >= 75 & `EPS Rating` >= 75 ~ "Earnings Accelerator",
+      CANSLIM_Score >= 60 ~ "CANSLIM Growth",
+      `Price vs 200-Day` > 0 & `PEG` > 0 & `PEG` < 1.5 & `P/E` > 0 & `P/E` < 20 & 
+        `ROE` > 15 & `RS Rating` >= 60 ~ "Value + Quality",
+      TRUE ~ "Other"
+    )
+  )
+
+# --- 7. SCREENED LISTS --------------------------------------------------------
+
+# Top CANSLIM
+canslim_top <- stocks %>%
+  filter(CANSLIM_Score >= 55, `Market Cap (mil)` > 300) %>%
+  arrange(desc(CANSLIM_Score), desc(`RS Rating`)) %>%
+  head(30)
+
+# Top Momentum
+momentum_top <- stocks %>%
+  filter(Momentum_Score >= 75, `Market Cap (mil)` > 300) %>%
+  arrange(desc(Momentum_Score), desc(`RS Rating`)) %>%
+  head(30)
+
+# Earnings Accelerators
+accel_top <- stocks %>%
+  filter(EPS_Accel, `RS Rating` >= 75, `EPS Rating` >= 70, `Market Cap (mil)` > 300) %>%
+  arrange(desc(`EPS % Chg Last Qtr`), desc(`RS Rating`)) %>%
+  head(30)
+
+# Breakout Candidates
+breakout_top <- stocks %>%
+  filter(`% Off High` > -5, `% Off High` < 0, `RS Rating` >= 85,
+         `RS Line New High` == "Yes", `Price vs 50-Day` > 0,
+         `Volume (1000s)` > `50-Day Avg Vol (1000s)`,
+         `Market Cap (mil)` > 300) %>%
+  arrange(desc(`RS Rating`), desc(`Volume (1000s)` / `50-Day Avg Vol (1000s)`)) %>%
+  head(20)
+
+# Pullback to 10SMA
+pb_top <- stocks %>%
+  filter(`Price vs 10-Day` >= -3, `Price vs 10-Day` <= 2,
+         `Price vs 21-Day` > 0, `Price vs 50-Day` > 0, `Price vs 200-Day` > 0,
+         `RS Rating` >= 80, `RS 3-Month Rating` >= 75, `Comp Rating` >= 80,
+         `% Off High` > -15, `% Off High` < -1,
+         `A/D Rating` %in% c("A+","A","A-","B+","B"),
+         `Market Cap (mil)` > 300) %>%
+  arrange(desc(`RS Rating`), desc(`Comp Rating`)) %>%
+  head(30)
+
+# Value + Quality
+value_top <- stocks %>%
+  filter(`P/E` > 0, `P/E` < 25, `PEG` > 0, `PEG` < 2, `ROE` > 15,
+         `Debt %` < 60, `RS Rating` >= 60, `Price vs 200-Day` > 0,
+         `Market Cap (mil)` > 300) %>%
+  arrange(desc(Quality_Score), desc(`RS Rating`)) %>%
+  head(30)
+
+# --- 8. VISUALIZATION 1: SECTOR ROTATION HEATMAP ----------------------------
+plot_sector_heatmap <- sector_perf %>%
+  select(Sector, Avg_RS3M, Avg_3M, Avg_YTD, Avg_EPS_Q, Pct_Above_200SMA) %>%
+  pivot_longer(cols = -Sector, names_to = "Metric", values_to = "Value") %>%
+  mutate(Metric = recode(Metric,
+    "Avg_RS3M" = "RS 3M",
+    "Avg_3M" = "3M Return",
+    "Avg_YTD" = "YTD Return",
+    "Avg_EPS_Q" = "EPS Growth",
+    "Pct_Above_200SMA" = "% > 200SMA"
+  )) %>%
+  ggplot(aes(x = Metric, y = reorder(Sector, Avg_RS3M), fill = Value)) +
+  geom_tile(color = "white", linewidth = 0.3) +
+  scale_fill_gradient2(low = "#d73027", mid = "#ffffbf", high = "#1a9850", midpoint = 0) +
+  labs(title = "Sector Rotation Heatmap",
+       subtitle = paste("Data as of:", report_date),
+       x = NULL, y = NULL, fill = "Value") +
+  theme_minimal(base_size = 11) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.grid = element_blank())
+
+# --- 9. VISUALIZATION 2: RS vs MOMENTUM SCATTER -----------------------------
+plot_rs_momentum <- stocks %>%
+  filter(`Market Cap (mil)` > 300) %>%
+  mutate(
+    Sector_Label = ifelse(Sector %in% c("INSURANCE","BANKS","SOFTWARE","MEDICAL",
+                                          "ENERGY","CHIPS","COMPUTER","ELECTRNCS"),
+                          Sector, "Other"),
+    Size_Bucket = case_when(
+      `Market Cap (mil)` > 50000 ~ "Large Cap",
+      `Market Cap (mil)` > 10000 ~ "Mid Cap",
+      TRUE ~ "Small Cap"
+    )
+  ) %>%
+  ggplot(aes(x = `RS Rating`, y = `% Chg 3 Months`, 
+             color = Sector_Label, size = `Market Cap (mil)` / 1000)) +
+  geom_point(alpha = 0.5) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray50") +
+  geom_vline(xintercept = 80, linetype = "dashed", color = "red", alpha = 0.5) +
+  geom_vline(xintercept = 90, linetype = "dashed", color = "darkred", alpha = 0.7) +
+  scale_size_continuous(range = c(1, 8), name = "Mkt Cap (B)") +
+  scale_color_brewer(palette = "Set1") +
+  coord_cartesian(ylim = c(-50, 150)) +
+  labs(title = "RS Rating vs 3-Month Performance",
+       subtitle = "Top-right quadrant = Momentum Leaders | Red lines = RS 80/90 thresholds",
+       x = "RS Rating", y = "3-Month % Change") +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "right")
+
+# --- 10. VISUALIZATION 3: EARNINGS ACCELERATION -----------------------------
+plot_earnings_accel <- stocks %>%
+  filter(`EPS % Chg Last Qtr` > -100, `EPS % Chg Last Qtr` < 500,
+         `Avg EPS % Chg 3Q` > -100, `Avg EPS % Chg 3Q` < 500,
+         `Market Cap (mil)` > 300) %>%
+  mutate(
+    Accel_Flag = `EPS % Chg Last Qtr` > `Avg EPS % Chg 3Q` & `EPS % Chg Last Qtr` > 25,
+    RS_High = `RS Rating` >= 80
+  ) %>%
+  ggplot(aes(x = `Avg EPS % Chg 3Q`, y = `EPS % Chg Last Qtr`)) +
+  geom_point(aes(color = Accel_Flag, alpha = RS_High), size = 2) +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "gray50") +
+  geom_hline(yintercept = 25, linetype = "dotted", color = "green") +
+  geom_vline(xintercept = 25, linetype = "dotted", color = "green") +
+  scale_color_manual(values = c("TRUE" = "#e41a1c", "FALSE" = "#377eb8"),
+                     labels = c("TRUE" = "Accelerating", "FALSE" = "Decelerating")) +
+  scale_alpha_manual(values = c("TRUE" = 0.9, "FALSE" = 0.3),
+                     guide = "none") +
+  coord_cartesian(xlim = c(-50, 200), ylim = c(-50, 300)) +
+  labs(title = "Earnings Acceleration Map",
+       subtitle = "Above diagonal = accelerating vs 3Q avg | Red = accelerating + RS>=80",
+       x = "Avg EPS Growth (Last 3Q)", y = "Last Quarter EPS Growth") +
+  theme_minimal(base_size = 11)
+
+# --- 11. VISUALIZATION 4: MARKET BREADTH DASHBOARD ----------------------------
+plot_breadth <- breadth %>%
+  mutate(Metric = fct_reorder(Metric, Pct)) %>%
+  ggplot(aes(x = Metric, y = Pct, fill = Pct)) +
+  geom_col() +
+  geom_text(aes(label = sprintf("%.1f%%", Pct)), hjust = -0.1, size = 3) +
+  scale_fill_gradient(low = "#fc8d59", high = "#91cf60") +
+  coord_flip() +
+  labs(title = "Market Breadth Dashboard",
+       subtitle = paste("n =", nrow(stocks), "stocks |", report_date),
+       x = NULL, y = "% of Universe") +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "none",
+        panel.grid.major.y = element_blank()) +
+  scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, 20))
+
+# --- 12. VISUALIZATION 5: INDUSTRY GROUP RANK MOMENTUM ------------------------
+plot_indgrp <- indgrp %>%
+  head(20) %>%
+  mutate(`Industry Name` = fct_reorder(`Industry Name`, Rank_Momentum)) %>%
+  ggplot(aes(x = Rank_Momentum, y = `Industry Name`, fill = Rank_Now)) +
+  geom_col() +
+  scale_fill_gradient(low = "#d73027", high = "#1a9850",
+                      name = "Current\nRank") +
+  labs(title = "Top 20 Industry Groups by Rank Improvement",
+       subtitle = "6M Ago Rank minus Current Rank (higher = more improvement)",
+       x = "Rank Improvement", y = NULL) +
+  theme_minimal(base_size = 10) +
+  theme(legend.position = "right")
+
+# --- 13. VISUALIZATION 6: RISK/REWARD MATRIX ----------------------------------
+plot_risk_reward <- stocks %>%
+  filter(`Market Cap (mil)` > 300, !is.na(`% Off High`), !is.na(`RS Rating`)) %>%
+  mutate(
+    Zone = case_when(
+      `RS Rating` >= 80 & `% Off High` > -10 & `% Off High` < 0 ~ "🎯 Sweet Spot",
+      `RS Rating` >= 80 & `% Off High` <= -10 ~ "💪 Strong but Deep PB",
+      `RS Rating` >= 80 & `% Off High` >= 0 ~ "🔥 Extended",
+      `RS Rating` < 60 & `% Off High` > -10 ~ "⚠️ Weak Near Highs",
+      TRUE ~ "➖ Other"
+    )
+  ) %>%
+  ggplot(aes(x = `% Off High`, y = `RS Rating`, color = Zone)) +
+  geom_point(alpha = 0.4, size = 1.5) +
+  geom_vline(xintercept = c(-15, -5, 0), linetype = "dashed", color = "gray60") +
+  geom_hline(yintercept = c(60, 80, 90), linetype = "dashed", color = "gray60") +
+  scale_color_manual(values = c(
+    "🎯 Sweet Spot" = "#1a9850",
+    "💪 Strong but Deep PB" = "#4575b4",
+    "🔥 Extended" = "#d73027",
+    "⚠️ Weak Near Highs" = "#fc8d59",
+    "➖ Other" = "gray70"
+  )) +
+  labs(title = "Risk / Reward Matrix",
+       subtitle = "X-axis: % Off 52W High (closer to 0 = closer to highs) | Y-axis: RS Rating",
+       x = "% Off 52-Week High", y = "RS Rating") +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "bottom")
+
+# --- 14. VISUALIZATION 7: VOLUME-PRICE ACTION --------------------------------
+plot_volume_price <- stocks %>%
+  filter(`Market Cap (mil)` > 300, !is.na(`Up/Down Vol`), `Up/Down Vol` < 10) %>%
+  mutate(
+    Vol_Signal = case_when(
+      `Up/Down Vol` > 2 & `Price vs 50-Day` > 5 ~ "🚀 Accumulation + Extension",
+      `Up/Down Vol` > 2 & `Price vs 50-Day` < 0 ~ "⚠️ Distribution",
+      `Up/Down Vol` > 1.5 & `Price vs 50-Day` > 0 ~ "📈 Accumulation",
+      TRUE ~ "➖ Neutral"
+    )
+  ) %>%
+  ggplot(aes(x = `Price vs 50-Day`, y = `Up/Down Vol`, color = Vol_Signal)) +
+  geom_point(alpha = 0.4, size = 1.5) +
+  geom_hline(yintercept = 1, linetype = "dashed", color = "gray50") +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "gray50") +
+  scale_color_manual(values = c(
+    "🚀 Accumulation + Extension" = "#1a9850",
+    "⚠️ Distribution" = "#d73027",
+    "📈 Accumulation" = "#4575b4",
+    "➖ Neutral" = "gray70"
+  )) +
+  coord_cartesian(ylim = c(0, 5)) +
+  labs(title = "Volume-Price Action",
+       subtitle = "Up/Down Volume Ratio vs Price vs 50-Day SMA",
+       x = "Price vs 50-Day SMA (%)", y = "Up/Down Volume Ratio") +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "bottom")
+
+# --- 15. VISUALIZATION 8: CANSLIM SCORE DISTRIBUTION --------------------------
+plot_canslim_dist <- stocks %>%
+  filter(`Market Cap (mil)` > 300) %>%
+  mutate(Score_Bucket = cut(CANSLIM_Score, breaks = c(-Inf, 20, 40, 55, 70, Inf),
+                            labels = c("Weak (0-20)", "Fair (21-40)", 
+                                       "Good (41-55)", "Strong (56-70)", "Elite (71+)"))) %>%
+  ggplot(aes(x = Score_Bucket, fill = Score_Bucket)) +
+  geom_bar() +
+  geom_text(stat = "count", aes(label = ..count..), vjust = -0.5, size = 3) +
+  scale_fill_brewer(palette = "RdYlGn") +
+  labs(title = "CANSLIM Score Distribution",
+       subtitle = paste("n =", nrow(stocks %>% filter(`Market Cap (mil)` > 300))),
+       x = "CANSLIM Score Bucket", y = "Count") +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "none")
+
+# --- 16. VISUALIZATION 9: SECTOR PERFORMANCE WATERFALL ------------------------
+plot_sector_waterfall <- sector_perf %>%
+  select(Sector, Avg_3M, Avg_6M, Avg_YTD, Avg_12M) %>%
+  pivot_longer(cols = -Sector, names_to = "Period", values_to = "Return") %>%
+  mutate(Period = recode(Period,
+    "Avg_3M" = "3M",
+    "Avg_6M" = "6M",
+    "Avg_YTD" = "YTD",
+    "Avg_12M" = "12M"
+  )) %>%
+  filter(Sector %in% (sector_perf %>% head(15) %>% pull(Sector))) %>%
+  ggplot(aes(x = Period, y = Return, group = Sector, color = Sector)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2) +
+  scale_color_viridis_d() +
+  labs(title = "Sector Performance Trajectory (Top 15 by 3M RS)",
+       subtitle = "Track which sectors are accelerating or decelerating",
+       x = NULL, y = "Avg Return (%)") +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "right")
+
+# --- 17. VISUALIZATION 10: TOP SETUPS SUMMARY ---------------------------------
+all_setups <- bind_rows(
+  canslim_top %>% select(Symbol, Name, Sector, `Industry Name`, Setup = Setup_Type, 
+                         `RS Rating`, `Comp Rating`, `Current Price`, `% Chg 3 Months`) %>%
+    mutate(List = "CANSLIM Growth"),
+  momentum_top %>% select(Symbol, Name, Sector, `Industry Name`, Setup = Setup_Type,
+                          `RS Rating`, `Comp Rating`, `Current Price`, `% Chg 3 Months`) %>%
+    mutate(List = "Momentum Leaders"),
+  accel_top %>% select(Symbol, Name, Sector, `Industry Name`, Setup = Setup_Type,
+                       `RS Rating`, `Comp Rating`, `Current Price`, `% Chg 3 Months`) %>%
+    mutate(List = "Earnings Accelerators"),
+  breakout_top %>% select(Symbol, Name, Sector, `Industry Name`, Setup = Setup_Type,
+                          `RS Rating`, `Comp Rating`, `Current Price`, `% Chg 3 Months`) %>%
+    mutate(List = "Breakout Candidates"),
+  pb_top %>% select(Symbol, Name, Sector, `Industry Name`, Setup = Setup_Type,
+                    `RS Rating`, `Comp Rating`, `Current Price`, `% Chg 3 Months`) %>%
+    mutate(List = "Pullback to 10SMA"),
+  value_top %>% select(Symbol, Name, Sector, `Industry Name`, Setup = Setup_Type,
+                       `RS Rating`, `Comp Rating`, `Current Price`, `% Chg 3 Months`) %>%
+    mutate(List = "Value + Quality")
+) %>%
+  distinct(Symbol, List, .keep_all = TRUE)
+
+plot_setup_summary <- all_setups %>%
+  count(List, Sector) %>%
+  ggplot(aes(x = List, y = n, fill = Sector)) +
+  geom_col() +
+  geom_text(aes(label = n), position = position_stack(vjust = 0.5), size = 3) +
+  coord_flip() +
+  labs(title = "Setup Distribution by Strategy & Sector",
+       subtitle = paste("Total unique setups:", nrow(all_setups)),
+       x = NULL, y = "Count") +
+  theme_minimal(base_size = 10) +
+  theme(legend.position = "right")
+
+# --- 18. COMBINE ALL PLOTS ---------------------------------------------------
+# Use patchwork to create a dashboard layout
+# Note: In Quarto, you can render individual plots or use patchwork
+# For a qmd tab, render them individually or as a combined figure
+
+cat("\n### Visualization Dashboard\n")
+
+# Display plots (in qmd, each ggplot object will render automatically)
+plot_sector_heatmap
+plot_rs_momentum
+plot_earnings_accel
+plot_breadth
+plot_indgrp
+plot_risk_reward
+plot_volume_price
+plot_canslim_dist
+plot_sector_waterfall
+plot_setup_summary
+
+# --- 19. OUTPUT TABLES --------------------------------------------------------
+
+cat("\n### Top CANSLIM Growth Stocks\n")
+canslim_top %>%
+  select(Symbol, Name, Sector, `Industry Name`, CANSLIM_Score,
+         `RS Rating`, `Comp Rating`, `EPS Rating`, `Current Price`,
+         `EPS % Chg Last Qtr`, `Sales % Chg Lst Qtr`, `% Chg 3 Months`, `% Off High`) %>%
+  arrange(desc(CANSLIM_Score)) %>%
+  head(20) %>%
+  gt() %>%
+  tab_header(title = "Top CANSLIM Growth Stocks",
+             subtitle = paste("Score >= 55 |", report_date)) %>%
+  fmt_number(columns = c(CANSLIM_Score, `RS Rating`, `Comp Rating`, `EPS Rating`), decimals = 0) %>%
+  fmt_number(columns = c(`EPS % Chg Last Qtr`, `Sales % Chg Lst Qtr`, `% Chg 3 Months`, `% Off High`), decimals = 1) %>%
+  fmt_currency(columns = `Current Price`, decimals = 2) %>%
+  data_color(columns = CANSLIM_Score,
+             colors = scales::col_numeric(palette = c("#d73027", "#fc8d59", "#fee08b", "#91cf60", "#1a9850"),
+                                           domain = c(40, 90)))
+
+cat("\n### Top Momentum Leaders\n")
+momentum_top %>%
+  select(Symbol, Name, Sector, `Industry Name`, Momentum_Score,
+         `RS Rating`, `RS 3-Month Rating`, `Comp Rating`, `Current Price`,
+         `% Chg 3 Months`, `% Chg 6 Months`, `Price vs 50-Day`, `% Off High`) %>%
+  head(20) %>%
+  gt() %>%
+  tab_header(title = "Top Momentum Leaders",
+             subtitle = paste("Score >= 75 |", report_date)) %>%
+  fmt_number(columns = c(Momentum_Score, `RS Rating`, `RS 3-Month Rating`, `Comp Rating`), decimals = 1) %>%
+  fmt_number(columns = c(`% Chg 3 Months`, `% Chg 6 Months`, `Price vs 50-Day`, `% Off High`), decimals = 1) %>%
+  fmt_currency(columns = `Current Price`, decimals = 2)
+
+cat("\n### Earnings Accelerators\n")
+accel_top %>%
+  select(Symbol, Name, Sector, `Industry Name`, `RS Rating`, `EPS Rating`, `Current Price`,
+         `EPS % Chg Last Qtr`, `Avg EPS % Chg 3Q`, `Sales % Chg Lst Qtr`, `EPS Est Cur Yr %`, `% Off High`) %>%
+  head(20) %>%
+  gt() %>%
+  tab_header(title = "Earnings Accelerators",
+             subtitle = paste("Last Qtr EPS > 3Q Avg & >25% |", report_date)) %>%
+  fmt_number(columns = c(`RS Rating`, `EPS Rating`), decimals = 0) %>%
+  fmt_number(columns = c(`EPS % Chg Last Qtr`, `Avg EPS % Chg 3Q`, `Sales % Chg Lst Qtr`, 
+                         `EPS Est Cur Yr %`, `% Off High`), decimals = 1) %>%
+  fmt_currency(columns = `Current Price`, decimals = 2)
+
+cat("\n### Breakout Candidates\n")
+breakout_top %>%
+  select(Symbol, Name, Sector, `Industry Name`, `RS Rating`, `Comp Rating`, `Current Price`,
+         `% Off High`, `Volume (1000s)`, `50-Day Avg Vol (1000s)`, `RS Line New High`, `% Chg 3 Months`) %>%
+  mutate(Vol_Ratio = round(`Volume (1000s)` / `50-Day Avg Vol (1000s)`, 1)) %>%
+  select(-`Volume (1000s)`, -`50-Day Avg Vol (1000s)`) %>%
+  gt() %>%
+  tab_header(title = "Breakout Candidates",
+             subtitle = paste("Within 5% of highs, RS Line New High, Volume Confirm |", report_date)) %>%
+  fmt_number(columns = c(`RS Rating`, `Comp Rating`), decimals = 0) %>%
+  fmt_number(columns = c(`% Off High`, `% Chg 3 Months`, Vol_Ratio), decimals = 1) %>%
+  fmt_currency(columns = `Current Price`, decimals = 2)
+
+cat("\n### Pullback to 10SMA Setups\n")
+pb_top %>%
+  select(Symbol, Name, Sector, `Industry Name`, `RS Rating`, `RS 3-Month Rating`, `Comp Rating`,
+         `Current Price`, `Price vs 10-Day`, `Price vs 21-Day`, `% Off High`, `% Chg 3 Months`) %>%
+  head(20) %>%
+  gt() %>%
+  tab_header(title = "Pullback to 10SMA Setups",
+             subtitle = paste("High RS, resting at 10SMA after strength |", report_date)) %>%
+  fmt_number(columns = c(`RS Rating`, `RS 3-Month Rating`, `Comp Rating`), decimals = 0) %>%
+  fmt_number(columns = c(`Price vs 10-Day`, `Price vs 21-Day`, `% Off High`, `% Chg 3 Months`), decimals = 1) %>%
+  fmt_currency(columns = `Current Price`, decimals = 2)
+
+cat("\n### Value + Quality (GARP)\n")
+value_top %>%
+  select(Symbol, Name, Sector, `Industry Name`, Quality_Score, `RS Rating`, `Current Price`,
+         `P/E`, `PEG`, `ROE`, `Debt %`, `EPS Rating`, `Price vs 200-Day`) %>%
+  head(20) %>%
+  gt() %>%
+  tab_header(title = "Value + Quality (GARP)",
+             subtitle = paste("Low P/E, Low PEG, High ROE, Low Debt |", report_date)) %>%
+  fmt_number(columns = c(Quality_Score, `RS Rating`, `EPS Rating`), decimals = 0) %>%
+  fmt_number(columns = c(`P/E`, `PEG`, `ROE`, `Debt %`, `Price vs 200-Day`), decimals = 1) %>%
+  fmt_currency(columns = `Current Price`, decimals = 2)
+
+# --- 20. MASTER WATCHLIST (All setups combined) --------------------------------
+cat("\n### Master Watchlist (All Setups Combined)\n")
+master_watchlist <- all_setups %>%
+  group_by(Symbol, Name, Sector, `Industry Name`) %>%
+  summarise(
+    Lists = paste(unique(List), collapse = ", "),
+    Avg_RS = mean(`RS Rating`, na.rm = TRUE),
+    Avg_Comp = mean(`Comp Rating`, na.rm = TRUE),
+    Price = first(`Current Price`),
+    Chg_3M = first(`% Chg 3 Months`),
+    .groups = "drop"
+  ) %>%
+  arrange(desc(Avg_RS), desc(Avg_Comp))
+
+master_watchlist %>%
+  gt() %>%
+  tab_header(title = "Master Watchlist",
+             subtitle = paste(nrow(master_watchlist), "unique stocks across all strategies |", report_date)) %>%
+  fmt_number(columns = c(Avg_RS, Avg_Comp), decimals = 0) %>%
+  fmt_number(columns = Chg_3M, decimals = 1) %>%
+  fmt_currency(columns = Price, decimals = 2) %>%
+  tab_options(table.font.size = px(11))
+
+# --- 21. WEEKLY TRACKING VARIABLES (for time-series analysis) -----------------
+# Save key metrics for week-over-week comparison
+weekly_snapshot <- tibble(
+  Date = report_date,
+  Total_Stocks = nrow(stocks),
+  Above_50SMA = sum(stocks$`Price vs 50-Day` > 0, na.rm = TRUE),
+  Above_200SMA = sum(stocks$`Price vs 200-Day` > 0, na.rm = TRUE),
+  RS_80_Plus = sum(stocks$`RS Rating` >= 80, na.rm = TRUE),
+  RS_Line_New_High = sum(stocks$`RS Line New High` == "Yes", na.rm = TRUE),
+  CANSLIM_Count = nrow(canslim_top),
+  Momentum_Count = nrow(momentum_top),
+  Breakout_Count = nrow(breakout_top),
+  PB_Count = nrow(pb_top),
+  Avg_Mkt_RS3M = mean(sector_perf$Avg_RS3M, na.rm = TRUE),
+  Top_Sector = sector_perf$Sector[1],
+  Top_Sector_RS3M = sector_perf$Avg_RS3M[1]
+)
+
+# Append to a running CSV for trend analysis
+# write_csv(weekly_snapshot, "data/weekly_snapshots.csv", append = TRUE)
+
+cat("\n### Weekly Snapshot Metrics\n")
+weekly_snapshot %>%
+  gt() %>%
+  tab_header(title = "Weekly Market Snapshot",
+             subtitle = report_date) %>%
+  fmt_number(columns = c(Avg_Mkt_RS3M, Top_Sector_RS3M), decimals = 1)
+
+```
