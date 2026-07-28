@@ -1,25 +1,34 @@
 name: Quarto Publish
 
 on:
-   schedule:
-   - cron: "59 12 * * 5-6"
-   
-  # Allows you to run this workflow manually from the Actions tab
-   workflow_dispatch:
-   push:
-     branches: master
+  schedule:
+    - cron: "59 12 * * 5-6"
+
+  workflow_dispatch:
+
+  push:
+    branches:
+      - "master"
+
 jobs:
   update-report:
     runs-on: ubuntu-latest
+
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: "4.5"
 
       - name: Install packages
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
+          cache: true
           packages: |
-            any::data.table 
+            any::data.table
             any::dplyr
             any::gt
             any::ggplot2
@@ -30,40 +39,32 @@ jobs:
             any::readr
             any::tidyverse
             any::DT
-            any::scales
             any::ggrepel
-            any::virdis
+            any::viridis
             any::patchwork
-
-      - name: Check out repository
-        uses: actions/checkout@v4
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Render Quarto
+        run: quarto render --fail-if-warnings
 
-
-      - name: Quarto render
-        run: |
-          quarto render --fail-if-warnings
-
-
-      - name: Commit files
+      - name: Commit changes
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add --all
-          git commit -am "add data"
-          git push 
-         
-           
+          git diff --cached --quiet || git commit -m "Update generated report"
+          git push
+
       - name: Render and Publish to Netlify
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: netlify
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
 
-#      - name: Install packages
+# Optional if using renv
+#      - name: Restore renv
 #        run: |
-#           R -e 'install.packages("renv")'
-#           R -e 'renv::restore()'
+#          R -e 'install.packages("renv")'
+#          R -e 'renv::restore()'
