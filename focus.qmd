@@ -1020,4 +1020,48 @@ cat(paste0("\n✅ CSVs exported:\n",
            "  2. data/high_conviction_", report_date, ".csv (", nrow(high_conviction), " stocks)\n",
            "  3. data/weekly_snapshots.csv (appended)\n"))
 
+library(tidyverse)
+
+# --- 1. Read and Prepare Data for Plotting ---
+snapshot_file <- "data/weekly_snapshots.csv"
+
+# Read history, take the last 21 data points, and parse Date
+history_data <- read_csv(snapshot_file, show_col_types = FALSE) %>%
+  tail(21) %>%
+  mutate(Date = as.Date(Date))
+
+# Display the output of the file in the console
+cat("\n--- Recent Weekly Snapshots (Last 21 Records) ---\n")
+print(history_data)
+
+# --- 2. Reshape Data for Faceted Plotting ---
+# Exclude non-numeric or categorical columns (like Top_Sector) from numerical plotting
+plot_data <- history_data %>%
+  select(Date, where(is.numeric)) %>%
+  pivot_longer(
+    cols = -Date, 
+    names_to = "Metric", 
+    values_to = "Value"
+  )
+
+# --- 3. Generate ggplot with Independent Y-Axis ---
+snapshot_plot <- ggplot(plot_data, aes(x = Date, y = Value, color = Metric)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 1.5) +
+  facet_wrap(~ Metric, scales = "free_y", ncol = 3) +
+  theme_minimal(base_size = 11) +
+  labs(
+    title = "Weekly Snapshot Trends (Last 21 Periods)",
+    subtitle = "Tracking key market breadth and strategy counts",
+    x = "Date",
+    y = "Metric Value"
+  ) +
+  theme(
+    legend.position = "none",
+    strip.text = element_text(face = "bold", size = 10),
+    axis.text.x = element_text(angle = 30, hjust = 1)
+  )
+
+# Display the plot
+print(snapshot_plot)
 ```
