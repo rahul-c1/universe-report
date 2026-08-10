@@ -659,7 +659,7 @@ canslim_top %>%
          `RS Rating`, `Comp Rating`, `EPS Rating`, `Current Price`,
          `EPS % Chg Last Qtr`, `Sales % Chg Lst Qtr`, `% Chg 3 Months`, `% Off High`) %>%
   arrange(desc(CANSLIM_Score)) %>%
-  head(20) %>%
+  head(30) %>%
   gt() %>%
   tab_header(title = "Top CANSLIM Growth Stocks",
              subtitle = paste("Score >= 55 |", report_date)) %>%
@@ -725,7 +725,7 @@ cat("\n### Value + Quality (GARP)\n")
 value_top %>%
   select(Symbol, Name, Sector, `Industry Name`, Quality_Score, `RS Rating`, `Current Price`,
          `P/E`, `PEG`, `ROE`, `Debt %`, `EPS Rating`, `Price vs 200-Day`) %>%
-  head(20) %>%
+  head(30) %>%
   gt() %>%
   tab_header(title = "Value + Quality (GARP)",
              subtitle = paste("Low P/E, Low PEG, High ROE, Low Debt |", report_date)) %>%
@@ -1032,7 +1032,10 @@ history_data <- read_csv(snapshot_file, show_col_types = FALSE) %>%
 
 # Display the output of the file in the console
 cat("\n--- Recent Weekly Snapshots (Last 21 Records) ---\n")
-print(history_data)
+history_data %>%  gt() %>%
+  tab_header(title = "Market Breadth",
+             subtitle = paste(nrow(history_data), "Market Breadth |", report_date)) %>%
+  tab_options(table.font.size = px(11))
 
 # --- 2. Reshape Data for Faceted Plotting ---
 # Exclude non-numeric or categorical columns (like Top_Sector) from numerical plotting
