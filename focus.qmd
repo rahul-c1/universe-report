@@ -989,6 +989,8 @@ write_csv(all_setups, paste0("data/screened_stocks_", report_date, ".csv"))
 # CSV 2: High conviction tightened list
 write_csv(high_conviction, paste0("data/high_conviction_", report_date, ".csv"))
 
+write_csv(high_conviction %>% select(Symbol), paste0("data/high_conviction_symbols_",report_date,".csv"))
+
 # CSV 3: Weekly snapshot for time-series tracking
 weekly_snapshot <- tibble(
   Date = report_date,
