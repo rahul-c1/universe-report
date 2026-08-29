@@ -1,31 +1,31 @@
 Symbol,Name,Current Price,Market Cap (mil),RS Rating,Comp Rating,EPS Rating,SMR Rating,A/D Rating,Quality Score,% Chg 3 Months,% Chg 6 Months
-PAYS,Paysign Inc.,14.09,779,99,99,98,NA,NA,74.1,122.2,329.6
-HBB,Hamilton Beach Brands Holding Co. Cl A,32.9,452,98,99,98,NA,NA,73.8,68.7,67.5
-RCRUY,Recruit Holdings Co. Ltd. ADR,20.07,134923,97,99,97,NA,NA,73.4,67,147.3
-ERO,Ero Copper Corp.,39.42,3755,95,99,99,NA,NA,73.3,47.5,30.7
-DELL,Dell Technologies Inc. Cl C,442.08,281860,99,95,97,NA,NA,72.9,74.9,261.6
-ATEYY,Advantest Corp. ADR,225.07,155406,94,98,99,NA,NA,72.8,30.4,35.4
-WT,WisdomTree Inc.,23.51,3439,93,99,99,NA,NA,72.8,22.6,43.5
-ENVA,Enova International Inc.,242.93,5911,97,98,95,NA,NA,72.8,51,67.2
-AAMI,Acadian Asset Management Inc.,92.3,3224,96,97,97,NA,NA,72.7,27.2,73.4
-SENEB,Seneca Foods Corp. Cl B,195.39,1301,95,97,98,NA,NA,72.6,37.1,50.3
-VCTR,Victory Capital Holdings Inc. Cl A,115.63,7123,95,99,95,NA,NA,72.5,34.7,53
-SSRM,SSR Mining Inc.,37.77,7214,93,99,97,NA,NA,72.4,24.9,24
-ECO,Okeanis Eco Tankers Corp.,64.71,2464,92,98,99,NA,NA,72.3,15.6,31.5
-EXPE,Expedia Group Inc.,321.63,38906,91,99,99,NA,NA,72.3,47.5,58.1
-SN,SharkNinja Inc.,180.76,25532,95,99,94,NA,NA,72.3,61.1,38.4
-KRT,Karat Packaging Inc.,48.05,948,98,99,90,NA,NA,72.2,79.8,90.1
-IMAX,Imax Corp.,52.74,2892,95,97,96,NA,NA,72.2,55.7,39.5
-RELY,Remitly Global Inc.,26.67,5305,93,99,96,NA,NA,72.2,23.6,55.5
-VIRT,Virtu Financial Inc.,67.93,9309,93,99,96,NA,NA,72.2,28.8,70.6
-RDVT,Red Violet Inc.,71.17,1119,92,99,97,NA,NA,72.2,46.6,67
-AU,AngloGold Ashanti PLC,121.22,58147,91,99,98,NA,NA,72.1,32,6.1
-LPG,Dorian LPG Ltd.,51.13,2124,91,99,98,NA,NA,72.1,11.6,43.9
-HALO,Halozyme Therapeutics Inc.,108.17,12044,94,99,94,NA,NA,72,57.9,52.4
-SNOW,Snowflake Inc.,332.78,112648,94,99,94,NA,NA,72,101,92.9
-ILMN,Illumina Inc.,219.4,32199,97,99,90,NA,NA,72,51.5,86.5
-RNG,RingCentral Inc. Cl A,67.01,5506,98,98,90,NA,NA,72,58.7,69.6
-CHEF,Chefs' Warehouse Inc.,110.61,4440,95,96,96,NA,NA,72,41.7,58
-EAT,Brinker International Inc.,246.06,9735,97,98,91,NA,NA,72,80.2,67.9
-FTNT,Fortinet Inc.,153.51,110637,93,98,96,NA,NA,72,18.6,91.9
-LTH,Life Time Group Holdings Inc.,45.11,9993,94,97,96,NA,NA,72,36.9,55.8
+PAYS,Paysign Inc.,12.89,743,99,99,98,NA,NA,74.1,79.3,263.1
+HBB,Hamilton Beach Brands Holding Co. Cl A,31.45,435,98,99,98,NA,NA,73.8,55.5,65.2
+RCRUY,Recruit Holdings Co. Ltd. ADR,22.05,144604,98,99,97,NA,NA,73.7,72.4,150.7
+ERO,Ero Copper Corp.,38.83,4152,95,99,99,NA,NA,73.3,30,13.6
+WT,WisdomTree Inc.,24.43,3794,95,99,99,NA,NA,73.3,32.8,42.8
+ECO,Okeanis Eco Tankers Corp.,66.86,2544,95,98,99,NA,NA,73,38.9,23.7
+EXPE,Expedia Group Inc.,329.44,38276,94,99,99,NA,NA,73,44.8,52.7
+FROG,JFrog Ltd.,98.74,12827,97,99,95,NA,NA,73,35.7,145.9
+FTNT,Fortinet Inc.,166,126771,96,99,96,NA,NA,73,28,110
+DELL,Dell Technologies Inc. Cl C,456.24,306157,99,95,97,NA,NA,72.9,43.9,208.1
+SN,SharkNinja Inc.,191.23,27168,97,99,94,NA,NA,72.8,60.1,55.6
+GCT,GigaCloud Technology Inc.,52.95,1842,96,99,95,NA,NA,72.8,39.9,19.4
+VCTR,Victory Capital Holdings Inc. Cl A,118.31,7451,96,99,95,NA,NA,72.8,39,71
+RELY,Remitly Global Inc.,26.55,5501,95,99,96,NA,NA,72.7,32.8,59
+VIRT,Virtu Financial Inc.,66.39,10405,95,99,96,NA,NA,72.7,36,60.3
+AAMI,Acadian Asset Management Inc.,95.76,3454,96,97,97,NA,NA,72.7,31.7,77.8
+TWLO,Twilio Inc. Cl A,237.78,37064,96,99,94,NA,NA,72.6,28.8,96.6
+CHEF,Chefs' Warehouse Inc.,115,4539,97,96,96,NA,NA,72.4,47.6,61.1
+ENVA,Enova International Inc.,232.72,5908,97,96,96,NA,NA,72.4,46.5,67.4
+NET,Cloudflare Inc. Cl A,299.84,109754,94,98,97,NA,NA,72.4,24,74.1
+OOMA,Ooma Inc.,22.91,634,96,96,97,NA,NA,72.4,28.9,85.4
+RDVT,Red Violet Inc.,73.3,1155,93,99,97,NA,NA,72.4,33.8,69.2
+SSRM,SSR Mining Inc.,37.29,7954,93,99,97,NA,NA,72.4,23.7,15.8
+SENEA,Seneca Foods Corp. Cl A,199.84,1302,95,96,98,NA,NA,72.3,37.3,43.8
+ATEYY,Advantest Corp. ADR,214.7,151537,94,96,99,NA,NA,72.3,25,24.1
+CRWD,CrowdStrike Holdings Inc. Cl A,218.4,232122,96,98,94,NA,NA,72.3,30.2,134.9
+SHIP,Seanergy Maritime Holdings Corp.,17.79,383,93,97,99,NA,NA,72.3,25.7,24
+TEAM,Atlassian Corp. Cl A,190.41,46988,92,98,99,NA,NA,72.3,104.1,153.4
+HALO,Halozyme Therapeutics Inc.,105.35,12135,94,99,94,NA,NA,72,54.5,51.5
+KRT,Karat Packaging Inc.,49.11,993,98,99,89,NA,NA,72,81.1,99.2
